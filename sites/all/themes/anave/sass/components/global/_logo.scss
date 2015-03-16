@@ -1,0 +1,28 @@
+.l-branding{
+  h1.site-name, 
+  div.site-name{
+    margin: 0;
+    padding: 0;
+    a{
+      display: block;
+      background: url(../logo.png) no-repeat;
+      width: 162px;
+      height: 92px;
+      text-align: left;
+      text-indent: -9999px;
+    }
+  }
+  
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .l-branding{
+    h1.site-name, 
+    div.site-name{
+      a{
+        background-image: url(../logox2.png);
+        background-size: 162px 92px;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+body{
+  font-family: "Raleway";
+  font-size: 14px;
+  line-height: 23px;
+  color: #1c1c1c;
+  background: white;
+}
+.layout-wrapper{
+  margin: 0 auto;
+  width: $desktop_wide_width - 20px;
+}
+.cf{
+  clear: both;
+  display: table;
+  height: 0;
+}
+
+@media only screen and (max-width: $desktop_wide_width) {
+  .layout-wrapper{
+    width: $tablet_width - 30px;
+  }
+}
+
+@media only screen and (max-width: $tablet_width) {
+  .layout-wrapper{
+    width: 100%;
+    padding: 0 15px;
+  }
+}
