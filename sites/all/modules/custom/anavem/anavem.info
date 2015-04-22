@@ -1,0 +1,4 @@
+name = "Anave M"
+description = "Provides customs forms for Grupo Anave Siniestro."
+core = "7.x"
+package = "Grupo Anave"
