@@ -13,6 +13,18 @@
   .region-footer{
     max-width: @container-large-desktop;
     margin: 0 auto;
+    > .block{
+      float: left;
+    }
+    > .block+.block{
+      margin-left: 30px;
+    }
+  }
+  .region-footer:after{
+    clear: both;
+    height: 0;
+    display: table;
+    content: "";
   }
   h2{
     text-transform: uppercase;
@@ -22,5 +34,137 @@
   }
   h3{
     font-size: 14px;
+  }
+}
+
+/** Footer Contact **/
+#block-block-2 .address-line{
+  color: #bfbfbf;
+  font-size: 12px;
+  line-height: 23px;
+  .label{
+    display: inline-block;
+    float: none;
+    width: 60px;
+    padding: 0;
+    color: #bfbfbf;
+    font-size: 12px;
+    text-align: left;
+  }
+  .value{
+    display: inline-block;
+  }
+  a{
+    color: #bfbfbf;
+  }
+  a:hover{
+    text-decoration: none;
+    color: #da3300;
+  }
+}
+
+/** Social Footer Menu **/
+#block-menu-menu-social-channels:before{
+  background: #2f2f34;
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -31px;
+  width: 1px;
+  height: 200px;
+}
+#block-menu-menu-social-channels{
+  position: relative;
+  float: right;
+  ul.menu:after{
+    content: "";
+    clear: both;
+    display: table;
+    height: 0;
+  }
+  ul.menu li{
+    float: left;
+    margin-right: 11px;
+    a{
+      display: block;
+      padding: 0;
+      width: 32px;
+      height: 24px;
+      span{
+        display: block;
+        text-indent: -9999px;
+        text-align: left;
+      }
+    }
+    a:hover{
+      background: transparent;
+    }
+    a:after{
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 24px;
+      line-height: 1em;
+      font-family: FontAwesome;
+      display: block;
+      color: #fff;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+    a.plus:after{
+      content: "\f0d5";
+    }
+    a.twitter:after{
+      content: "\f099";
+    }
+    a.facebook{
+      width: 20px;
+    }
+    a.facebook:after{
+      content: "\f09a";
+    }
+    a.flickr:after{
+      content: "\f16e";
+    }
+    a.linkedin:after{
+      content: "\f0e1";
+    }
+    a:hover:after{
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+      color: #da3300;
+    }
+  }
+  ul.menu li.last{
+    margin-right: 0;
+  }
+}
+
+/** Footer Menu **/
+#block-menu-menu-footer-menu{
+  ul.menu li{
+    margin-bottom: 3px;
+  }
+  ul.menu li a{
+    font-size: 14px;
+    line-height: 18px;
+    font-family: Lato;
+    display: block;
+    padding: 0;
+    color: #bfbfbf;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+  }
+  ul.menu li a:hover, 
+  ul.menu li a.active{
+    color: #da3300;
+    background: transparent;
   }
 }

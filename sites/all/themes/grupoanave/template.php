@@ -45,3 +45,18 @@ function grupoanave_menu_link__main_menu(array $variables) {
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
+
+/**
+ * Overrides theme_menu_link().
+ */
+function grupoanave_menu_link__menu_social_channels(array $variables) {
+  $element = $variables ['element'];
+  $sub_menu = '';
+
+  if ($element ['#below']) {
+    $sub_menu = drupal_render($element ['#below']);
+  }
+  $element['#localized_options']['html'] = true;
+  $output = l('<span>' . $element ['#title'] . '</span>', $element ['#href'], $element ['#localized_options']);
+  return '<li' . drupal_attributes($element ['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}
