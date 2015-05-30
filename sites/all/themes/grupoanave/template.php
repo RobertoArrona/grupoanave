@@ -1,11 +1,4 @@
 <?php
-
-/**
- * @file
- * template.php
- */
-
-
 /**
  * Overrides theme_menu_link().
  */

@@ -1,0 +1,42 @@
+.node-poliza.view-mode-print .row:after {
+  clear: both;
+  content: "";
+  display: table;
+  height: 0;
+}
+.node-poliza.view-mode-print .row {
+  border: solid 1px #333;
+  border-radius: 3px 3px 3px 3px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.node-poliza.view-mode-print .row h2 {
+  margin: 0;
+  padding: 5px;
+  background: #dd0000;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.2em;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+.node-poliza.view-mode-print .inner-block {
+  padding: 5px 15px;
+}
+.node-poliza.view-mode-print .label-above {
+  font-weight: bold;
+}
+.node-poliza.view-mode-print .field {
+  margin-bottom: 10px;
+}
+.node-poliza.view-mode-print .col-50 {
+  float: left;
+  width: 50%;
+}
+.node-poliza.view-mode-print .col-20 {
+  float: left;
+  width: 20%;
+}
+.node-poliza.view-mode-print .group-poliza .subcolumn.first .inner-block {
+  border-left: solid 1px #333;
+}
