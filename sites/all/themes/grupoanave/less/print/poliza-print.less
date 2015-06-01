@@ -1,6 +1,39 @@
-@caption_bg: #DD0000;
+@caption_bg: #19227C;
 @caption_color: #fff;
-@caption_size: 16px;
+@caption_size: 12px;
+@field_size: 11px;
+body{
+  margin: 0;
+  background: #ddd;
+}
+#main{
+  width: 21.59cm;
+  margin: 0 auto;
+  background: white;
+}
+#main-inner{
+  padding: 10px;
+}
+.print-logo{
+  padding: 0;
+  width: 146px;
+  height: 60px;
+}
+.print-header{
+  table{
+    width: 100%;
+  }
+}
+.print-title{
+  padding: 0;
+  width: 40%;
+  h1{
+    margin: 0;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}
 .node-poliza.view-mode-print{
   .row:after{
     clear: both;
@@ -26,13 +59,31 @@
   }
   
   .inner-block{
-    padding: 5px 15px;
+    padding: 5px 5px;
   }
   .label-above{
     font-weight: bold;
   }
+  .label-inline{
+    display: inline-block;
+    font-weight: bold;
+  }
   .field{
     margin-bottom: 10px;
+    font-size: @field_size;
+    .field{
+      margin: 0;
+    }
+  }
+  .field:after{
+    content: "";
+    display: table;
+    height: 0;
+    clear: both;
+  }
+  .field.cp{
+    margin-top: 48px;
+    
   }
   .col-50{
     float: left;
@@ -42,7 +93,101 @@
     float: left;
     width: 20%;
   }
-  .group-poliza .subcolumn.first .inner-block{
-    border-left: solid 1px #333;
+  .group-asegurado{
+    width: 40%;
+  }
+  .group-poliza{
+    width: 60%;
+    .subcolumn .inner-block{
+      text-align: right;
+      .label-inline{
+        float: left;
+        text-align: left;
+      }
+    }
+    .subcolumn.first .inner-block{
+      border-left: solid 1px #333;
+    }
+  }
+}
+
+#block-block-4, 
+#block-block-5, 
+#block-block-6, 
+#block-block-9{
+  font-size: 11px;
+  margin-bottom: 10px;
+  p{
+    margin: 0;
+  }
+}
+#block-block-9{
+  text-align: center;
+}
+
+.tipo-poliza-block{
+  border: solid 1px #333;
+  border-radius: 3px 3px 3px 3px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  .inner-block{
+    font-size: @field_size;
+  }
+  > .label-above, 
+  .coberturas-block > .label-above{
+    margin: 0;
+    padding: 5px;
+    background: @caption_bg;
+    color: @caption_color;
+    font-size: @caption_size;
+  }
+  .coberturas-block ul{
+    margin: 0;
+    padding: 5px 5px 5px 26px;
+    li{
+      font-size: @field_size;
+    }
+  }
+}
+
+#block-block-7{
+  border: solid 1px #333;
+  border-radius: 3px 3px 3px 3px;
+  padding: 5px;
+  font-size: @caption_size;
+  font-weight: bold;
+  p{
+    margin: 0;
+  }
+}
+
+#block-block-8{
+  padding: 5px 0;
+  font-size: @field_size;
+  p{
+    margin: 0;
+  }
+}
+
+.footer:after{
+  content: "";
+  clear: both;
+  display: table;
+  height: 0;
+}
+.footer{
+  .footer-left{
+    float: left;
+    width: 60%;
+    > .inner-block{
+      padding-left: 0;
+    }
+  }
+  .footer-right{
+    float: right;
+    width: 40%;
+    > .inner-block{
+      padding-right: 0;
+    }
   }
 }

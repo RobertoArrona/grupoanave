@@ -1,5 +1,12 @@
 <?php
 /**
+ * Implements hook_preprocess_page.
+ */
+function grupoanave_preprocess_page(&$vars) {
+
+}
+
+/**
  * Overrides theme_menu_link().
  */
 function grupoanave_menu_link__main_menu(array $variables) {

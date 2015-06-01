@@ -88,20 +88,32 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
     </style>
   </head>
   <body>
-    <?php if ($print_logo): ?>
-      <div class="print-logo"><?php print $print_logo; ?></div>
-    <?php endif; ?>
-    <?php if (!isset($node->type)): ?>
-      <h2 class="print-title"><?php print $print_title; ?></h2>
-    <?php endif; ?>
-    <div class="print-content"><?php print $content; ?></div>
-    <div class="print-footer"><?php print theme('print_footer'); ?></div>
-    <?php if ($sourceurl_enabled): ?>
-      <div class="print-source_url">
-        <?php print theme('print_sourceurl', array('url' => $source_url, 'node' => $node, 'cid' => $cid)); ?>
+    <div id="main">
+      <div id="main-inner">
+        <div class="print-header">
+          <table>
+            <tbody>
+              <tr>
+                <td class="print-logo">
+                  <?php print $print_logo; ?>
+                </td>
+                <td class="print-title">
+                  <h1>Poliza de Seguro de Automoviles Residentes</h1>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="print-content"><?php print $content; ?></div>
+        <div class="print-footer"><?php print theme('print_footer'); ?></div>
+        <?php if ($sourceurl_enabled): ?>
+          <div class="print-source_url">
+            <?php print theme('print_sourceurl', array('url' => $source_url, 'node' => $node, 'cid' => $cid)); ?>
+          </div>
+        <?php endif; ?>
+        <div class="print-links"><?php print theme('print_url_list'); ?></div>
+        <?php print $footer_scripts; ?>
       </div>
-    <?php endif; ?>
-    <div class="print-links"><?php print theme('print_url_list'); ?></div>
-    <?php print $footer_scripts; ?>
+    </div>
   </body>
 </html>

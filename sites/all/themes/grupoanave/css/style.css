@@ -7308,18 +7308,6 @@ table .checkbox input[type="checkbox"] {
 .navbar-header .navbar-toggle {
   display: none;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .navbar-header .logo.navbar-btn {
-    display: block;
-    background: url(../logox2.png) no-repeat 20px 10px;
-    background-size: 180px 70px;
-    width: 220px;
-    height: 90px;
-  }
-  .navbar-header .logo.navbar-btn img {
-    display: none;
-  }
-}
 /** Main Nav **/
 body.navbar-is-fixed-top {
   padding-top: 90px !important;
@@ -7333,6 +7321,8 @@ body.toolbar-drawer.navbar-is-fixed-top {
 .navbar.navbar-fixed-top.navbar-default {
   background: #1f1f24;
   height: 90px;
+  border: none;
+  box-shadow: 0px 0px 10px #1f1f24;
 }
 .navbar.container {
   max-width: none;
@@ -7503,7 +7493,11 @@ body.toolbar-drawer.navbar-is-fixed-top {
   width: auto;
   padding: 0;
 }
-.main-container.container .region.region-content {
+.main-container.container #content-wrapper {
+  background: #f5f6f7;
+  border-top: #D6DDDF solid 1px;
+}
+.main-container.container #content-area {
   max-width: 1170px;
   margin: 0 auto;
 }
@@ -7623,6 +7617,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
 }
 /** All Pages **/
 .tabs--primary.nav.nav-tabs {
+  padding-top: 20px;
   max-width: 1170px;
   margin: 0 auto;
 }
