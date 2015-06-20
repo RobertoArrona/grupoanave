@@ -5,4 +5,6 @@
 include_once('inc/data.inc');
 include_once('inc/forms.inc');
 include_once('inc/menu.inc');
+include_once('inc/node-access.inc');
 include_once('inc/permission.inc');
+include_once('inc/theme.inc');

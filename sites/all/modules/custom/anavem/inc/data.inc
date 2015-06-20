@@ -1,4 +1,7 @@
 <?php
+/**
+ * Gets a given field to be used in a custom form.
+ */
 function anavem_get_field($field_name, $entity_type, $bundle_name, &$form, &$form_state) {
   $entity = anavem_siniestro_get_initial_node($entity_type);
   $langcode = $entity->language;
@@ -9,6 +12,9 @@ function anavem_get_field($field_name, $entity_type, $bundle_name, &$form, &$for
   return $field_form;
 }
 
+/**
+ * Returns an initial node to be used for a custom node add form.
+ */
 function anavem_siniestro_get_initial_node($type) {
   static $node;
   if ( isset($node) ) {
@@ -24,6 +30,9 @@ function anavem_siniestro_get_initial_node($type) {
   return $node;
 }
 
+/**
+ * Saves a Siniestro node.
+ */
 function anavem_siniestro_save($params) {
   // Core Fields
   global $user;
@@ -48,4 +57,66 @@ function anavem_siniestro_save($params) {
     node_save($node);
     drupal_set_message('El Siniestro ha sido creado y asignado correctamente.');
   }
+}
+
+/**
+ * Get all siniestros ids.
+ */
+function anavem_siniestro_get_all() {
+  static $rows;
+  if ( isset($rows) ) {
+    return $rows;
+  }
+  $sql = "SELECT nid FROM {node} WHERE type = 'siniestro'";
+  $results = db_query($sql);
+  $rows = array();
+  while(($row=$results->fetchAssoc())) {
+    $rows[$row['nid']] = $row['nid'];
+  }
+
+  return $rows;
+}
+
+/**
+ * Get all polizas ids.
+ */
+function anavem_poliza_get_all() {
+  static $rows;
+  if ( isset($rows) ) {
+    return $rows;
+  }
+  $sql = "SELECT nid FROM {node} WHERE type = 'poliza'";
+  $results = db_query($sql);
+  $rows = array();
+  while(($row=$results->fetchAssoc())) {
+    $rows[$row['nid']] = $row['nid'];
+  }
+
+  return $rows;
+}
+
+/**
+ * Returns the Poliza attached to a Siniestro.
+ */
+function anavem_get_poliza_from_siniestro($siniestro) {
+  if ( isset($node->field_poliza[LANGUAGE_NONE][0]['target_id']) && !empty($node->field_poliza[LANGUAGE_NONE][0]['target_id']) && ($poliza=node_load($node->field_poliza[LANGUAGE_NONE][0]['target_id'])) ) {
+    return $poliza;
+  }
+  return false;
+}
+
+/**
+ * Get all siniestros related with a given poliza.
+ */
+function anavem_poliza_get_siniestros($poliza) {
+  $sql = "SELECT entity_id FROM {field_data_field_poliza} WHERE bundle = 'siniestro' AND field_poliza_target_id = %d";
+  $sql = sprintf($sql, $poliza->nid);
+  $results = db_query($sql);
+  $rows = array();
+  while(($row=$results->fetchAssoc())) {
+    if ( ($siniestro = node_load($row['entity_id'])) ) {
+      $rows[$siniestro->nid] = $siniestro;
+    }
+  }
+  return $rows;
 }
