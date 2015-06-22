@@ -269,6 +269,22 @@ table.generic{
   }
 }
 
+table.print.table-vehiculo{
+  > tbody > tr > td{
+    padding: 0;
+  }
+  table.print-child > tbody > tr{
+    > td{
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    > td+td{
+      border-left: solid 1px #333;
+    }
+  }
+}
 .table-poliza{
   table.print-child tbody tr{
     td{

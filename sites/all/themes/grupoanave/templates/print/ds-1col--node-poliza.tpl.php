@@ -8,9 +8,7 @@
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 
-  <?php if (isset($title_suffix['contextual_links'])): ?>
-  <?php print render($title_suffix['contextual_links']); ?>
-  <?php endif; ?>
+  <h1>Poliza de Seguro - <?php print $title;?></h1>
 
   <table class="print">
     <thead>
@@ -119,7 +117,7 @@
                 <?php endif;?>
               </td>
               <td>
-                <?php if(isset($elements['field_poliza_reduccion'])):?>
+                <?php if(isset($elements['field_poliza_emision'])):?>
                 <table class="generic"><tr>
                   <td><strong><?php print $elements['field_poliza_emision']['#title'];?>:</strong></td>
                   <td align="right"><?php print render($elements['field_poliza_reduccion']);?></td>
@@ -446,9 +444,6 @@
       </table>
     </td></tr></tbody>
   </table>
-  <?php if(isset($elements['poliza_block_middle'])):?>
-  <?php print render($elements['poliza_block_middle']);?>
-  <?php endif;?>
   
   <table class="print">
     <thead>
@@ -491,31 +486,9 @@
     </tbody>
   </table>
   
-  <?php if(isset($elements['poliza_block_bottom'])):?>
-  <?php print render($elements['poliza_block_bottom']);?>
+  <?php if(isset($elements['links'])):?>
+  <?php print render($elements['links']);?>
   <?php endif;?>
-  
-  <?php if(isset($elements['poliza_block_aviso_de_privacidad'])):?>
-  <?php print render($elements['poliza_block_aviso_de_privacidad']);?>
-  <?php endif;?>
-  
-  <table class="generic">
-    <tbody>
-      <tr class="last">
-        <td width="65%">
-          <?php if(isset($elements['poliza_block_telefono_siniestros'])):?>
-          <?php print render($elements['poliza_block_telefono_siniestros']);?>
-          <?php endif;?>
-        </td>
-        <td>
-          <?php if(isset($elements['poliza_block_footer_right'])):?>
-          <?php print render($elements['poliza_block_footer_right']);?>
-          <?php endif;?>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
 </<?php print $ds_content_wrapper ?>>
 
 <?php if (!empty($drupal_render_children)): ?>
