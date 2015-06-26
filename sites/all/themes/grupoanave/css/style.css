@@ -7327,6 +7327,8 @@ table .checkbox input[type="checkbox"] {
   display: block;
   float: left;
   background: white;
+  border-radius: 10px 10px 10px 10px;
+  margin-top: 10px;
 }
 .navbar-header .logo.navbar-btn {
   margin: 0;
@@ -7342,7 +7344,7 @@ table .checkbox input[type="checkbox"] {
 }
 /** Main Nav **/
 body.navbar-is-fixed-top {
-  padding-top: 90px !important;
+  padding-top: 110px !important;
 }
 body.toolbar.navbar-is-fixed-top {
   padding-top: 120px !important;
@@ -7352,7 +7354,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
 }
 .navbar.navbar-fixed-top.navbar-default {
   background: #1f1f24;
-  height: 90px;
+  height: 110px;
   border: none;
   box-shadow: 0px 0px 10px #1f1f24;
 }
@@ -7375,6 +7377,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   float: left;
   margin-left: 50px;
   border: none;
+  margin-top: 10px;
 }
 .navbar-default .navbar-nav {
   float: none;
@@ -8118,108 +8121,142 @@ body.toolbar-drawer.navbar-is-fixed-top {
 #rows-block-partners .image a {
   display: block;
 }
-.page-node.node-type-poliza h1.page-header {
+.page-node.node-type-poliza h1.page-header,
+.page-node.node-type-siniestro h1.page-header {
   display: none;
 }
-.page-node.node-type-poliza .node-poliza {
+.page-node.node-type-poliza .node-poliza,
+.page-node.node-type-siniestro .node-poliza {
   color: #333;
 }
 .page-node.node-type-poliza strong,
-.page-node.node-type-poliza .label-above {
+.page-node.node-type-siniestro strong,
+.page-node.node-type-poliza .label-above,
+.page-node.node-type-siniestro .label-above {
   font-weight: 900;
   color: black;
 }
 .page-node.node-type-poliza #block-block-4,
+.page-node.node-type-siniestro #block-block-4,
 .page-node.node-type-poliza #block-block-5,
+.page-node.node-type-siniestro #block-block-5,
 .page-node.node-type-poliza #block-block-6,
-.page-node.node-type-poliza #block-block-9 {
+.page-node.node-type-siniestro #block-block-6,
+.page-node.node-type-poliza #block-block-9,
+.page-node.node-type-siniestro #block-block-9 {
   font-size: 11px;
   margin-bottom: 10px;
 }
 .page-node.node-type-poliza #block-block-4 p,
+.page-node.node-type-siniestro #block-block-4 p,
 .page-node.node-type-poliza #block-block-5 p,
+.page-node.node-type-siniestro #block-block-5 p,
 .page-node.node-type-poliza #block-block-6 p,
-.page-node.node-type-poliza #block-block-9 p {
+.page-node.node-type-siniestro #block-block-6 p,
+.page-node.node-type-poliza #block-block-9 p,
+.page-node.node-type-siniestro #block-block-9 p {
   margin: 0;
 }
-.page-node.node-type-poliza #block-block-9 {
+.page-node.node-type-poliza #block-block-9,
+.page-node.node-type-siniestro #block-block-9 {
   text-align: center;
   margin-bottom: 0;
 }
-.page-node.node-type-poliza .tipo-poliza-block {
+.page-node.node-type-poliza .tipo-poliza-block,
+.page-node.node-type-siniestro .tipo-poliza-block {
   border: solid 1px #333;
   border-radius: 3px 3px 3px 3px;
   overflow: hidden;
   margin-bottom: 10px;
 }
-.page-node.node-type-poliza .tipo-poliza-block .inner-block {
+.page-node.node-type-poliza .tipo-poliza-block .inner-block,
+.page-node.node-type-siniestro .tipo-poliza-block .inner-block {
   font-size: 11px;
 }
 .page-node.node-type-poliza .tipo-poliza-block > .label-above,
-.page-node.node-type-poliza .tipo-poliza-block .coberturas-block > .label-above {
+.page-node.node-type-siniestro .tipo-poliza-block > .label-above,
+.page-node.node-type-poliza .tipo-poliza-block .coberturas-block > .label-above,
+.page-node.node-type-siniestro .tipo-poliza-block .coberturas-block > .label-above {
   margin: 0;
   padding: 5px;
   background: #19227c;
   color: #ffffff;
   font-size: 12px;
 }
-.page-node.node-type-poliza .tipo-poliza-block .coberturas-block ul {
+.page-node.node-type-poliza .tipo-poliza-block .coberturas-block ul,
+.page-node.node-type-siniestro .tipo-poliza-block .coberturas-block ul {
   margin: 0;
   padding: 5px 5px 5px 26px;
 }
-.page-node.node-type-poliza .tipo-poliza-block .coberturas-block ul li {
+.page-node.node-type-poliza .tipo-poliza-block .coberturas-block ul li,
+.page-node.node-type-siniestro .tipo-poliza-block .coberturas-block ul li {
   font-size: 11px;
 }
-.page-node.node-type-poliza #block-block-7 {
+.page-node.node-type-poliza #block-block-7,
+.page-node.node-type-siniestro #block-block-7 {
   border: solid 1px #333;
   border-radius: 3px 3px 3px 3px;
   padding: 5px;
   font-size: 12px;
   font-weight: bold;
 }
-.page-node.node-type-poliza #block-block-7 p {
+.page-node.node-type-poliza #block-block-7 p,
+.page-node.node-type-siniestro #block-block-7 p {
   margin: 0;
 }
-.page-node.node-type-poliza #block-block-8 {
+.page-node.node-type-poliza #block-block-8,
+.page-node.node-type-siniestro #block-block-8 {
   padding: 5px 0;
   font-size: 11px;
 }
-.page-node.node-type-poliza #block-block-8 p {
+.page-node.node-type-poliza #block-block-8 p,
+.page-node.node-type-siniestro #block-block-8 p {
   margin: 0;
 }
-.page-node.node-type-poliza .footer:after {
+.page-node.node-type-poliza .footer:after,
+.page-node.node-type-siniestro .footer:after {
   content: "";
   clear: both;
   display: table;
   height: 0;
 }
-.page-node.node-type-poliza .footer .footer-left {
+.page-node.node-type-poliza .footer .footer-left,
+.page-node.node-type-siniestro .footer .footer-left {
   float: left;
   width: 60%;
 }
-.page-node.node-type-poliza .footer .footer-left > .inner-block {
+.page-node.node-type-poliza .footer .footer-left > .inner-block,
+.page-node.node-type-siniestro .footer .footer-left > .inner-block {
   padding-left: 0;
 }
-.page-node.node-type-poliza .footer .footer-right {
+.page-node.node-type-poliza .footer .footer-right,
+.page-node.node-type-siniestro .footer .footer-right {
   float: right;
   width: 40%;
 }
-.page-node.node-type-poliza .footer .footer-right > .inner-block {
+.page-node.node-type-poliza .footer .footer-right > .inner-block,
+.page-node.node-type-siniestro .footer .footer-right > .inner-block {
   padding-right: 0;
 }
-.page-node.node-type-poliza table.print {
+.page-node.node-type-poliza table.print,
+.page-node.node-type-siniestro table.print {
   width: 100%;
-  border-collapse: separate;
   border-spacing: 0;
   border: solid 1px #333;
   border-radius: 3px 3px 3px 3px;
   overflow: hidden;
   margin-bottom: 10px;
+  border-collapse: separate;
 }
-.page-node.node-type-poliza table.print thead tr th {
+.page-node.node-type-poliza table.print tr.odd,
+.page-node.node-type-siniestro table.print tr.odd {
+  background-color: #EAEBF3 !important;
+}
+.page-node.node-type-poliza table.print thead tr th,
+.page-node.node-type-siniestro table.print thead tr th {
   margin: 0;
   padding: 5px;
-  background: #19227c;
+  background: #19227c !important;
   color: #ffffff;
   font-size: 12px;
   line-height: 1.2em;
@@ -8227,76 +8264,98 @@ body.toolbar-drawer.navbar-is-fixed-top {
   text-transform: uppercase;
   border-bottom: none;
 }
-.page-node.node-type-poliza table.print > tbody > tr > td {
+.page-node.node-type-poliza table.print > tbody > tr > td,
+.page-node.node-type-siniestro table.print > tbody > tr > td {
   padding: 5px 5px;
   vertical-align: top;
   font-size: 11px;
 }
-.page-node.node-type-poliza table.print > tbody > tr > td + td {
+.page-node.node-type-poliza table.print > tbody > tr > td + td,
+.page-node.node-type-siniestro table.print > tbody > tr > td + td {
   border-left: solid 1px #333;
 }
-.page-node.node-type-poliza table.print-child {
+.page-node.node-type-poliza table.print-child,
+.page-node.node-type-siniestro table.print-child {
   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
 }
-.page-node.node-type-poliza table.print-child tbody tr td {
+.page-node.node-type-poliza table.print-child tbody tr td,
+.page-node.node-type-siniestro table.print-child tbody tr td {
   padding: 0;
   padding-bottom: 10px;
   font-size: 11px;
   vertical-align: top;
 }
-.page-node.node-type-poliza table.print-child tbody tr td .field {
+.page-node.node-type-poliza table.print-child tbody tr td .field,
+.page-node.node-type-siniestro table.print-child tbody tr td .field {
   margin: 0;
   font-size: 11px;
 }
-.page-node.node-type-poliza table.print-child tbody tr td .field .field {
+.page-node.node-type-poliza table.print-child tbody tr td .field .field,
+.page-node.node-type-siniestro table.print-child tbody tr td .field .field {
   margin: 0;
 }
-.page-node.node-type-poliza table.print-child tbody tr.last td {
+.page-node.node-type-poliza table.print-child tbody tr.last td,
+.page-node.node-type-siniestro table.print-child tbody tr.last td {
   padding-bottom: 0;
 }
-.page-node.node-type-poliza table.generic {
+.page-node.node-type-poliza table.generic,
+.page-node.node-type-siniestro table.generic {
   width: 100%;
   padding: 0;
   margin: 0;
   border-spacing: 0;
   border-collapse: collapse;
 }
-.page-node.node-type-poliza table.generic tbody tr td {
+.page-node.node-type-poliza table.generic tbody tr td,
+.page-node.node-type-siniestro table.generic tbody tr td {
   vertical-align: top;
   padding: 0;
 }
-.page-node.node-type-poliza .coberturas-block ul {
+.page-node.node-type-poliza .coberturas-block ul,
+.page-node.node-type-siniestro .coberturas-block ul {
   margin: 0;
   padding: 0 5px 0 26px;
 }
-.page-node.node-type-poliza .coberturas-block ul li {
+.page-node.node-type-poliza .coberturas-block ul li,
+.page-node.node-type-siniestro .coberturas-block ul li {
   font-size: 11px;
 }
-.page-node.node-type-poliza table.print.table-vehiculo > tbody > tr > td {
+.page-node.node-type-poliza table.print.table-vehiculo > tbody > tr > td,
+.page-node.node-type-siniestro table.print.table-vehiculo > tbody > tr > td {
   padding: 0;
 }
-.page-node.node-type-poliza table.print.table-vehiculo table.print-child > tbody > tr > td {
+.page-node.node-type-poliza table.print.table-vehiculo table.print-child > tbody > tr > td,
+.page-node.node-type-siniestro table.print.table-vehiculo table.print-child > tbody > tr > td {
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
-.page-node.node-type-poliza table.print.table-vehiculo table.print-child > tbody > tr > td + td {
+.page-node.node-type-poliza table.print.table-vehiculo table.print-child > tbody > tr > td + td,
+.page-node.node-type-siniestro table.print.table-vehiculo table.print-child > tbody > tr > td + td {
   border-left: solid 1px #333;
 }
-.page-node.node-type-poliza .table-poliza table.print-child tbody tr td {
-  padding-right: 5px;
+.page-node.node-type-poliza .table-poliza table.print-child tbody tr td,
+.page-node.node-type-siniestro .table-poliza table.print-child tbody tr td {
+  padding-right: 10px;
 }
-.page-node.node-type-poliza .table-poliza table.print-child tbody tr td + td {
-  padding-left: 5px;
+.page-node.node-type-poliza .table-poliza table.print-child tbody tr td + td,
+.page-node.node-type-siniestro .table-poliza table.print-child tbody tr td + td {
+  padding-left: 10px;
   padding-right: 0;
 }
-.page-node.node-type-poliza .table-poliza .field {
+.page-node.node-type-poliza .table-poliza table.print-child > tbody > tr > td + td,
+.page-node.node-type-siniestro .table-poliza table.print-child > tbody > tr > td + td {
+  border-left: solid 1px #333;
+}
+.page-node.node-type-poliza .table-poliza .field,
+.page-node.node-type-siniestro .table-poliza .field {
   text-align: right;
 }
-.page-node.node-type-poliza .table-poliza .field .label-inline {
+.page-node.node-type-poliza .table-poliza .field .label-inline,
+.page-node.node-type-siniestro .table-poliza .field .label-inline {
   float: left;
   text-align: left;
 }

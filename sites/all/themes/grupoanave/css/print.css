@@ -1,6 +1,7 @@
 body {
   margin: 0;
   background: #ddd;
+  -webkit-print-color-adjust: exact;
 }
 #main {
   width: 21.59cm;
@@ -43,7 +44,7 @@ body .row {
 body .row h2 {
   margin: 0;
   padding: 5px;
-  background: #19227c;
+  background: #19227c !important;
   color: #ffffff;
   font-size: 12px;
   line-height: 1.2em;
@@ -129,7 +130,7 @@ body .group-poliza .subcolumn.first .inner-block {
 .tipo-poliza-block .coberturas-block > .label-above {
   margin: 0;
   padding: 5px;
-  background: #19227c;
+  background: #19227c !important;
   color: #ffffff;
   font-size: 12px;
 }
@@ -184,11 +185,15 @@ table.print {
   border-radius: 3px 3px 3px 3px;
   overflow: hidden;
   margin-bottom: 10px;
+  border-collapse: separate;
+}
+table.print tr.odd {
+  background-color: #EAEBF3 !important;
 }
 table.print thead tr th {
   margin: 0;
   padding: 5px;
-  background: #19227c;
+  background: #19227c !important;
   color: #ffffff;
   font-size: 12px;
   line-height: 1.2em;
@@ -256,11 +261,14 @@ table.print.table-vehiculo table.print-child > tbody > tr > td + td {
   border-left: solid 1px #333;
 }
 .table-poliza table.print-child tbody tr td {
-  padding-right: 5px;
+  padding-right: 10px;
 }
 .table-poliza table.print-child tbody tr td + td {
-  padding-left: 5px;
+  padding-left: 10px;
   padding-right: 0;
+}
+.table-poliza table.print-child > tbody > tr > td + td {
+  border-left: solid 1px #333;
 }
 .table-poliza .field {
   text-align: right;

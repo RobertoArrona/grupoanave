@@ -5,10 +5,15 @@
  * Display Suite 1 column template.
  */
  //print_r(array_keys($elements));exit;
+ $agente_uid = $elements['author']['#object']->uid;
+ $agente = user_load($agente_uid);
+ $agente_nombre = "{$agente->field_first_name[LANGUAGE_NONE][0]['safe_value']} {$agente->field_last_name[LANGUAGE_NONE][0]['safe_value']}";
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 
-  <h1>Poliza de Seguro - <?php print $title;?></h1>
+  <?php if (isset($title_suffix['contextual_links'])): ?>
+  <?php print render($title_suffix['contextual_links']); ?>
+  <?php endif; ?>
 
   <table class="print">
     <thead>
@@ -117,7 +122,7 @@
                 <?php endif;?>
               </td>
               <td>
-                <?php if(isset($elements['field_poliza_emision'])):?>
+                <?php if(isset($elements['field_poliza_reduccion'])):?>
                 <table class="generic"><tr>
                   <td><strong><?php print $elements['field_poliza_emision']['#title'];?>:</strong></td>
                   <td align="right"><?php print render($elements['field_poliza_reduccion']);?></td>
@@ -130,7 +135,7 @@
               <td>
                 <?php if(isset($elements['field_poliza_vigencia'])):?>
                 <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_vigencia']['#title'];?>:</strong></td>
+                  <td><strong>Inicio de Vigencia:</strong></td>
                   <td align="right"><?php print render($elements['field_poliza_vigencia']);?></td>
                 </tr></table>
                 <?php endif;?>
@@ -240,14 +245,22 @@
               </td>
             </tr>
             
+            <tr>
+              <td>
+                <table class="generic"><tr>
+                  <td><strong>Nombre del Agente:</strong></td>
+                  <td align="right"><?php print $agente_nombre;?></td>
+                </tr></table>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            
             <tr class="last">
               <td>
-                <?php if(isset($elements['field_poliza_intermediario'])):?>
                 <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_intermediario']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_intermediario']);?></td>
+                  <td><strong>Clave del Agente:</strong></td>
+                  <td align="right"><?php print $agente_uid;?></td>
                 </tr></table>
-                <?php endif;?>
               </td>
               <td>&nbsp;</td>
             </tr>
@@ -266,7 +279,7 @@
     </thead>
     <tbody><tr><td>
       <table class="print-child">
-        <tr class="row-1">
+        <tr class="row-1 odd">
           <td>
             <?php if(isset($elements['field_vehiculo_marca'])):?>
             <table class="generic"><tr>
@@ -336,7 +349,7 @@
           </td>
         </tr>
         
-        <tr class="row-3">
+        <tr class="row-3 odd">
           <td>
             <?php if(isset($elements['field_vehiculo_serie'])):?>
             <table class="generic"><tr>
@@ -406,7 +419,7 @@
           </td>
         </tr>
         
-         <tr class="row-5 last">
+         <tr class="row-5 odd last">
           <td>
             <?php if(isset($elements['field_vehiculo_transmision'])):?>
             <table class="generic"><tr>
@@ -444,51 +457,37 @@
       </table>
     </td></tr></tbody>
   </table>
+  <?php if(isset($elements['poliza_block_middle'])):?>
+  <?php print render($elements['poliza_block_middle']);?>
+  <?php endif;?>
   
-  <table class="print">
-    <thead>
-      <tr>
-        <th colspan="2">Tipo de Poliza:</th>
-      </tr>
-    </thead>
+  <?php print render($elements['field_poliza_coberturas']);?>
+  
+  <?php if(isset($elements['poliza_block_bottom'])):?>
+  <?php print render($elements['poliza_block_bottom']);?>
+  <?php endif;?>
+  
+  <?php if(isset($elements['poliza_block_aviso_de_privacidad'])):?>
+  <?php print render($elements['poliza_block_aviso_de_privacidad']);?>
+  <?php endif;?>
+  
+  <table class="generic">
     <tbody>
       <tr class="last">
-        <td colspan="2">
-          <?php if(isset($elements['field_poliza_tipo'])):?>
-          <?php print render($elements['field_poliza_tipo']);?>
+        <td width="65%">
+          <?php if(isset($elements['poliza_block_telefono_siniestros'])):?>
+          <?php print render($elements['poliza_block_telefono_siniestros']);?>
           <?php endif;?>
         </td>
-      </tr>
-    </tbody>
-    <thead>
-      <tr>
-        <th>
-          Riesgos Amparados:
-        </th>
-        <th>
-          Deducibles:
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="last">
-        <td width="50%">
-          <?php if(isset($elements['coberturas_de_poliza'])):?>
-          <?php print render($elements['coberturas_de_poliza']);?>
-          <?php endif;?>
-        </td>
-        <td width="50%">
-          <?php if(isset($elements['field_poliza_deducibles'])):?>
-          <?php print render($elements['field_poliza_deducibles']);?>
+        <td>
+          <?php if(isset($elements['poliza_block_footer_right'])):?>
+          <?php print render($elements['poliza_block_footer_right']);?>
           <?php endif;?>
         </td>
       </tr>
     </tbody>
   </table>
-  
-  <?php if(isset($elements['links'])):?>
-  <?php print render($elements['links']);?>
-  <?php endif;?>
+
 </<?php print $ds_content_wrapper ?>>
 
 <?php if (!empty($drupal_render_children)): ?>
