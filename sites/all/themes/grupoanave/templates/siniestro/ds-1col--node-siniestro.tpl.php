@@ -143,233 +143,34 @@
     </tr></tbody>
   </table>
   
-  <table class="print table-vehiculo">
-    <thead>
-      <tr>
-        <th>Datos del Vehiculo</th>
-      </tr>
-    </thead>
-    <tbody><tr><td>
-      <table class="print-child">
-        <tr class="row-1">
-          <td>
-            <?php if(isset($elements['field_vehiculo_marca'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_marca']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_marca']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_color'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_color']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_color']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_clave_sbg'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_clave_sbg']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_clave_sbg']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_tonelaje'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_tonelaje']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_tonelaje']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-        </tr>
-        
-        <tr class="row-2">
-          <td>
-            <?php if(isset($elements['field_vehiculo_submarca'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_submarca']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_submarca']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_cilindros'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_cilindros']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_cilindros']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_uso'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_uso']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_uso']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_tipo_carga'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_tipo_carga']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_tipo_carga']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-        </tr>
-        
-        <tr class="row-3">
-          <td>
-            <?php if(isset($elements['field_vehiculo_serie'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_serie']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_serie']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_capacidad'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_capacidad']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_capacidad']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_referencia'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_referencia']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_referencia']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_descripcion_carga'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_descripcion_carga']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_descripcion_carga']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-        </tr>
-        
-        <tr class="row-4">
-          <td>
-            <?php if(isset($elements['field_vehiculo_motor'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_motor']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_motor']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_numero_pedimento'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_numero_pedimento']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_numero_pedimento']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_numero_inventario'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_numero_inventario']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_numero_inventario']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_remolque'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_remolque']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_remolque']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-        </tr>
-        
-         <tr class="row-5 last">
-          <td>
-            <?php if(isset($elements['field_vehiculo_transmision'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_transmision']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_transmision']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_carroceria'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_carroceria']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_carroceria']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_servicio'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_servicio']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_servicio']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_tipo_remolque'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_tipo_remolque']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_tipo_remolque']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
-        </tr>
-        
-      </table>
-    </td></tr></tbody>
-  </table>
+  <?php if(isset($elements['poliza_datos_del_vehiculo'])):?>
+  <?php print render($elements['poliza_datos_del_vehiculo']);?>
+  <?php endif;?>
   
+  <?php if(isset($elements['poliza_riesgos_amparados'])):?>
+  <?php print render($elements['poliza_riesgos_amparados']);?>
+  <?php endif;?>
+  
+  <?php if(isset($elements['field_conductor'])):?>
+  <?php print render($elements['field_conductor']);?>
+  <?php endif;?>
+    
+  <?php if (isset($elements['field_siniestro_archivo'])):?>
   <table class="print">
     <thead>
       <tr>
-        <th colspan="2">Tipo de Poliza:</th>
+        <th width="120" nowrap="nowrap">Fecha</th>
+        <th width="70%">Archivo</th>
+        <th width="30%">Autor</th>
+        <th width="150">Categor&iacute;a</th>
+        <th width="120">Operaciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="last">
-        <td colspan="2">
-          <?php if(isset($elements['field_poliza_tipo'])):?>
-          <?php print render($elements['field_poliza_tipo']);?>
-          <?php endif;?>
-        </td>
-      </tr>
-    </tbody>
-    <thead>
-      <tr>
-        <th>
-          Riesgos Amparados:
-        </th>
-        <th>
-          Deducibles:
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="last">
-        <td width="50%">
-          <?php if(isset($elements['coberturas_de_poliza'])):?>
-          <?php print render($elements['coberturas_de_poliza']);?>
-          <?php endif;?>
-        </td>
-        <td width="50%">
-          <?php if(isset($elements['field_poliza_deducibles'])):?>
-          <?php print render($elements['field_poliza_deducibles']);?>
-          <?php endif;?>
-        </td>
-      </tr>
+      <?php print render($elements['field_siniestro_archivo']);?>
     </tbody>
   </table>
+  <?php endif; ?>
   
   <?php if(isset($elements['links'])):?>
   <?php print render($elements['links']);?>

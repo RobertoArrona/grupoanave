@@ -7344,13 +7344,13 @@ table .checkbox input[type="checkbox"] {
 }
 /** Main Nav **/
 body.navbar-is-fixed-top {
-  padding-top: 110px !important;
+  padding-top: 140px !important;
 }
 body.toolbar.navbar-is-fixed-top {
-  padding-top: 120px !important;
+  padding-top: 150px !important;
 }
 body.toolbar-drawer.navbar-is-fixed-top {
-  padding-top: 154px !important;
+  padding-top: 184px !important;
 }
 .navbar.navbar-fixed-top.navbar-default {
   background: #1f1f24;

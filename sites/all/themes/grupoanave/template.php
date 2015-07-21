@@ -60,3 +60,45 @@ function grupoanave_menu_link__menu_social_channels(array $variables) {
   $output = l('<span>' . $element ['#title'] . '</span>', $element ['#href'], $element ['#localized_options']);
   return '<li' . drupal_attributes($element ['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
+
+/**
+ * Returns an Address String.
+ */
+function grupoanave_theme_address($element) {
+  $address = $element['#items'][0];
+  $items = array();
+  // Calle
+  if ( isset($address['thoroughfare']) && !empty($address['thoroughfare']) ) {
+    $items[] = $address['thoroughfare'];
+  }
+  
+  // Calle
+  if ( isset($address['premise']) && !empty($address['premise']) ) {
+    $items[] = $address['premise'];
+  }
+  
+  // Calle
+  if ( isset($address['locality']) && !empty($address['locality']) ) {
+    $items[] = $address['locality'];
+  }
+  
+  // Calle
+  if ( isset($address['administrative_area']) && !empty($address['administrative_area']) ) {
+    $items[] = grupoanave_get_state_name($address['country'], $address['administrative_area']);
+  }
+  
+  // Calle
+  if ( isset($address['postal_code']) && !empty($address['postal_code']) ) {
+    $items[] = $address['postal_code'];
+  }
+  
+  return implode(', ', $items);
+}
+
+/**
+ * Get full State Name.
+ */
+function grupoanave_get_state_name($country, $state) {
+  $states = addressfield_get_administrative_areas($country);
+  return $states[$state];
+}

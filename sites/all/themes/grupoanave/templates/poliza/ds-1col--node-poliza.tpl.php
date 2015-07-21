@@ -8,6 +8,9 @@
  $agente_uid = $elements['author']['#object']->uid;
  $agente = user_load($agente_uid);
  $agente_nombre = "{$agente->field_first_name[LANGUAGE_NONE][0]['safe_value']} {$agente->field_last_name[LANGUAGE_NONE][0]['safe_value']}";
+ if ( isset($elements['field_asegurado_domicilio']['#items'][0]) ) {
+   $address = $elements['field_asegurado_domicilio']['#items'][0];
+ }
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 
@@ -33,8 +36,9 @@
           
           <tr>
             <td>
-              <?php if(isset($elements['field_asegurado_calle_num'])):?>
-              <?php print render($elements['field_asegurado_calle_num']);?>
+              <?php if(isset($address['thoroughfare'])):?>
+              <div class="label-above">Calle y Numero:</div>
+              <?php print $address['thoroughfare'];?>
               <?php endif;?>
             </td>
             <td>
@@ -46,29 +50,33 @@
           
           <tr>
             <td colspan="2">
-              <?php if(isset($elements['field_asegurado_colonia'])):?>
-              <?php print render($elements['field_asegurado_colonia']);?>
+              <?php if(isset($address['premise'])):?>
+              <div class="label-above">Colonia:</div>
+              <?php print $address['premise'];?>
               <?php endif;?>
             </td>
           </tr>
           
           <tr>
             <td>
-              <?php if(isset($elements['field_asegurado_poblado'])):?>
-              <?php print render($elements['field_asegurado_poblado']);?>
+              <?php if(isset($address['locality'])):?>
+              <div class="label-above">Poblado:</div>
+              <?php print $address['locality'];?>
               <?php endif;?>
             </td>
             <td>
-              <?php if(isset($elements['field_asegurado_cp'])):?>
-              <?php print render($elements['field_asegurado_cp']);?>
+              <?php if(isset($address['postal_code'])):?>
+              <div class="label-above">C&oacute;digo Postal:</div>
+              <?php print $address['postal_code'];?>
               <?php endif;?>
             </td>
           </tr>
           
           <tr>
             <td>
-              <?php if(isset($elements['field_asegurado_estado'])):?>
-              <?php print render($elements['field_asegurado_estado']);?>
+              <?php if(isset($address['administrative_area'])):?>
+              <div class="label-above">Estado:</div>
+              <?php print grupoanave_get_state_name($address['country'], $address['administrative_area']);?>
               <?php endif;?>
             </td>
             <td>
@@ -279,10 +287,10 @@
       <table class="print-child">
         <tr class="row-1 odd">
           <td>
-            <?php if(isset($elements['field_vehiculo_marca'])):?>
+            <?php if(isset($elements['field_plz_vehiculo_marca'])):?>
             <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_marca']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_marca']);?></td>
+              <td><strong><?php print $elements['field_plz_vehiculo_marca']['#title'];?>:</strong></td>
+              <td align="right"><?php print render($elements['field_plz_vehiculo_marca']);?></td>
             </tr></table>
             <?php endif;?>
           </td>
