@@ -5,7 +5,9 @@
  * Display Suite 1 column template.
  */
 //print_r(array_keys($elements));exit;
+  $archivo_adjunto = render($elements['field_siniestro_archivo_adjunto']);
 ?>
+<?php if ( (!empty($archivo_adjunto))):?>
 <tr class="siniestro-archivo <?php print $zebra;?>" id="siniestro-archivo-<?php print $elements['#entity']->item_id;?>" data-archivo-id="<?php print $elements['#entity']->item_id;?>">
   <td class="fecha"><?php print render($elements['field_fecha']);?></td>
   <td class="archivo"><?php print render($elements['archivo_nombre']);?></td>
@@ -18,3 +20,6 @@
 <tr class="siniestro-archivo-comentario hidden" id="siniestro-archivo-comentario-<?php print $elements['#entity']->item_id;?>">
   <td colspan="4"><?php print render($elements['field_archivo_comentario']);?></td>
 </tr>
+<?php else:?>
+&nbsp;
+<?php endif;?>
