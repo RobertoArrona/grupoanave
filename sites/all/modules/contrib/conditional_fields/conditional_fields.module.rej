@@ -1,0 +1,19 @@
+***************
+*** 384,391 ****
+    // Use the #array_parents property of the dependee instead of #field_parents
+    // since we will need access to the full structure of the widget.
+    if (isset($dependee['#parents'])) {
+-     $form['#conditional_fields'][$dependee['#field_name']]['parents'] = $dependee['#array_parents'];
+-     $form['#conditional_fields'][$dependee['#field_name']]['dependents'][$id] = array(
+        'dependent' => $dependent['#field_name'],
+        'options'   => $options,
+      );
+--- 386,393 ----
+    // Use the #array_parents property of the dependee instead of #field_parents
+    // since we will need access to the full structure of the widget.
+    if (isset($dependee['#parents'])) {
++     $form['#conditional_fields'][$field_parents_key][$dependee['#field_name']]['parents'] = $dependee['#parents'];
++     $form['#conditional_fields'][$field_parents_key][$dependee['#field_name']]['dependents'][$id] = array(
+        'dependent' => $dependent['#field_name'],
+        'options'   => $options,
+      );
