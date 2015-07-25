@@ -154,9 +154,9 @@
   <?php if(isset($elements['field_conductor'])):?>
   <?php print render($elements['field_conductor']);?>
   <?php endif;?>
-    
+
   <?php if (isset($elements['field_siniestro_archivo'])):?>
-  <table class="print">
+  <table class="print archivos">
     <thead>
       <tr>
         <th width="120" nowrap="nowrap">Fecha</th>
@@ -171,6 +171,10 @@
     </tbody>
   </table>
   <?php endif; ?>
+  
+  <?php if(isset($elements['field_vehiculo_tercero'])):?>
+  <?php print render($elements['field_vehiculo_tercero']);?>
+  <?php endif;?>
   
   <?php if(isset($elements['links'])):?>
   <?php print render($elements['links']);?>
