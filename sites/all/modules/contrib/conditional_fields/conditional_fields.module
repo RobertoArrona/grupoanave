@@ -260,7 +260,7 @@ function conditional_fields_element_after_build($element, &$form_state) {
   }
 
   $field_parents_key = conditional_fields_flatten_array($field['#field_parents']);
-
+  
   if (isset($dependencies['dependents'][$field['#field_name']])) {
     // Attach dependent.
     foreach ($dependencies['dependents'][$field['#field_name']] as $id => $dependency) {
@@ -386,8 +386,8 @@ function conditional_fields_attach_dependency(&$form, $dependee, $dependent, $op
   // Use the #parents property of the dependee instead of #field_parents since
   // we will need access to the full structure of the widget.
   if (isset($dependee['#parents'])) {
-    $form['#conditional_fields'][$dependee['#field_name']]['parents'] = $dependee['#parents'];
-    $form['#conditional_fields'][$dependee['#field_name']]['dependents'][$id] = array(
+    $form['#conditional_fields'][$field_parents_key][$dependee['#field_name']]['parents'] = $dependee['#parents'];
+    $form['#conditional_fields'][$field_parents_key][$dependee['#field_name']]['dependents'][$id] = array(
       'dependent' => $dependent['#field_name'],
       'options'   => $options,
     );
@@ -433,7 +433,6 @@ function conditional_fields_form_after_build($form, &$form_state) {
   foreach ($form['#conditional_fields'] as $parent_dependent_key => $parent_dependent_info) {
     foreach ($parent_dependent_info as $dependent => $dependent_info) {
       $states = array();
-
       if (empty($dependent_info['dependees'])) {
         continue;
       }
@@ -443,7 +442,6 @@ function conditional_fields_form_after_build($form, &$form_state) {
       // Cycle the dependant's dependees.
       foreach ($dependent_info['dependees'] as $dependency) {
         $dependee = $dependency['dependee'];
-
         if (empty($form['#conditional_fields'][$parent_dependent_key][$dependee])) {
           continue;
         }
@@ -451,14 +449,14 @@ function conditional_fields_form_after_build($form, &$form_state) {
         $dependee_info = $form['#conditional_fields'][$parent_dependent_key][$dependee];
         $dependee_form_field = drupal_array_get_nested_value($form, $dependee_info['parents']);
         $options = $dependency['options'];
-
+        
         // Load field edit behaviors.
         // If this dependent has multiple dependees, only the logic of the first
         // dependency will be taken into account.
         if (!isset($behaviors)) {
           $behaviors = conditional_fields_field_behaviors('edit', $options);
         }
-
+        
         // Determine if the dependee is in the form.
         if (empty($dependee_form_field) || (isset($dependee_form_field['#access']) && $dependee_form_field['#access'] == FALSE)) {
           // Apply orphan dependent behaviors.
@@ -482,7 +480,7 @@ function conditional_fields_form_after_build($form, &$form_state) {
         }
         unset($behaviors[CONDITIONAL_FIELDS_FIELD_EDIT_HIDE_UNTRIGGERED_ORPHAN]);
         unset($behaviors[CONDITIONAL_FIELDS_FIELD_EDIT_HIDE_ORPHAN]);
-
+        
         // Build a jQuery selector if it was not overridden by a custom value.
         // Note that this may be overridden later by a state handler.
         if (!$options['selector']) {
@@ -492,7 +490,7 @@ function conditional_fields_form_after_build($form, &$form_state) {
           // Replace the language placeholder in the selector with current language.
           $options['selector'] = str_replace('%lang', $dependee_form_field['#language'], $options['selector']);
         }
-
+        
         if ($options['condition'] != 'value') {
           // Conditions different than "value" are always evaluated against TRUE.
           $state = array($options['state'] => array($options['selector'] => array($options['condition'] => TRUE)));
@@ -500,15 +498,12 @@ function conditional_fields_form_after_build($form, &$form_state) {
         else {
           // Build the values that trigger the dependency.
           $values = array();
-
+          
           if ($options['values_set'] == CONDITIONAL_FIELDS_DEPENDENCY_VALUES_WIDGET) {
             $values[$options['condition']] = $options['value_form'];
           }
           elseif ($options['values_set'] == CONDITIONAL_FIELDS_DEPENDENCY_VALUES_REGEX) {
             $values[$options['condition']] = $options['value'];
-          }
-          elseif ($options['values_set'] == CONDITIONAL_FIELDS_DEPENDENCY_VALUES_AND) {
-            $values[$options['condition']] = count($options['values']) == 1 ? $options['values'][0] : $options['values'];
           }
           else {
             if ($options['values_set'] == CONDITIONAL_FIELDS_DEPENDENCY_VALUES_XOR) {
@@ -525,10 +520,9 @@ function conditional_fields_form_after_build($form, &$form_state) {
               $values[] = array($options['condition'] => $value);
             }
           }
-
+        
           $state = array($options['state'] => array($options['selector'] => $values));
           $dependee_form_state = isset($dependee_form_field['#field_parents'], $dependee_form_field['#field_name'], $dependee_form_field['#language']) ? field_form_get_state($dependee_form_field['#field_parents'], $dependee_form_field['#field_name'], $dependee_form_field['#language'], $form_state) : NULL;
-
           // Execute special handler for fields that need further processing.
           // The handler has no return value. Modify the $state parameter by
           // reference if needed.
@@ -541,7 +535,6 @@ function conditional_fields_form_after_build($form, &$form_state) {
 
         // Add validation callback to element.
         _conditional_fields_element_add_property($dependent_form_field, '#element_validate', 'conditional_fields_dependent_validate', 'append');
-
         // Add the $state into the correct logic group in $states.
         foreach ($state as $key => $constraints) {
           if (empty($states[$key][$options['grouping']])) {
@@ -551,7 +544,6 @@ function conditional_fields_form_after_build($form, &$form_state) {
             $states[$key][$options['grouping']] = array_merge($states[$key][$options['grouping']], $constraints);
           }
         }
-
         // Build effect settings for effects with options.
         // TODO: add dependee key to allow different effects on the same selector.
         if ($options['effect'] && $options['effect'] != 'show') {
@@ -567,7 +559,6 @@ function conditional_fields_form_after_build($form, &$form_state) {
             'options' => $options['effect_options'],
           );
         }
-
         // Apply reset dependent to default if untriggered behavior.
         if (in_array(CONDITIONAL_FIELDS_FIELD_EDIT_RESET_UNTRIGGERED, $behaviors)) {
           // Add property to element so conditional_fields_dependent_validate() can
@@ -576,14 +567,12 @@ function conditional_fields_form_after_build($form, &$form_state) {
           unset($behaviors[CONDITIONAL_FIELDS_FIELD_EDIT_RESET_UNTRIGGERED]);
         }
       }
-
-      // Execute custom behaviors callbacks.
       if (!empty($behaviors)) {
         foreach ($behaviors as $behavior) {
           $behavior($form, $form_state, $dependent, $dependent_info);
         }
       }
-
+      
       unset($behaviors);
 
       if (empty($states)) {
