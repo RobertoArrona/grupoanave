@@ -10,32 +10,105 @@
 ?>
 <table class="print vehiculo-tercero">
   <thead><tr>
-    <th colspan="4">Descripci&oacute;n de Veh&iacute;culo Tercero</th>
+    <th colspan="2">Descripci&oacute;n de Veh&iacute;culo Tercero</th>
   </tr></thead>
   
   <tbody>
     <tr class="nombres">
-      <td colspan="2">
-        <strong>Nombre de Propietario</strong>: <?php print render($elements['field_propietario_nombre']);?>
+      <td width="50%">
+        <strong>Nombre de Propietario</strong>: <?php print render($elements['field_propietario_nombre']);?>&nbsp;
       </td>
-      <td colspan="2">
-        <strong>Nombre de Conductor</strong>: <?php print render($elements['field_conductor_nombre']);?>
+      <td width="50%">
+        <strong>Nombre de Conductor</strong>: <?php print render($elements['field_conductor_nombre']);?>&nbsp;
       </td>
     </tr>
     
     <tr class="domicilio-telefonos">
       <td>
-        <strong>Direcci&oacute;n</strong>: <?php print render($elements['field_propietario_domicilio']);?>
+        <table class="print-child-2"><tbody><tr>
+          <td width="75%">
+            <strong>Direcci&oacute;n</strong>: <?php print $propietario_address;?>&nbsp;
+          </td>
+          <td class="last">
+            <strong>Tel&eacute;fono</strong>: <?php print render($elements['field_propietario_telefono']);?>&nbsp;
+          </td>
+        </tr></tbody></table>
       </td>
       <td>
-        <strong>Tel&eacute;fono</strong>: <?php print render($elements['field_propietario_telefono']);?>
-      </td>
-      <td>
-        <strong>Direcci&oacute;n</strong>: <?php print render($elements['field_conductor_domicilio']);?>
-      </td>
-      <td>
-        <strong>Tel&eacute;fono</strong>: <?php print render($elements['field_conductor_telefono']);?>
+        <table class="print-child-2"><tbody><tr>
+          <td width="75%">
+            <strong>Direcci&oacute;n</strong>: <?php print $conductor_address;?>&nbsp;
+          </td>
+          <td class="last">
+            <strong>Tel&eacute;fono</strong>: <?php print render($elements['field_conductor_telefono']);?>&nbsp;
+          </td>
+        </tr></tbody></table>
       </td>
     </tr>
+    
+    <tr class="vehiculo-datos">
+      <td>
+        <table class="print-child-2"><tbody><tr>
+          <td width="50%">
+            <strong>No. de Licencia</strong>: <br/><?php print render($elements['field_licencia_numero']);?>&nbsp;
+          </td>
+          <td class="last">
+            <strong>Vehículo, Marca y Tipo</strong>: <br/><?php print render($elements['field_vehiculo_marca']);?>, <?php print render($elements['field_vehiculo_tipo']);?>
+          </td>
+        </tr></tbody></table>
+      </td>
+      <td>
+        <table class="print-child-2"><tbody><tr>
+          <td width="25%">
+            <strong>Modelo</strong>: <br/><?php print render($elements['field_3ro_vehiculo_modelo']);?>&nbsp;
+          </td>
+          <td width="25%">
+            <strong>Color</strong>: <br/><?php print render($elements['field_3ro_vehiculo_color']);?>&nbsp;
+          </td>
+          <td width="25%">
+            <strong>Placas</strong>: <br/><?php print render($elements['field_3ro_vehiculo_placas']);?>&nbsp;
+          </td>
+          <td class="last">
+            <strong>Serie</strong>: <br/><?php print render($elements['field_3ro_vehiculo_serie']);?>&nbsp;
+          </td>
+        </tr></tbody></table>
+      </td>
+    </tr>
+
+    <tr class="seguros">
+      <td>
+        <table class="print-child-2"><tbody><tr>
+          <td width="33%">
+            <strong>Compa&ntilde;ía de Seguros</strong>: <br/><?php print render($elements['field_3ro_aseguradora']);?>&nbsp;
+          </td>
+          <td width="33%">
+            <strong>Póliza</strong>: <br/><?php print render($elements['field_3ro_numero_poliza']);?>&nbsp;
+          </td>
+          <td class="last">
+            <strong>Cobertura</strong>: <br/><?php print render($elements['field_3ro_cobertura']);?>&nbsp;
+          </td>
+        </tr></tbody></table>
+      </td>
+      <td>
+        <table class="print-child-2"><tbody><tr>
+          <td width="25%">
+            <strong>Deducible</strong>: <br/><?php print render($elements['field_3ro_deducible']);?>&nbsp;
+          </td>
+          <td width="25%">
+            <strong>Vencimiento</strong>: <br/><?php print render($elements['field_3ro_vencimiento']);?>&nbsp;
+          </td>
+          <td width="25%">
+            <strong>Siniestro</strong>: <br/><?php print render($elements['field_3ro_siniestro']);?>&nbsp;
+          </td>
+          <td class="last">
+            <strong>Ajustador</strong>: <br/><?php print render($elements['field_3ro_ajustador']);?>&nbsp;
+          </td>
+        </tr></tbody></table>
+      </td>
+    </tr>
+    
+    <tr class="danos"><td colspan="2">
+      <strong>Da&ntilde;os del Vehículo Tercero</strong>: <br/><?php print render($elements['field_3ro_vehiculo_danos']);?>&nbsp;
+    </td></tr>
   </tbody>
 </table>

@@ -176,6 +176,10 @@
   <?php print render($elements['field_vehiculo_tercero']);?>
   <?php endif;?>
   
+  <?php if(isset($elements['field_lesionado'])):?>
+  <?php print render($elements['field_lesionado']);?>
+  <?php endif;?>
+  
   <?php if(isset($elements['links'])):?>
   <?php print render($elements['links']);?>
   <?php endif;?>

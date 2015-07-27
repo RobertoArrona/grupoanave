@@ -8359,6 +8359,35 @@ body.toolbar-drawer.navbar-is-fixed-top {
   float: left;
   text-align: left;
 }
+.page-node.node-type-siniestro table.print tr.nombres > td,
+.page-node.node-type-siniestro table.print tr.domicilio-telefonos > td,
+.page-node.node-type-siniestro table.print tr.seguros > td,
+.page-node.node-type-siniestro table.print tr.vehiculo-datos > td,
+.page-node.node-type-siniestro table.print tr.nombre-edad > td {
+  border-bottom: solid 1px #333;
+}
+.page-node.node-type-siniestro table.print tr.domicilio-telefonos > td,
+.page-node.node-type-siniestro table.print tr.vehiculo-datos > td,
+.page-node.node-type-siniestro table.print tr.seguros > td,
+.page-node.node-type-siniestro table.print tr.nombre-edad > td,
+.page-node.node-type-siniestro table.print tr.lesiones > td {
+  padding: 0;
+}
+.page-node.node-type-siniestro table.print table.print-child-2 {
+  width: 100%;
+  border: none;
+  border-collapse: 0;
+  padding: 0;
+  border-spacing: 0;
+}
+.page-node.node-type-siniestro table.print table.print-child-2 td {
+  border-right: solid 1px #333;
+  vertical-align: top;
+  padding: 5px;
+}
+.page-node.node-type-siniestro table.print table.print-child-2 td.last {
+  border-right: none;
+}
 .footer {
   background: #222222;
   padding: 87px 0 75px;

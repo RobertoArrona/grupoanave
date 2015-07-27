@@ -1,0 +1,33 @@
+.page-node.node-type-siniestro{
+  table.print{
+    tr.nombres > td, 
+    tr.domicilio-telefonos > td, 
+    tr.seguros > td, 
+    tr.vehiculo-datos > td, 
+    tr.nombre-edad > td{
+      border-bottom: solid 1px #333;
+    }
+    tr.domicilio-telefonos > td, 
+    tr.vehiculo-datos > td, 
+    tr.seguros > td, 
+    tr.nombre-edad > td, 
+    tr.lesiones > td{
+      padding: 0;
+    }
+    table.print-child-2{
+      width: 100%;
+      border: none;
+      border-collapse: 0;
+      padding: 0;
+      border-spacing: 0;
+      td{
+        border-right: solid 1px #333;
+        vertical-align: top;
+        padding: 5px;
+      }
+      td.last{
+        border-right: none;
+      }
+    }
+  }
+}
