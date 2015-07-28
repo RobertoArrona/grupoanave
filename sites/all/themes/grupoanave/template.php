@@ -3,7 +3,18 @@
  * Implements hook_preprocess_page.
  */
 function grupoanave_preprocess_page(&$vars) {
+  grupoanave_preprocess_page_node($vars);
+}
 
+/**
+ * Helper function for Preprocess Page on Node pages.
+ */
+function grupoanave_preprocess_page_node(&$vars) {
+  if ( !(arg(0) == 'node' && intval(arg(1)) > 0 && ($node = node_load(arg(1)))) ) {
+    return;
+  }
+  
+  $vars['theme_hook_suggestions'][] = "page__node_type__{$node->type}";
 }
 
 /**
