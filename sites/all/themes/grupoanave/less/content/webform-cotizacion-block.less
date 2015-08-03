@@ -1,0 +1,44 @@
+#block-webform-client-block-82{
+  position: fixed;
+  margin: 0px 20px;
+  bottom: 0;
+  right: 0;
+  z-index: 99999999;
+  background: white;
+  width: 250px;
+  .contextual-links-wrapper.contextual-links-processed{
+    display: none !important;
+  }
+  h2.block-title{
+    position: relative;
+    span.toggle-button{
+      display: block;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: url(../images/buttons-light.png) no-repeat -96px top;
+      right: 8px;
+      top: 50%;
+      margin-top: -8px;
+      -webkit-transition: all 0.4s ease;
+      -moz-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    span.toggle-button:hover{
+      background-color: #333;
+    }
+  }
+}
+#block-webform-client-block-82.closed{
+  h2.block-title{
+    span.toggle-button{
+      background-position: -80px top;
+    }
+  }
+  #webform-client-form-82{
+    display: none;
+  }
+}

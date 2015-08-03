@@ -8457,6 +8457,92 @@ body.toolbar-drawer.navbar-is-fixed-top {
 .page-node.node-type-siniestro table.print table.print-child-2 td.last {
   border-right: none;
 }
+.block-webform {
+  padding: 0;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+.block-webform h2.block-title {
+  background: #5ba0d0;
+  color: #FFF;
+  padding: 10px;
+  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+.block-webform .webform-client-form {
+  padding: 6px 10px 3px 10px;
+}
+.block-webform .form-item {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.block-webform .form-item .form-control {
+  font-size: 12px;
+  height: 28px;
+  padding: 4px;
+}
+.block-webform .form-item .input-group-addon {
+  font-size: 12px;
+}
+.block-webform .btn-default {
+  display: block;
+  width: auto;
+  font-size: 14px;
+  padding: 3px 10px;
+  margin: 5px 0 10px 0;
+  border-radius: 3px;
+  min-height: 0;
+  clear: both;
+  cursor: pointer;
+  background: #d54f27;
+  border: medium none #ededed;
+  color: white;
+  float: right;
+  vertical-align: middle;
+  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+#block-webform-client-block-82 {
+  position: fixed;
+  margin: 0px 20px;
+  bottom: 0;
+  right: 0;
+  z-index: 99999999;
+  background: white;
+  width: 250px;
+}
+#block-webform-client-block-82 .contextual-links-wrapper.contextual-links-processed {
+  display: none !important;
+}
+#block-webform-client-block-82 h2.block-title {
+  position: relative;
+}
+#block-webform-client-block-82 h2.block-title span.toggle-button {
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: url(../images/buttons-light.png) no-repeat -96px top;
+  right: 8px;
+  top: 50%;
+  margin-top: -8px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#block-webform-client-block-82 h2.block-title span.toggle-button:hover {
+  background-color: #333;
+}
+#block-webform-client-block-82.closed h2.block-title span.toggle-button {
+  background-position: -80px top;
+}
+#block-webform-client-block-82.closed #webform-client-form-82 {
+  display: none;
+}
 .footer {
   background: #222222;
   padding: 87px 0 75px;
