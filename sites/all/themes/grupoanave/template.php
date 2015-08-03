@@ -35,7 +35,7 @@ function grupoanave_menu_link__main_menu(array $variables) {
       unset($element['#below']['#theme_wrappers']);
       $sub_menu = '<ul class="dropdown-menu">' . drupal_render($element['#below']) . '</ul>';
       // Generate as standard dropdown.
-      $element['#title'] .= ' <span class="caret"></span>';
+      //$element['#title'] .= ' <span class="caret"></span>';
       $element['#attributes']['class'][] = 'dropdown';
       $element['#localized_options']['html'] = TRUE;
 
@@ -51,7 +51,11 @@ function grupoanave_menu_link__main_menu(array $variables) {
   if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
     $element['#attributes']['class'][] = 'active';
   }
-  $element['#title'] = "<div><span>{$element['#title']}</span></div><div><span>{$element['#title']}</span></div>";
+  if ( $element['#original_link']['depth'] == 1 ) {
+    $element['#title'] = "<div><span>{$element['#title']}</span></div><div><span>{$element['#title']}</span></div>";
+  } else {
+    $element['#title'] = "{$element['#title']}";
+  }
   $element['#localized_options']['html'] = true;
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";

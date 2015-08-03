@@ -58,7 +58,7 @@ body.toolbar-drawer.navbar-is-fixed-top{
     content: "";
     color: #000000;
   }
-  > li a{
+  > li > a{
     text-transform: uppercase;
     padding: 0;
     background: transparent;
@@ -77,11 +77,11 @@ body.toolbar-drawer.navbar-is-fixed-top{
     overflow: hidden;
     pointer-events: auto;
   }
-  > li a:hover, 
-  > li a:focus, 
-  > li.active a, 
-  > li.active a:hover, 
-  > li.active a:focus{
+  > li > a:hover, 
+  > li > a:focus, 
+  > li.active > a, 
+  > li.active > a:hover, 
+  > li.active > a:focus{
     color: white;
     background: transparent;
   }
@@ -101,7 +101,7 @@ body.toolbar-drawer.navbar-is-fixed-top{
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
   }
-  > li a:after{
+  > li > a:after{
     position: absolute;
     display: block;
     width: 100%;
@@ -115,13 +115,14 @@ body.toolbar-drawer.navbar-is-fixed-top{
     background: #da3300;
     -webkit-transition: all 0.3s ease-in-out;
   }
-  > li a:hover:after, 
-  > li.active a:after, 
-  > li.active a:hover:after, 
-  > li.active a:focus:after{
+  > li > a:hover:after, 
+  > li.active > a:after, 
+  > li.active > a:hover:after, 
+  > li.active > a:focus:after, 
+  > li:hover > a:after{
     top: 100%;
   }
-  > li a > div{
+  > li > a > div{
     position: relative;
     top: 0;
     left: 0;
@@ -132,15 +133,15 @@ body.toolbar-drawer.navbar-is-fixed-top{
     -o-transition: all 0.4s ease-in-out !important;
     transition: all 0.4s ease-in-out !important;
   }
-  > li a > div:first-child{
+  > li > a > div:first-child{
     position: absolute;
     background: transparent;
   }
-  > li a > div:first-child+div{
+  > li > a > div:first-child+div{
     top: -200px;
     color: #fff;
   }
-  > li a > div span{
+  > li > a > div span{
     position: relative;
     display: block;
     text-transform: uppercase;
@@ -151,40 +152,100 @@ body.toolbar-drawer.navbar-is-fixed-top{
     -o-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
   }
-  > li a > div:first-child+div span{
+  > li > a > div:first-child+div span{
     opacity: 0;
     filter: alpha(opacity=0);
     background: transparent;
   }
   
-  >li.active >a:before, 
-  >li.hover >a:before, 
-  >li:hover >a:before{
+  >li.active > a:before, 
+  >li.hover > a:before, 
+  >li:hover > a:before{
     top: 100%;
   }
   >li.active > a >div:first-child, 
-  >li.hover >a >div:first-child, 
-  >li:hover >a >div:first-child{
+  >li.hover > a >div:first-child, 
+  >li:hover > a >div:first-child{
     top: 200%;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
   }
-  >li.active >a >div:first-child+div, 
-  >li.hover >a >div:first-child+div, 
-  >li:hover >a >div:first-child+div{
+  >li.active > a >div:first-child+div, 
+  >li.hover > a >div:first-child+div, 
+  >li:hover > a >div:first-child+div{
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
     top: 0;
   }
-  >li.active >a >div:first-child+div span, 
-  >li.hover >a >div:first-child+div span, 
-  >li:hover >a >div:first-child+div span{
+  >li.active > a >div:first-child+div span, 
+  >li.hover > a >div:first-child+div span, 
+  >li:hover > a >div:first-child+div span{
     color:#fff;
     opacity:1;
   	filter:alpha(opacity=100);
+  }
+}
+/** Dropdown **/
+.navbar-default .navbar-nav > li.dropdown{
+  ul.dropdown-menu{
+    background: #222222;
+    width: 175px;
+    margin: 0 0 0 -88px;
+    padding: 25px 0 10px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(50,50,50,0.3);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(50,50,50,0.3);
+    box-shadow: 0px 0px 10px 0px rgba(50,50,50,0.3);
+    left: 50%;
+    position: absolute;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    
+    li{
+      margin-bottom: 14px;
+    }
+    li.last{
+      margin-bottom: 0;
+    }
+    li > a{
+      border: none;
+      background: transparent;
+      font-weight: normal;
+      padding: 1px 0;
+      margin: 0;
+      text-align: center;
+      color: #fff;
+      text-shadow: none;
+      -webkit-transition: all 0.4s ease;
+      -moz-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+      overflow: visible;
+      letter-spacing: 0;
+      pointer-events: auto;
+      position: relative;
+      text-decoration: none;
+      outline: none;
+      font: normal 12px/16px Arial, Helvetica, sans-serif;
+      display: block;
+    }
+    li > a:hover{
+      color: #da3300;
+    }
+  }
+}
+.navbar-default .navbar-nav > li.dropdown:hover, 
+.navbar-default .navbar-nav > li.dropdown.hover{
+  ul.dropdown-menu{
+    top: 100%;
+    z-index: 99;
+    display: block;
+    visibility: visible;
+    opacity: 1;
   }
 }
