@@ -234,12 +234,7 @@
             
             <tr>
               <td>
-                <?php if(isset($elements['field_poliza_conducto_cobro'])):?>
-                <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_conducto_cobro']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_conducto_cobro']);?></td>
-                </tr></table>
-                <?php endif;?>
+                conducto cobro
               </td>
               <td>
                 <?php if(isset($elements['field_poliza_primas_recibos_subs'])):?>
