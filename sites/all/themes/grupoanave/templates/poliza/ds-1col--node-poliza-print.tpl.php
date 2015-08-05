@@ -8,6 +8,9 @@
  $agente_uid = $elements['author']['#object']->uid;
  $agente = user_load($agente_uid);
  $agente_nombre = "{$agente->field_first_name[LANGUAGE_NONE][0]['safe_value']} {$agente->field_last_name[LANGUAGE_NONE][0]['safe_value']}";
+ if ( isset($elements['field_asegurado_domicilio']['#items'][0]) ) {
+   $address = $elements['field_asegurado_domicilio']['#items'][0];
+ }
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 
@@ -259,10 +262,10 @@
       <table class="print-child">
         <tr class="row-1 odd">
           <td>
-            <?php if(isset($elements['field_vehiculo_marca'])):?>
+            <?php if(isset($elements['field_plz_vehiculo_marca'])):?>
             <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_marca']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_marca']);?></td>
+              <td><strong><?php print $elements['field_plz_vehiculo_marca']['#title'];?>:</strong></td>
+              <td align="right"><?php print render($elements['field_plz_vehiculo_marca']);?></td>
             </tr></table>
             <?php endif;?>
           </td>
@@ -435,6 +438,7 @@
       </table>
     </td></tr></tbody>
   </table>
+  
   <?php if(isset($elements['poliza_block_middle'])):?>
   <?php print render($elements['poliza_block_middle']);?>
   <?php endif;?>
