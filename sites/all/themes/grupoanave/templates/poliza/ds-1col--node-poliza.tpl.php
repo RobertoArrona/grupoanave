@@ -49,25 +49,16 @@
           </tr>
           
           <tr>
-            <td colspan="2">
+            <td>
               <?php if(isset($address['premise'])):?>
               <div class="label-above">Colonia:</div>
               <?php print $address['premise'];?>
               <?php endif;?>
             </td>
-          </tr>
-          
-          <tr>
             <td>
               <?php if(isset($address['locality'])):?>
               <div class="label-above">Poblado:</div>
               <?php print $address['locality'];?>
-              <?php endif;?>
-            </td>
-            <td>
-              <?php if(isset($address['postal_code'])):?>
-              <div class="label-above">C&oacute;digo Postal:</div>
-              <?php print $address['postal_code'];?>
               <?php endif;?>
             </td>
           </tr>
@@ -80,14 +71,20 @@
               <?php endif;?>
             </td>
             <td>
+              <?php if(isset($address['postal_code'])):?>
+              <div class="label-above">C&oacute;digo Postal:</div>
+              <?php print $address['postal_code'];?>
+              <?php endif;?>
+            </td>
+          </tr>
+
+          <tr class="last">
+            <td>
               <?php if(isset($elements['field_asegurado_telefono'])):?>
               <?php print render($elements['field_asegurado_telefono']);?>
               <?php endif;?>
             </td>
-          </tr>
-          
-          <tr class="last">
-            <td colspan="2">
+            <td>
               <?php if(isset($elements['field_asegurado_benef_pref'])):?>
               <?php print render($elements['field_asegurado_benef_pref']);?>
               <?php endif;?>
@@ -215,12 +212,10 @@
             
             <tr>
               <td>
-                <?php if(isset($elements['field_poliza_tipo_movimiento'])):?>
                 <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_tipo_movimiento']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_tipo_movimiento']);?></td>
+                  <td><strong>Nombre del Agente:</strong></td>
+                  <td align="right"><?php print $agente_nombre;?></td>
                 </tr></table>
-                <?php endif;?>
               </td>
               <td>
                 <?php if(isset($elements['field_poliza_prima_1er_recibo'])):?>
@@ -232,9 +227,12 @@
               </td>
             </tr>
             
-            <tr>
+            <tr class="last">
               <td>
-                conducto cobro
+                <table class="generic"><tr>
+                  <td><strong>Clave del Agente:</strong></td>
+                  <td align="right"><?php print $agente_uid;?></td>
+                </tr></table>
               </td>
               <td>
                 <?php if(isset($elements['field_poliza_primas_recibos_subs'])):?>
@@ -244,26 +242,6 @@
                 </tr></table>
                 <?php endif;?>
               </td>
-            </tr>
-            
-            <tr>
-              <td>
-                <table class="generic"><tr>
-                  <td><strong>Nombre del Agente:</strong></td>
-                  <td align="right"><?php print $agente_nombre;?></td>
-                </tr></table>
-              </td>
-              <td>&nbsp;</td>
-            </tr>
-            
-            <tr class="last">
-              <td>
-                <table class="generic"><tr>
-                  <td><strong>Clave del Agente:</strong></td>
-                  <td align="right"><?php print $agente_uid;?></td>
-                </tr></table>
-              </td>
-              <td>&nbsp;</td>
             </tr>
             
           </tbody>
