@@ -7,7 +7,7 @@
   <tbody>
     <tr>
       <td colspan="3">
-        <?php print render($elements['field_title']);?>
+        <?php print render($elements['field_poliza_tipo']);?>
       </td>
     </tr>
   </tbody>

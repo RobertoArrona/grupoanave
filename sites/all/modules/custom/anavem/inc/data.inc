@@ -1,5 +1,25 @@
 <?php
 /**
+ * Gets the consecutive number for a siniestro.
+ */
+function anavem_get_siniestro_number() {
+  $year = date('y');
+  $last_digit = variable_get("anavem-siniestro-{$year}-i", 1);
+  $last_digit = sprintf("%'.04d\n", $last_digit);
+  return "A{$year}{$last_digit}";
+}
+
+/**
+ * Increase the consecutive number for a siniestro.
+ */
+function anavem_increase_siniestro_number() {
+  $year = date('y');
+  $last_digit = variable_get("anavem-siniestro-{$year}-i", 1);
+  $last_digit++;
+  variable_set("anavem-siniestro-{$year}-i", $last_digit);
+}
+
+/**
  * Gets a given field to be used in a custom form.
  */
 function anavem_get_field($field_name, $entity_type, $bundle_name, &$form, &$form_state) {
