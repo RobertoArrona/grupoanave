@@ -139,7 +139,7 @@
                 <?php if(isset($elements['field_poliza_vigencia'])):?>
                 <table class="generic"><tr>
                   <td><strong>Inicio de Vigencia:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_vigencia']);?></td>
+                  <td align="right"><?php print render($elements['field_poliza_vigencia']);?> 12:00 Horas</td>
                 </tr></table>
                 <?php endif;?>
               </td>
@@ -158,7 +158,7 @@
                 <?php if(isset($elements['fin_vigencia'])):?>
                 <table class="generic"><tr>
                   <td><strong><?php print $elements['fin_vigencia']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render($elements['fin_vigencia']);?></td>
+                  <td align="right"><?php print render($elements['fin_vigencia']);?> 12:00 Horas</td>
                 </tr></table>
                 <?php endif;?>
               </td>
