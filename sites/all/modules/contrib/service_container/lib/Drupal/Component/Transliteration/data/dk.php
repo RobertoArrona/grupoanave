@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Danish transliteration data for the PhpTransliteration class.
+ * Danish transliteration data for the PHPTransliteration class.
  */
 
 $overrides['dk'] = array(

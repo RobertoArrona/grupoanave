@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Kyrgyz transliteration data for the PhpTransliteration class.
+ * Kyrgyz transliteration data for the PHPTransliteration class.
  */
 
 $overrides['kg'] = array(

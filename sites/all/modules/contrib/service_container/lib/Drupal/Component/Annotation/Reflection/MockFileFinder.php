@@ -26,6 +26,12 @@ class MockFileFinder implements ClassFinderInterface {
   protected $filename;
 
   /**
+   * Constructs a MockFileFinder object.
+   */
+  public function __construct($prefixes) {
+  }
+
+  /**
    * Implements Doctrine\Common\Reflection\ClassFinderInterface::findFile().
    */
   public function findFile($class) {
@@ -36,7 +42,7 @@ class MockFileFinder implements ClassFinderInterface {
    * Creates new mock file finder objects.
    */
   static public function create($filename) {
-    $object = new static();
+    $object = new static(array());
     $object->filename = $filename;
     return $object;
   }

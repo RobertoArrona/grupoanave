@@ -23,7 +23,7 @@ interface ModuleInstallerInterface {
    *   - Invoke hook_install() and add it to the list of installed modules.
    * - Invoke hook_modules_installed().
    *
-   * @param string[] $module_list
+   * @param array $module_list
    *   An array of module names.
    * @param bool $enable_dependencies
    *   (optional) If TRUE, dependencies will automatically be installed in the
@@ -31,10 +31,7 @@ interface ModuleInstallerInterface {
    *   if you know $module_list is already complete.
    *
    * @return bool
-   *   TRUE if the modules were successfully installed.
-   *
-   * @throws \Drupal\Core\Extension\MissingDependencyException
-   *   Thrown when a requested module, or a dependency of one, can not be found.
+   *   FALSE if one or more dependencies are missing, TRUE otherwise.
    *
    * @see hook_module_preinstall()
    * @see hook_install()
@@ -45,7 +42,7 @@ interface ModuleInstallerInterface {
   /**
    * Uninstalls a given list of modules.
    *
-   * @param string[] $module_list
+   * @param array $module_list
    *   The modules to uninstall.
    * @param bool $uninstall_dependents
    *   (optional) If TRUE, dependent modules will automatically be uninstalled
@@ -60,25 +57,6 @@ interface ModuleInstallerInterface {
    * @see hook_modules_uninstalled()
    */
   public function uninstall(array $module_list, $uninstall_dependents = TRUE);
-
-  /**
-   * Adds module a uninstall validator.
-   *
-   * @param \Drupal\Core\Extension\ModuleUninstallValidatorInterface $uninstall_validator
-   *   The uninstall validator to add.
-   */
-  public function addUninstallValidator(ModuleUninstallValidatorInterface $uninstall_validator);
-
-  /**
-   * Determines whether a list of modules can be uninstalled.
-   *
-   * @param string[] $module_list
-   *   An array of module names.
-   *
-   * @return string[]
-   *   An array of reasons the module can not be uninstalled, empty if it can.
-   */
-  public function validateUninstall(array $module_list);
 
 }
 

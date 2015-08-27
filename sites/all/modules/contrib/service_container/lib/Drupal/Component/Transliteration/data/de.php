@@ -2,7 +2,7 @@
 
 /**
  * @file
- * German transliteration data for the PhpTransliteration class.
+ * German transliteration data for the PHPTransliteration class.
  */
 
 $overrides['de'] = array(

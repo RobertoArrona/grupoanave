@@ -10,6 +10,7 @@ namespace Drupal\service_container\Logger;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Session\AccountInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**

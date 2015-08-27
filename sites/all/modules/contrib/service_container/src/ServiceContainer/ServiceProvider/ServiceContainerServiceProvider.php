@@ -7,7 +7,6 @@
 
 namespace Drupal\service_container\ServiceContainer\ServiceProvider;
 
-use Drupal\service_container\DependencyInjection\Container;
 use Drupal\service_container\DependencyInjection\ServiceProviderInterface;
 
 /**
@@ -31,23 +30,17 @@ class ServiceContainerServiceProvider implements ServiceProviderInterface {
     );
 
     $services = array();
-
-    $services['drupal7'] = array(
-      'class' => 'Drupal\service_container\Legacy\Drupal7',
-    );
-
     $services['service_container'] = array(
       'class' => '\Drupal\service_container\DependencyInjection\Container',
     );
 
     $services['module_handler'] = array(
       'class' => '\Drupal\service_container\Extension\ModuleHandler',
-      'arguments' => array(DRUPAL_ROOT, '@drupal7'),
+      'arguments' => array(DRUPAL_ROOT),
     );
 
     $services['module_installer'] = array(
       'class' => '\Drupal\service_container\Extension\ModuleInstaller',
-      'arguments' => array('@drupal7'),
     );
 
     $services['database'] = array(
@@ -55,14 +48,6 @@ class ServiceContainerServiceProvider implements ServiceProviderInterface {
       'factory_class' => 'Drupal\Core\Database\Database',
       'factory_method' => 'getConnection',
       'arguments' => array('default'),
-    );
-
-    $services['flood'] = array(
-      'class' => '\Drupal\service_container\Flood\LegacyBackend',
-      'arguments' => array('@database', '@drupal7'),
-      'tags' => array(
-        array('name' => 'backend_overridable'),
-      ),
     );
 
     $services['serialization.phpserialize'] = array(
@@ -98,7 +83,6 @@ class ServiceContainerServiceProvider implements ServiceProviderInterface {
 
     $services['variable'] = array(
       'class' => 'Drupal\service_container\Variable',
-      'arguments' => array('@drupal7'),
     );
 
     $services['lock'] = array(
@@ -117,24 +101,17 @@ class ServiceContainerServiceProvider implements ServiceProviderInterface {
       ),
     );
 
-    $services['messenger'] = array(
-      'class' => 'Drupal\service_container\Messenger\LegacyMessenger',
-      'arguments' => array('@drupal7'),
-    );
-
     $services['url_generator'] = array(
       'class' => 'Drupal\service_container\UrlGenerator',
-      'arguments' => array('@drupal7'),
     );
 
     $services['link_generator'] = array(
       'class' => 'Drupal\service_container\LinkGenerator',
-      'arguments' => array('@drupal7'),
     );
 
     $services['current_user'] = array(
       'class' => 'Drupal\service_container\Session\Account',
-      'arguments' => array('@drupal7', '@variable'),
+      'arguments' => array('@variable'),
     );
 
     // Logging integration.
@@ -147,7 +124,6 @@ class ServiceContainerServiceProvider implements ServiceProviderInterface {
 
     $services['logger.dblog'] = array(
       'class' => 'Drupal\service_container\Logger\WatchdogLogger',
-      'arguments' => array('@drupal7'),
       'tags' => array(
         array('name' => 'logger'),
       ),
@@ -174,6 +150,8 @@ class ServiceContainerServiceProvider implements ServiceProviderInterface {
       'arguments' => array('cron'),
     );
 
+    // @todo Make it  possible to register all ctools plugins here.
+
     return array(
       'parameters' => $parameters,
       'services' => $services,
@@ -184,25 +162,6 @@ class ServiceContainerServiceProvider implements ServiceProviderInterface {
    * {@inheritdoc}
    */
   public function alterContainerDefinition(&$container_definition) {
-    foreach(array('annotated_plugins_auto_discovery', 'ctools_plugins_auto_discovery') as $prefix) {
-      $container_definition['parameters'][$prefix] = array();
-      foreach($container_definition['parameters'] as $parameter => $value) {
-        if (strpos($parameter, $prefix) === 0) {
-          $container_definition['parameters'][$prefix] = array_merge($container_definition['parameters'][$prefix], $value);
-        }
-      }
-    }
-
-    if (!empty($container_definition['parameters']['ctools_plugins_auto_discovery']) && $this->moduleExists('ctools')) {
-      $ctools_types = $this->cToolsGetTypes();
-      $filtered_types = array_intersect_key($ctools_types, array_flip($container_definition['parameters']['ctools_plugins_auto_discovery']));
-      $this->registerCToolsPluginTypes($container_definition, $filtered_types);
-    }
-
-    if (!empty($container_definition['parameters']['annotated_plugins_auto_discovery']) && $this->moduleExists('service_container_annotation_discovery')) {
-      $this->registerAnnotatedPluginTypes($container_definition, $container_definition['parameters']['annotated_plugins_auto_discovery']);
-    }
-
     // Set empty value when its not set.
     if (empty($container_definition['tags']['plugin_manager'])) {
       $container_definition['tags']['plugin_manager'] = array();
@@ -227,83 +186,13 @@ class ServiceContainerServiceProvider implements ServiceProviderInterface {
         $discovery = new $discovery_class($tag['plugin_manager_definition']);
         $definitions = $discovery->getDefinitions();
         foreach ($definitions as $key => $definition) {
+          // Always pass the definition as the first argument.
+          $definition += array(
+            'arguments' => array(),
+          );
+          array_unshift($definition['arguments'], $definition);
           $container_definition['services'][$tag['prefix'] . $key] = $definition + array('public' => FALSE);
         }
-      }
-    }
-  }
-
-  /**
-   * Automatically register all annotated Plugins.
-   *
-   * @param array $container_definition
-   *   The container definition to process.
-   * @param array $definition
-   *   The parameter definition.
-   */
-  public function registerAnnotatedPluginTypes(&$container_definition, $parameter_definitions) {
-    foreach($parameter_definitions as $definition) {
-      if (isset($definition['plugin_manager_name']) && !empty($definition['plugin_manager_name'])) {
-        $plugin_manager_name = $definition['plugin_manager_name'];
-      } else {
-        $plugin_manager_name  = $definition['owner'] . '.' . $definition['type'];
-        $this->registerAliasServices($container_definition, $definition['owner'], $definition['type']);
-      }
-
-      $container_definition['services'][$plugin_manager_name] = array();
-      $container_definition['parameters']['service_container.plugin_managers']['annotated'][$plugin_manager_name] = $definition;
-    }
-  }
-
-  /**
-   * Automatically register all ctools plugins of the given types.
-   *
-   * @param array $container_definition
-   *   The container definition to process.
-   * @param array $ctools_types
-   *   Array of plugin types, indexed by module name.
-   */
-  public function registerCToolsPluginTypes(&$container_definition, $ctools_types) {
-    foreach($ctools_types as $owner => $plugins) {
-      foreach($plugins as $plugin_type => $plugin_data) {
-        if (isset($container_definition['parameters']['service_container.plugin_managers']['ctools'][$owner . '.' . $plugin_type])) {
-          continue;
-        }
-        $this->registerAliasServices($container_definition, $owner, $plugin_type);
-
-        $container_definition['parameters']['service_container.plugin_managers']['ctools'][$owner . '.' . $plugin_type] = array(
-          'owner' => $owner,
-          'type' => $plugin_type,
-        );
-      }
-    }
-  }
-
-  /**
-   * Register aliases for the service.
-   *
-   * @param array $container_definition
-   *   The container definition to process.
-   * @param string $owner
-   *   The owner, here, the name of the module
-   * @param string $plugin_type
-   *   The type of plugin
-   */
-  public function registerAliasServices(&$container_definition, $owner, $plugin_type) {
-    // Register service with original string.
-    $name = $owner . '.' . $plugin_type;
-    $container_definition['services'][$name] = array();
-
-    // Check candidates for needed aliases.
-    $candidates = array();
-    $candidates[$owner . '.' . Container::underscore($plugin_type)] = TRUE;
-    $candidates[$name] = FALSE;
-
-    foreach ($candidates as $candidate => $value) {
-      if ($value) {
-        $container_definition['services'][$candidate] = array(
-          'alias' => $name,
-        );
       }
     }
   }
@@ -339,14 +228,15 @@ class ServiceContainerServiceProvider implements ServiceProviderInterface {
   /**
    * Gets plugin manager definition to make it simpler to register plugins.
    *
-   * @param string $name
+   * @param string $owner
    *   The owning module of the plugin.
-   * @param string $discovery_class
-   *   The discovery class in use to discover plugins.
-   * @param array $plugin_manager
-   *   The plugin manager definition
-   *
-   * @return array
+   * @param string $identifier
+   *   The internal identifier of the plugin, used for getting from the
+   *   container via $owner.$identifier and for storing the internal class.
+   * @param string $type
+   *   The type of the plugin.
+   * @param string $plugin_type
+   *   The used plugin type, e.g. ctools.plugin. (default)
    */
   protected function getPluginManagerDefinition($name, $discovery_class, $plugin_manager) {
     $prefix = "$name.internal.";
@@ -365,36 +255,5 @@ class ServiceContainerServiceProvider implements ServiceProviderInterface {
         ),
       ),
     );
-  }
-
-  /**
-   * Return the full list of plugin type info for all plugin types registered in
-   * the current system.
-   *
-   * This function manages its own cache getting/setting, and should always be
-   * used as the way to initially populate the list of plugin types. Make sure you
-   * call this function to properly populate the ctools_plugin_type_info static
-   * variable.
-   *
-   * @return array
-   *   A multilevel array of plugin type info, the outer array keyed on module
-   *   name and each inner array keyed on plugin type name.
-   */
-  public function cToolsGetTypes() {
-    ctools_include('plugins');
-    return ctools_plugin_get_plugin_type_info();
-  }
-
-  /**
-   * Determines whether a given module exists.
-   *
-   * @param string $name
-   *   The name of the module (without the .module extension).
-   *
-   * @return bool
-   *   TRUE if the module is both installed and enabled, FALSE otherwise.
-   */
-  public function moduleExists($name) {
-    return module_exists($name);
   }
 }
