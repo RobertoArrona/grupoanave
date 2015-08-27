@@ -7,6 +7,8 @@
 
 namespace Drupal\service_container;
 
+use Drupal\service_container\Legacy\Drupal7;
+
 /**
  * Generates a URL out of a path and options.
  *
@@ -15,6 +17,23 @@ namespace Drupal\service_container;
  * @codeCoverageIgnore
  */
 class UrlGenerator {
+
+  /**
+   * The Drupal7 service.
+   *
+   * @var \Drupal\service_container\Legacy\Drupal7
+   */
+  protected $drupal7;
+
+  /**
+   * Constructs a new UrlGenerator instance.
+   *
+   * @param \Drupal\service_container\Legacy\Drupal7 $drupal7
+   *   The Drupal7 service.
+   */
+  public function __construct(Drupal7 $drupal7) {
+    $this->drupal7 = $drupal7;
+  }
 
   /**
    * Generates an internal or external URL.
@@ -78,11 +97,11 @@ class UrlGenerator {
    *   - 'entity': The entity object (such as a node) for which the URL is being
    *     generated. Only set if url() is invoked by entity_uri().
    *
-   * @return
+   * @return string
    *   A string containing a URL to the given path.
    */
   public function url($path = NULL, array $options = array()) {
-    return url($path, $options);
+    return $this->drupal7->url($path, $options);
   }
 
 }

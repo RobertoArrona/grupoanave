@@ -7,6 +7,7 @@
 
 namespace Drupal\service_container\Logger;
 
+use Drupal\service_container\Legacy\Drupal7;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
@@ -16,6 +17,23 @@ use Psr\Log\LogLevel;
  * @codeCoverageIgnore
  */
 class WatchdogLogger extends LoggerBase implements LoggerInterface {
+
+  /**
+   * The Drupal7 service.
+   *
+   * @var \Drupal\service_container\Legacy\Drupal7
+   */
+  protected $drupal7;
+
+  /**
+   * Constructs a WatchdogLogger object.
+   *
+   * @param \Drupal\service_container\Legacy\Drupal7 $drupal7
+   *   The Drupal7 service.
+   */
+  public function __construct(Drupal7 $drupal7) {
+    $this->drupal7 = $drupal7;
+  }
 
   /**
    * {@inheritdoc}
@@ -37,7 +55,7 @@ class WatchdogLogger extends LoggerBase implements LoggerInterface {
     $type = isset($context['channel']) ? $context['channel'] : 'default';
     unset($context['channel']);
 
-    watchdog($type, $message, $context, $watchdog_level);
+    $this->drupal7->watchdog($type, $message, $context, $watchdog_level);
   }
 
 }
