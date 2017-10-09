@@ -98,7 +98,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
                   <?php print $print_logo; ?>
                 </td>
                 <td class="print-title">
-                  <h1>Poliza de Seguro de Automoviles Residentes</h1>
+                  <h1>Contrato para vehículos de Servicio Publico</h1>
                 </td>
               </tr>
             </tbody>
