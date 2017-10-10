@@ -21,8 +21,8 @@
   <table class="print">
     <thead>
       <tr>
-        <th>Datos del Asegurado</th>
-        <th>Datos de la Poliza</th>
+        <th>Datos del socio</th>
+        <th>Datos del contrato</th>
       </tr>
     </thead>
     <tbody><tr>
