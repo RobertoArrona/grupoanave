@@ -131,8 +131,8 @@ function anavem_menu_landing_page() {
   if ( user_access('Administrar Polizas') ) {
     $sections['polizas'] = array(
       'id' => 'polizas', 
-      'title' => 'Polizas', 
-      'description' => 'Muestra una tabla donde podrás administrar Polizas.', 
+      'title' => 'Contratos', 
+      'description' => 'Muestra una tabla donde podrás administrar Contratos.', 
       'url' => url('admin/anave/polizas'), 
     );
   }
