@@ -4,6 +4,14 @@
  */
 function anavem_permission() {
   return array(
+    'Ver Siniestro' => array(
+      'title' => 'Ver Siniestro', 
+      'description' => 'Ver Siniestro', 
+    ), 
+    'Ver Taller' => array(
+      'title' => 'Ver Taller', 
+      'description' => 'Ver Taller', 
+    ), 
     'Anave User Landing Page' => array(
       'title' => 'Anave User Landing Page', 
       'description' => 'Anave User Landing Page', 

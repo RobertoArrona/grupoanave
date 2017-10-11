@@ -14,6 +14,7 @@
         }
         
         $(this).find('> h2.block-title').append('<span class="toggle-button"></span>');
+        $(this).addClass('on');
         $(this).find('> h2.block-title span.toggle-button').click(function(event){
           block = $(this).parent().parent();
           if ( $.cookie('blockClosed') == '0' ) {
