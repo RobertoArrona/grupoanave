@@ -115,5 +115,9 @@ function grupoanave_theme_address($element) {
  */
 function grupoanave_get_state_name($country, $state) {
   $states = addressfield_get_administrative_areas($country);
-  return $states[$state];
+  if (isset($states[$state])) {
+    return $states[$state];
+  }
+
+  return false;
 }
