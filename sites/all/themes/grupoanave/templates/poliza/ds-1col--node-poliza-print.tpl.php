@@ -121,7 +121,7 @@
               <td>
                 <?php if(isset($elements['field_poliza_emision'])):?>
                 <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_emision']['#title'];?>:</strong></td>
+                  <td><strong><?php print $elements['field_poliza_emision']['#title']; vardump($elements['field_poliza_emision'])?>:</strong></td>
                   <td align="right"><?php print render($elements['field_poliza_emision']);?></td>
                 </tr></table>
                 <?php endif;?>
