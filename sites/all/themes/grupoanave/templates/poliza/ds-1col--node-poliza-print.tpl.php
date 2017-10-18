@@ -287,6 +287,15 @@
             </tr></table>
             <?php endif;?>
           </td>
+
+          <td>
+            <?php if(isset($elements['field_vehiculo_placas'])):?>
+            <table class="generic"><tr>
+              <td><strong><?php print $elements['field_vehiculo_placas']['#title'];?>:</strong></td>
+              <td align="right"><?php print render($elements['field_vehiculo_placas']);?></td>
+            </tr></table>
+            <?php endif;?>
+          </td>
         </tr>
         
         <tr class="row-2">
@@ -312,6 +321,15 @@
             <table class="generic"><tr>
               <td><strong><?php print $elements['field_vehiculo_tipo_carga']['#title'];?>:</strong></td>
               <td align="right"><?php print render($elements['field_vehiculo_tipo_carga']);?></td>
+            </tr></table>
+            <?php endif;?>
+          </td>
+
+          <td>
+            <?php if(isset($elements['field_vehiculo_modelo'])):?>
+            <table class="generic"><tr>
+              <td><strong><?php print $elements['field_vehiculo_modelo']['#title'];?>:</strong></td>
+              <td align="right"><?php print render($elements['field_vehiculo_modelo']);?></td>
             </tr></table>
             <?php endif;?>
           </td>
@@ -343,6 +361,11 @@
             </tr></table>
             <?php endif;?>
           </td>
+
+          <td>
+            <table class="generic"><tr>
+            </tr></table>
+          </td>
         </tr>
         
         <tr class="row-4">
@@ -372,6 +395,11 @@
             </tr></table>
             <?php endif;?>
           </td>
+
+          <td>
+            <table class="generic"><tr>
+            </tr></table>
+          </td>
         </tr>
         
          <tr class="row-5 odd">
@@ -399,6 +427,11 @@
               <td align="right"><?php print render($elements['field_vehiculo_tipo_remolque']);?></td>
             </tr></table>
             <?php endif;?>
+          </td>
+
+          <td>
+            <table class="generic"><tr>
+            </tr></table>
           </td>
         </tr>
 
