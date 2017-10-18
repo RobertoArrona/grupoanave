@@ -24,7 +24,7 @@ function insurance_contract_form_settings() {
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function insurance_contract_form_contrato_node_form_alter(&$form, &$form_state, $form_id) {
+function insurance_contract_form_poliza_node_form_alter(&$form, &$form_state, $form_id) {
   if (($contract_folio = insurance_contract_contract_folio_get())) {
     $form['title']['#default_value'] = $contract_folio;
     $form['title']['#attributes']['readonly'] = 'readonly';
@@ -35,7 +35,7 @@ function insurance_contract_form_contrato_node_form_alter(&$form, &$form_state, 
 /**
  *
  */
-function insurance_contract_form_contrato_node_validate(&$form, &$form_state){
+function insurance_contract_form_poliza_node_validate(&$form, &$form_state){
   $issuedate2 = getdate();
  // $issuedate = strtotime($form_state['values']['field_poliza_emision'][LANGUAGE_NONE][0]['value']);
   $validity = strtotime($form_state['values']['field_poliza_vigencia'][LANGUAGE_NONE][0]['value']);
