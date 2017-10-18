@@ -88,6 +88,7 @@
             </td>
             <td>
               <?php if(isset($elements['field_asegurado_benef_pref'])):?>
+              <div class="label-above">Beneficiario Preferente:</div>
               <?php print render($elements['field_asegurado_benef_pref']);?>
               <?php endif;?>
             </td>
@@ -129,8 +130,8 @@
               <td>
                 <?php if(isset($elements['field_poliza_emision'])):?>
                 <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_emision']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_reduccion']);?></td>
+                  <td><strong></strong></td>
+                  <td align="right"></td>
                 </tr></table>
                 <?php endif;?>
               </td>
@@ -277,14 +278,7 @@
             </tr></table>
             <?php endif;?>
           </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_clave_sbg'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_clave_sbg']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_clave_sbg']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
+
           <td>
             <?php if(isset($elements['field_vehiculo_tonelaje'])):?>
             <table class="generic"><tr>
@@ -312,14 +306,7 @@
             </tr></table>
             <?php endif;?>
           </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_uso'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_uso']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_uso']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
+
           <td>
             <?php if(isset($elements['field_vehiculo_tipo_carga'])):?>
             <table class="generic"><tr>
@@ -347,14 +334,7 @@
             </tr></table>
             <?php endif;?>
           </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_referencia'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_referencia']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_referencia']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
+
           <td>
             <?php if(isset($elements['field_vehiculo_descripcion_carga'])):?>
             <table class="generic"><tr>
@@ -374,22 +354,16 @@
             </tr></table>
             <?php endif;?>
           </td>
+
           <td>
-            <?php if(isset($elements['field_vehiculo_numero_pedimento'])):?>
+            <?php if(isset($elements['field_vehiculo_servicio'])):?>
             <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_numero_pedimento']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_numero_pedimento']);?></td>
+              <td><strong><?php print $elements['field_vehiculo_servicio']['#title'];?>:</strong></td>
+              <td align="right"><?php print render($elements['field_vehiculo_servicio']);?></td>
             </tr></table>
             <?php endif;?>
           </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_numero_inventario'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_numero_inventario']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_numero_inventario']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
+
           <td>
             <?php if(isset($elements['field_vehiculo_remolque'])):?>
             <table class="generic"><tr>
@@ -400,7 +374,7 @@
           </td>
         </tr>
         
-         <tr class="row-5 odd last">
+         <tr class="row-5 odd">
           <td>
             <?php if(isset($elements['field_vehiculo_transmision'])):?>
             <table class="generic"><tr>
@@ -417,14 +391,7 @@
             </tr></table>
             <?php endif;?>
           </td>
-          <td>
-            <?php if(isset($elements['field_vehiculo_servicio'])):?>
-            <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_servicio']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_servicio']);?></td>
-            </tr></table>
-            <?php endif;?>
-          </td>
+
           <td>
             <?php if(isset($elements['field_vehiculo_tipo_remolque'])):?>
             <table class="generic"><tr>
@@ -433,6 +400,17 @@
             </tr></table>
             <?php endif;?>
           </td>
+        </tr>
+
+        <tr class="row-6 last">
+          
+            <?php if(isset($elements['field_vehiculo_descripcion'])):?>
+            <table class="generic"><tr>
+              <td class="padding-descripcion left-descripcion" ><strong><?php print $elements['field_vehiculo_descripcion']['#title'];?>:</strong></td>
+              <td class="padding-descripcion" align="left"><?php print render($elements['field_vehiculo_descripcion']);?></td>
+            </tr></table>
+            <?php endif;?>
+          
         </tr>
         
       </table>
