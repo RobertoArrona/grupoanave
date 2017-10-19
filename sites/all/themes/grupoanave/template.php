@@ -121,3 +121,45 @@ function grupoanave_get_state_name($country, $state) {
 
   return false;
 }
+
+/**
+ * Implements print_preprocess_print().
+ */
+function grupoanave_preprocess_print(&$variables) {
+  if (isset($variables['node'])) {
+    grupoanave_preprocess_print_node($variables);
+  }
+}
+
+function grupoanave_preprocess_print_node(&$variables) {
+  $node = $variables['node'];
+  switch ($node->type) {
+    case 'poliza':
+      grupoanave_preprocess_print_node_poliza($variables);
+      break;
+  }
+}
+
+function grupoanave_preprocess_print_node_poliza(&$variables) {
+  $node = $variables['node'];
+  $service_type = $node->field_vehiculo_servicio[LANGUAGE_NONE][0]['value'];
+  $variables['poliza_title'] = "CONTRATO DE PROTECCION PARA SERVICIO {$service_type}";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

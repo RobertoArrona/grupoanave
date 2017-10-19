@@ -98,7 +98,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
                   <?php print $print_logo; ?>
                 </td>
                 <td class="print-title">
-                  <h1><?php print $title;?></h1>
+                  <h1><?php print $poliza_title;?></h1>
                 </td>
               </tr>
             </tbody>
