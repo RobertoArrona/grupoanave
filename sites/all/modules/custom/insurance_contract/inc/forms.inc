@@ -29,7 +29,7 @@ function insurance_contract_form_poliza_node_form_alter(&$form, &$form_state, $f
     $form['title']['#default_value'] = $contract_folio;
     $form['title']['#attributes']['readonly'] = 'readonly';
   }
-  $form['#validate'][] = 'insurance_contract_form_contrato_node_validate';
+  $form['#validate'][] = 'insurance_contract_form_poliza_node_validate';
 }
 
 /**
