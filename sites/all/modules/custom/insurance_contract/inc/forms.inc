@@ -30,6 +30,13 @@ function insurance_contract_form_poliza_node_form_alter(&$form, &$form_state, $f
     $form['title']['#attributes']['readonly'] = 'readonly';
   }
   $form['#validate'][] = 'insurance_contract_form_poliza_node_validate';
+
+  //set all address field to required
+  $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['street_block']['thoroughfare']['#required'] = 'true';
+  $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['street_block']['premise']['#required'] = 'true';
+  $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['locality_block']['locality']['#required'] = 'true';
+  $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['locality_block']['administrative_area']['#required'] = 'true';
+  $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['locality_block']['postal_code']['#required'] = 'true';
 }
 
 /**
