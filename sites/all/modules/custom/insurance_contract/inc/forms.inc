@@ -18,6 +18,7 @@ function insurance_contract_form_settings() {
     '#required' => TRUE,
   );
 
+
   return system_settings_form($form);
 }
 
@@ -29,24 +30,29 @@ function insurance_contract_form_poliza_node_form_alter(&$form, &$form_state, $f
     $form['title']['#default_value'] = $contract_folio;
     $form['title']['#attributes']['readonly'] = 'readonly';
   }
-  $form['#validate'][] = 'insurance_contract_form_poliza_node_validate';
-
-  //set all address field to required
+  $userld= insurance_contract_contract_load_oficina_get();
+  
+  $form['field_poliza_oficina'][LANGUAGE_NONE][0]['value']['#default_value'] = $userld;
+  $form['field_poliza_oficina'][LANGUAGE_NONE][0]['value']['#attributes']['style'] = 'display: none;';
+  $form['field_poliza_emision']['#attributes']['style'] = 'display: none;';
+  // field_asegurado_domicilio
   $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['street_block']['thoroughfare']['#required'] = 'true';
   $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['street_block']['premise']['#required'] = 'true';
   $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['locality_block']['locality']['#required'] = 'true';
   $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['locality_block']['administrative_area']['#required'] = 'true';
   $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['locality_block']['postal_code']['#required'] = 'true';
+  //$form Validate
+  $form['#validate'][] = 'insurance_contract_form_poliza_node_validate';
 }
 
 /**
  *
  */
 function insurance_contract_form_poliza_node_validate(&$form, &$form_state){
-  $issuedate2 = getdate();
- // $issuedate = strtotime($form_state['values']['field_poliza_emision'][LANGUAGE_NONE][0]['value']);
+  
+  $issuedate = strtotime($form_state['values']['field_poliza_emision'][LANGUAGE_NONE][0]['value']);
   $validity = strtotime($form_state['values']['field_poliza_vigencia'][LANGUAGE_NONE][0]['value']);
-  if ($validity < $issuedate2) {
+  if ($validity < $issuedate) {
     form_set_error('field_poliza_emision', '');
     form_set_error('field_poliza_vigencia', t('The validity start date cannot be earlier than the issue date.'));
   }
