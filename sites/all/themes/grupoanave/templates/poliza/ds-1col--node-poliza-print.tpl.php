@@ -4,7 +4,7 @@
  * @file
  * Display Suite 1 column template.
  */
- //print_r(array_keys($elements));exit;
+ //print_r($elements);exit;
  $agente_uid = $elements['author']['#object']->uid;
  $agente = user_load($agente_uid);
  $agente_nombre = "{$agente->field_first_name[LANGUAGE_NONE][0]['safe_value']} {$agente->field_last_name[LANGUAGE_NONE][0]['safe_value']}";
@@ -329,7 +329,7 @@
             <?php if(isset($elements['field_vehiculo_modelo'])):?>
             <table class="generic"><tr>
               <td><strong><?php print $elements['field_vehiculo_modelo']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_modelo']);?></td>
+              <td align="right"><?php print $elements['field_vehiculo_modelo']['#items'][0]['value'];?></td>
             </tr></table>
             <?php endif;?>
           </td>
