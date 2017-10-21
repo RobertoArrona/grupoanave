@@ -5,12 +5,40 @@
  * Display Suite 1 column template.
  */
  //print_r($elements);exit;
- $agente_uid = $elements['author']['#object']->uid;
- $agente = user_load($agente_uid);
- $agente_nombre = "{$agente->field_first_name[LANGUAGE_NONE][0]['safe_value']} {$agente->field_last_name[LANGUAGE_NONE][0]['safe_value']}";
- if ( isset($elements['field_asegurado_domicilio']['#items'][0]) ) {
-   $address = $elements['field_asegurado_domicilio']['#items'][0];
- }
+$agente_uid = $elements['author']['#object']->uid;
+$agente = user_load($agente_uid);
+$agente_nombre = '';
+if (isset($agente->field_first_name[LANGUAGE_NONE][0]['safe_value'])) {
+  $agente_nombre = $agente->field_first_name[LANGUAGE_NONE][0]['safe_value'];
+}
+if (isset($agente->field_last_name[LANGUAGE_NONE][0]['safe_value'])){
+  $agente_nombre = $agente_nombre . ' ' . $agente->field_last_name[LANGUAGE_NONE][0]['safe_value'];  
+}
+if ( isset($elements['field_asegurado_domicilio']['#items'][0]) ) {
+  $address = $elements['field_asegurado_domicilio']['#items'][0]; 
+}
+if (isset($elements['field_poliza_forma_pago'])) {
+  $plazo = $elements['field_poliza_forma_pago']['#items'][0]['value'];
+  $pagos_sub_label = 'Primas Recibos Subs:';
+  $label = ':(0)';
+  if ($plazo != 'anual') {
+    switch ($plazo) {
+      case 'mensual':
+        $label = ':(11)';
+        break;
+      
+      case 'trimestral':
+        $label = ':(4)';
+        break;
+      
+      case 'semestral':
+        $label = ':(1)';
+        break;
+    }
+  }
+  $pagos_sub_label = 'Primas Recibos Subs' . $label;
+}
+
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 
@@ -240,7 +268,7 @@
               <td>
                 <?php if(isset($elements['field_poliza_primas_recibos_subs'])):?>
                 <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_primas_recibos_subs']['#title'];?>:</strong></td>
+                  <td><strong><?php print $pagos_sub_label;?>:</strong></td>
                   <td align="right"><?php print render($elements['field_poliza_primas_recibos_subs']);?></td>
                 </tr></table>
                 <?php endif;?>
