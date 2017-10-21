@@ -43,6 +43,9 @@ function insurance_contract_form_poliza_node_form_alter(&$form, &$form_state, $f
   $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['locality_block']['postal_code']['#required'] = 'true';
   //$form Validate
   $form['#validate'][] = 'insurance_contract_form_poliza_node_validate';
+
+  //$form attached JS
+  drupal_add_js(drupal_get_path('module', 'insurance_contract') . '/js/contratos.pagos.js');
 }
 
 /**
