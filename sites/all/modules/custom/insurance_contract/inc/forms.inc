@@ -35,6 +35,10 @@ function insurance_contract_form_poliza_node_form_alter(&$form, &$form_state, $f
   $form['field_poliza_oficina'][LANGUAGE_NONE][0]['value']['#default_value'] = $userld;
   $form['field_poliza_oficina'][LANGUAGE_NONE][0]['value']['#attributes']['style'] = 'display: none;';
   $form['field_poliza_emision']['#attributes']['style'] = 'display: none;';
+
+  // field title(numero de contrato)
+  $form['title']['#attributes']['style']  = 'display: none;';
+  //print_r($form); exit;
   // field_asegurado_domicilio
   $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['street_block']['thoroughfare']['#required'] = 'true';
   $form['field_asegurado_domicilio'][LANGUAGE_NONE][0]['street_block']['premise']['#required'] = 'true';
