@@ -258,7 +258,7 @@
               <td>
                 <?php if(isset($elements['field_poliza_primas_recibos_subs'])):?>
                 <table class="generic"><tr>
-                  <td><strong><?php print $pagos_sub_label;?>:</strong></td>
+                  <td><strong><?php print $elements['field_poliza_primas_recibos_subs']['#title'];?>:</strong></td>
                   <td align="right"><?php print render($elements['field_poliza_primas_recibos_subs']);?></td>
                 </tr></table>
                 <?php endif;?>
