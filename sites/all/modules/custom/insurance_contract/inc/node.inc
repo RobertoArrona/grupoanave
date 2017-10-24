@@ -16,9 +16,16 @@ function insurance_contract_node_insert($node) {
  * Helper function for insurance_contract_node_insert when the node type is poliza.
  */
 function insurance_contract_node_insert_poliza($node) {
-  $contract_folio = insurance_contract_contract_folio_get();
-
-  if ($contract_folio == $node->title) {
-    insurance_contract_contract_number_increase();
+  $i = $j = 0;
+  while ($j == 0) {
+    $contract_folio = insurance_contract_contract_folio_get($i);
+    if (insurance_contract_contract_folio_exists($contract_folio, $node->nid)) {
+      $i++;
+    }
+    else {
+      $j = 1;
+    }
   }
+  $node->title = $contract_folio;
+  insurance_contract_contract_number_increase($i);
 }
