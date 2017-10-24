@@ -26,10 +26,13 @@ function insurance_contract_form_settings() {
  * Implements hook_form_FORM_ID_alter().
  */
 function insurance_contract_form_poliza_node_form_alter(&$form, &$form_state, $form_id) {
-  if (($contract_folio = insurance_contract_contract_folio_get())) {
-    $form['title']['#default_value'] = $contract_folio;
-    $form['title']['#attributes']['readonly'] = 'readonly';
+  if (!(isset($form['nid']['#value']) && !empty($form['nid']['#value']))) {
+    if (($contract_folio = insurance_contract_contract_folio_get())) {
+      $form['title']['#default_value'] = $contract_folio;
+    }
   }
+
+  $form['title']['#attributes']['readonly'] = 'readonly';
   $userld= insurance_contract_contract_load_oficina_get();
   
   $form['field_poliza_oficina'][LANGUAGE_NONE][0]['value']['#default_value'] = $userld;
@@ -64,9 +67,11 @@ function insurance_contract_form_poliza_node_validate(&$form, &$form_state){
     form_set_error('field_poliza_vigencia', t('The validity start date cannot be earlier than the issue date.'));
   }
 
-  if (($contract_folio = insurance_contract_contract_folio_get())) {
-    if ($contract_folio != $form_state['values']['title']) {
-      form_set_error('title', t('Is forbidden to modify the Contract folio, please contact the administers of the site if you really need this.'));
+  if (!(isset($form['nid']['#value']) && !empty($form['nid']['#value']))) {
+    if (($contract_folio = insurance_contract_contract_folio_get())) {
+      if ($contract_folio != $form_state['values']['title']) {
+        form_set_error('title', t('Is forbidden to modify the Contract folio, please contact the administers of the site if you really need this.'));
+      }
     }
   }
 }
