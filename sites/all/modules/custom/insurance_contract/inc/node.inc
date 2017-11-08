@@ -3,6 +3,7 @@
 /**
  * Implements hook_node_insert().
  */
+/*
 function insurance_contract_node_insert($node) {
   switch ($node->type) {
     case 'poliza':
@@ -11,6 +12,23 @@ function insurance_contract_node_insert($node) {
   }
 
 }
+*/
+
+
+/**
+ * Implements hook_node_submit().
+ */
+function insurance_contract_node_submit($node){
+	if(empty($node ->nid)) {
+		switch ($node ->type){
+			case 'poliza':
+				insurance_contract_node_insert_poliza($node);
+				break;
+		  }
+	}
+} 
+ 
+	
 
 /**
  * Helper function for insurance_contract_node_insert when the node type is poliza.

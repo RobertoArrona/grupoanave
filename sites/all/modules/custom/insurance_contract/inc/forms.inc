@@ -59,6 +59,8 @@ function insurance_contract_form_poliza_node_form_alter(&$form, &$form_state, $f
  *
  */
 function insurance_contract_form_poliza_node_validate(&$form, &$form_state){
+
+
   
   $issuedate = strtotime($form_state['values']['field_poliza_emision'][LANGUAGE_NONE][0]['value']);
   $validity = strtotime($form_state['values']['field_poliza_vigencia'][LANGUAGE_NONE][0]['value']);
@@ -67,11 +69,15 @@ function insurance_contract_form_poliza_node_validate(&$form, &$form_state){
     form_set_error('field_poliza_vigencia', t('The validity start date cannot be earlier than the issue date.'));
   }
 
+
+/*
   if (!(isset($form['nid']['#value']) && !empty($form['nid']['#value']))) {
     if (($contract_folio = insurance_contract_contract_folio_get())) {
       if ($contract_folio != $form_state['values']['title']) {
         form_set_error('title', t('Is forbidden to modify the Contract folio, please contact the administers of the site if you really need this.'));
       }
     }
+  
   }
+*/
 }
