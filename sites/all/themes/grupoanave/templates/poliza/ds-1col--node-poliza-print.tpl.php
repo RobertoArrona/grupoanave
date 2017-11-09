@@ -4,7 +4,7 @@
  * @file
  * Display Suite 1 column template.
  */
- print_r($elements['field_vehiculo_descripcion']);exit;
+//print_r($elements['field_fecha_de_cancelacion']['#object']->field_pago_fraccionado[LANGUAGE_NONE][0]['value']); exit;
 $agente_uid = $elements['author']['#object']->uid;
 $agente = user_load($agente_uid);
 $agente_nombre = '';
@@ -203,10 +203,10 @@ $office  = "$termname-$agent_id";
                 <?php endif;?>
               </td>
               <td>
-                <?php if(isset($elements['field_poliza_rgo_pago_fracc'])):?>
+                <?php if(isset($elements['field_fecha_de_cancelacion']['#object']->field_pago_fraccionado[LANGUAGE_NONE][0]['value'])):?>
                 <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_rgo_pago_fracc']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_rgo_pago_fracc']);?></td>
+                  <td><strong><?php print 'Pago Fraccionado'?>:</strong></td>
+                  <td align="right"><?php print render($elements['field_fecha_de_cancelacion']['#object']->field_pago_fraccionado[LANGUAGE_NONE][0]['value']);?></td>
                 </tr></table>
                 <?php endif;?>
               </td>
