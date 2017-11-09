@@ -4,7 +4,7 @@
  * @file
  * Display Suite 1 column template.
  */
- //print_r(array_keys($elements));exit;
+//print_r($elements);exit;
  $agente_uid = $elements['author']['#object']->uid;
  $agente = user_load($agente_uid);
  $agente_nombre = "{$agente->field_first_name[LANGUAGE_NONE][0]['safe_value']} {$agente->field_last_name[LANGUAGE_NONE][0]['safe_value']}";
@@ -32,6 +32,21 @@
   }
   $pagos_sub_label = 'Primas Recibos Subs' . $label;
 }
+
+$termid = $agente->field_estado[LANGUAGE_NONE]['0']['tid'];
+if(empty($termid)) {
+	return false;
+  }else{
+    $term = taxonomy_term_load($termid);
+		$termname = $term -> name;
+  }
+ $agent_id = $agente->field_agente_clave[LANGUAGE_NONE]['0']['value'];
+ $office  = "$termname-$agent_id";
+ $termid_vehicle = $elements['#node']->field_vehiculo_descripcion[LANGUAGE_NONE]['0']['tid'];
+ $termvehicle_description = taxonomy_term_load($termid_vehicle);
+//print_r($termvehicle_description->name); exit;
+ $termname_vehicle = $termvehicle_description->name;
+ 
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 
@@ -117,6 +132,24 @@
       <td class="table-poliza">
         <table class="print-child">
           <tbody>
+	         <tr>
+	          <td>
+              <?php if(isset($office)):?>
+              <table class="generic"><tr>
+                <td><strong>Oficina</strong></td>
+                <td align="right"><?php print $office?></td>
+                </tr></table>
+              <?php endif;?>
+              </td>
+              <td>
+                <?php if(isset($office)):?>
+                <table class="generic"><tr>
+                  <td><strong></strong></td>
+                  <td align="right"></td>
+                </tr></table>
+                <?php endif;?>
+              </td>
+	         </tr>
             <tr>
               <td>
                 <?php if(isset($elements['title'])):?>
@@ -258,8 +291,8 @@
               <td>
                 <?php if(isset($elements['field_poliza_primas_recibos_subs'])):?>
                 <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_primas_recibos_subs']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_primas_recibos_subs']);?></td>
+                  <td><strong><?php print $pagos_sub_label;?>:</strong></td>
+                  <td align="right"><?php print render($elements['field_poliza_primas_recibos_subs']['#items'][0]['value']);?></td>
                 </tr></table>
                 <?php endif;?>
               </td>
@@ -452,6 +485,20 @@
             </tr></table>
             <?php endif;?>
           </td>
+        </tr>
+        	<td>
+          	<table class="generic"><tr>
+          	</tr></table>
+        	</td>
+        </tr>
+
+        <tr class="row-6 last">
+        	<?php if(isset($elements['#node']->field_vehiculo_descripcion[LANGUAGE_NONE]['0']['tid'])):?>
+            <table class="generic"><tr>
+            <td class="padding-descripcion left-descripcion" ><strong><?php print 'Descripción del Vehículo'?>:</strong></td>
+            <td class="padding-descripcion" align="left"><?php print $termname_vehicle;?></td>
+           	</tr></table>
+          <?php endif;?>
         </tr>
         
       </table>
