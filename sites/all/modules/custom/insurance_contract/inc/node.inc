@@ -19,15 +19,14 @@ function insurance_contract_node_insert($node) {
  * Implements hook_node_submit().
  */
 function insurance_contract_node_submit($node){
-	if(empty($node ->nid)) {
-		switch ($node ->type){
-			case 'poliza':
-				insurance_contract_node_insert_poliza($node);
-				break;
-		  }
-	}
-} 
- 
+  if(empty($node ->nid)) {
+    switch ($node ->type){
+      case 'poliza':
+        insurance_contract_node_insert_poliza($node);
+        break;
+    }
+  }
+}       
 	
 
 /**

@@ -31,6 +31,14 @@ function anavem_permission() {
     'Asignar Taller' => array(
       'title' => 'Asignar Taller', 
       'description' => 'Asignar Taller', 
+    ),
+    'Asignar Gruas' => array(
+      'title' => 'Asignar Grúas', 
+      'description' => 'Asignar Grúas', 
+    ),
+    'Asignar Proveedores' => array(
+      'title' => 'Asignar Proveedores', 
+      'description' => 'Asignar Proveedores', 
     ), 
     'Administrar Siniestros' => array(
       'title' => 'Administrar Siniestros', 

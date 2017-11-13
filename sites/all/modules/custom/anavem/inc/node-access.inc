@@ -165,6 +165,16 @@ function anavem_siniestro_user_access($siniestro, $account) {
           return true;
         }
         break;
+      case 'gruas':
+        if ( ($uid = anavem_siniestro_get_gruas_uid($siniestro)) && $uid == $account->uid ) {
+          return true;
+        }
+        break;
+      case 'proveedores':
+        if ( ($uid = anavem_siniestro_get_proveedores_uid($siniestro)) && $uid == $account->uid ) {
+          return true;
+        }
+        break;  
     }
   }
   
@@ -210,6 +220,28 @@ function anavem_siniestro_get_hospital_uid($node) {
 function anavem_siniestro_get_taller_uid($node) {
   if ( isset($node->field_taller[LANGUAGE_NONE][0]['target_id']) && !empty($node->field_taller[LANGUAGE_NONE][0]['target_id']) ) {
     return $node->field_taller[LANGUAGE_NONE][0]['target_id'];
+  }
+  
+  return false;
+}
+
+/**
+ * Gets the grúas id from a Siniestro.
+ */
+function anavem_siniestro_get_gruas_uid($node) {
+  if ( isset($node->field_gruas[LANGUAGE_NONE][0]['target_id']) && !empty($node->field_gruas[LANGUAGE_NONE][0]['target_id']) ) {
+    return $node->field_gruas[LANGUAGE_NONE][0]['target_id'];
+  }
+  
+  return false;
+}
+
+/**
+ * Gets the proveedores id from a Siniestro.
+ */
+function anavem_siniestro_get_proveedores_uid($node) {
+  if ( isset($node->field_proveedores[LANGUAGE_NONE][0]['target_id']) && !empty($node->field_proveedores[LANGUAGE_NONE][0]['target_id']) ) {
+    return $node->field_proveedores[LANGUAGE_NONE][0]['target_id'];
   }
   
   return false;
