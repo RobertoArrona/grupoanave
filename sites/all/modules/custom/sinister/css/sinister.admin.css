@@ -35,7 +35,7 @@
   border:none;
 }
 #field-lesionado-values .required-fields{
-  border-width: 0;
+  border-width: 1 1;
   border-style: solid;
   border-color: #bebfb9;
 }
