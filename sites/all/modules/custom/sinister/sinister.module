@@ -1,0 +1,7 @@
+<?php
+
+/**
+ * Required elements.
+ */
+
+include_once('inc/forms.inc');

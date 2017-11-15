@@ -1,0 +1,4 @@
+name = "Sinister"
+description = "Provides customization for Sinister administration."
+core = "7.x"
+package = "D4ALL"
