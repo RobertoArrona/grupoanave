@@ -8463,22 +8463,6 @@ body.toolbar-drawer.navbar-is-fixed-top {
 .page-node.node-type-siniestro table.print table.print-child-2 td.last {
   border-right: none;
 }
-.page-node.node-type-siniestro .table-operations {
-  float: right;
-  width: 100px;
-}
-.page-node.node-type-siniestro .table-operations a {
-  color: white;
-}
-.page-node.node-type-siniestro .table-label {
-  margin-right: 100px;
-}
-.page-node.node-type-siniestro.print-vehiculo-tercero .node-siniestro > table {
-  display: none;
-}
-.page-node.node-type-siniestro.print-vehiculo-tercero .node-siniestro > table.vehiculo-tercero-active {
-  display: table;
-}
 .block-webform {
   padding: 0;
   border-radius: 5px 5px 0 0;
@@ -8736,4 +8720,11 @@ body.toolbar-drawer.navbar-is-fixed-top {
 #block-menu-menu-footer-menu ul.menu li a.active {
   color: #da3300;
   background: transparent;
+}
+.macho-leo{
+  experiencia: 10000;
+}
+
+.macho-abraham{
+  experiencia: 10000;
 }

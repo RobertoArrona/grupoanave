@@ -1,4 +1,25 @@
 <?php
+
+/**
+ * Implements hook_preprocess_html.
+ */
+function grupoanave_preprocess_html(&$vars) {
+  grupoanave_preprocess_html_node($vars);
+}
+
+/**
+ * Helper function for Preprocess Page on Node pages.
+ */
+function grupoanave_preprocess_html_node(&$vars) {
+  if ( !(arg(0) == 'node' && intval(arg(1)) > 0 && ($node = node_load(arg(1)))) ) {
+    return;
+  }
+  
+  if (isset($_GET['print-vehiculo-tercero'])) {
+    $vars['classes_array'][] = 'print-vehiculo-tercero';
+  }
+}
+
 /**
  * Implements hook_preprocess_page.
  */
@@ -137,6 +158,10 @@ function grupoanave_preprocess_print_node(&$variables) {
     case 'poliza':
       grupoanave_preprocess_print_node_poliza($variables);
       break;
+
+    case 'siniestro':
+      grupoanave_preprocess_print_node_siniestro($variables);
+      break;
   }
 }
 
@@ -146,7 +171,11 @@ function grupoanave_preprocess_print_node_poliza(&$variables) {
   $variables['poliza_title'] = "CONTRATO DE PROTECCION PARA SERVICIO {$service_type}";
 }
 
-
+function grupoanave_preprocess_print_node_siniestro(&$variables) {
+  if (isset($_GET['print-vehiculo-tercero'])) {
+    $variables['classes_array'][] = 'page-node node-type-siniestro print-vehiculo-tercero';
+  }
+}
 
 
 

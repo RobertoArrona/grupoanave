@@ -4,9 +4,19 @@
  * @file
  * Display Suite 1 column template.
  */
- $cabina_uid = $elements['author']['#object']->uid;
- $cabina = user_load($cabina_uid);
- $cabina_name = "{$cabina->field_first_name[LANGUAGE_NONE][0]['safe_value']} {$cabina->field_last_name[LANGUAGE_NONE][0]['safe_value']}";
+$cabina_name = '';
+if (($cabina_uid = $elements['author']['#object']->uid)) {
+  if (($cabina = user_load($cabina_uid))) {
+    $first_name = $last_name = '';
+    if (isset($cabina->field_first_name[LANGUAGE_NONE][0]['safe_value'])) {
+      $first_name = $cabina->field_first_name[LANGUAGE_NONE][0]['safe_value'];
+    }
+    if (isset($cabina->field_last_name[LANGUAGE_NONE][0]['safe_value'])) {
+      $last_name = $cabina->field_last_name[LANGUAGE_NONE][0]['safe_value'];
+    }
+    $cabina_name = trim("{$first_name} {$last_name}");
+  }
+}
  //print_r(array_keys($elements));exit;
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">

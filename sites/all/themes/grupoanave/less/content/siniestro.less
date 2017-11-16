@@ -30,4 +30,27 @@
       }
     }
   }
+
+  .table-operations{
+    float: right;
+    width: 100px;
+
+    a{
+      color: white;
+    }
+  }
+  .table-label{
+    margin-right: 100px;
+  }
+
+  &.print-vehiculo-tercero{
+    .node-siniestro > table{
+      display: none;
+
+      &.vehiculo-tercero-active{
+        display: table;
+      }
+    }
+  }
 }
+

@@ -288,16 +288,3 @@ table.generic tbody tr td.padding-descripcion {
 table.print.coberturas {
   margin-bottom: 160px;
 }
-.page-node.node-type-siniestro .table-operations {
-  float: right;
-  width: 100px;
-}
-.page-node.node-type-siniestro .table-label {
-  margin-right: 100px;
-}
-.page-node.node-type-siniestro.print-vehiculo-tercero .node-siniestro > table {
-  display: none;
-}
-.page-node.node-type-siniestro.print-vehiculo-tercero .node-siniestro > table.vehiculo-tercero-active {
-  display: table;
-}

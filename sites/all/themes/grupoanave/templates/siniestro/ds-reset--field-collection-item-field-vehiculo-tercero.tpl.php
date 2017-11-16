@@ -1,4 +1,22 @@
 <?php
+  $pattern = '/field-vehiculo-tercero\/(\d+)?"/msi';
+  $string = $variables['layout_attributes'];
+  $nid = intval(arg(1));
+  
+  $vehiculo_tercero_id = 0;
+  if (preg_match($pattern, $string, $match)) {
+    $vehiculo_tercero_id = $match[1];
+  }
+  $print_link = l(
+    t('Print'), 
+    'print/node/' . $nid,
+    array(
+      'query' => array(
+        'print-vehiculo-tercero' => $vehiculo_tercero_id,
+      )
+    )
+  );
+
   //print_r(array_keys($elements));exit;
   $propietario_address = $conductor_address = '';
   if(isset($elements['field_propietario_domicilio'])) {
@@ -7,10 +25,20 @@
   if(isset($elements['field_conductor_domicilio'])) {
     $conductor_address = grupoanave_theme_address($elements['field_conductor_domicilio']);
   }
+
+  $active_class = '';
+  if (isset($_GET['print-vehiculo-tercero']) && $_GET['print-vehiculo-tercero'] == $vehiculo_tercero_id) {
+    $active_class = 'vehiculo-tercero-active';
+  }
 ?>
-<table class="print vehiculo-tercero">
+<table class="print vehiculo-tercero <?php print $active_class; ?>" id="vehiculo-tercero-<?php print $vehiculo_tercero_id; ?>">
   <thead><tr>
-    <th colspan="2">Descripci&oacute;n de Veh&iacute;culo Tercero</th>
+    <th colspan="2">
+      <span class="table-operations">
+        <?php print $print_link;?>
+      </span>
+      <span class="table-label">Descripci&oacute;n de Veh&iacute;culo Tercero</span>
+    </th>
   </tr></thead>
   
   <tbody>
