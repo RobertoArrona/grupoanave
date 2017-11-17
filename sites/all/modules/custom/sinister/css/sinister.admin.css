@@ -1,6 +1,9 @@
 /**
  * CSS Siniestros > Vehiculo tercero && Lesiones y Danos.
  */
+.form-item-title label {
+  display:none;
+}
 #field-vehiculo-tercero-values thead tr {
   display:none;
 } 
