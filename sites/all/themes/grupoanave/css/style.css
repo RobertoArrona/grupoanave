@@ -8468,6 +8468,16 @@ body.toolbar-drawer.navbar-is-fixed-top {
   width: 100px;
 }
 .page-node.node-type-siniestro .table-operations a {
+  position: relative;
+  left: 45px;
+  background-color: #c5c5c5;
+  padding: 2px 8px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+}
+.page-node.node-type-siniestro .table-operations a:hover {
+  background-color: gray;
   color: white;
 }
 .page-node.node-type-siniestro .table-label {

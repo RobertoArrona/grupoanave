@@ -288,9 +288,17 @@ table.generic tbody tr td.padding-descripcion {
 table.print.coberturas {
   margin-bottom: 160px;
 }
+.page-node.node-type-siniestro .print-title h1 {
+  display: block;
+  float: right;
+}
+.page-node.node-type-siniestro .print-content h1 {
+  display: none;
+}
 .page-node.node-type-siniestro .table-operations {
   float: right;
   width: 100px;
+  display: none;
 }
 .page-node.node-type-siniestro .table-label {
   margin-right: 100px;
