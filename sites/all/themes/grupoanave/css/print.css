@@ -288,6 +288,10 @@ table.generic tbody tr td.padding-descripcion {
 table.print.coberturas {
   margin-bottom: 160px;
 }
+.page-node.node-type-siniestro .print-header {
+  position: relative;
+  top: 30px;
+}
 .page-node.node-type-siniestro .print-title h1 {
   display: block;
   float: right;
@@ -308,4 +312,6 @@ table.print.coberturas {
 }
 .page-node.node-type-siniestro.print-vehiculo-tercero .node-siniestro > table.vehiculo-tercero-active {
   display: table;
+  position: relative;
+  top: 135px;
 }
