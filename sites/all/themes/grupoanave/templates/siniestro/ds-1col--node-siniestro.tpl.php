@@ -174,6 +174,7 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
         <th width="30%">Autor</th>
         <th width="150">Categor&iacute;a</th>
         <th width="120">Operaciones</th>
+        <th class="galeria-header" width="150">Galer&iacute;a</th>
       </tr>
     </thead>
     <tbody>

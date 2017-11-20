@@ -288,6 +288,12 @@ table.generic tbody tr td.padding-descripcion {
 table.print.coberturas {
   margin-bottom: 160px;
 }
+.galeria {
+  display: none;
+}
+.galeria-header {
+  display: none;
+}
 .page-node.node-type-siniestro .print-header {
   position: relative;
   top: 30px;

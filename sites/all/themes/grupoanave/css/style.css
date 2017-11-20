@@ -8463,6 +8463,11 @@ body.toolbar-drawer.navbar-is-fixed-top {
 .page-node.node-type-siniestro table.print table.print-child-2 td.last {
   border-right: none;
 }
+.page-node.node-type-siniestro .photoswipe-gallery img {
+  width: 17px;
+  height: 17px;
+  padding: 1px;
+}
 .page-node.node-type-siniestro .table-operations {
   float: right;
   width: 100px;

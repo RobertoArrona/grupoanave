@@ -4,8 +4,9 @@
  * @file
  * Display Suite 1 column template.
  */
-//print_r(array_keys($elements));exit;
+//print_r($elements['field_visualizador']);exit;
   $archivo_adjunto = render($elements['field_siniestro_archivo_adjunto']);
+  $archivo_adjunto2 = render($elements['field_visualizador']);
 ?>
 <?php if ( (!empty($archivo_adjunto))):?>
 <tr class="siniestro-archivo <?php print $zebra;?>" id="siniestro-archivo-<?php print $elements['#entity']->item_id;?>" data-archivo-id="<?php print $elements['#entity']->item_id;?>">
@@ -16,6 +17,7 @@
   <td class="operaciones">
     <a href="<?php print render($elements['field_siniestro_archivo_adjunto']);?>" target="_blank">Ver</a>
   </td>
+  <td class="galeria"><?php print render($elements['field_visualizador']);?></td>
 </tr>
 <tr class="siniestro-archivo-comentario hidden" id="siniestro-archivo-comentario-<?php print $elements['#entity']->item_id;?>">
   <td colspan="4"><?php print render($elements['field_archivo_comentario']);?></td>
