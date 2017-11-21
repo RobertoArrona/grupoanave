@@ -170,11 +170,11 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
     <thead>
       <tr>
         <th width="120" nowrap="nowrap">Fecha</th>
-        <th width="70%">Archivo</th>
+        <th width="70%">Documentos</th>
         <th width="30%">Autor</th>
         <th width="150">Categor&iacute;a</th>
-        <th width="120">Operaciones</th>
-        <th class="galeria-header" width="150">Galer&iacute;a</th>
+<!--         <th width="120">Operaciones</th> -->
+        <th class="galeria-header" width="150">Galer&iacute;a de Im&aacute;genes</th>
       </tr>
     </thead>
     <tbody>

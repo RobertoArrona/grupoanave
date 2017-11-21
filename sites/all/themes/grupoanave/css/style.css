@@ -8468,6 +8468,9 @@ body.toolbar-drawer.navbar-is-fixed-top {
   height: 17px;
   padding: 1px;
 }
+.page-node.node-type-siniestro .photoswipe-gallery {
+  width: 140px;
+}
 .page-node.node-type-siniestro .table-operations {
   float: right;
   width: 100px;
