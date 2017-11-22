@@ -48,4 +48,6 @@ function sinister_form_siniestro_node_form_alter(&$form, &$form_state, $form_id)
   $form['title']['#attributes']['style']  = 'display: none;';
   //$form Validate
   //$form['#validate'][] = 'sinister_number_siniestro_node_validate'; 
+  //$form attached JS
+  drupal_add_js(drupal_get_path('module', 'sinister') . '/js/siniestro.reserva.js');
 }
