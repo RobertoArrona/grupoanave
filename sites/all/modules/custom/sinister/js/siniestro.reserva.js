@@ -3,6 +3,9 @@
       var group =  $('.group-reserva input');
 			var reservatotal = $('#edit-field-reserva-total input');
 			var total = 0;
+			var linkcontrato = jQuery('label[for="edit-field-poliza-und-0"] > span > a');
+			
+			linkcontrato.attr("target", "_blank");
 			
 			group.change(function(){
 				var suma = 0
