@@ -7,11 +7,13 @@
 //print_r($elements['field_visualizador']);exit;
   $archivo_adjunto = render($elements['field_siniestro_archivo_adjunto']);
   $archivo_adjunto2 = render($elements['field_visualizador']);
+  $archivo_adjunto3 = render($elements['field_documentos']);
 ?>
-<?php if ( (!empty($archivo_adjunto)) || (!empty($archivo_adjunto2))):?>
+<?php if ( (!empty($archivo_adjunto3)) || (!empty($archivo_adjunto2))):?>
 <tr class="siniestro-archivo <?php print $zebra;?>" id="siniestro-archivo-<?php print $elements['#entity']->item_id;?>" data-archivo-id="<?php print $elements['#entity']->item_id;?>">
   <td class="fecha"><?php print render($elements['field_fecha']);?></td>
-  <td class="archivo"><?php print render($elements['archivo_nombre']);?></td>
+<!--   <td class="archivo"><?php print render($elements['archivo_nombre']);?></td> -->
+  <td class="archivo"><?php print render($elements['field_documentos']);?></td>
   <td class="autor"><?php print render($elements['field_archivo_autor']);?></td>
   <td class="categoria"><?php print render($elements['field_categoria_archivo']);?></td>
 <!--

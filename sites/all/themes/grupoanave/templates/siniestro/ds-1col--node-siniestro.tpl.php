@@ -28,7 +28,7 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
       <tr>
         <th>Datos Generales</th>
         <th>Lugar de Siniestro</th>
-        <th>Agentes</th>
+        <th>Usuarios</th>
       </tr>
     </thead>
     <tbody><tr>
