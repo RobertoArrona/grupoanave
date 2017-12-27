@@ -12,7 +12,7 @@ function anavem_menu() {
     'type' => MENU_CALLBACK, 
   );
   $items['admin/anave'] = array(
-    'title' => 'Administración Anave', 
+    'title' => 'Administración Global', 
     'page callback' => 'anavem_menu_landing_page', 
     'access arguments' => array('Anave User Landing Page'), 
     'type' => MENU_CALLBACK, 
@@ -114,6 +114,7 @@ function anavem_menu_alter(&$items) {
  * Admin Anave Landing Page.
  */
 function anavem_menu_landing_page() {
+  drupal_set_title('Administración Global');
   // Links
   $sections = array();
   
@@ -133,7 +134,7 @@ function anavem_menu_landing_page() {
       'id' => 'polizas', 
       'title' => 'Contratos', 
       'description' => 'Muestra una tabla donde podrás administrar Contratos.', 
-      'url' => url('admin/anave/polizas'), 
+      'url' => url('admin/anave/contratos'), 
     );
   }
 
