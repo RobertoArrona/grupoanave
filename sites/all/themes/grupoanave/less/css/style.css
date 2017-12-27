@@ -7756,35 +7756,8 @@ body.toolbar-drawer.navbar-is-fixed-top {
   max-width: none;
 }
 /** Cta Phone Bar **/
-.cta-phone-bar {
+.cta-phone {
   background: #0d4d66;
-  height: 108px;
-  color: white;
-}
-.cta-phone-bar .phone-icon {
-  background: url(../images/phone-icon.png) no-repeat center center;
-  width: 72px;
-  height: 70px;
-  position: relative;
-  top: 15px;
-  left: 47px;
-}
-.cta-phone-bar .phone-number {
-  position: relative;
-  left: 112px;
-  font-size: 35px;
-  bottom: 26px;
-}
-.cta-phone-bar .info-cta {
-  background: white;
-  padding: 9px;
-  border-radius: 12px;
-  box-shadow: inset 0px -2px 1px 1px #7a929f;
-  position: absolute;
-  right: 47px;
-  bottom: 18px;
-  font-size: 34px;
-  font-weight: bold;
 }
 /** Summary Blocks **/
 #rows-block-summary {
@@ -8624,7 +8597,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   display: none;
 }
 .footer {
-  background: #2c4d66;
+  background: #222222;
   padding: 87px 0 75px;
   border-top: 1px solid #d9d9d9;
   z-index: 100;
@@ -8632,7 +8605,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   margin: 0;
   width: auto;
   font-size: 14px;
-  color: white;
+  color: #bfbfbf;
 }
 .footer .region-footer {
   max-width: 1170px;
