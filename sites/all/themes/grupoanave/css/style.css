@@ -8267,6 +8267,28 @@ body.toolbar-drawer.navbar-is-fixed-top {
 #rows-block-partners .image a {
   display: block;
 }
+/* Hero */
+.navbar.navbar-fixed-top.navbar-default {
+  background: transparent;
+  background-image: url("http://seguros.loc/sites/default/files/hero-letras.jpg?itok=Ge3kTRES");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 883px;
+  box-shadow: none;
+}
+.navbar.navbar-fixed-top.navbar-default .navbar-header {
+  background-color: transparent;
+}
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  position: absolute;
+}
+.main-container.container {
+  margin-top: 110px;
+}
+.main-container.container .views-slideshow-cycle-main-frame-row-item.views-row.views-row-0.views-row-odd.views-row-first {
+  display: none;
+}
 .page-node.node-type-poliza h1.page-header,
 .page-node.node-type-siniestro h1.page-header {
   display: none;
@@ -8828,24 +8850,3 @@ body.toolbar-drawer.navbar-is-fixed-top {
   color: white;
   background: transparent;
 }
-/* Hero */
-.navbar.navbar-fixed-top.navbar-default {
-  background-image: url("http://seguros.loc/sites/default/files/hero-letras.jpg?itok=Ge3kTRES");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.navbar.navbar-fixed-top.navbar-default {
-  height: 883px;
-  box-shadow: none;
-}
-.navbar-fixed-top, .navbar-fixed-bottom {
-  position: absolute;
-}
-.navbar-header {
-  background-color: transparent;
-}
-.main-container.container {
-  margin-top: 110px;
-}
-
-
