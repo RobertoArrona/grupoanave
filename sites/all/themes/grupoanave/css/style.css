@@ -8704,6 +8704,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   color: white;
   font-size: 12px;
   line-height: 23px;
+  text-transform: uppercase;
 }
 #block-block-2 .address-line .label {
   display: inline-block;
@@ -8716,6 +8717,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
 }
 #block-block-2 .address-line .value {
   display: inline-block;
+  padding-left: 20px;
 }
 #block-block-2 .address-line a {
   color: white;
