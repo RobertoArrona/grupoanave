@@ -7249,6 +7249,27 @@ table .checkbox input[type="checkbox"] {
   src: local('Asap Bold'), local('Asap-Bold'), url(../fonts/asap/Asap-Bold-2.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
+@font-face {
+  font-family: 'HelveticaInseratLTStd-Roman';
+  src: url('../fonts/helvetica-insera/HelveticaInseratLTStd-Roman.eot');
+  src: url('../fonts/helvetica-insera/HelveticaInseratLTStd-Roman.woff2') format('woff2'), url('../fonts/helvetica-insera/HelveticaInseratLTStd-Roman.woff') format('woff'), url('../fonts/helvetica-insera/HelveticaInseratLTStd-Roman.ttf') format('truetype'), url('../fonts/helvetica-insera/HelveticaInseratLTStd-Roman.svg#HelveticaInseratLTStd-Roman') format('svg'), url('../fonts/helvetica-insera/HelveticaInseratLTStd-Roman.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HelveticaLTStd-Bold';
+  src: url('../fonts/helvetica-ltstd-bold/HelveticaLTStd-Bold.eot');
+  src: url('../fonts/helvetica-ltstd-bold/HelveticaLTStd-Bold.woff2') format('woff2'), url('../fonts/helvetica-ltstd-bold/HelveticaLTStd-Bold.woff') format('woff'), url('../fonts/helvetica-ltstd-bold/HelveticaLTStd-Bold.ttf') format('truetype'), url('../fonts/helvetica-ltstd-bold/HelveticaLTStd-Bold.svg#HelveticaLTStd-Bold') format('svg'), url('../fonts/helvetica-ltstd-bold/HelveticaLTStd-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HelveticaLTStd-Roman';
+  src: url('../fonts/helvetica-ltstd-roman/HelveticaLTStd-Roman.eot');
+  src: url('../fonts/helvetica-ltstd-roman/HelveticaLTStd-Roman.woff2') format('woff2'), url('../fonts/helvetica-ltstd-roman/HelveticaLTStd-Roman.woff') format('woff'), url('../fonts/helvetica-ltstd-roman/HelveticaLTStd-Roman.ttf') format('truetype'), url('../fonts/helvetica-ltstd-roman/HelveticaLTStd-Roman.svg#HelveticaLTStd-Roman') format('svg'), url('../fonts/helvetica-ltstd-roman/HelveticaLTStd-Roman.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 /*!
  *  Font Awesome 3.2.1
  *  the iconic font designed for Bootstrap
@@ -8270,7 +8291,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
 /* Hero */
 .navbar.navbar-fixed-top.navbar-default {
   background: transparent;
-  background-image: url("http://seguros.loc/sites/default/files/hero-letras.jpg?itok=Ge3kTRES");
+  background-image: url("../images/Hero-letras.jpg");
   background-repeat: no-repeat;
   background-position: center;
   height: 883px;
@@ -8284,7 +8305,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   position: absolute;
 }
 .main-container.container {
-  margin-top: 110px;
+  margin-top: 125px;
 }
 .main-container.container .views-slideshow-cycle-main-frame-row-item.views-row.views-row-0.views-row-odd.views-row-first {
   display: none;
