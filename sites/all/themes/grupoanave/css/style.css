@@ -7774,6 +7774,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   left: 112px;
   font-size: 35px;
   bottom: 26px;
+  width: 400px;
 }
 .cta-phone-bar .info-cta {
   background: white;
@@ -8071,23 +8072,28 @@ body.toolbar-drawer.navbar-is-fixed-top {
 }
 .field-collection-item-field-block-advantages .advantage-block {
   float: left;
-  width: 33%;
+  width: 25%;
   padding-right: 40px;
   margin-bottom: 38px;
+  margin-left: 56px;
 }
 .field-collection-item-field-block-advantages .advantage-block h3 {
-  margin: 0 0 16px;
-  font: normal 19px/22px 'Asap', sans-serif;
-  color: #222222;
+  margin: 0px 1px 16px;
+  font: normal 29px/24px 'Asap', sans-serif;
+  color: #0d4d66;
   padding: 9px 0 0;
 }
-.field-collection-item-field-block-advantages .advantage-block .image {
-  width: 51px;
-  height: 51px;
-  float: left;
+.field-collection-item-field-block-advantages .advantage-block .body {
+  color: #2c4d66;
+}
+.field-collection-item-field-block-advantages .advantage-block .image img {
+  width: 250px;
+  height: auto;
+  margin: 0 0 21px 52px;
 }
 .field-collection-item-field-block-advantages .advantage-block .info {
-  margin-left: 64px;
+  margin-left: 110px;
+  text-align: center;
 }
 .field-collection-item-field-block-advantages .advantage-block .cta {
   margin-top: 20px;
