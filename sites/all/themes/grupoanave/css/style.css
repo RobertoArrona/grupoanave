@@ -7794,6 +7794,24 @@ body.toolbar-drawer.navbar-is-fixed-top {
   text-decoration: none;
 }
 /** Summary Blocks **/
+.services-title {
+  font-family: 'Lato';
+  font-size: 40px;
+  color: #0d4d66;
+  text-align: center;
+  padding-top: 50px;
+  font-weight: 900;
+}
+.services-title:after {
+  height: 3px;
+  display: block;
+  width: 280px;
+  background: #868688;
+  content: '';
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+}
 #rows-block-summary .rows-block-inner:after {
   content: "";
   display: table;
