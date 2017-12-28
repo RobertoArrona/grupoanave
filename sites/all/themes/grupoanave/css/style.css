@@ -8296,6 +8296,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   background-position: center;
   height: 883px;
   box-shadow: none;
+  margin-top: 42px;
 }
 .navbar.navbar-fixed-top.navbar-default .navbar-header {
   background-color: transparent;
@@ -8305,10 +8306,21 @@ body.toolbar-drawer.navbar-is-fixed-top {
   position: absolute;
 }
 .main-container.container {
-  margin-top: 125px;
+  margin-top: 167px;
 }
 .main-container.container .views-slideshow-cycle-main-frame-row-item.views-row.views-row-0.views-row-odd.views-row-first {
   display: none;
+}
+.main-container.container .tabs--primary.nav.nav-tabs {
+  position: relative;
+  z-index: 1031;
+  top: -307px;
+}
+.main-container.container div.node-home-blocks[about="/content/nosotros"] {
+  margin-top: 630px;
+}
+.main-container.container div.node-home-blocks[about^="/content/servicio-"] {
+  margin-top: 500px;
 }
 .page-node.node-type-poliza h1.page-header,
 .page-node.node-type-siniestro h1.page-header {
