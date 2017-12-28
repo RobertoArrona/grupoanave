@@ -7791,6 +7791,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   left: 47px;
 }
 .cta-phone-bar .phone-number {
+  font-family: 'HelveticaLTStd-Roman';
   position: relative;
   left: 112px;
   font-size: 35px;
@@ -7798,6 +7799,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   width: 400px;
 }
 .cta-phone-bar .info-cta {
+  font-family: 'HelveticaLTStd-Roman';
   background: white;
   padding: 9px;
   border-radius: 12px;
@@ -7816,18 +7818,17 @@ body.toolbar-drawer.navbar-is-fixed-top {
 }
 /** Summary Blocks **/
 .services-title {
-  font-family: 'Lato';
+  font-family: 'HelveticaLTStd-Bold';
   font-size: 40px;
   color: #0d4d66;
   text-align: center;
   padding-top: 50px;
-  font-weight: 900;
 }
 .services-title:after {
   height: 3px;
   display: block;
   width: 280px;
-  background: #868688;
+  background: #7a929f;
   content: '';
   position: absolute;
   right: 50%;
@@ -7860,11 +7861,13 @@ body.toolbar-drawer.navbar-is-fixed-top {
   margin-top: 10px;
 }
 .field-collection-item-field-home-block .body {
+  font-family: 'HelveticaLTStd-Roman';
   margin-bottom: 20px;
   color: white;
   margin-top: 15px;
 }
 .field-collection-item-field-home-block .body a {
+  font-family: 'HelveticaLTStd-Roman';
   color: #7a919f;
   text-decoration: none;
 }
@@ -8118,11 +8121,12 @@ body.toolbar-drawer.navbar-is-fixed-top {
 }
 .field-collection-item-field-block-advantages .advantage-block h3 {
   margin: 0px 1px 16px;
-  font: normal 29px/24px 'Asap', sans-serif;
+  font: normal 29px/24px 'HelveticaLTStd-Bold', sans-serif;
   color: #0d4d66;
   padding: 9px 0 0;
 }
 .field-collection-item-field-block-advantages .advantage-block .body {
+  font-family: 'HelveticaLTStd-Roman';
   color: #2c4d66;
 }
 .field-collection-item-field-block-advantages .advantage-block .image img {
@@ -8756,6 +8760,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
 }
 /** Footer Contact **/
 #block-block-2 .address-line {
+  font-family: 'HelveticaLTStd-Roman';
   color: white;
   font-size: 12px;
   line-height: 23px;
@@ -8771,6 +8776,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   text-align: left;
 }
 #block-block-2 .address-line .value {
+  font-family: 'HelveticaLTStd-Roman';
   display: inline-block;
   padding-left: 20px;
 }
@@ -8809,7 +8815,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
   display: block;
   padding: 0;
   width: 32px;
-  height: 24px;
+  height: 32px;
 }
 #block-menu-menu-social-channels ul.menu li a span {
   display: block;
@@ -8819,45 +8825,15 @@ body.toolbar-drawer.navbar-is-fixed-top {
 #block-menu-menu-social-channels ul.menu li a:hover {
   background: transparent;
 }
-#block-menu-menu-social-channels ul.menu li a:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 24px;
-  line-height: 1em;
-  font-family: FontAwesome;
-  display: block;
-  color: #fff;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-#block-menu-menu-social-channels ul.menu li a.plus:after {
-  content: "\f0d5";
-}
-#block-menu-menu-social-channels ul.menu li a.twitter:after {
-  content: "\f099";
-}
 #block-menu-menu-social-channels ul.menu li a.facebook {
-  width: 20px;
+  background: url('../images/facebook-w.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-#block-menu-menu-social-channels ul.menu li a.facebook:after {
-  content: "\f09a";
-}
-#block-menu-menu-social-channels ul.menu li a.flickr:after {
-  content: "\f16e";
-}
-#block-menu-menu-social-channels ul.menu li a.linkedin:after {
-  content: "\f0e1";
-}
-#block-menu-menu-social-channels ul.menu li a:hover:after {
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
-  transform: scale(1.2);
-  color: #da3300;
+#block-menu-menu-social-channels ul.menu li a.linkedin {
+  background: url('../images/linkedin-w.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #block-menu-menu-social-channels ul.menu li.last {
   margin-right: 0;
@@ -8869,7 +8845,7 @@ body.toolbar-drawer.navbar-is-fixed-top {
 #block-menu-menu-footer-menu ul.menu li a {
   font-size: 14px;
   line-height: 18px;
-  font-family: Lato;
+  font-family: 'HelveticaLTStd-Roman';
   display: block;
   padding: 0;
   color: white;
