@@ -7608,16 +7608,6 @@ body.navbar-is-fixed-top {
   visibility: visible;
   opacity: 1;
 }
-@media only screen and (max-width: 1199px) {
-  .container {
-    width: 1170px !important;
-  }
-}
-@media only screen and (max-width: 991px) {
-  .container {
-    width: 1170px !important;
-  }
-}
 .navbar.navbar-fixed-top.navbar-default a.home-search > div span:after {
   content: "\f002";
   font-family: FontAwesome;
