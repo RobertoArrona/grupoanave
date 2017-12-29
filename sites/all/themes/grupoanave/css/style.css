@@ -6560,12 +6560,6 @@ body.admin-expanded.admin-vertical.admin-nw .navbar,
 body.admin-expanded.admin-vertical.admin-sw .navbar {
   margin-left: 260px;
 }
-body.navbar-is-fixed-top {
-  padding-top: 64px !important;
-}
-body.navbar-is-fixed-bottom {
-  padding-bottom: 64px !important;
-}
 body.toolbar {
   padding-top: 30px !important;
 }
@@ -7780,6 +7774,7 @@ body.navbar-is-fixed-top {
   background: #0d4d66;
   height: 108px;
   color: white;
+  position: relative;
 }
 .cta-phone-bar .phone-icon {
   background: url(../images/phone-icon.png) no-repeat center center;
