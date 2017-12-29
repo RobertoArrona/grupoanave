@@ -8299,11 +8299,10 @@ body.navbar-is-fixed-top {
   height: 883px;
   max-width: 1280px;
   margin: 0 auto;
-  background-image: url("../images/Hero-letras.jpg");
+  background-image: url("../images/hero.jpg");
   background-repeat: no-repeat;
 }
-.main-container.container .view.view-home-slideshow.view-id-home_slideshow.view-display-id-block_1 .views-slideshow-cycle-main-frame-row-item .image,
-.main-container.container .view.view-home-slideshow.view-id-home_slideshow.view-display-id-block_1 .views-slideshow-cycle-main-frame-row-item .info {
+.main-container.container .view.view-home-slideshow.view-id-home_slideshow.view-display-id-block_1 .views-slideshow-cycle-main-frame-row-item .image {
   display: none;
 }
 .page-node.node-type-poliza h1.page-header,
