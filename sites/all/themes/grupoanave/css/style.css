@@ -6560,6 +6560,12 @@ body.admin-expanded.admin-vertical.admin-nw .navbar,
 body.admin-expanded.admin-vertical.admin-sw .navbar {
   margin-left: 260px;
 }
+body.navbar-is-fixed-top {
+  padding-top: 64px !important;
+}
+body.navbar-is-fixed-bottom {
+  padding-bottom: 64px !important;
+}
 body.toolbar {
   padding-top: 30px !important;
 }
@@ -7402,9 +7408,11 @@ body.navbar-is-fixed-top {
   box-shadow: 0px 4px 0px 0px #006ea6;
 }
 .navbar-default .navbar-nav > li {
-  margin: 0 4px 0 0;
+  margin: 0 auto;
   text-align: center;
   line-height: 21px;
+  height: 40px;
+  border-left: 1px solid #6295ab;
 }
 .navbar-default .navbar-nav > li:before {
   position: absolute;
@@ -7503,7 +7511,6 @@ body.navbar-is-fixed-top {
   text-transform: uppercase;
   padding: 15px 12px 15px;
   margin: 0;
-  border-left: 1px solid #6295ab;
 }
 .navbar-default .navbar-nav > li > a > div:first-child + div span {
   opacity: 0;
