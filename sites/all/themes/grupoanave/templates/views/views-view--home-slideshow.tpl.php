@@ -95,4 +95,3 @@
   </div>
   <a class="info-cta" href="#">INFORMATE</a>
 </div>
-

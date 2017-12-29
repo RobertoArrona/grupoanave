@@ -7341,7 +7341,6 @@ table .checkbox input[type="checkbox"] {
 .navbar-header {
   display: block;
   float: left;
-  background: white;
   border-radius: 10px 10px 10px 10px;
   margin-top: 10px;
 }
@@ -7392,14 +7391,23 @@ body.navbar-is-fixed-top {
 }
 .container > .navbar-collapse {
   float: left;
-  margin-left: 170px;
+  margin-left: 10px;
   border: none;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 .navbar-default .navbar-nav {
   float: none;
   background: #0d4d66;
   box-shadow: 0px 4px 0px 0px #006ea6;
+}
+.navbar-default .navbar-nav li.last.leaf {
+  right: 63px;
+  position: absolute;
+  width: 225px;
+  background: #0d4d66;
+  box-shadow: 0px 4px 0px 0px #006ea6;
+  text-align: unset;
+  border-radius: 11px;
 }
 .navbar-default .navbar-nav > li {
   margin: 0 auto;
@@ -7606,6 +7614,13 @@ body.navbar-is-fixed-top {
   .container {
     width: 1170px !important;
   }
+}
+.navbar.navbar-fixed-top.navbar-default a.home-search > div span:after {
+  content: "\f002";
+  font-family: FontAwesome;
+  font-size: 21px;
+  padding-left: 10px;
+  font-weight: 100;
 }
 .main-container.container {
   max-width: none;
