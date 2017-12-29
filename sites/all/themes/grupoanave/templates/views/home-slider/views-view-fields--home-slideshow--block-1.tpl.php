@@ -25,10 +25,11 @@
  */
  $title = $fields['title']->content;
  $image = $fields['field_image']->content;
+ $des = $fields['field_description']->content;
 ?>
 <div class="layout-wrapper">
   <div class="info">
-    <h3><?php print $title;?></h3>
+    <h3><?php print $title;?><span class="des"><?php print $des;?></span></h3>
   </div>
 </div>
 <div class="image">
