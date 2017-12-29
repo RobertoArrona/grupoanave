@@ -7374,6 +7374,9 @@ body.navbar-is-fixed-top {
   border: none;
   position: absolute;
 }
+.navbar.navbar-fixed-top.navbar-default .container {
+  position: relative;
+}
 .navbar.container {
   max-width: none;
   margin-top: 0;
@@ -7401,7 +7404,7 @@ body.navbar-is-fixed-top {
   box-shadow: 0px 4px 0px 0px #006ea6;
 }
 .navbar-default .navbar-nav li.last.leaf {
-  right: 63px;
+  right: 5px;
   position: absolute;
   width: 225px;
   background: #0d4d66;
