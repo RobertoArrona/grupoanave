@@ -8492,6 +8492,14 @@ body.navbar-is-fixed-top {
 body {
   min-width: 511px;
 }
+@media (min-width: 1012px) {
+  .field-collection-item-field-block-advantages .advantage-block {
+    padding-right: 0;
+  }
+  .field-collection-item-field-block-advantages .advantage-block .info {
+    margin-left: 55px;
+  }
+}
 .page-node.node-type-poliza h1.page-header,
 .page-node.node-type-siniestro h1.page-header {
   display: none;
