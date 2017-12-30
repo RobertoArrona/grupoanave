@@ -107,6 +107,11 @@ jQuery(document).ready(function( $ ) {
        ]
     });
     $('.mm-panels').css("background" , "#0d4d66");
+    
+    var API = $("#mymenu").data( "mmenu" );
+    $(".menu-icono-movil").click(function(){
+      API.close();
+    });
   }
   else {
     $('.menu-icono-movil').css("display", "none");
@@ -125,6 +130,5 @@ jQuery(document).ready(function( $ ) {
     $('.menu-icono-movil').css("display", "none");
   }
   });
-
 });
 </script>
