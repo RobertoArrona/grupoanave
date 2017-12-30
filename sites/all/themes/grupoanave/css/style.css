@@ -7388,7 +7388,7 @@ body.navbar-is-fixed-top {
 }
 .navbar.navbar-fixed-top.navbar-default .container {
   position: relative;
-  width: 1170px;
+  max-width: 1170px;
 }
 .navbar.container {
   max-width: none;
@@ -8390,7 +8390,7 @@ body.navbar-is-fixed-top {
     padding-right: 226px;
   }
   .navbar-default .navbar-nav li.last.leaf {
-    right: 340px;
+    right: 143px;
   }
 }
 @media only screen and (max-width: 1124px) {
@@ -8491,38 +8491,6 @@ body.navbar-is-fixed-top {
 }
 body {
   min-width: 511px;
-}
-@media (max-width: 767px) {
-  .field-collection-item-field-home-block {
-    width: 100%;
-  }
-  .field-collection-item-field-home-block .image img {
-    width: 100%;
-  }
-  .field-collection-item-field-block-advantages .advantage-block {
-    width: 100%;
-  }
-  .field-collection-item-field-block-advantages .advantage-block .image img {
-    width: 100%;
-  }
-}
-.field-collection-item-field-block-advantages .advantage-block {
-  padding-right: 0px;
-  margin-left: 0px;
-}
-.field-collection-item-field-block-advantages .advantage-block .image img {
-  margin: 0 0 21px 48px;
-}
-.field-collection-item-field-block-advantages .advantage-block .info {
-  margin-left: 20px;
-}
-.field-collection-item-field-block-advantages .advantage-block + .advantage-block {
-  margin-left: 98px;
-}
-@media (max-width: 1124px) {
-  .field-collection-item-field-block-advantages .advantage-block + .advantage-block {
-    margin-left: 20px;
-  }
 }
 .page-node.node-type-poliza h1.page-header,
 .page-node.node-type-siniestro h1.page-header {
