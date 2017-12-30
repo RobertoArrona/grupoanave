@@ -92,6 +92,6 @@
 <div class="cta-phone-bar">
   <div class="phone-info">
     <div class="phone-icon"></div><div class="phone-number"> 01 800 999 0069</div>
+    <a class="info-cta" href="#">INFORMATE</a>
   </div>
-  <a class="info-cta" href="#">INFORMATE</a>
 </div>

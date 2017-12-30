@@ -7782,35 +7782,42 @@ body.navbar-is-fixed-top {
   background: #0d4d66;
   height: 108px;
   color: white;
-  position: relative;
+  display: table;
+  width: 100%;
+}
+.cta-phone-bar .phone-info {
+  width: 100%;
+  height: 108px;
 }
 .cta-phone-bar .phone-icon {
-  background: url(../images/phone-icon.png) no-repeat center center;
+  background: url(../images/phone-icon.png) no-repeat;
   width: 72px;
   height: 70px;
-  position: relative;
-  top: 15px;
-  left: 47px;
+  float: left;
+  margin-left: 40px;
+  margin-top: 20px;
 }
 .cta-phone-bar .phone-number {
   font-family: 'HelveticaLTStd-Roman';
-  position: relative;
   left: 112px;
   font-size: 35px;
   bottom: 26px;
-  width: 400px;
+  float: left;
+  padding-top: 57px;
+  padding-left: 20px;
 }
 .cta-phone-bar .info-cta {
-  font-family: 'HelveticaLTStd-Roman';
+  font-family: 'HelveticaLTStd-Bold';
   background: white;
   padding: 9px;
   border-radius: 12px;
   box-shadow: inset 0px -2px 1px 1px #7a929f;
-  position: absolute;
-  right: 47px;
-  bottom: 18px;
+  float: right;
   font-size: 34px;
-  font-weight: bold;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-right: 40px;
+  margin-bottom: 20px;
 }
 .cta-phone-bar a {
   color: #0d4d66;
@@ -8364,6 +8371,14 @@ body.navbar-is-fixed-top {
     margin: 10px 10px 10px;
   }
 }
+@media only screen and (max-width: 650px) {
+  .cta-phone-bar .phone-icon {
+    margin-left: 170px;
+  }
+  .cta-phone-bar .info-cta {
+    margin-right: 200px;
+  }
+}
 @media only screen and (max-width: 599px) {
   .field-collection-item-field-home-block .body {
     padding: 10px 20px;
@@ -8391,6 +8406,12 @@ body.navbar-is-fixed-top {
   }
   .field-collection-item-field-block-advantages .advantage-block h3 {
     font-size: 35px;
+  }
+  .cta-phone-bar .phone-icon {
+    margin-left: 80px;
+  }
+  .cta-phone-bar .info-cta {
+    margin-right: 140px;
   }
 }
 @media only screen and (max-width: 511px) {
