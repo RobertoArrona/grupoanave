@@ -395,7 +395,6 @@
   .advantage-block{
     float: left;
     width: 25%;
-    padding-right: 40px;
     margin-bottom: 21px+17px;
     margin-left:56px;
     h3{
@@ -413,11 +412,11 @@
       img {
         width: 250px;
         height: auto;
-        margin: 0 0 21px 52px;
+        margin: 0 0 21px 25px;
       }
     }
     .info{
-      margin-left: 110px;
+      margin-left: 0px;
       text-align: center;
     }
     .cta{
@@ -672,6 +671,13 @@
   
 }
 
+@media only screen and (max-width: 800px){
+
+  .field-collection-item-field-block-advantages .advantage-block .image img {
+    width: 73%;
+    margin:0 0 21px 25px;
+  }
+}
 @media only screen and (max-width: 992px){
   
   .field-collection-item-field-home-block {
@@ -777,13 +783,3 @@ body {
   min-width: 511px;
 }
 
-@media (min-width: 1012px) {
-  .field-collection-item-field-block-advantages {
-    .advantage-block {
-      padding-right: 0;
-     .info {
-        margin-left: 55px;
-      }
-    }
-  }
-}
