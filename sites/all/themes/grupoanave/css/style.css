@@ -9003,13 +9003,11 @@ body {
     margin-left: 0;
   }
   .footer .region-footer #block-menu-menu-social-channels ul.menu {
-    position: relative;
-    left: 44%;
+    display: table;
+    margin: 0 auto;
   }
-}
-@media (max-width: 570px) {
-  .footer .region-footer #block-menu-menu-social-channels ul.menu {
-    position: relative;
-    left: 40%;
+  .footer .region-footer #block-menu-menu-social-channels ul.menu li a {
+    width: 50px;
+    height: 50px;
   }
 }
