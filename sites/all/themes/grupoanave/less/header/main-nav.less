@@ -27,6 +27,7 @@ body.navbar-is-fixed-top{
   .container{
     position: relative;
     max-width: 1170px;
+    
   }
 }
 .navbar.container{
@@ -308,17 +309,24 @@ body.navbar-is-fixed-top{
 
 @media only screen and (max-width: 991px){
 
+  .navbar.navbar-fixed-top.navbar-default .container {
+    width: 970px;
+  }
   .navbar-nav > li > a > div:first-child+div span {
-    display: none;
+    display: block;
     }
     
     ul li.collapsed, ul li.expanded, ul li.leaf {
       list-style: none;
       list-style-image: none;
       position: relative;
-      top: 40px;
     }
+}
+@media only screen and (max-width: 991px){
 
+  .navbar.navbar-fixed-top.navbar-default .container {
+    width: auto;
+  }
 }
 
 @media only screen and (min-width: 991px){
