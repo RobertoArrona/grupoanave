@@ -7782,6 +7782,8 @@ body.navbar-is-fixed-top {
   background: #0d4d66;
   height: 108px;
   color: white;
+  display: table;
+  width: 100%;
 }
 .cta-phone-bar .phone-info {
   width: 100%;
@@ -8396,6 +8398,12 @@ body.navbar-is-fixed-top {
   }
   .field-collection-item-field-block-advantages .advantage-block h3 {
     font-size: 35px;
+  }
+  .cta-phone-bar .phone-icon {
+    margin-left: 80px;
+  }
+  .cta-phone-bar .info-cta {
+    margin-right: 140px;
   }
 }
 @media only screen and (max-width: 511px) {
