@@ -95,3 +95,38 @@
     <a class="info-cta" href="#">INFORMATE</a>
   </div>
 </div>
+<script type="text/javascript">
+jQuery(document).ready(function( $ ) {
+  var anchoVentana=$(window).width();
+  console.log(anchoVentana);
+  if (anchoVentana < 991) {
+     $('.menu-icono-movil').css("display", "block");
+    $("#mymenu").mmenu({
+       "extensions": [
+          "pagedim-black"
+       ]
+    });
+    $('.mm-panels').css("background" , "#0d4d66");
+  }
+  else {
+    $('.menu-icono-movil').css("display", "none");
+  }
+/*
+  $(window).resize(function() {
+    var win = $(this);
+    if (win.width() < 991) {
+     $('.menu-icono-movil').css("display", "block");
+    $("#mymenu").mmenu({
+       "extensions": [
+          "pagedim-black"
+       ]
+    });
+  }
+  else {
+    $('.menu-icono-movil').css("display", "none");
+  }
+  });
+*/
+
+});
+</script>

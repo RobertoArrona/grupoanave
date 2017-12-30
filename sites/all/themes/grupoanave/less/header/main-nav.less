@@ -214,6 +214,7 @@ body.navbar-is-fixed-top{
   	filter:alpha(opacity=100);
   }
 }
+
 /** Dropdown **/
 .navbar-default .navbar-nav > li.dropdown{
   ul.dropdown-menu{
@@ -276,11 +277,11 @@ body.navbar-is-fixed-top{
   }
 }
 
-@media only screen and (max-width: @screen-md-max){
+@media only screen and (max-width: 991px){
 
+.navbar-nav > li > a > div:first-child+div span {
+  display: none;
 }
-
-@media only screen and (max-width: @screen-sm-max){
 
 }
 .navbar.navbar-fixed-top.navbar-default {

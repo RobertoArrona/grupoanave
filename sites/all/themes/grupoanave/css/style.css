@@ -7337,6 +7337,18 @@ table .checkbox input[type="checkbox"] {
   background: transparent;
   color: #e74047;
 }
+/* Menu Móvil*/
+.menu-icono-movil {
+  background: url('../images/menu-icon.png');
+  background-repeat: no-repeat;
+  background-size: 40%;
+  width: 150px;
+  height: 150px;
+  float: right;
+  position: relative;
+  top: -80px;
+  display: none;
+}
 /** Logo **/
 .navbar-header {
   display: block;
@@ -7607,6 +7619,11 @@ body.navbar-is-fixed-top {
   display: block;
   visibility: visible;
   opacity: 1;
+}
+@media only screen and (max-width: 991px) {
+  .navbar-nav > li > a > div:first-child + div span {
+    display: none;
+  }
 }
 .navbar.navbar-fixed-top.navbar-default a.home-search > div span:after {
   content: "\f002";

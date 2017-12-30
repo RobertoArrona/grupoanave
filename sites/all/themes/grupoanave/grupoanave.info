@@ -26,6 +26,8 @@ regions[page_bottom]    = 'Page bottom'
 
 stylesheets[all][] = css/style.css
 stylesheets[print][] = css/print.css
+stylesheets[all][] = js/mmenu/jquery.mmenu.all.css
+
 
 
 ; For information on choosing the desired method, please read the Drupal
@@ -53,8 +55,10 @@ scripts[] = 'bootstrap/js/scrollspy.js'
 scripts[] = 'bootstrap/js/tab.js'
 scripts[] = 'bootstrap/js/transition.js'
 scripts[] = 'js/search-home.js'
+scripts[] = 'js/mmenu/jquery.mmenu.all.js'
 scripts[] = 'js/cotizacion.block.js'
 scripts[] = 'js/jquery.cookie.js'
+
 
 
 ;
