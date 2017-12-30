@@ -7658,9 +7658,17 @@ body.navbar-is-fixed-top {
     position: relative;
   }
 }
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 990px) {
   .navbar.navbar-fixed-top.navbar-default .container {
     width: auto;
+  }
+  .navbar-nav > li > a > div:first-child + div span {
+    display: none;
+  }
+  ul li.collapsed,
+  ul li.expanded,
+  ul li.leaf {
+    top: 40px;
   }
 }
 @media only screen and (min-width: 991px) {
