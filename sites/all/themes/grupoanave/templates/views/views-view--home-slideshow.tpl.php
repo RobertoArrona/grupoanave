@@ -136,7 +136,7 @@ jQuery(document).ready(function( $ ) {
         else {
         $('.menu-icono-movil').css("display", "none");
         }
-        if ($("#mymenu").length > 0) {
+        if ($(".mmenu").length > 0) {
         var API = $("#mymenu").data( "mmenu" ); 
         API.close();
        }
