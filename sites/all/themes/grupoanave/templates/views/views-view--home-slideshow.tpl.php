@@ -128,6 +128,7 @@ jQuery(document).ready(function( $ ) {
   }
   else {
     $('.menu-icono-movil').css("display", "none");
+    API.close();
   }
   });
 });
