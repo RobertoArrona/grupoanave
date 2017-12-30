@@ -7530,6 +7530,7 @@ body.navbar-is-fixed-top {
   text-transform: uppercase;
   padding: 15px 12px 15px;
   margin: 0;
+  transform: scaleY(1.5);
 }
 .navbar-default .navbar-nav > li > a > div:first-child + div span {
   opacity: 0;
