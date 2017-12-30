@@ -7388,6 +7388,7 @@ body.navbar-is-fixed-top {
 }
 .navbar.navbar-fixed-top.navbar-default .container {
   position: relative;
+  width: 1170px;
 }
 .navbar.container {
   max-width: none;
@@ -8380,6 +8381,16 @@ body.navbar-is-fixed-top {
   .main-container.container #block-anavem-carrusel .layout-wrapper .info h3 {
     font-size: 65px;
     line-height: 85px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .navbar-collapse2.collapse2 {
+    width: 791px;
+    margin-top: 0px;
+    padding-right: 226px;
+  }
+  .navbar-default .navbar-nav li.last.leaf {
+    right: 340px;
   }
 }
 @media only screen and (max-width: 1124px) {
