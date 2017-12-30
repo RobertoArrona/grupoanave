@@ -8365,6 +8365,9 @@ body.navbar-is-fixed-top {
   }
 }
 @media only screen and (max-width: 599px) {
+  .field-collection-item-field-home-block .body {
+    padding: 10px 20px;
+  }
   .field-collection-item-field-home-block {
     margin: 1px auto;
     width: 100%;
@@ -8381,6 +8384,7 @@ body.navbar-is-fixed-top {
   .field-collection-item-field-block-advantages .advantage-block {
     width: 100%;
     margin: 0;
+    padding: 20px;
   }
   body {
     font-size: 35px;
@@ -8404,6 +8408,9 @@ body.navbar-is-fixed-top {
   }
   .field-collection-item-field-block-advantages .advantage-block h3 {
     font-size: 35px;
+  }
+  .field-collection-item-field-block-advantages .advantage-block .body {
+    padding: 20px;
   }
 }
 body {
