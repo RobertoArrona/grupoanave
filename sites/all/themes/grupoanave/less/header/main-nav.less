@@ -48,6 +48,7 @@ body.navbar-is-fixed-top{
   margin-left: 10px;
   border: none;
   margin-top: 30px;
+  display: none !important;
 }
 .navbar-default .navbar-nav{
   float: none;
@@ -277,13 +278,14 @@ body.navbar-is-fixed-top{
   }
 }
 
-@media only screen and (max-width: 991px){
-
-.navbar-nav > li > a > div:first-child+div span {
-  display: none;
+.navbar-nav > li > a {
+  color: white;
 }
 
+#mymenu {
+ z-index: 1031; 
 }
+
 .navbar.navbar-fixed-top.navbar-default {
  a.home-search > div span:after {
   content: "\f002";
@@ -292,4 +294,35 @@ body.navbar-is-fixed-top{
   padding-left: 10px;
   font-weight: 100;
  }  
+}
+
+.navbar-collapse2.collapse2{
+  float: left;
+  margin-left: 10px;
+  border: none;
+  margin-top: 30px;
+  display: none;
+}
+
+@media only screen and (max-width: 991px){
+
+  .navbar-nav > li > a > div:first-child+div span {
+    display: none;
+    }
+    
+    ul li.collapsed, ul li.expanded, ul li.leaf {
+      list-style: none;
+      list-style-image: none;
+      position: relative;
+      top: 40px;
+    }
+
+}
+
+@media only screen and (min-width: 991px){
+  
+  .navbar-collapse2.collapse2{
+    display: block;
+  }
+
 }

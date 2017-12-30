@@ -111,7 +111,6 @@ jQuery(document).ready(function( $ ) {
   else {
     $('.menu-icono-movil').css("display", "none");
   }
-/*
   $(window).resize(function() {
     var win = $(this);
     if (win.width() < 991) {
@@ -126,7 +125,6 @@ jQuery(document).ready(function( $ ) {
     $('.menu-icono-movil').css("display", "none");
   }
   });
-*/
 
 });
 </script>
