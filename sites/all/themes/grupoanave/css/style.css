@@ -7881,6 +7881,8 @@ body.navbar-is-fixed-top {
   margin-top: 20px;
   margin-right: 40px;
   margin-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 5px;
 }
 .cta-phone-bar a {
   color: #0d4d66;
