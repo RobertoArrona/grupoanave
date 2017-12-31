@@ -7371,7 +7371,7 @@ table .checkbox input[type="checkbox"] {
 @media only screen and (max-width: 390px) {
   .navbar-header .logo.navbar-btn img {
     width: 250px;
-    height: 70px;
+    height: auto;
   }
   .menu-icono-movil {
     top: -75px;
@@ -8501,7 +8501,7 @@ body.navbar-is-fixed-top {
     padding: 20px;
   }
   body {
-    font-size: 35px;
+    font-size: 30px;
   }
   .field-collection-item-field-block-advantages .advantage-block h3 {
     font-size: 35px;
@@ -8527,7 +8527,7 @@ body.navbar-is-fixed-top {
     font-size: 35px;
   }
   .field-collection-item-field-block-advantages .advantage-block h3 {
-    font-size: 35px;
+    font-size: 20px;
   }
 }
 @media only screen and (max-width: 432px) {
