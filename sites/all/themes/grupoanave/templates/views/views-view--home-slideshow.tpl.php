@@ -127,6 +127,7 @@ jQuery(document).ready(function( $ ) {
          ]
       });
       var API = $("#mymenu").data( "mmenu" );
+      API.close();
 /*
         $(".menu-icono-movil").click(function(){
           API.close();  
