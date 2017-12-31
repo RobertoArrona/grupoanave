@@ -7371,7 +7371,10 @@ table .checkbox input[type="checkbox"] {
 @media only screen and (max-width: 390px) {
   .navbar-header .logo.navbar-btn img {
     width: 250px;
-    height: 50px;
+    height: 70px;
+  }
+  .menu-icono-movil {
+    top: -75px;
   }
 }
 /** Main Nav **/
@@ -9003,6 +9006,9 @@ body {
   text-decoration: none;
   color: white;
 }
+#block-block-2 .address-line .mail-contacto {
+  text-transform: none;
+}
 /** Social Footer Menu **/
 #block-menu-menu-social-channels:before {
   background: white;
@@ -9121,4 +9127,9 @@ body {
 }
 #block-block-2 {
   margin-left: 80px;
+}
+@media (max-width: 767px) {
+  #block-block-2 {
+    margin-left: 0;
+  }
 }
