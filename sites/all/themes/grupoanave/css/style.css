@@ -8381,6 +8381,9 @@ body.navbar-is-fixed-top {
 .main-container.container .view.view-home-slideshow.view-id-home_slideshow.view-display-id-block_1 .views-slideshow-cycle-main-frame-row-item .image {
   display: none;
 }
+.main-container.container #block-anavem-carrusel .layout-wrapper {
+  position: unset;
+}
 .main-container.container #block-anavem-carrusel .layout-wrapper .info h3 {
   background: none;
   color: #0d4d66;
