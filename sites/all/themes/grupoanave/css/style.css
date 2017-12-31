@@ -8519,9 +8519,6 @@ body.navbar-is-fixed-top {
   .field-collection-item-field-block-advantages .advantage-block h3 {
     font-size: 35px;
   }
-  .field-collection-item-field-block-advantages .advantage-block .body {
-    padding: 20px;
-  }
 }
 body {
   min-width: 511px;
