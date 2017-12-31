@@ -7368,6 +7368,12 @@ table .checkbox input[type="checkbox"] {
 .navbar-header .navbar-toggle {
   display: none;
 }
+@media only screen and (max-width: 390px) {
+  .navbar-header .logo.navbar-btn img {
+    width: 250px;
+    height: 50px;
+  }
+}
 /** Main Nav **/
 .main-container.container .row {
   margin-left: 0;
@@ -8403,7 +8409,7 @@ body.navbar-is-fixed-top {
     margin-top: 140px;
   }
   .main-container.container #block-anavem-carrusel .layout-wrapper .info h3 {
-    font-size: 65px;
+    font-size: 60px;
     line-height: 85px;
   }
 }
@@ -8520,8 +8526,20 @@ body.navbar-is-fixed-top {
     font-size: 35px;
   }
 }
+@media only screen and (max-width: 432px) {
+  .cta-phone-bar .phone-icon {
+    margin-left: 150px;
+  }
+  .cta-phone-bar .phone-number {
+    padding-top: 30px;
+    padding-left: 60px;
+  }
+  .cta-phone-bar .info-cta {
+    margin-right: 76px;
+  }
+}
 body {
-  min-width: 511px;
+  min-width: 375px;
 }
 .page-node.node-type-poliza h1.page-header,
 .page-node.node-type-siniestro h1.page-header {
