@@ -7370,11 +7370,11 @@ table .checkbox input[type="checkbox"] {
 }
 @media only screen and (max-width: 390px) {
   .navbar-header .logo.navbar-btn img {
-    width: 250px;
+    width: 200px;
     height: auto;
   }
   .menu-icono-movil {
-    top: -75px;
+    top: -65px;
   }
 }
 /** Main Nav **/
@@ -8516,6 +8516,8 @@ body.navbar-is-fixed-top {
 @media only screen and (max-width: 511px) {
   .field-collection-item-field-home-block .body {
     padding: 10px 20px;
+    font-size: 20px;
+    line-height: 25px;
   }
   .field-collection-item-field-block-advantages .advantage-block .image img {
     padding: 20px;
@@ -8523,11 +8525,12 @@ body.navbar-is-fixed-top {
   .field-collection-item-field-block-advantages .advantage-block {
     padding: 20px;
   }
-  body {
+  .field-collection-item-field-block-advantages .advantage-block h3 {
     font-size: 35px;
   }
-  .field-collection-item-field-block-advantages .advantage-block h3 {
+  .field-collection-item-field-block-advantages .advantage-block .body {
     font-size: 20px;
+    line-height: 30px;
   }
 }
 @media only screen and (max-width: 432px) {
@@ -8543,7 +8546,22 @@ body.navbar-is-fixed-top {
   }
 }
 body {
-  min-width: 375px;
+  min-width: 320px;
+}
+@media only screen and (max-width: 390px) {
+  .main-container.container #block-anavem-carrusel .layout-wrapper .info h3 {
+    font-size: 48px;
+    line-height: 70px;
+  }
+  .cta-phone-bar .phone-number {
+    padding-left: 35px;
+  }
+  .cta-phone-bar .info-cta {
+    margin-right: 50px;
+  }
+  .cta-phone-bar .phone-icon {
+    margin-left: 131px;
+  }
 }
 .page-node.node-type-poliza h1.page-header,
 .page-node.node-type-siniestro h1.page-header {
