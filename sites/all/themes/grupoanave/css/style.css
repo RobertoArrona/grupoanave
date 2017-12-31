@@ -9072,6 +9072,9 @@ body {
     font-size: 25px;
     line-height: 40px;
   }
+  .footer .region-footer #block-block-2 h2 {
+    margin-top: 50px;
+  }
   .footer .region-footer #block-block-2 .address-line {
     font-size: 25px;
     line-height: 40px;
