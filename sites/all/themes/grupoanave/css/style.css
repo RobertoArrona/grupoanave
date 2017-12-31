@@ -7667,9 +7667,7 @@ body.navbar-is-fixed-top {
   .navbar-nav > li > a > div:first-child + div span {
     display: none;
   }
-  ul li.collapsed,
-  ul li.expanded,
-  ul li.leaf {
+  ul.mm-opened > li.leaf {
     top: 40px;
   }
 }
@@ -7677,6 +7675,9 @@ body.navbar-is-fixed-top {
   .navbar-collapse2.collapse2 {
     display: block;
   }
+}
+#block-menu-menu-footer-menu > .menu {
+  margin-top: 3px;
 }
 .main-container.container {
   max-width: none;
