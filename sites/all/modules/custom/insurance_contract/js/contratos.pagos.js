@@ -29,7 +29,7 @@
       var totalPremInput = $('#edit-field-poliza-prima-total-und-0-value');
       var paymentFirstInput = $('#edit-field-poliza-prima-1er-recibo-und-0-value');
       var subPaymentsInput = $('#edit-field-poliza-primas-recibos-subs-und-0-value');
-      if(rightPolicy != '_none' && rightPolicy != undefined && rightPolicy != '_none' && rightPolicy != undefined) {
+      if(rightPolicy != '_none' && rightPolicy != undefined && rightPolicy != '_none' && rightPolicy != undefined && this.val() != '_none') {
         IVAinput.val(getIVA (netPremium, rightPolicy));
         totalPremInput.val(getTotalPremium (netPremium, rightPolicy, IVAinput.val()));
         paymentFirstInput.val(getPaymentFirst(netPremium, rightPolicy, IVAinput.val()));
