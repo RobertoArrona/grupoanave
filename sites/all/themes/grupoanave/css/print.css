@@ -321,3 +321,275 @@ table.print.coberturas {
   position: relative;
   top: 135px;
 }
+body {
+  margin: 0;
+  background: #ddd;
+  -webkit-print-color-adjust: exact;
+}
+#main {
+  width: 21.59cm;
+  height: 27.94cm;
+  margin: 0 auto;
+  background: white;
+}
+#main-inner {
+  padding: 10px;
+}
+.print-logo {
+  padding: 0;
+  width: 250px;
+  height: 60px;
+}
+.print-header table {
+  width: 100%;
+}
+.print-title {
+  padding: 0;
+  width: 40%;
+}
+.print-title h1 {
+  margin: 0;
+  font-size: 18px;
+  text-transform: uppercase;
+  text-align: center;
+}
+body .row:after {
+  clear: both;
+  content: "";
+  display: table;
+  height: 0;
+}
+body .row {
+  border: solid 1px #333;
+  border-radius: 3px 3px 3px 3px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+body .row h2 {
+  margin: 0;
+  padding: 5px;
+  background: #19227C !important;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.2em;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+body .inner-block {
+  padding: 5px 5px;
+}
+body .label-above {
+  font-weight: bold;
+}
+body .label-inline {
+  display: inline-block;
+  font-weight: bold;
+}
+body .field {
+  font-size: 11px;
+}
+body .field .field {
+  margin: 0;
+}
+body .field:after {
+  content: "";
+  display: table;
+  height: 0;
+  clear: both;
+}
+body .field.cp {
+  margin-top: 48px;
+}
+body .col-50 {
+  float: left;
+  width: 50%;
+}
+body .col-20 {
+  float: left;
+  width: 20%;
+}
+body .group-asegurado {
+  width: 40%;
+}
+body .group-poliza {
+  width: 60%;
+}
+body .group-poliza .subcolumn .inner-block {
+  text-align: right;
+}
+body .group-poliza .subcolumn .inner-block .label-inline {
+  float: left;
+  text-align: left;
+}
+body .group-poliza .subcolumn.first .inner-block {
+  border-left: solid 1px #333;
+}
+#block-block-4,
+#block-block-5,
+#block-block-6,
+#block-block-9 {
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+#block-block-4 p,
+#block-block-5 p,
+#block-block-6 p,
+#block-block-9 p {
+  margin: 0;
+}
+#block-block-9 {
+  text-align: center;
+  margin-bottom: 0;
+}
+.tipo-poliza-block {
+  /*
+  border: solid 1px #333;
+  border-radius: 3px 3px 3px 3px;
+*/
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.tipo-poliza-block .inner-block {
+  font-size: 11px;
+}
+.tipo-poliza-block > .label-above,
+.tipo-poliza-block .coberturas-block > .label-above {
+  margin: 0;
+  padding: 5px;
+  background: #19227C !important;
+  color: #fff;
+  font-size: 12px;
+}
+.tipo-poliza-block .coberturas-block ul {
+  margin: 0;
+  padding: 5px 5px 5px 26px;
+}
+.tipo-poliza-block .coberturas-block ul li {
+  font-size: 11px;
+}
+#block-block-7 {
+  /*
+  border: solid 1px #333;
+  border-radius: 3px 3px 3px 3px;
+*/
+  padding: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+#block-block-7 p {
+  margin: 0;
+}
+#block-block-8 {
+  padding: 5px 0;
+  font-size: 11px;
+}
+#block-block-8 p {
+  margin: 0;
+}
+.footer:after {
+  content: "";
+  clear: both;
+  display: table;
+  height: 0;
+}
+.footer .footer-left {
+  float: left;
+  width: 60%;
+}
+.footer .footer-left > .inner-block {
+  padding-left: 0;
+}
+.footer .footer-right {
+  float: right;
+  width: 40%;
+}
+.footer .footer-right > .inner-block {
+  padding-right: 0;
+}
+table.print-child {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+table.print-child tbody tr td {
+  padding: 0;
+  padding-bottom: 10px;
+  font-size: 11px;
+  vertical-align: top;
+}
+table.print-child tbody tr td .field {
+  margin: 0;
+  font-size: 11px;
+}
+table.print-child tbody tr td .field .field {
+  margin: 0;
+}
+table.print-child tbody tr.last td {
+  padding-bottom: 0;
+}
+table.generic {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+table.generic tbody tr td {
+  vertical-align: top;
+  padding: 0;
+}
+table.generic tbody tr td.padding-descripcion.left-descripcion {
+  width: 100px;
+  padding: 5px;
+}
+table.generic tbody tr td.padding-descripcion {
+  padding: 5px;
+}
+table.print.coberturas {
+  margin-bottom: 160px;
+}
+/*
+.tabla-recibo {
+  border: none;
+}
+
+.tabla-recibo table.print-child > tbody > tr > td + td {
+  border: none;
+}
+
+.tabla-recibo table.print-child tbody tr td + td {
+  border: none;
+  padding-bottom: 5px;
+}
+
+.table-poliza table.print-child tbody tr td + td {
+  border: none;
+  padding-bottom: 5px;
+}
+
+.tabla-recibo tbody > tr > td + td {
+  border: none;
+}
+
+.tabla-recibo thead tr th {
+  display: none;
+}
+
+table.tabla-recibo-col1 tbody tr td .field {
+  display: inline;
+  padding-bottom: 5px;
+}
+.tabla-recibo-col1 .field {
+  display: inline;
+}
+.tabla-recibo-col1 .label-above {
+  display: inline;
+}
+.tabla-recibo-col2 table.print-child tbody tr td + td {
+  border: none;
+  padding-bottom: 5px;
+}
+.marca-agua {
+  background-image: url("");
+}
+*/
