@@ -47,7 +47,7 @@
       var paymentFirstInput = $('#edit-field-poliza-prima-1er-recibo-und-0-value');
       var subPaymentsInput = $('#edit-field-poliza-primas-recibos-subs-und-0-value');
       var paymentMethod = $('#edit-field-poliza-forma-pago-und').val();
-      if(netPremium != '' && netPremium != undefined) {
+      if(rightPolicy != '_none' && rightPolicy != undefined && netPremium != '' && netPremium != undefined) {
         IVAinput.val(getIVA (netPremium, rightPolicy));
         totalPremInput.val(getTotalPremium (netPremium, rightPolicy, IVAinput.val()));
         var IVA = IVAinput.val();
@@ -67,7 +67,7 @@
       var paymentFirstInput = $('#edit-field-poliza-prima-1er-recibo-und-0-value');
       var subPaymentsInput = $('#edit-field-poliza-primas-recibos-subs-und-0-value');
       var paymentMethod = $('#edit-field-poliza-forma-pago-und').val();
-      if(netPremium != '' && netPremium != undefined) {
+      if(rightPolicy != '_none' && rightPolicy != undefined && netPremium != '' && netPremium != undefined) {
         IVAinput.val(getIVA (netPremium, rightPolicy));
         totalPremInput.val(getTotalPremium (netPremium, rightPolicy, IVAinput.val()));
         var IVA = IVAinput.val();
