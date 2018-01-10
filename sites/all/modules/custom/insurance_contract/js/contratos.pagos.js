@@ -24,7 +24,7 @@
     //change event for Method of payment
     $('#edit-field-poliza-forma-pago-und').on('change', function () {
       var netPremium = $('#edit-field-poliza-prima-neta-und-0-value').val();
-      var rightPolicy = $('#edit-field-derecho-de-poliza2-und').val();
+      var rightPolicy = $('#edit-field-poliza-derecho-poli-und').val();
       var IVAinput = $('#edit-field-poliza-impuesto-iva-und-0-value');
       var totalPremInput = $('#edit-field-poliza-prima-total-und-0-value');
       var paymentFirstInput = $('#edit-field-poliza-prima-1er-recibo-und-0-value');
@@ -39,36 +39,40 @@
     });
     
     //change event for Right of Policy
-    $('#edit-field-derecho-de-poliza2-und').on('change', function () {
+    $('#edit-field-derecho-de-poliza2-und ').on('change', function () {
       var netPremium = $('#edit-field-poliza-prima-neta-und-0-value').val();
-      var rightPolicy = $('#edit-field-derecho-de-poliza2-und').val();
+      var rightPolicy = $('#edit-field-poliza-derecho-poli-und').val();
       var IVAinput = $('#edit-field-poliza-impuesto-iva-und-0-value');
       var totalPremInput = $('#edit-field-poliza-prima-total-und-0-value');
       var paymentFirstInput = $('#edit-field-poliza-prima-1er-recibo-und-0-value');
       var subPaymentsInput = $('#edit-field-poliza-primas-recibos-subs-und-0-value');
       var paymentMethod = $('#edit-field-poliza-forma-pago-und').val();
-      if(rightPolicy != '_none' && rightPolicy != undefined && paymentMethod != '_none') {
+      if(netPremium != '' && netPremium != undefined) {
         IVAinput.val(getIVA (netPremium, rightPolicy));
         totalPremInput.val(getTotalPremium (netPremium, rightPolicy, IVAinput.val()));
-        paymentFirstInput.val(getPaymentFirst(netPremium, rightPolicy, IVAinput.val()));
-        subPaymentsInput.val(getSubPayments(netPremium, rightPolicy, IVAinput.val()));
+        if (paymentMethod != '_none') {
+          paymentFirstInput.val(getPaymentFirst(netPremium, rightPolicy, IVAinput.val()));
+          subPaymentsInput.val(getSubPayments(netPremium, rightPolicy, IVAinput.val()));
+        }
       }
     });
     
     //change event for Net Premium
     $('#edit-field-poliza-prima-neta-und-0-value').on('change', function () {
       var netPremium = $('#edit-field-poliza-prima-neta-und-0-value').val();
-      var rightPolicy = $('#edit-field-derecho-de-poliza2-und').val();
+      var rightPolicy = $('#edit-field-poliza-derecho-poli-und').val();
       var IVAinput = $('#edit-field-poliza-impuesto-iva-und-0-value');
       var totalPremInput = $('#edit-field-poliza-prima-total-und-0-value');
       var paymentFirstInput = $('#edit-field-poliza-prima-1er-recibo-und-0-value');
       var subPaymentsInput = $('#edit-field-poliza-primas-recibos-subs-und-0-value');
       var paymentMethod = $('#edit-field-poliza-forma-pago-und').val();
-      if(netPremium != '' && netPremium != undefined && paymentMethod != '_none') {
+      if(netPremium != '' && netPremium != undefined) {
         IVAinput.val(getIVA (netPremium, rightPolicy));
         totalPremInput.val(getTotalPremium (netPremium, rightPolicy, IVAinput.val()));
-        paymentFirstInput.val(getPaymentFirst(netPremium, rightPolicy, IVAinput.val()));
-        subPaymentsInput.val(getSubPayments(netPremium, rightPolicy, IVAinput.val()));
+        if (paymentMethod != '_none') {
+          paymentFirstInput.val(getPaymentFirst(netPremium, rightPolicy, IVAinput.val()));
+          subPaymentsInput.val(getSubPayments(netPremium, rightPolicy, IVAinput.val()));
+        }
       }
     });
   });
