@@ -85,8 +85,14 @@
     if (period == 'mensual') {
       return 'Primas Recibos Subs:(11) ';
     }
+    else if(period == '3meses') {
+      return 'Primas Recibos Subs:(2) ';
+    }
     else if(period == 'trimestral') {
       return 'Primas Recibos Subs:(3) ';
+    }
+    else if(period == 'cuatrimestral') {
+      return 'Primas Recibos Subs:(2) ';
     }
     else if(period == 'semestral') {
       return 'Primas Recibos Subs:(1) ';
@@ -124,8 +130,14 @@
     if (period == 'mensual') {
       return numPayments = 12;
     }
+    else if(period == '3meses') {
+      return numPayments = 3;
+    }
     else if(period == 'trimestral') {
       return numPayments = 4;
+    }
+    else if(period == 'cuatrimestral') {
+      return numPayments = 3;
     }
     else if(period == 'semestral') {
       return numPayments = 2;
