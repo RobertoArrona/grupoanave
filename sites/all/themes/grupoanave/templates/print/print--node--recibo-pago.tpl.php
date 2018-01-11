@@ -88,7 +88,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
     </style>
   </head>
   <body>
-    <div id="main">
+    <div id="main-payment">
       <div id="main-inner">
         <div class="print-header">
           <table>

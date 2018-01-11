@@ -26,7 +26,7 @@
         break;
       
       case 'trimestral':
-        $label = ':(4)';
+        $label = ':(3)';
         break;
         
       case 'cuatrimestral':
