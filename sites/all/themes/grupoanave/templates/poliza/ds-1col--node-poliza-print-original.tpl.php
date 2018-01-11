@@ -26,17 +26,9 @@ if (isset($elements['field_poliza_forma_pago'])) {
       case 'mensual':
         $label = ':(11)';
         break;
-        
-      case '3meses':
-        $label = ':(2)';
-        break;
       
       case 'trimestral':
-        $label = ':(3)';
-        break;
-        
-      case 'cuatrimestral':
-        $label = ':(2)';
+        $label = ':(4)';
         break;
       
       case 'semestral':

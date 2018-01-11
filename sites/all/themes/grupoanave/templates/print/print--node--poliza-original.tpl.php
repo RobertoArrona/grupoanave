@@ -88,21 +88,17 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
     </style>
   </head>
   <body>
-    <div id="main-payment">
+    <div id="main">
       <div id="main-inner">
         <div class="print-header">
           <table>
             <tbody>
               <tr>
                 <td class="print-logo">
-<!--                   <?php print $print_logo; ?> -->
-                  <strong>MN Global Protec A.C.</strong><br>
-                  Calzada Independencia  Norte No. 1131, Colonia <br>
-                  Independencia, Guadalajara, Jalisco, Mexico<br>
-                  C.P. 44290 <br>
+                  <?php print $print_logo; ?>
                 </td>
                 <td class="print-title">
-                  <h1>CONCENTRACION EMPRESARIAL DE PAGO PARA USO EXCLUSIVO DEL BANCO</h1>
+                  <h1><?php print $poliza_title;?></h1>
                 </td>
               </tr>
             </tbody>
