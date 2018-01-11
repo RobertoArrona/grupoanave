@@ -20,9 +20,17 @@
       case 'mensual':
         $label = ':(11)';
         break;
+        
+      case '3meses':
+        $label = ':(2)';
+        break;
       
       case 'trimestral':
         $label = ':(4)';
+        break;
+        
+      case 'cuatrimestral':
+        $label = ':(2)';
         break;
       
       case 'semestral':
