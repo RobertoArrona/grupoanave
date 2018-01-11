@@ -47,7 +47,7 @@ body .row h2 {
   padding: 5px;
   background: #19227C !important;
   color: #fff;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.2em;
   font-weight: normal;
   text-transform: uppercase;
@@ -63,7 +63,7 @@ body .label-inline {
   font-weight: bold;
 }
 body .field {
-  font-size: 11px;
+  font-size: 14px;
 }
 body .field .field {
   margin: 0;
@@ -125,7 +125,7 @@ body .group-poliza .subcolumn.first .inner-block {
   margin-bottom: 10px;
 }
 .tipo-poliza-block .inner-block {
-  font-size: 11px;
+  font-size: 14px;
 }
 .tipo-poliza-block > .label-above,
 .tipo-poliza-block .coberturas-block > .label-above {
@@ -133,20 +133,20 @@ body .group-poliza .subcolumn.first .inner-block {
   padding: 5px;
   background: #19227C !important;
   color: #fff;
-  font-size: 12px;
+  font-size: 14px;
 }
 .tipo-poliza-block .coberturas-block ul {
   margin: 0;
   padding: 5px 5px 5px 26px;
 }
 .tipo-poliza-block .coberturas-block ul li {
-  font-size: 11px;
+  font-size: 14px;
 }
 #block-block-7 {
   border: solid 1px #333;
   border-radius: 3px 3px 3px 3px;
   padding: 5px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
 }
 #block-block-7 p {
@@ -154,7 +154,7 @@ body .group-poliza .subcolumn.first .inner-block {
 }
 #block-block-8 {
   padding: 5px 0;
-  font-size: 11px;
+  font-size: 14px;
 }
 #block-block-8 p {
   margin: 0;
@@ -196,7 +196,7 @@ table.print thead tr th {
   padding: 5px;
   background: #19227C !important;
   color: #fff;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.2em;
   font-weight: normal;
   text-transform: uppercase;
@@ -205,7 +205,7 @@ table.print thead tr th {
 table.print > tbody > tr > td {
   padding: 5px 5px;
   vertical-align: top;
-  font-size: 11px;
+  font-size: 14px;
 }
 table.print > tbody > tr > td + td {
   border-left: solid 1px #333;
@@ -218,12 +218,12 @@ table.print-child {
 table.print-child tbody tr td {
   padding: 0;
   padding-bottom: 10px;
-  font-size: 11px;
+  font-size: 14px;
   vertical-align: top;
 }
 table.print-child tbody tr td .field {
   margin: 0;
-  font-size: 11px;
+  font-size: 14px;
 }
 table.print-child tbody tr td .field .field {
   margin: 0;
@@ -247,7 +247,7 @@ table.generic tbody tr td {
   padding: 0 5px 0 26px;
 }
 .coberturas-block ul li {
-  font-size: 11px;
+  font-size: 14px;
 }
 table.print.table-vehiculo > tbody > tr > td {
   padding: 0;
@@ -327,6 +327,20 @@ table.print.coberturas {
   margin: 0 auto;
   background: white;
 }
+#main-payment .print-header {
+  margin-top: 20px;
+}
+#main-payment .print-header .print-logo {
+  font-size: 14px;
+  line-height: 20px;
+}
+#main-payment .print-header .print-title {
+  width: 50%;
+}
+#main-payment .print-header .print-title h1 {
+  text-align: left;
+  margin-top: -50px;
+}
 #main-payment table.generic tbody tr td.padding-descripcion.left-descripcion {
   width: 100px;
   padding: 5px;
@@ -370,4 +384,17 @@ table.print.coberturas {
 #main-payment .tabla-recibo-col2 table.print-child tbody tr td + td {
   border: none;
   padding-bottom: 5px;
+}
+#main-payment .tabla-recibo {
+  background-image: url('../images/watermark.png');
+  background-size: 80%;
+  background-position: 100px 80px;
+  background-repeat: no-repeat;
+  line-height: 20px;
+}
+#main-payment .net-premium {
+  margin-top: 30px;
+}
+#main-payment strong {
+  white-space: nowrap;
 }

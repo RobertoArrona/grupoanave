@@ -1,8 +1,24 @@
+@caption_size: 14px;
+@field_size: 14px;
 #main-payment{
   width: 21.59cm;
   height: 27.94cm;
   margin: 0 auto;
   background: white;
+  .print-header {
+    margin-top: 20px;
+    .print-logo {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .print-title {
+      width: 50%;
+      h1 {
+        text-align: left;
+        margin-top: -50px;
+      }
+    }
+  }
   table.generic tbody tr td.padding-descripcion.left-descripcion{
   width: 100px;
   padding: 5px;
@@ -46,5 +62,18 @@
   .tabla-recibo-col2 table.print-child tbody tr td + td {
     border: none;
     padding-bottom: 5px;
+  }
+  .tabla-recibo {
+    background-image: url('../images/watermark.png');
+    background-size: 80%;
+    background-position: 100px 80px;
+    background-repeat: no-repeat;
+    line-height: 20px;
+  }
+  .net-premium {
+    margin-top: 30px;
+  }
+  strong {
+    white-space: nowrap;
   }
 }
