@@ -21,10 +21,10 @@
   }
   table.generic tbody tr td.padding-descripcion.left-descripcion{
   width: 100px;
-  padding: 5px;
+  padding: 0;
   }
   table.generic tbody tr td.padding-descripcion{
-    padding: 5px;
+    padding: 0;
   }
   table.print.coberturas{
     margin-bottom: 160px;
@@ -37,11 +37,11 @@
   }
   .tabla-recibo table.print-child tbody tr td + td {
     border: none;
-    padding-bottom: 5px;
+    padding-bottom: 0;
   }
   .table-poliza table.print-child tbody tr td + td {
     border: none;
-    padding-bottom: 5px;
+    padding-bottom: 0;
   }
   .tabla-recibo tbody > tr > td + td {
     border: none;
@@ -49,31 +49,88 @@
   .tabla-recibo thead tr th {
     display: none;
   }
-  table.tabla-recibo-col1 tbody tr td .field {
-    display: inline;
-    padding-bottom: 5px;
-  }
-  .tabla-recibo-col1 .field {
-    display: inline;
-  }
-  .tabla-recibo-col1 .label-above {
-    display: inline;
-  }
-  .tabla-recibo-col2 table.print-child tbody tr td + td {
-    border: none;
-    padding-bottom: 5px;
+  table.tabla-recibo-col1 {
+    margin-top: 200px;
+    margin-bottom: 35px;
+    margin-right: 100px;
+    tbody tr td .field {
+      display: inline;
+      padding-bottom: 0;
+    } 
+    .field {
+      display: inline;
+    }
+    .label-above {
+      display: inline;
+    }
   }
   .tabla-recibo {
     background-image: url('../images/watermark.png');
     background-size: 80%;
-    background-position: 100px 80px;
+    background-position: 50px 165px;
     background-repeat: no-repeat;
     line-height: 20px;
+    margin-top: -100px
+  }
+  .total-premium {
+    float: right;
+    position: relative;
+    width: 20%;
+  }
+  .amount td {
+    white-space: nowrap;
+    position: absolute;
+    
   }
   .net-premium {
-    margin-top: 30px;
+    margin-top: 22px;
   }
   strong {
     white-space: nowrap;
+  }
+  table tr td, table tr td strong, table tr td + td {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .tabla-recibo-col2 {
+    position: relative;
+    table.print-child tbody tr td + td {
+      border: none;
+      padding-bottom: 0;
+    } 
+  }
+  .table-poliza {
+    .generic {
+      .left {
+        position: absolute;
+        left: 40px;
+        text-align: left;
+      }
+    }
+  }
+  .payment-copy  {
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 22px;
+    }
+    .number {
+      width: 1%;
+      margin-left: 30px;
+    }
+    .text {
+      width: 90%;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .number, .text {
+      float: left;
+    }
+
+    .text p {
+      margin-left: 10px;
+    }
   }
 }

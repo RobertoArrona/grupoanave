@@ -99,31 +99,30 @@
     }
   }
   function getIVA (netPre, rightPo) {
-    sum = Math.round(netPre * 100) / 100 + parseInt(rightPo);
-    return IVA = sum * 0.16;
+    sum = Math.round(netPre * 100) / 100 + Math.round(rightPo * 100) / 100;
+    IVA = sum * 0.16;
+    return Math.round(IVA * 100) / 100
   }
   
   function getTotalPremium (netPre, rightPo, IVAin) {
-    return totalPremium = Math.round(netPre * 100) / 100 + parseInt(rightPo) + Math.round(IVAin * 100) / 100;
+    return totalPremium = Math.round(netPre * 100) / 100 + Math.round(rightPo * 100) / 100 + Math.round(IVAin * 100) / 100;
   }
   function getPaymentFirst (netPre, rightPo, IVAin) {
     netPre = Math.round(netPre * 100) / 100;
-    rightPo = parseInt(rightPo);
+    rightPo = Math.round(rightPo * 100) / 100;
     IVAin = Math.round(IVAin * 100) / 100;
     var firstPayment = netPre + IVAin;
     firstPayment = firstPayment / getnumPayments();
     firstPayment = firstPayment + rightPo;
-    firstPayment = Math.round(firstPayment * 100) / 100;
-    return firstPayment;
+    return Math.round(firstPayment * 100) / 100;;
   }
   function getSubPayments (netPre, rightPo, IVAin) {
     netPre = Math.round(netPre * 100) / 100;
-    rightPo = parseInt(rightPo);
+    rightPo = Math.round(rightPo * 100) / 100;
     IVAin = Math.round(IVAin * 100) / 100;
     var SubPayments = netPre + IVAin;
     SubPayments = SubPayments / getnumPayments();
-    SubPayments = Math.round(SubPayments * 100) / 100;
-    return SubPayments;
+    return Math.round(SubPayments * 100) / 100;;
   }
   function getnumPayments () {
     var period = $('#edit-field-poliza-forma-pago-und').val();
