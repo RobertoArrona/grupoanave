@@ -1,10 +1,13 @@
 @caption_size: 14px;
 @field_size: 14px;
-#main-payment{
+#main-payment, main-payment-2 {
   width: 21.59cm;
   height: 27.94cm;
   margin: 0 auto;
   background: white;
+  #main-inner {
+    padding: 20px;
+  }
   .print-header {
     margin-top: 20px;
     .print-logo {
@@ -12,21 +15,21 @@
       line-height: 20px;
     }
     .print-title {
-      width: 50%;
+      width: 52%;
       h1 {
         text-align: left;
         margin-top: -50px;
       }
     }
   }
-  table.generic tbody tr td.padding-descripcion.left-descripcion{
+  table.generic tbody tr td.padding-descripcion.left-descripcion {
   width: 100px;
   padding: 0;
   }
-  table.generic tbody tr td.padding-descripcion{
+  table.generic tbody tr td.padding-descripcion {
     padding: 0;
   }
-  table.print.coberturas{
+  table.print.coberturas {
     margin-bottom: 160px;
   }
   .tabla-recibo {
@@ -50,7 +53,7 @@
     display: none;
   }
   table.tabla-recibo-col1 {
-    margin-top: 200px;
+    margin-top: 190px;
     margin-bottom: 35px;
     margin-right: 100px;
     tbody tr td .field {
@@ -66,11 +69,11 @@
   }
   .tabla-recibo {
     background-image: url('../images/watermark.png');
-    background-size: 80%;
-    background-position: 50px 165px;
+    background-size: 85%;
+    background-position: 45px 165px;
     background-repeat: no-repeat;
     line-height: 20px;
-    margin-top: -100px
+    margin-top: -105px
   }
   .total-premium {
     float: right;
@@ -95,21 +98,60 @@
     padding-bottom: 0;
   }
   .tabla-recibo-col2 {
-    position: relative;
     table.print-child tbody tr td + td {
       border: none;
       padding-bottom: 0;
     } 
   }
+  
   .table-poliza {
     .generic {
-      .left {
+      position: relative;
+      right: 95px;
+      .date-display-single, .to {
+        position: relative;
+      }
+      .date-display-single {
+        left: 35px;
+      }
+      .left, .folio, .payment-method, .coin {
         position: absolute;
-        left: 40px;
-        text-align: left;
+      }
+      .serie + .left {
+        left: 48px;
+      }
+      .folio {
+        right: 75px;
+      }
+      .contract-number + .left {
+        right: 5px;
+      }
+      .payment-method {
+        right: 15px;
+      }
+      .payment-method + .left {
+        right: -52px;
+      }
+      .contract-type + .left {
+        left: 125px;
+        white-space: nowrap;
+      }
+      .coin {
+        left: 70px;
+      }
+      .coin + .left {
+        right: -42px;
+      }
+      .amount {
+        left: 48px;
+        position: relative;
+      }
+      .to {
+        left: 154px;
       }
     }
   }
+  
   .payment-copy  {
     p {
       margin-top: 0;
@@ -132,5 +174,16 @@
     .text p {
       margin-left: 10px;
     }
+    .text.last {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+#main-payment-2 {
+  position: relative;
+  #main-inner {
+    position: absolute;
+    bottom: 270px;
   }
 }

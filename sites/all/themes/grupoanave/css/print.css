@@ -321,132 +321,239 @@ table.print.coberturas {
   position: relative;
   top: 135px;
 }
-#main-payment {
+#main-payment,
+main-payment-2 {
   width: 21.59cm;
   height: 27.94cm;
   margin: 0 auto;
   background: white;
 }
-#main-payment .print-header {
+#main-payment #main-inner,
+main-payment-2 #main-inner {
+  padding: 20px;
+}
+#main-payment .print-header,
+main-payment-2 .print-header {
   margin-top: 20px;
 }
-#main-payment .print-header .print-logo {
+#main-payment .print-header .print-logo,
+main-payment-2 .print-header .print-logo {
   font-size: 14px;
   line-height: 20px;
 }
-#main-payment .print-header .print-title {
-  width: 50%;
+#main-payment .print-header .print-title,
+main-payment-2 .print-header .print-title {
+  width: 52%;
 }
-#main-payment .print-header .print-title h1 {
+#main-payment .print-header .print-title h1,
+main-payment-2 .print-header .print-title h1 {
   text-align: left;
   margin-top: -50px;
 }
-#main-payment table.generic tbody tr td.padding-descripcion.left-descripcion {
+#main-payment table.generic tbody tr td.padding-descripcion.left-descripcion,
+main-payment-2 table.generic tbody tr td.padding-descripcion.left-descripcion {
   width: 100px;
   padding: 0;
 }
-#main-payment table.generic tbody tr td.padding-descripcion {
+#main-payment table.generic tbody tr td.padding-descripcion,
+main-payment-2 table.generic tbody tr td.padding-descripcion {
   padding: 0;
 }
-#main-payment table.print.coberturas {
+#main-payment table.print.coberturas,
+main-payment-2 table.print.coberturas {
   margin-bottom: 160px;
 }
-#main-payment .tabla-recibo {
+#main-payment .tabla-recibo,
+main-payment-2 .tabla-recibo {
   border: none;
 }
-#main-payment .tabla-recibo table.print-child > tbody > tr > td + td {
+#main-payment .tabla-recibo table.print-child > tbody > tr > td + td,
+main-payment-2 .tabla-recibo table.print-child > tbody > tr > td + td {
   border: none;
 }
-#main-payment .tabla-recibo table.print-child tbody tr td + td {
+#main-payment .tabla-recibo table.print-child tbody tr td + td,
+main-payment-2 .tabla-recibo table.print-child tbody tr td + td {
   border: none;
   padding-bottom: 0;
 }
-#main-payment .table-poliza table.print-child tbody tr td + td {
+#main-payment .table-poliza table.print-child tbody tr td + td,
+main-payment-2 .table-poliza table.print-child tbody tr td + td {
   border: none;
   padding-bottom: 0;
 }
-#main-payment .tabla-recibo tbody > tr > td + td {
+#main-payment .tabla-recibo tbody > tr > td + td,
+main-payment-2 .tabla-recibo tbody > tr > td + td {
   border: none;
 }
-#main-payment .tabla-recibo thead tr th {
+#main-payment .tabla-recibo thead tr th,
+main-payment-2 .tabla-recibo thead tr th {
   display: none;
 }
-#main-payment table.tabla-recibo-col1 {
-  margin-top: 200px;
+#main-payment table.tabla-recibo-col1,
+main-payment-2 table.tabla-recibo-col1 {
+  margin-top: 190px;
   margin-bottom: 35px;
   margin-right: 100px;
 }
-#main-payment table.tabla-recibo-col1 tbody tr td .field {
+#main-payment table.tabla-recibo-col1 tbody tr td .field,
+main-payment-2 table.tabla-recibo-col1 tbody tr td .field {
   display: inline;
   padding-bottom: 0;
 }
-#main-payment table.tabla-recibo-col1 .field {
+#main-payment table.tabla-recibo-col1 .field,
+main-payment-2 table.tabla-recibo-col1 .field {
   display: inline;
 }
-#main-payment table.tabla-recibo-col1 .label-above {
+#main-payment table.tabla-recibo-col1 .label-above,
+main-payment-2 table.tabla-recibo-col1 .label-above {
   display: inline;
 }
-#main-payment .tabla-recibo {
+#main-payment .tabla-recibo,
+main-payment-2 .tabla-recibo {
   background-image: url('../images/watermark.png');
-  background-size: 80%;
-  background-position: 50px 165px;
+  background-size: 85%;
+  background-position: 45px 165px;
   background-repeat: no-repeat;
   line-height: 20px;
-  margin-top: -100px;
+  margin-top: -105px;
 }
-#main-payment .total-premium {
+#main-payment .total-premium,
+main-payment-2 .total-premium {
   float: right;
   position: relative;
   width: 20%;
 }
-#main-payment .amount td {
+#main-payment .amount td,
+main-payment-2 .amount td {
   white-space: nowrap;
   position: absolute;
 }
-#main-payment .net-premium {
+#main-payment .net-premium,
+main-payment-2 .net-premium {
   margin-top: 22px;
 }
-#main-payment strong {
+#main-payment strong,
+main-payment-2 strong {
   white-space: nowrap;
 }
 #main-payment table tr td,
+main-payment-2 table tr td,
 #main-payment table tr td strong,
-#main-payment table tr td + td {
+main-payment-2 table tr td strong,
+#main-payment table tr td + td,
+main-payment-2 table tr td + td {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
   padding-bottom: 0;
 }
-#main-payment .tabla-recibo-col2 {
-  position: relative;
-}
-#main-payment .tabla-recibo-col2 table.print-child tbody tr td + td {
+#main-payment .tabla-recibo-col2 table.print-child tbody tr td + td,
+main-payment-2 .tabla-recibo-col2 table.print-child tbody tr td + td {
   border: none;
   padding-bottom: 0;
 }
-#main-payment .table-poliza .generic .left {
-  position: absolute;
-  left: 40px;
-  text-align: left;
+#main-payment .table-poliza .generic,
+main-payment-2 .table-poliza .generic {
+  position: relative;
+  right: 95px;
 }
-#main-payment .payment-copy p {
+#main-payment .table-poliza .generic .date-display-single,
+main-payment-2 .table-poliza .generic .date-display-single,
+#main-payment .table-poliza .generic .to,
+main-payment-2 .table-poliza .generic .to {
+  position: relative;
+}
+#main-payment .table-poliza .generic .date-display-single,
+main-payment-2 .table-poliza .generic .date-display-single {
+  left: 35px;
+}
+#main-payment .table-poliza .generic .left,
+main-payment-2 .table-poliza .generic .left,
+#main-payment .table-poliza .generic .folio,
+main-payment-2 .table-poliza .generic .folio,
+#main-payment .table-poliza .generic .payment-method,
+main-payment-2 .table-poliza .generic .payment-method,
+#main-payment .table-poliza .generic .coin,
+main-payment-2 .table-poliza .generic .coin {
+  position: absolute;
+}
+#main-payment .table-poliza .generic .serie + .left,
+main-payment-2 .table-poliza .generic .serie + .left {
+  left: 48px;
+}
+#main-payment .table-poliza .generic .folio,
+main-payment-2 .table-poliza .generic .folio {
+  right: 75px;
+}
+#main-payment .table-poliza .generic .contract-number + .left,
+main-payment-2 .table-poliza .generic .contract-number + .left {
+  right: 5px;
+}
+#main-payment .table-poliza .generic .payment-method,
+main-payment-2 .table-poliza .generic .payment-method {
+  right: 15px;
+}
+#main-payment .table-poliza .generic .payment-method + .left,
+main-payment-2 .table-poliza .generic .payment-method + .left {
+  right: -52px;
+}
+#main-payment .table-poliza .generic .contract-type + .left,
+main-payment-2 .table-poliza .generic .contract-type + .left {
+  left: 125px;
+  white-space: nowrap;
+}
+#main-payment .table-poliza .generic .coin,
+main-payment-2 .table-poliza .generic .coin {
+  left: 70px;
+}
+#main-payment .table-poliza .generic .coin + .left,
+main-payment-2 .table-poliza .generic .coin + .left {
+  right: -42px;
+}
+#main-payment .table-poliza .generic .amount,
+main-payment-2 .table-poliza .generic .amount {
+  left: 48px;
+  position: relative;
+}
+#main-payment .table-poliza .generic .to,
+main-payment-2 .table-poliza .generic .to {
+  left: 154px;
+}
+#main-payment .payment-copy p,
+main-payment-2 .payment-copy p {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 22px;
 }
-#main-payment .payment-copy .number {
+#main-payment .payment-copy .number,
+main-payment-2 .payment-copy .number {
   width: 1%;
   margin-left: 30px;
 }
-#main-payment .payment-copy .text {
+#main-payment .payment-copy .text,
+main-payment-2 .payment-copy .text {
   width: 90%;
   padding-left: 15px;
   padding-right: 15px;
 }
 #main-payment .payment-copy .number,
-#main-payment .payment-copy .text {
+main-payment-2 .payment-copy .number,
+#main-payment .payment-copy .text,
+main-payment-2 .payment-copy .text {
   float: left;
 }
-#main-payment .payment-copy .text p {
+#main-payment .payment-copy .text p,
+main-payment-2 .payment-copy .text p {
   margin-left: 10px;
+}
+#main-payment .payment-copy .text.last,
+main-payment-2 .payment-copy .text.last {
+  margin-bottom: 20px;
+}
+#main-payment-2 {
+  position: relative;
+}
+#main-payment-2 #main-inner {
+  position: absolute;
+  bottom: 270px;
 }
