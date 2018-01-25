@@ -1,0 +1,4 @@
+name = "Payment Receipt"
+description = "Administra el número inicial para la generación de folios de recibos de pago."
+core = "7.x"
+package = "D4ALL"
