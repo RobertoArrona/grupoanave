@@ -23,6 +23,7 @@ function payment_receipt_receipt_node_insert_recibo_contrato() {
   
   if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio) == $payment_receipt_folio) {
     payment_receipt_receipt_number_increase();
+    
   }
 } 
 	
