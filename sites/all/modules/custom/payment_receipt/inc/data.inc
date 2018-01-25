@@ -22,9 +22,21 @@ function payment_receipt_receipt_number_increase() {
   $payment_receipt_number = intval($payment_receipt_number) + 1;
 //   print_r($payment_receipt_number);exit;
   if ($payment_receipt_number > 9999999) {
-    $payment_receipt_number = 0;
+    $payment_receipt_number = 1000000;
   }
 
   variable_set('payment_receipt_receipt_number', $payment_receipt_number);
   return true;
+}
+
+function payment_receipt_receipt_number_folio_exists($payment_receipt_folio) {
+  $type = 'recibo_contrato';
+  $result = db_query("SELECT nid, title FROM {node} WHERE type = :type AND title = :title",
+  array(
+  ':type' => $type, ':title' => $payment_receipt_folio,
+  ));
+  foreach ($result as $row) {
+    return $row->title;
+  }
+  return false;
 }
