@@ -4,7 +4,8 @@
  * Returns the Contract Folio.
  * @return INT The contract folio.
  */
-function payment_receipt_receipt_number_folio_get($i = 1) {
+function payment_receipt_receipt_number_folio_get() {
+  $i = 1;
   $payment_receipt_number = (variable_get('payment_receipt_receipt_number', 0) + $i);
   $payment_receipt_number_string = sprintf("%'.07d", $payment_receipt_number);
   $payment_receipt_folio = "{$payment_receipt_number_string}";
@@ -26,12 +27,12 @@ function payment_receipt_receipt_number_increase() {
   }
 
   variable_set('payment_receipt_receipt_number', $payment_receipt_number);
-  return true;
+  return $payment_receipt_number;
 }
 
 function payment_receipt_receipt_number_folio_exists($payment_receipt_folio) {
   $type = 'recibo_contrato';
-  $result = db_query("SELECT nid, title FROM {node} WHERE type = :type AND title = :title",
+  $result = db_query("SELECT title FROM {node} WHERE type = :type AND title = :title",
   array(
   ':type' => $type, ':title' => $payment_receipt_folio,
   ));
@@ -39,4 +40,15 @@ function payment_receipt_receipt_number_folio_exists($payment_receipt_folio) {
     return $row->title;
   }
   return false;
+}
+
+function payment_receipt_receipt_new_folio() {
+  $type = 'recibo_contrato';
+  $result = db_query("SELECT MAX(title) + 1 AS newfolio FROM {node} WHERE type = :type ORDER BY title ASC;",
+  array(
+  ':type' => $type,
+  ));
+  foreach ($result as $row) {
+    return $row->newfolio;
+  }
 }

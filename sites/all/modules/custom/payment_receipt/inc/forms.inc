@@ -38,12 +38,30 @@ function payment_receipt_form_settings() {
  * Implements hook_form_FORM_ID_alter().
  */
 function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_state, $form_id) {
+
   if (!(isset($form['nid']['#value']) && !empty($form['nid']['#value']))) {
-    if (($payment_receipt_folio = payment_receipt_receipt_number_folio_get())) {
-      $form['title']['#default_value'] = $payment_receipt_folio;
+    $payment_receipt_folio = payment_receipt_receipt_number_folio_get();
+    
+    if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
+      $payment_receipt_folio = payment_receipt_receipt_new_folio();
     }
+    
+    $form['title']['#default_value'] = $payment_receipt_folio;
   }
   
   $form['title']['#attributes']['readonly'] = 'readonly';
   $form['title']['#attributes']['style']  = 'display: none;';
+  $form['#validate'][] = 'payment_receipt_node_form_validate';
+  
 }
+
+function payment_receipt_node_form_validate($form, &$form_state) {
+  
+  //poner if(empty($node ->nid))
+  $payment_receipt_folio = $form_state['values']['title'];
+  if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
+    $newfolio = payment_receipt_receipt_new_folio();
+    $form_state['values']['title'] = $newfolio;
+  }
+}
+
