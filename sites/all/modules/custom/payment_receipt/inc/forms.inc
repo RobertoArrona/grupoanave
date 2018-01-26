@@ -56,12 +56,14 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
 }
 
 function payment_receipt_node_form_validate($form, &$form_state) {
-  
-  //poner if(empty($node ->nid))
-  $payment_receipt_folio = $form_state['values']['title'];
-  if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
-    $newfolio = payment_receipt_receipt_new_folio();
-    $form_state['values']['title'] = $newfolio;
+  $node = menu_get_object();
+  if(empty($node ->nid)) {
+    $payment_receipt_folio = $form_state['values']['title'];
+    if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
+      $newfolio = payment_receipt_receipt_new_folio();
+      $form_state['values']['title'] = $newfolio;
+    }
   }
+  
 }
 
