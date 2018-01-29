@@ -9151,3 +9151,6 @@ body {
     margin-left: 0;
   }
 }
+body.in-maintenance #content {
+  width: auto !important;
+}

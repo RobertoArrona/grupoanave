@@ -21,6 +21,12 @@
       listAsociateInvoice.text
       var createInvoice = links[1];
       createInvoice.textContent = 'Crear Recibos Para Pago Referenciado';
+      var createReceipt = $('ul.action-links li:nth-child(2) a');
+      var pathname = window.location.pathname; // Returns path only
+      var split = pathname.split('/');
+      var node = split[2];
+      var createReceiptURL = '/node/add/recibo-contrato?parent_node_id=' + node;
+      createReceipt.attr('href', createReceiptURL);
     }
     
     
