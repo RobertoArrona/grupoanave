@@ -7,15 +7,21 @@
     var sum;
     var totalPremium;
     var numPayments;
-    $('.node-collection-navigation-wrapper').css("display","none");
+    
+    var nodeCollection = $('.node-collection-navigation-wrapper');
+    nodeCollection.css("display","none");
     var links = $('.action-links li > a');
     var administerLink = links[2];
-    administerLink.hidden = true;
-    var listAsociateInvoice = links[0]
-    listAsociateInvoice.textContent = 'Ver Recibos de Pago Referenciado';
-    listAsociateInvoice.text
-    var createInvoice = links[1];
-    createInvoice.textContent = 'Crear Recibos Para Pago Referenciado'; 
+    
+    if (administerLink) {
+      administerLink.hidden = true;
+   
+      var listAsociateInvoice = links[0]
+      listAsociateInvoice.textContent = 'Ver Recibos de Pago Referenciado';
+      listAsociateInvoice.text
+      var createInvoice = links[1];
+      createInvoice.textContent = 'Crear Recibos Para Pago Referenciado';
+    }
     
     
     if (selector.length > 0) {
