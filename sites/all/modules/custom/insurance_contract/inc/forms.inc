@@ -79,8 +79,6 @@ function insurance_contract_form_poliza_node_validate(&$form, &$form_state) {
 }
 
 function insurance_contract_form_recibo_contrato_node_form_alter(&$form, &$form_state, $form_id) {
- //$form attached JS
-  drupal_add_js(drupal_get_path('module', 'insurance_contract') . '/js/contratos.pagos.js');
 
   if ((isset($form['nid']['#value']) && !empty($form['nid']['#value']))) {
     $child_nid = $form['nid']['#value'];
