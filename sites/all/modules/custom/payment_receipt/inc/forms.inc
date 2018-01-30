@@ -115,6 +115,7 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
     $form['field_serie'][LANGUAGE_NONE][0]['value']['#default_value'] = "1$serie";
     $form['field_importe_con_letra'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value']));
     $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value2'] = getCoverage($payments, $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value']);
+    $form['field_vencimiento'][LANGUAGE_NONE][0]['#default_value']['value'] = getGracePeriod($parent_data->field_periodo_de_gracia[LANGUAGE_NONE][0]['value']);
   } else {
     print ("<h1>Es pago subsecuente</h1>");
     $form['field_pago_subsecuente'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value'];
@@ -122,6 +123,7 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
     $form['field_serie'][LANGUAGE_NONE][0]['value']['#default_value'] = $receiptSerie;
     $form['field_importe_con_letra'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value']));
     $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value2'] = getCoverage($payments, $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value']);
+    $form['field_vencimiento'][LANGUAGE_NONE][0]['#default_value']['value'] = getGracePeriod($parent_data->field_periodo_de_gracia[LANGUAGE_NONE][0]['value']);
   }
    // add fields from poliza to recibo
 }
@@ -146,6 +148,12 @@ function getSerie($payment_type){
   if ($payment_type == 'anual'){
     return $serie = '/1';
   }
+}
+
+// Get grace period 
+function getGracePeriod($grace_day) {
+ $due_date = date('Y-m-d', strtotime("$due_date +$grace_day day" )); 
+ return $due_date;
 }
 
 // get series data for payments
@@ -355,24 +363,5 @@ function payment_receipt_node_form_validate($form, &$form_state) {
       
       $form_state['values']['title'] = $newfolio;
     }
-  }
-}
-
-/**
- * Implements hook_form_alter().
- */
-function payment_receipt_setting_form_alter(&$form, &$form_state, $form_id) {
-  switch ($form_id) {
-    case 'payment-receipt-form-settings':
-      $payment_receipt_folio = $form_state['values']['title'];
-      print_r('hola');exit;
-/*
-      if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
-        $newfolio = payment_receipt_receipt_new_folio();
-        
-        $form_state['values']['title'] = $newfolio;
-      }
-*/
-      break;
   }
 }
