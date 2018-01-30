@@ -6,58 +6,7 @@
  */
 //print_r($elements['field_fecha_de_cancelacion']['#object']->field_pago_fraccionado[LANGUAGE_NONE][0]['value']); exit;
 //print_r($elements['field_poliza_tipo']); exit;
-$agente_uid = $elements['author']['#object']->uid;
-$agente = user_load($agente_uid);
-$agente_nombre = '';
-if (isset($agente->field_first_name[LANGUAGE_NONE][0]['safe_value'])) {
-  $agente_nombre = $agente->field_first_name[LANGUAGE_NONE][0]['safe_value'];
-}
-if (isset($agente->field_last_name[LANGUAGE_NONE][0]['safe_value'])){
-  $agente_nombre = $agente_nombre . ' ' . $agente->field_last_name[LANGUAGE_NONE][0]['safe_value'];  
-}
-if ( isset($elements['field_asegurado_domicilio']['#items'][0]) ) {
-  $address = $elements['field_asegurado_domicilio']['#items'][0]; 
-}
-if (isset($elements['field_poliza_forma_pago'])) {
-  $plazo = $elements['field_poliza_forma_pago']['#items'][0]['value'];
-  $pagos_sub_label = 'Recibos Subs:';
-  $label = ':(0)';
-  if ($plazo != 'anual') {
-    switch ($plazo) {
-      case 'mensual':
-        $label = ':(11)';
-        break;
-        
-      case '3meses':
-        $label = ':(2)';
-        break;
-      
-      case 'trimestral':
-        $label = ':(3)';
-        break;
-        
-      case 'cuatrimestral':
-        $label = ':(2)';
-        break;
-      
-      case 'semestral':
-        $label = ':(1)';
-        break;
-    }
-  }
-  $pagos_sub_label = 'Recibos Subs' . $label;
-}
 
-$termid = $agente->field_estado[LANGUAGE_NONE]['0']['tid'];
-if(empty($termid)) {
-	return false;
-  }else{
-    $term = taxonomy_term_load($termid);
-		$termname = $term -> name;
-  }
-
-$agent_id = $agente->field_agente_clave[LANGUAGE_NONE]['0']['value'];
-$office  = "$termname-$agent_id";
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 

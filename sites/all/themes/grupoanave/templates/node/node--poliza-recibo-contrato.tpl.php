@@ -1,99 +1,131 @@
 <?php
-
+  print_r($node);
 /**
  * @file
- * Display Suite 1 column template.
+ * Default theme implementation to display a node.
+ *
+ * Available variables:
+ * - $title: the (sanitized) title of the node.
+ * - $content: An array of node items. Use render($content) to print them all,
+ *   or print a subset such as render($content['field_example']). Use
+ *   hide($content['field_example']) to temporarily suppress the printing of a
+ *   given element.
+ * - $user_picture: The node author's picture from user-picture.tpl.php.
+ * - $date: Formatted creation date. Preprocess functions can reformat it by
+ *   calling format_date() with the desired parameters on the $created variable.
+ * - $name: Themed username of node author output from theme_username().
+ * - $node_url: Direct URL of the current node.
+ * - $display_submitted: Whether submission information should be displayed.
+ * - $submitted: Submission information created from $name and $date during
+ *   template_preprocess_node().
+ * - $classes: String of classes that can be used to style contextually through
+ *   CSS. It can be manipulated through the variable $classes_array from
+ *   preprocess functions. The default values can be one or more of the
+ *   following:
+ *   - node: The current template type; for example, "theming hook".
+ *   - node-[type]: The current node type. For example, if the node is a
+ *     "Blog entry" it would result in "node-blog". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node-teaser: Nodes in teaser form.
+ *   - node-preview: Nodes in preview mode.
+ *   The following are controlled through the node publishing options.
+ *   - node-promoted: Nodes promoted to the front page.
+ *   - node-sticky: Nodes ordered above other non-sticky nodes in teaser
+ *     listings.
+ *   - node-unpublished: Unpublished nodes visible only to administrators.
+ * - $title_prefix (array): An array containing additional output populated by
+ *   modules, intended to be displayed in front of the main title tag that
+ *   appears in the template.
+ * - $title_suffix (array): An array containing additional output populated by
+ *   modules, intended to be displayed after the main title tag that appears in
+ *   the template.
+ *
+ * Other variables:
+ * - $node: Full node object. Contains data that may not be safe.
+ * - $type: Node type; for example, story, page, blog, etc.
+ * - $comment_count: Number of comments attached to the node.
+ * - $uid: User ID of the node author.
+ * - $created: Time the node was published formatted in Unix timestamp.
+ * - $classes_array: Array of html class attribute values. It is flattened
+ *   into a string within the variable $classes.
+ * - $zebra: Outputs either "even" or "odd". Useful for zebra striping in
+ *   teaser listings.
+ * - $id: Position of the node. Increments each time it's output.
+ *
+ * Node status variables:
+ * - $view_mode: View mode; for example, "full", "teaser".
+ * - $teaser: Flag for the teaser state (shortcut for $view_mode == 'teaser').
+ * - $page: Flag for the full page state.
+ * - $promote: Flag for front page promotion state.
+ * - $sticky: Flags for sticky post setting.
+ * - $status: Flag for published status.
+ * - $comment: State of comment settings for the node.
+ * - $readmore: Flags true if the teaser content of the node cannot hold the
+ *   main body content.
+ * - $is_front: Flags true when presented in the front page.
+ * - $logged_in: Flags true when the current user is a logged-in member.
+ * - $is_admin: Flags true when the current user is an administrator.
+ *
+ * Field variables: for each field instance attached to the node a corresponding
+ * variable is defined; for example, $node->body becomes $body. When needing to
+ * access a field's raw values, developers/themers are strongly encouraged to
+ * use these variables. Otherwise they will have to explicitly specify the
+ * desired field language; for example, $node->body['en'], thus overriding any
+ * language negotiation rule that was previously applied.
+ *
+ * @see template_preprocess()
+ * @see template_preprocess_node()
+ * @see template_process()
+ *
+ * @ingroup themeable
  */
-//print_r($elements['field_fecha_de_cancelacion']['#object']->field_pago_fraccionado[LANGUAGE_NONE][0]['value']); exit;
-//print_r($elements['field_poliza_tipo']); exit;
-$agente_uid = $elements['author']['#object']->uid;
-$agente = user_load($agente_uid);
-$agente_nombre = '';
-if (isset($agente->field_first_name[LANGUAGE_NONE][0]['safe_value'])) {
-  $agente_nombre = $agente->field_first_name[LANGUAGE_NONE][0]['safe_value'];
-}
-if (isset($agente->field_last_name[LANGUAGE_NONE][0]['safe_value'])){
-  $agente_nombre = $agente_nombre . ' ' . $agente->field_last_name[LANGUAGE_NONE][0]['safe_value'];  
-}
-if ( isset($elements['field_asegurado_domicilio']['#items'][0]) ) {
-  $address = $elements['field_asegurado_domicilio']['#items'][0]; 
-}
-if (isset($elements['field_poliza_forma_pago'])) {
-  $plazo = $elements['field_poliza_forma_pago']['#items'][0]['value'];
-  $pagos_sub_label = 'Recibos Subs:';
-  $label = ':(0)';
-  if ($plazo != 'anual') {
-    switch ($plazo) {
-      case 'mensual':
-        $label = ':(11)';
-        break;
-        
-      case '3meses':
-        $label = ':(2)';
-        break;
-      
-      case 'trimestral':
-        $label = ':(3)';
-        break;
-        
-      case 'cuatrimestral':
-        $label = ':(2)';
-        break;
-      
-      case 'semestral':
-        $label = ':(1)';
-        break;
-    }
-  }
-  $pagos_sub_label = 'Recibos Subs' . $label;
-}
-
-$termid = $agente->field_estado[LANGUAGE_NONE]['0']['tid'];
-if(empty($termid)) {
-	return false;
-  }else{
-    $term = taxonomy_term_load($termid);
-		$termname = $term -> name;
-  }
-
-$agent_id = $agente->field_agente_clave[LANGUAGE_NONE]['0']['value'];
-$office  = "$termname-$agent_id";
 ?>
-<<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
+<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
-  <?php if (isset($title_suffix['contextual_links'])): ?>
-  <?php print render($title_suffix['contextual_links']); ?>
+  <?php print $user_picture; ?>
+
+  <?php print render($title_prefix); ?>
+  <?php if (!$page): ?>
+    <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+  <?php endif; ?>
+  <?php print render($title_suffix); ?>
+
+  <?php if ($display_submitted): ?>
+    <div class="submitted">
+      <?php print $submitted; ?>
+    </div>
   <?php endif; ?>
 
-  <table class="tabla-recibo">
+  <div class="content"<?php print $content_attributes; ?>>
+      <table class="tabla-recibo">
     
     <tbody><tr>
       <td class="">
         <table class="print-child tabla-recibo-col1">
           <tr>
             <td>
-              <div class="barcode"></div>
+              <div class="barcode"><?php print render($node->field_codigo_de_barras[LANGUAGE_NONE][0]['safe_value']); ?></div>
             </td>
           </tr>
           <tr>
-            <td> <strong>Fecha de expedicion:</strong> <?php print render($elements['field_poliza_emision']);?> 
+            <td> <strong>Fecha de expedicion:</strong> <?php print render($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);?> 
             </td>
           </tr>
           
           <tr>
             <td>
               <strong>Solicitante de contrato:</strong>
-              <?php if(isset($elements['field_asegurado_nombre'])):?>
-              <?php print render($elements['field_asegurado_nombre']);?>
-              <?php endif;?>
+              <?php /* if(isset($elements['field_asegurado_nombre'])): */?>
+              <?php print render($node->field_asegurado_nombre[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
             </td>
 
           <tr>
             <td>
-              <?php if(isset($address['thoroughfare'])):?>
+              <?php /* if(isset($address['thoroughfare'])): */?>
               <div class="label-above">Calle y No:</div>
-              <?php print $address['thoroughfare'];?>
-              <?php endif;?>
+              <?php print render($node->thoroughfare);?>
+              <?php /* endif; */?>
             </td>
           </tr>
 
@@ -126,7 +158,7 @@ $office  = "$termname-$agent_id";
           <tr class="last amount">
             <td>
               <div class="label-above"><strong>Importe con Letra:</strong> </div>
-                (MIL SETECIENTOS CUARENTA PESOS 00/100 M.N.)
+                <?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>
             </td>
           </tr>
           
@@ -140,7 +172,7 @@ $office  = "$termname-$agent_id";
 <!--                 <?php if(isset($office)):?> -->
                 <table class="generic"><tr>
                   <td class="serie"><strong>Serie:</strong></td>
-                  <td class="left">1/1</td>
+                  <td class="left"><?php print render($node->field_serie[LANGUAGE_NONE][0]['value']); ?></td>
                 </tr></table>
 <!--                 <?php endif;?> -->
               </td>
@@ -555,3 +587,9 @@ $office  = "$termname-$agent_id";
         </table>
     </td></tr></tbody>
   </table>
+
+  <?php print render($content['links']); ?>
+
+  <?php print render($content['comments']); ?>
+
+</div>
