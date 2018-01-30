@@ -367,6 +367,15 @@ table.print.coberturas {
 #main-payment-2 .tabla-recibo {
   border: none;
 }
+#main-payment .tabla-recibo .barcode,
+#main-payment-2 .tabla-recibo .barcode {
+  position: relative;
+  margin-top: -80px;
+}
+#main-payment .tabla-recibo td.date-field,
+#main-payment-2 .tabla-recibo td.date-field {
+  width: 100%;
+}
 #main-payment .tabla-recibo table.print-child > tbody > tr > td + td,
 #main-payment-2 .tabla-recibo table.print-child > tbody > tr > td + td {
   border: none;
@@ -524,6 +533,7 @@ table.print.coberturas {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 22px;
+  font-size: 14px;
 }
 #main-payment .payment-copy .number,
 #main-payment-2 .payment-copy .number {
@@ -551,9 +561,5 @@ table.print.coberturas {
   margin-bottom: 20px;
 }
 #main-payment-2 {
-  position: relative;
-}
-#main-payment-2 #main-inner {
-  position: absolute;
-  bottom: 270px;
+  display: none;
 }

@@ -82,7 +82,7 @@
 
 <?php $parent_data = node_collection_api_get_parent_node_instance($node ->nid);
 $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', array('absolute'=>TRUE)); 
-//  print_r($content['field_codigo_de_barras'][0]['#svg']); exit;
+//  print_r($node); exit;
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
@@ -90,7 +90,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
 
   <?php print render($title_prefix); ?>
   <?php if (!$page): ?>
-    <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+<!--     <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2> -->
   <?php endif; ?>
   <?php print render($title_suffix); ?>
 
@@ -128,7 +128,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
             <td>
               <?php /* if(): */?>
               <div class="label-above">Calle y No:</div>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0][thoroughfare]);?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare']);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -137,7 +137,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
             <td>
               <?php /* if(): */?>
               <div class="label-above">Colonia:</div>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0][premise]);?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['premise']);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -145,7 +145,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
             <td>
               <?php /* if(isset()): */?>
               <div class="label-above">Municipio:</div>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0][locality]);?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality']);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -154,7 +154,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
             <td>
               <?php /* if(isset()): */?>
               <div class="label-above">C.P:</div>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0][postal_code]);?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code']);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -173,54 +173,33 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
           <tbody>
 	          <tr>
 	            <td>
-<!--                 <?php if(isset($office)):?> -->
+<!--                 <?php ?> -->
                 <table class="generic"><tr>
                   <td class="serie"><strong>Serie:</strong></td>
                   <td class="left"><?php print render($node->field_serie[LANGUAGE_NONE][0]['value']); ?></td>
                 </tr></table>
-<!--                 <?php endif;?> -->
+<!--                 <?php ?> -->
               </td>
               <td>
-<!--                 <?php if(isset($office)):?> -->
+<!--                 <?php ?> -->
                 <table class="generic"><tr>
                   <td><strong class="folio">Folio del Recibo:</strong></td>
                   <td class="left"><?php print render($node->title); ?></td>
                 </tr></table>
-<!--                 <?php endif;?> -->
+<!--                 <?php ?> -->
               </td>
-            
-<!--
-            <tr>
-              <td>
-                <?php if(isset($elements['field_poliza_emision'])):?>
-                <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_emision']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_emision']);?></td>
-                </tr></table>
-                <?php endif;?>
-              </td>
-              <td>
-                <?php if(isset($elements['field_poliza_emision'])):?>
-                <table class="generic"><tr>
-                  <td><strong></strong></td>
-                  <td align="right"></td>
-                </tr></table>
-                <?php endif;?>
-              </td>
-            </tr>
--->
-            
+
             <tr>
               <td>
                 <?php /* if(isset()): */?>
                   <table class="generic">
                     <tr>
                       <td><strong>Vencimiento del Recibo:</strong></td>
-                      <td class="left"><?php print render($node->field_vencimiento[LANGUAGE_NONE][0]['value']); ?></td>
+                      <td class="left date-field"><?php print render($node->field_vencimiento[LANGUAGE_NONE][0]['value']); ?></td>
                     </tr>
                     <tr>
                       <td><strong>Periodo de cobertura del:</strong></td>
-                      <td class="left"><?php print render($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);?></td>
+                      <td class="left date-field"><?php print render($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);?></td>
                     </tr>
                   </table>
                 <?php/*  endif; */?>
@@ -232,7 +211,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
                 <?php /* if(isset()): */?>
                 <table class="generic"><tr>
                   <td class="to"><strong>al:</strong></td>
-                  <td class="left"><?php print render($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);?></td>
+                  <td class="left date-field"><?php print render($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);?></td>
                 </tr></table>
                 <?php /* endif; */?>
               </td>
@@ -309,7 +288,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
               <td>
                 <?php /* if(isset()): */?>
                 <table class="generic"><tr>
-                  <td><strong><!-- <?php print $elements['field_poliza_prima_total']['#title'];?> -->Prima Total: </strong></td>
+                  <td><strong>Prima Total: </strong></td>
                   <td class="amount">$ <?php print render($parent_data->field_poliza_prima_total[LANGUAGE_NONE][0]['value']);?></td>
                 </tr></table>
                 <?php /* endif; */?>
@@ -371,229 +350,250 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
       </div>
     </div>
   </div>
-  
-  <table class="tabla-recibo">
+  <div id="main-payment-2">
+
+    <div id="">
+        <div id="">
+          <div class="print-header">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="print-logo">
+                    <strong>MN Global Protec A.C.</strong><br>
+                    Calzada Independencia  Norte No. 1131, Colonia <br>
+                    Independencia, Guadalajara, Jalisco, Mexico<br>
+                    C.P. 44290 <br>
+                  </td>
+                  <td class="print-title">
+                    <h1>CONCENTRACION EMPRESARIAL DE PAGO PARA USO EXCLUSIVO DEL BANCO</h1>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
     
-    <tbody><tr>
-      <td class="">
-        <table class="print-child tabla-recibo-col1">
-          <tr>
-            <td>
-              <div class="barcode">
-               <?php print render($content['field_codigo_de_barras'][0]['#svg']);  ?>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td> <strong>Fecha de expedicion:</strong> <?php print render($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);?> 
-            </td>
-          </tr>
-          
-          <tr>
-            <td>
-              <strong>Solicitante de contrato:</strong>
-              <?php /* if(isset()): */?>
-              <?php print render($parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value']);?>
-              <?php /* endif; */?>
-            </td>
-
-          <tr>
-            <td>
-              <?php/*  if(isset()): */?>
-              <div class="label-above">Calle y No:</div>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0][thoroughfare]);?>
-              <?php /* endif; */?>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <?php /* if(isset()): */?>
-              <div class="label-above">Colonia:</div>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0][premise]);?>
-              <?php /* endif; */?>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <?php /* if(isset()): */?>
-              <div class="label-above">Municipio:</div>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0][locality]);?>
-              <?php /* endif; */?>
-            </td>
-          </tr>
-          
-          <tr>
-            <td>
-              <?php /* if(isset()): */?>
-              <div class="label-above">C.P:</div>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0][postal_code]);?>
-              <?php/*  endif; */?>
-            </td>
-          </tr>
-
-          <tr class="last amount">
-            <td>
-              <div class="label-above"><strong>Importe con Letra:</strong> </div>
-                <?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>
-            </td>
-          </tr>
-          
-        </table>
-      </td>
-      <td class="table-poliza">
-        <table class="print-child tabla-recibo-col-2">
-          <tbody>
-	          <tr>
-	            <td>
-                <?php /* if(isset()): */ ?>
-                <table class="generic"><tr>
-                  <td class="serie"><strong>Serie:</strong></td>
-                  <td class="left"><?php print render($node->field_serie[LANGUAGE_NONE][0]['value']); ?></td>
-                </tr></table>
-                <?php /* endif; */?>
-              </td>
-              <td>
-                <?php /* if(isset()): */?>
-                <table class="generic"><tr>
-                  <td><strong class="folio">Folio del Recibo:</strong></td>
-                  <td class="left"><?php print render($node->title); ?></td>
-                </tr></table>
-                <?php /* endif; */?>
-              </td>
-            
-<!--
+    <table class="tabla-recibo">
+      
+      <tbody><tr>
+        <td class="">
+          <table class="print-child tabla-recibo-col1">
             <tr>
               <td>
-                <?php if(isset($elements['field_poliza_emision'])):?>
-                <table class="generic"><tr>
-                  <td><strong><?php print $elements['field_poliza_emision']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_emision']);?></td>
-                </tr></table>
-                <?php endif;?>
-              </td>
-              <td>
-                <?php if(isset($elements['field_poliza_emision'])):?>
-                <table class="generic"><tr>
-                  <td><strong></strong></td>
-                  <td align="right"></td>
-                </tr></table>
-                <?php endif;?>
+                <div class="barcode">
+                 <?php print render($content['field_codigo_de_barras'][0]['#svg']);  ?>
+                </div>
               </td>
             </tr>
--->
-            
             <tr>
-              <td>
-                <?php /* if(isset()): */?>
-                  <table class="generic">
-                    <tr>
-                      <td><strong>Vencimiento del Recibo:</strong></td>
-                      <td class="left"><?php print render($node->field_vencimiento[LANGUAGE_NONE][0]['value']);?></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Periodo de cobertura del:</strong></td>
-                      <td class="left"><?php print render($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);?></td>
-                    </tr>
-                  </table>
-                <?php /* endif; */?>
+              <td> <strong>Fecha de expedicion:</strong> <?php print render($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);?> 
               </td>
             </tr>
             
             <tr>
               <td>
+                <strong>Solicitante de contrato:</strong>
                 <?php /* if(isset()): */?>
-                <table class="generic"><tr>
-                  <td class="to"><strong>al:</strong></td>
-                  <td class="left"><?php print render($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);?></td>
-                </tr></table>
+                <?php print render($parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value']);?>
                 <?php /* endif; */?>
               </td>
-            </tr>
-            <tr>
-               <td>
-                <?php /* if(isset()): */?>
-                <table class="generic"><tr>
-                  <td class="contract-number"><strong>Contrato No:</strong></td>
-                  <td class="left"><?php print render($parent_data->title);?></td>
-                </tr></table>
-                <?php /* endif; */?>
-              </td> 
-              <td>
-                <?php /* if(isset()): */?>
-                <table class="generic"><tr>
-                  <td class="payment-method"><strong>Forma Pago:</strong></td>
-                  <td class="left"><?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?></td>
-                </tr></table>
-                <?php /* endif; */?>
-              </td>
-            </tr>
-            
-            <tr>
-              <td>
-                <table class="generic"><tr>
-                  <td class="contract-type"><strong>Tipo de Contrato:</strong></td>
-                  <td class="left"><?php print render($parent_data->field_poliza_tipo[LANGUAGE_NONE][0]['value']);?></td>
-                </tr></table>
-              </td> 
-              <td>
-                <?php /* if(isset()): */?>
-                <table class="generic"><tr>
-                  <td class="coin"><strong>Moneda:</strong></td>
-                  <td class="left"><?php print render($parent_data->field_poliza_moneda[LANGUAGE_NONE][0]['value']);?></td>
-                </tr></table>
-                <?php /* endif; */?>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                <?php /* if(isset()): */?>
-                <table class="generic net-premium"><tr>
-                  <td><strong>Prima Neta: </strong></td>
-                  <td class="amount">$<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?></td>
-                </tr></table>
-                <?php /* endif; */?>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                <table class="generic"><tr>
-                  <td><strong>Emision </strong></td>
-                  <td class="amount">$0.00</td>
-                </tr></table>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                <?php /* if(isset()): */?>
-                <table class="generic"><tr>
-                  <td><strong>I.V.A:</strong></td>
-                  <td class="amount">$ <?php print render($parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value']);?></td>
-                </tr></table>
-                <?php /* endif; */?>
-              </td>
-            </tr>
-            
-            <tr>
-              <td></td>
-              <td>
-                <?php /* if(): */?>
-                <table class="generic"><tr>
-                  <td><strong>Prima Total: </strong></td>
-                  <td class="amount">$ <?php print render($parent_data->field_poliza_prima_total[LANGUAGE_NONE][0]['value']);?></td>
-                </tr></table>
-                <?php /* endif; */?>
-              </td>
-            </tr>
-
   
-        </table>
-    </td></tr></tbody>
-  </table>
-
+            <tr>
+              <td>
+                <?php/*  if(isset()): */?>
+                <div class="label-above">Calle y No:</div>
+                <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare']);?>
+                <?php /* endif; */?>
+              </td>
+            </tr>
+  
+            <tr>
+              <td>
+                <?php /* if(isset()): */?>
+                <div class="label-above">Colonia:</div>
+                <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['premise']);?>
+                <?php /* endif; */?>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <?php /* if(isset()): */?>
+                <div class="label-above">Municipio:</div>
+                <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality']);?>
+                <?php /* endif; */?>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>
+                <?php /* if(isset()): */?>
+                <div class="label-above">C.P:</div>
+                <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code']);?>
+                <?php/*  endif; */?>
+              </td>
+            </tr>
+  
+            <tr class="last amount">
+              <td>
+                <div class="label-above"><strong>Importe con Letra:</strong> </div>
+                  <?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+        <td class="table-poliza">
+          <table class="print-child tabla-recibo-col-2">
+            <tbody>
+  	          <tr>
+  	            <td>
+                  <?php /* if(isset()): */ ?>
+                  <table class="generic"><tr>
+                    <td class="serie"><strong>Serie:</strong></td>
+                    <td class="left"><?php print render($node->field_serie[LANGUAGE_NONE][0]['value']); ?> </td>
+                  </tr></table>
+                  <?php /* endif; */?>
+                </td>
+                <td>
+                  <?php /* if(isset()): */?>
+                  <table class="generic"><tr>
+                    <td><strong class="folio">Folio del Recibo:</strong></td>
+                    <td class="left"><?php print render($node->title); ?></td>
+                  </tr></table>
+                  <?php /* endif; */?>
+                </td>
+              
+  <!--
+              <tr>
+                <td>
+                  <?php if(isset($elements['field_poliza_emision'])):?>
+                  <table class="generic"><tr>
+                    <td><strong><?php print $elements['field_poliza_emision']['#title'];?>:</strong></td>
+                    <td align="right"><?php print render($elements['field_poliza_emision']);?></td>
+                  </tr></table>
+                  <?php endif;?>
+                </td>
+                <td>
+                  <?php if(isset($elements['field_poliza_emision'])):?>
+                  <table class="generic"><tr>
+                    <td><strong></strong></td>
+                    <td align="right"></td>
+                  </tr></table>
+                  <?php endif;?>
+                </td>
+              </tr>
+  -->
+              
+              <tr>
+                <td>
+                  <?php /* if(isset()): */?>
+                    <table class="generic">
+                      <tr>
+                        <td><strong>Vencimiento del Recibo:</strong></td>
+                        <td class="left date-field"><?php print render($node->field_vencimiento[LANGUAGE_NONE][0]['value']);?></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Periodo de cobertura del:</strong></td>
+                        <td class="left date-field"><?php print render($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);?></td>
+                      </tr>
+                    </table>
+                  <?php /* endif; */?>
+                </td>
+              </tr>
+              
+              <tr>
+                <td>
+                  <?php /* if(isset()): */?>
+                  <table class="generic"><tr>
+                    <td class="to"><strong>al:</strong></td>
+                    <td class="left date-field"><?php print render($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);?></td>
+                  </tr></table>
+                  <?php /* endif; */?>
+                </td>
+              </tr>
+              <tr>
+                 <td>
+                  <?php /* if(isset()): */?>
+                  <table class="generic"><tr>
+                    <td class="contract-number"><strong>Contrato No:</strong></td>
+                    <td class="left"><?php print render($parent_data->title);?></td>
+                  </tr></table>
+                  <?php /* endif; */?>
+                </td> 
+                <td>
+                  <?php /* if(isset()): */?>
+                  <table class="generic"><tr>
+                    <td class="payment-method"><strong>Forma Pago:</strong></td>
+                    <td class="left"><?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?></td>
+                  </tr></table>
+                  <?php /* endif; */?>
+                </td>
+              </tr>
+              
+              <tr>
+                <td>
+                  <table class="generic"><tr>
+                    <td class="contract-type"><strong>Tipo de Contrato:</strong></td>
+                    <td class="left"><?php print render($parent_data->field_poliza_tipo[LANGUAGE_NONE][0]['value']);?></td>
+                  </tr></table>
+                </td> 
+                <td>
+                  <?php /* if(isset()): */?>
+                  <table class="generic"><tr>
+                    <td class="coin"><strong>Moneda:</strong></td>
+                    <td class="left"><?php print render($parent_data->field_poliza_moneda[LANGUAGE_NONE][0]['value']);?></td>
+                  </tr></table>
+                  <?php /* endif; */?>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <?php /* if(isset()): */?>
+                  <table class="generic net-premium"><tr>
+                    <td><strong>Prima Neta: </strong></td>
+                    <td class="amount">$<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?></td>
+                  </tr></table>
+                  <?php /* endif; */?>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <table class="generic"><tr>
+                    <td><strong>Emision </strong></td>
+                    <td class="amount">$0.00</td>
+                  </tr></table>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <?php /* if(isset()): */?>
+                  <table class="generic"><tr>
+                    <td><strong>I.V.A:</strong></td>
+                    <td class="amount">$ <?php print render($parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value']);?></td>
+                  </tr></table>
+                  <?php /* endif; */?>
+                </td>
+              </tr>
+              
+              <tr>
+                <td></td>
+                <td>
+                  <?php /* if(): */?>
+                  <table class="generic"><tr>
+                    <td><strong>Prima Total: </strong></td>
+                    <td class="amount">$ <?php print render($parent_data->field_poliza_prima_total[LANGUAGE_NONE][0]['value']);?></td>
+                  </tr></table>
+                  <?php /* endif; */?>
+                </td>
+              </tr>
+  
+    
+          </table>
+      </td></tr></tbody>
+    </table>
+  </div>
   <?php print render($content['links']); ?>
 
   <?php print render($content['comments']); ?>

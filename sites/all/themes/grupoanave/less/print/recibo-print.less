@@ -34,6 +34,13 @@
   }
   .tabla-recibo {
     border: none;
+    .barcode {
+      position: relative;
+      margin-top: -80px;
+    }
+    td.date-field {
+      width: 100%;
+    }
   }
   .tabla-recibo table.print-child > tbody > tr > td + td {
     border: none;
@@ -157,6 +164,7 @@
       margin-top: 0;
       margin-bottom: 0;
       line-height: 22px;
+      font-size: 14px;
     }
     .number {
       width: 1%;
@@ -181,9 +189,5 @@
 }
 
 #main-payment-2 {
-  position: relative;
-  #main-inner {
-    position: absolute;
-    bottom: 270px;
-  }
+  display: none;
 }
