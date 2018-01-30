@@ -167,4 +167,7 @@
       return numPayments = 1;
     }
   }
+  function hideCreateReceiptOption() {
+    $('.action-links').css('display', 'none');
+  }
 })(jQuery);
