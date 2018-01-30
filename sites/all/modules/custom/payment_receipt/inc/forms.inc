@@ -49,6 +49,10 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
     }
     
     $form['title']['#default_value'] = $payment_receipt_folio;
+    
+    $actionString = $form['#action'];
+    $split = preg_split('[=]', $actionString);
+    $parent_node_id = $split[1];
   }
   
   $form['title']['#attributes']['readonly'] = 'readonly';
@@ -62,14 +66,12 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
    
   // ---- Get parent data when a invoice is created. ---
   // get string that contains parent node id  
-  $actionString = $form['#action'];
-  $split = preg_split('[=]', $actionString);
-  $parent_node_id = $split[1];
+  
+//   print_r($form);exit;
   $child_nid = $form['nid']['#value'];
   // get parent nid using string replace and then load the parent data
   $parent_nid = str_replace('/node/add/recibo-contrato?parent_node_id=','',$actionString);
   $parent_data = node_load($parent_node_id);
-//   print_r($parent_node_id);exit;
   
   $nids_childs = node_collection_api_get_child_node_instances($parent_node_id);
   // get serie from payment type
@@ -91,7 +93,7 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
     print_r("<h1>Es el primer pago</h1>");
     $form['field_primer_pago'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value'];
     $form['field_serie'][LANGUAGE_NONE][0]['value']['#default_value'] = "1$serie";
-    $form['field_importe_letra'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value']));
+    $form['field_importe_con_letra'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value']));
     $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value2'] = getCoverage($payments, $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value']);
   } else {
     print_r("<h1>Es pago subsecuente</h1>");
