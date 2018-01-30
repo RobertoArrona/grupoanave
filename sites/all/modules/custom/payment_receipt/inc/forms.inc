@@ -15,11 +15,6 @@ function payment_receipt_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
- * Global variable for node).
- */
-$node = menu_get_object();
-
-/**
  * Form builder; The contract number form.
  *
  * @ingroup forms
@@ -341,6 +336,7 @@ function num2letras($num, $fem = false, $dec = true) {
 }
 
 function payment_receipt_node_form_validate($form, &$form_state) {
+  $node = menu_get_object();
   if(empty($node ->nid)) {
     $payment_receipt_folio = $form_state['values']['title'];
     if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
