@@ -21,6 +21,17 @@ function payment_receipt_form_alter(&$form, &$form_state, $form_id) {
  * @see system_settings_form()
  */
 function payment_receipt_form_settings() {
+  
+  if (empty(variable_get('payment_receipt_receipt_number'))) {
+    variable_set('payment_receipt_receipt_number', '1000001');
+  } else if (!empty(variable_get('payment_receipt_receipt_number'))) {
+    $payment_receipt_folio = variable_get('payment_receipt_receipt_number');
+    if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
+      $newfolio = payment_receipt_receipt_new_folio();
+      variable_set('payment_receipt_receipt_number', $newfolio);
+    }
+  }
+  
   $form['contract_information'] = array(
     '#type' => 'fieldset',
     '#title' => t('Contract'),
@@ -28,7 +39,7 @@ function payment_receipt_form_settings() {
   $form['payment_receipt_information']['payment_receipt_receipt_number'] = array(
     '#type' => 'textfield',
     '#title' => t('Number'),
-    '#default_value' => variable_get('payment_receipt_receipt_number', '1000001'),
+    '#default_value' => variable_get('payment_receipt_receipt_number'),
     '#required' => TRUE,
   );
 
@@ -344,5 +355,24 @@ function payment_receipt_node_form_validate($form, &$form_state) {
       
       $form_state['values']['title'] = $newfolio;
     }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function payment_receipt_setting_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form_id) {
+    case 'payment-receipt-form-settings':
+      $payment_receipt_folio = $form_state['values']['title'];
+      print_r('hola');exit;
+/*
+      if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
+        $newfolio = payment_receipt_receipt_new_folio();
+        
+        $form_state['values']['title'] = $newfolio;
+      }
+*/
+      break;
   }
 }

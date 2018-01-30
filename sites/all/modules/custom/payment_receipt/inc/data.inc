@@ -5,8 +5,7 @@
  * @return INT The contract folio.
  */
 function payment_receipt_receipt_number_folio_get() {
-  $i = 1;
-  $payment_receipt_number = (variable_get('payment_receipt_receipt_number', 0) + $i);
+  $payment_receipt_number = (variable_get('payment_receipt_receipt_number', 0));
   $payment_receipt_number_string = sprintf("%'.07d", $payment_receipt_number);
   $payment_receipt_folio = "{$payment_receipt_number_string}";
   return $payment_receipt_folio;
