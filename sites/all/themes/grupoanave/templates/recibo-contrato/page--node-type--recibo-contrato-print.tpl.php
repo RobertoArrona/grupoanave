@@ -58,7 +58,6 @@ if(empty($termid)) {
 
 $agent_id = $agente->field_agente_clave[LANGUAGE_NONE]['0']['value'];
 $office  = "$termname-$agent_id";
-print_r($ds_content_wrapper);exit;
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 

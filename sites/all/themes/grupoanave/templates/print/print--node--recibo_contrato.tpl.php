@@ -66,6 +66,7 @@
  * @ingroup print
  */
 $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', array('absolute'=>TRUE));
+print_r($content); exit;x
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
