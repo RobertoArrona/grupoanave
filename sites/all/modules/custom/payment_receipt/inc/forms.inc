@@ -345,6 +345,7 @@ function payment_receipt_node_form_validate($form, &$form_state) {
     $payment_receipt_folio = $form_state['values']['title'];
     if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
       $newfolio = payment_receipt_receipt_new_folio();
+      
       $form_state['values']['title'] = $newfolio;
     }
   }

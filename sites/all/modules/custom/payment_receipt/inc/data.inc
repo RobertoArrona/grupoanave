@@ -49,6 +49,7 @@ function payment_receipt_receipt_new_folio() {
   ':type' => $type,
   ));
   foreach ($result as $row) {
+    print_r($row->newfolio);exit;
     return $row->newfolio;
   }
 }
