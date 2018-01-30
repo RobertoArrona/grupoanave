@@ -100,9 +100,11 @@
       }
     });
   });
+  
   function updateLabel(label, text) {
     label.text(getPaymentsLabel(text));
   }
+  
   function getPaymentsLabel(period){
     if (period == 'mensual') {
       return 'Primas Recibos Subs:(11) ';
@@ -120,6 +122,7 @@
       return 'Primas Recibos Subs:(1) ';
     }
   }
+  
   function getIVA (netPre, rightPo) {
     sum = Math.round(netPre * 100) / 100 + Math.round(rightPo * 100) / 100;
     IVA = sum * 0.16;
@@ -127,8 +130,10 @@
   }
   
   function getTotalPremium (netPre, rightPo, IVAin) {
-    return totalPremium = Math.round(netPre * 100) / 100 + Math.round(rightPo * 100) / 100 + Math.round(IVAin * 100) / 100;
+    var totalPremium = Math.round(netPre * 100) / 100 + Math.round(rightPo * 100) / 100 + Math.round(IVAin * 100) / 100;
+    return Math.round(totalPremium * 100) / 100
   }
+  
   function getPaymentFirst (netPre, rightPo, IVAin) {
     netPre = Math.round(netPre * 100) / 100;
     rightPo = Math.round(rightPo * 100) / 100;
@@ -138,6 +143,7 @@
     firstPayment = firstPayment + rightPo;
     return Math.round(firstPayment * 100) / 100;;
   }
+  
   function getSubPayments (netPre, rightPo, IVAin) {
     netPre = Math.round(netPre * 100) / 100;
     rightPo = Math.round(rightPo * 100) / 100;
@@ -146,6 +152,7 @@
     SubPayments = SubPayments / getnumPayments();
     return Math.round(SubPayments * 100) / 100;;
   }
+  
   function getnumPayments () {
     var period = $('#edit-field-poliza-forma-pago-und').val();
     if (period == 'mensual') {
@@ -167,6 +174,7 @@
       return numPayments = 1;
     }
   }
+  
   function hideCreateReceiptOption() {
     $('.action-links').css('display', 'none');
   }
