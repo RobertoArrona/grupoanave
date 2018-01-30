@@ -15,6 +15,11 @@ function payment_receipt_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Global variable for node).
+ */
+$node = menu_get_object();
+
+/**
  * Form builder; The contract number form.
  *
  * @ingroup forms
@@ -56,10 +61,23 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   $form['title']['#attributes']['readonly'] = 'readonly';
   $form['title']['#attributes']['style']  = 'display: none;';
   $form['#validate'][] = 'payment_receipt_node_form_validate';
+  $node = menu_get_object();
   
-  $actionString = $form['#action'];
-  $split = preg_split('[=]', $actionString);
-  $parent_node_id = $split[1];
+  if(empty($node ->nid)) {
+    
+    $actionString = $form['#action'];
+    $split = preg_split('[=]', $actionString);
+    $parent_node_id = $split[1];
+    $parent_nid = str_replace('/node/add/recibo-contrato?parent_node_id=','',$actionString);
+    
+  } else if (!empty($node ->nid)) {
+    
+    $parentInstance = node_collection_api_get_parent_node_instance($node ->nid);
+    $parent_node_id = $parentInstance ->nid;
+//     print_r($form['#action']);exit;
+  }
+  
+  
   /**
    * logic to fill payment receipt fields
    */
@@ -69,7 +87,7 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   
   $child_nid = $form['nid']['#value'];
   // get parent nid using string replace and then load the parent data
-  $parent_nid = str_replace('/node/add/recibo-contrato?parent_node_id=','',$actionString);
+  
   $parent_data = node_load($parent_node_id);
   
   
@@ -324,7 +342,6 @@ function num2letras($num, $fem = false, $dec = true) {
 }
 
 function payment_receipt_node_form_validate($form, &$form_state) {
-  $node = menu_get_object();
   if(empty($node ->nid)) {
     $payment_receipt_folio = $form_state['values']['title'];
     if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
