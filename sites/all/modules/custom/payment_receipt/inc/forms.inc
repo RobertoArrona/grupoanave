@@ -101,7 +101,6 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   $receiptSerie = $paymentKey.$serie;
   // add from poliza to recibo
   $payments = $parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value'];
-  
     
   // define when is the first payemnt or not and assign data.
   if (empty($nids_childs) || $nids_childs[0] == $child_nid) {
@@ -115,7 +114,7 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
     $form['field_pago_subsecuente'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value'];
     $paymentKey = array_search($child_nid, $nids_childs) +1;
     $form['field_serie'][LANGUAGE_NONE][0]['value']['#default_value'] = $receiptSerie;
-    $form['field_importe_letra'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value']));
+    $form['field_importe_con_letra'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value']));
     $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value2'] = getCoverage($payments, $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value']);
   }
    // add fields from poliza to recibo
