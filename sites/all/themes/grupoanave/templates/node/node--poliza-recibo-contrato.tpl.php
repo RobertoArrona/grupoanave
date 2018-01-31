@@ -82,7 +82,39 @@
 
 <?php $parent_data = node_collection_api_get_parent_node_instance($node ->nid);
 $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', array('absolute'=>TRUE)); 
-//  print_r($node); exit;
+
+// get field collections field_poliza_coberturas items from parent node
+$fcentity = field_collection_item_load($parent_data->field_poliza_coberturas[LANGUAGE_NONE][0]['value'], $reset = FALSE);
+// get field collection items from field_cobertura
+$fcfields = field_collection_item_load($fcentity->field_cobertura[LANGUAGE_NONE][0]['value'], $reset = FALSE);
+
+
+$fc_fields_array = $fcentity->field_cobertura[LANGUAGE_NONE];
+//print_r($fc_fields_array);
+
+foreach($fc_fields_array as $key => $value) {
+  $fc_item_id = field_collection_item_load($fc_fields_array[$key]['value']);
+  $keys_fc_list[] = $fc_item_id->field_cobertura_titulo[LANGUAGE_NONE][0]['value'];
+}
+
+$field_info = field_info_field('field_cobertura_titulo');
+/*
+foreach($keys_fc_list as $key => $value) {
+  $label_list = $field_info['settings']['allowed_values'][$value];
+  print_r($label_list);
+}
+*/
+//print_r($label_list);
+//exit;
+//print_r($fcentity->field_cobertura[LANGUAGE_NONE][0]['value']); exit;
+//print_r($fcfields); exit;
+//print_r($fcfields->field_cobertura_titulo[LANGUAGE_NONE][0]['value']); exit;
+
+// get the label from the list value field_cobertura_titulo 
+$key = $fcfields->field_cobertura_titulo[LANGUAGE_NONE][0]['value']; // Or whatever
+$field = field_info_field('field_cobertura_titulo');
+$label = $field['settings']['allowed_values'][$key];
+//print_r($key); exit;
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
@@ -239,7 +271,12 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
               <td>
                 <table class="generic"><tr>
                   <td class="contract-type"><strong>Tipo de Contrato:</strong></td>
-                  <td class="left"><?php print render($parent_data->field_poliza_tipo[LANGUAGE_NONE][0]['value']);?></td>
+                  <td class="left"><?php
+                    foreach($keys_fc_list as $key => $value) {
+                      $label_list = $field_info['settings']['allowed_values'][$value];
+                      print("$label_list <br>");
+                      }
+                  ?></td>
                 </tr></table>
               </td> 
               <td>
@@ -267,7 +304,7 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
               <td>
                 <table class="generic"><tr>
                   <td><strong>Emision </strong></td>
-                  <td class="amount">$0.00</td>
+                  <td class="amount">$ <?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?></td>
                 </tr></table>
               </td>
             </tr>
@@ -533,7 +570,12 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
                 <td>
                   <table class="generic"><tr>
                     <td class="contract-type"><strong>Tipo de Contrato:</strong></td>
-                    <td class="left"><?php print render($parent_data->field_poliza_tipo[LANGUAGE_NONE][0]['value']);?></td>
+                    <td class="left"><?php
+                    foreach($keys_fc_list as $key => $value) {
+                      $label_list = $field_info['settings']['allowed_values'][$value];
+                      print("$label_list <br>");
+                      }
+                  ?></td>
                   </tr></table>
                 </td> 
                 <td>
