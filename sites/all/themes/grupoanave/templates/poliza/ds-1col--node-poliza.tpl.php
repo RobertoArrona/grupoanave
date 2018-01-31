@@ -52,9 +52,7 @@ if(empty($termid)) {
  $office  = "$termname-$agent_id";
  $termid_vehicle = $elements['#node']->field_vehiculo_descripcion[LANGUAGE_NONE]['0']['tid'];
  $termvehicle_description = taxonomy_term_load($termid_vehicle);
-//print_r($termvehicle_description->name); exit;
  $termname_vehicle = $termvehicle_description->name;
- 
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 

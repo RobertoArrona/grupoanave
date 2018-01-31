@@ -81,6 +81,7 @@
 ?>
 
 <?php $parent_data = node_collection_api_get_parent_node_instance($node ->nid);
+
 $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', array('absolute'=>TRUE)); 
 
 // get field collections field_poliza_coberturas items from parent node
@@ -115,6 +116,18 @@ $key = $fcfields->field_cobertura_titulo[LANGUAGE_NONE][0]['value']; // Or whate
 $field = field_info_field('field_cobertura_titulo');
 $label = $field['settings']['allowed_values'][$key];
 //print_r($key); exit;
+
+$url = ($_SERVER['REQUEST_URI']);
+$typePage = preg_split('[/]', $url);
+$typePage = $typePage[1];
+
+if ($typePage == "content") {
+  $receiptClass = $typePage;
+} else if ($typePage == "print") {
+  $receiptClass = $typePage;
+} else {
+  $receiptClass = "";
+}
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
@@ -386,8 +399,12 @@ $label = $field['settings']['allowed_values'][$key];
         <p>Este documento no es un comprovante fiscal. Puede obtener el comprovante fiscal en las oficinas de la compania, o marcando el 01800 999 00 69 o a travez de su intermediario.</p>
       </div>
     </div>
+    <?php print render($content['links']); ?>
+
+    <?php print render($content['comments']); ?>
   </div>
-  <div id="main-payment-2">
+  
+  <div id="main-payment-2" class="<?php print $receiptClass; ?>">
 
     <div id="">
         <div id="">
@@ -570,12 +587,14 @@ $label = $field['settings']['allowed_values'][$key];
                 <td>
                   <table class="generic"><tr>
                     <td class="contract-type"><strong>Tipo de Contrato:</strong></td>
-                    <td class="left"><?php
-                    foreach($keys_fc_list as $key => $value) {
-                      $label_list = $field_info['settings']['allowed_values'][$value];
-                      print("$label_list <br>");
+                    <td class="left">
+                      <?php
+                      foreach($keys_fc_list as $key => $value) {
+                        $label_list = $field_info['settings']['allowed_values'][$value];
+                        print("$label_list <br>");
                       }
-                  ?></td>
+                      ?>
+                    </td>
                   </tr></table>
                 </td> 
                 <td>
@@ -636,8 +655,6 @@ $label = $field['settings']['allowed_values'][$key];
       </td></tr></tbody>
     </table>
   </div>
-  <?php print render($content['links']); ?>
-
-  <?php print render($content['comments']); ?>
+  
 
 </div>

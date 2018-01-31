@@ -523,6 +523,7 @@ table.print.coberturas {
 #main-payment-2 .table-poliza .generic .amount {
   left: 48px;
   position: relative;
+  text-align: right;
 }
 #main-payment .table-poliza .generic .to,
 #main-payment-2 .table-poliza .generic .to {
@@ -560,6 +561,9 @@ table.print.coberturas {
 #main-payment-2 .payment-copy .text.last {
   margin-bottom: 20px;
 }
-#main-payment-2 {
+#main-payment-2.content {
   display: none;
+}
+#main-payment-2.print {
+  display: inline;
 }

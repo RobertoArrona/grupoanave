@@ -82,7 +82,6 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
       <link rel='shortcut icon' href='<?php print theme_get_setting('favicon') ?>' type='image/x-icon' />
     <?php endif; ?>
     <?php print $css; ?>
-    <?php drupal_get_path('theme', 'grupoanave') . '/css/print.css';?>
     <style>
       @import url(<?php print $extra_css;?>);
     </style>

@@ -42,8 +42,6 @@ function payment_receipt_form_settings() {
     '#default_value' => variable_get('payment_receipt_receipt_number'),
     '#required' => TRUE,
   );
-
-
   return system_settings_form($form);
 }
 
@@ -54,14 +52,10 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
 
   if (!(isset($form['nid']['#value']) && !empty($form['nid']['#value']))) {
     $payment_receipt_folio = payment_receipt_receipt_number_folio_get();
-    
     if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
       $payment_receipt_folio = payment_receipt_receipt_new_folio();
     }
-    
     $form['title']['#default_value'] = $payment_receipt_folio;
-    
-    
   }
   
   $form['title']['#attributes']['readonly'] = 'readonly';
@@ -70,17 +64,13 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   $node = menu_get_object();
   
   if(empty($node ->nid)) {
-    
     $actionString = $form['#action'];
     $split = preg_split('[=]', $actionString);
     $parent_node_id = $split[1];
     $parent_nid = str_replace('/node/add/recibo-contrato?parent_node_id=','',$actionString);
-    
   } else if (!empty($node ->nid)) {
-    
     $parentInstance = node_collection_api_get_parent_node_instance($node ->nid);
     $parent_node_id = $parentInstance ->nid;
-//     print_r($form['#action']);exit;
   }
   
   
@@ -362,7 +352,6 @@ function payment_receipt_node_form_validate($form, &$form_state) {
     $payment_receipt_folio = $form_state['values']['title'];
     if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
       $newfolio = payment_receipt_receipt_new_folio();
-      
       $form_state['values']['title'] = $newfolio;
     }
   }
