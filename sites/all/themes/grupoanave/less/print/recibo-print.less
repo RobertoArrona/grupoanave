@@ -15,88 +15,32 @@
       line-height: 20px;
     }
     .print-title {
-      width: 52%;
+      width: 54%;
       h1 {
         text-align: left;
         margin-top: -50px;
       }
     }
   }
-  table.generic tbody tr td.padding-descripcion.left-descripcion {
-  width: 100px;
-  padding: 0;
-  }
-  table.generic tbody tr td.padding-descripcion {
-    padding: 0;
-  }
-  table.print.coberturas {
-    margin-bottom: 160px;
-  }
-  .tabla-recibo {
-    border: none;
-    .barcode {
-      position: relative;
-      margin-top: -80px;
-    }
-    td.date-field {
-      width: 100%;
-    }
-  }
-  .tabla-recibo table.print-child > tbody > tr > td + td {
-    border: none;
-  }
-  .tabla-recibo table.print-child tbody tr td + td {
-    border: none;
-    padding-bottom: 0;
-  }
-  .table-poliza table.print-child tbody tr td + td {
-    border: none;
-    padding-bottom: 0;
-  }
-  .tabla-recibo tbody > tr > td + td {
-    border: none;
-  }
-  .tabla-recibo thead tr th {
-    display: none;
-  }
-  table.tabla-recibo-col1 {
-    margin-top: 190px;
-    margin-bottom: 35px;
-    margin-right: 100px;
-    tbody tr td .field {
-      display: inline;
-      padding-bottom: 0;
-    } 
-    .field {
-      display: inline;
-    }
-    .label-above {
-      display: inline;
-    }
-  }
-  .tabla-recibo {
+
+  .recibo {
     background-image: url('../images/watermark.png');
-    background-size: 85%;
-    background-position: 45px 165px;
+    background-size: 86%;
     background-repeat: no-repeat;
-    line-height: 20px;
-    margin-top: -105px
+    width: auto;
+    height: 302px;
+    background-position: 46px 103px;
   }
-  .total-premium {
-    float: right;
-    position: relative;
-    width: 20%;
-  }
+
   .amount td {
     white-space: nowrap;
-    position: absolute;
-    
-  }
-  .net-premium {
-    margin-top: 22px;
   }
   strong {
     white-space: nowrap;
+    margin-right: 5px;
+  }
+  strong + strong {
+    margin-left: 20px;
   }
   table tr td, table tr td strong, table tr td + td {
     padding-left: 0;
@@ -104,62 +48,7 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-  .tabla-recibo-col2 {
-    table.print-child tbody tr td + td {
-      border: none;
-      padding-bottom: 0;
-    } 
-  }
-  
-  .table-poliza {
-    .generic {
-      position: relative;
-      right: 95px;
-      .date-display-single, .to {
-        position: relative;
-      }
-      .date-display-single {
-        left: 35px;
-      }
-      .left, .folio, .payment-method, .coin {
-        position: absolute;
-      }
-      .serie + .left {
-        left: 48px;
-      }
-      .folio {
-        right: 75px;
-      }
-      .contract-number + .left {
-        right: 5px;
-      }
-      .payment-method {
-        right: 15px;
-      }
-      .payment-method + .left {
-        right: -52px;
-      }
-      .contract-type + .left {
-        left: 125px;
-        white-space: nowrap;
-      }
-      .coin {
-        left: 70px;
-      }
-      .coin + .left {
-        right: -42px;
-      }
-      .amount {
-        left: 48px;
-        position: relative;
-        text-align: right;
-      }
-      .to {
-        left: 154px;
-      }
-    }
-  }
-  
+
   .payment-copy  {
     p {
       margin-top: 0;
@@ -186,6 +75,28 @@
     .text.last {
       margin-bottom: 20px;
     }
+  }
+  .col6 {
+//     width: 42%;
+    float: left;
+    position: relative;
+  }
+  .col6.one {
+    width: 42%;
+  }
+  .col6.two {
+    width: 42%;
+    margin-top: -35px;
+    padding-left: 30px;
+  }
+  .col6.three {
+    width: 42%;
+  }
+  .col6.last {
+    width: 42%;
+    margin-top: 10px;
+    margin-bottom: 70px;
+//     padding-left: 155px;
   }
 }
 
