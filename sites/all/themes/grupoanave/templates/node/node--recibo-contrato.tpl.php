@@ -269,7 +269,12 @@ function getDateFormat($date) {
           <td> 
             <strong>Tipo de Contrato:</strong>
             <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_poliza_tipo[LANGUAGE_NONE][0]['value']);?>
+            <?php
+               foreach($keys_fc_list as $key => $value) {
+                 $label_list = $field_info['settings']['allowed_values'][$value];
+                 print("$label_list <br>");
+                }
+             ?>
             <?php /* endif; */?>
             <strong>Moneda:</strong>
             <?php /* if(isset()): */?>
@@ -535,7 +540,12 @@ function getDateFormat($date) {
           <td> 
             <strong>Tipo de Contrato:</strong>
             <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_poliza_tipo[LANGUAGE_NONE][0]['value']);?>
+            <?php
+               foreach($keys_fc_list as $key => $value) {
+                 $label_list = $field_info['settings']['allowed_values'][$value];
+                 print("$label_list <br>");
+                }
+             ?>
             <?php /* endif; */?>
             <strong>Moneda:</strong>
             <?php /* if(isset()): */?>
