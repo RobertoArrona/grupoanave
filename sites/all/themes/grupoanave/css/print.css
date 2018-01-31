@@ -327,6 +327,7 @@ table.print.coberturas {
   height: 27.94cm;
   margin: 0 auto;
   background: white;
+  padding-bottom: 40px;
 }
 #main-payment #main-inner,
 #main-payment-2 #main-inner {
@@ -442,7 +443,7 @@ table.print.coberturas {
   padding-left: 100px;
 }
 #main-payment-2.content {
-  display: none;
+  display: inline;
 }
 #main-payment-2.print {
   display: inline;
