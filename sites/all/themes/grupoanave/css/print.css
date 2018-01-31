@@ -343,7 +343,7 @@ table.print.coberturas {
 }
 #main-payment .print-header .print-title,
 #main-payment-2 .print-header .print-title {
-  width: 54%;
+  width: 56%;
 }
 #main-payment .print-header .print-title h1,
 #main-payment-2 .print-header .print-title h1 {
@@ -426,9 +426,9 @@ table.print.coberturas {
 }
 #main-payment .col6.two,
 #main-payment-2 .col6.two {
-  width: 42%;
+  width: 44%;
   margin-top: -35px;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 #main-payment .col6.three,
 #main-payment-2 .col6.three {
@@ -436,9 +436,10 @@ table.print.coberturas {
 }
 #main-payment .col6.last,
 #main-payment-2 .col6.last {
-  width: 42%;
+  width: 44%;
   margin-top: 10px;
   margin-bottom: 70px;
+  padding-left: 100px;
 }
 #main-payment-2.content {
   display: none;

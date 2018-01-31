@@ -230,7 +230,10 @@ function getDateFormat($date) {
           <td> 
             <strong>Vencimiento del Recibo:</strong>
             <?php /* if(isset()): */?>
-            <?php print render(getDateFormat($node->field_vencimiento[LANGUAGE_NONE][0]['value'])); ?>
+            <?php
+              $dateFormate = getDateFormat($node->field_vencimiento[LANGUAGE_NONE][0]['value']);
+              print render($dateFormate); 
+            ?>
             <?php /* endif; */?>
         </tr>
         
@@ -238,7 +241,10 @@ function getDateFormat($date) {
           <td> 
             <strong>Periodo de cobertura del:</strong>
             <?php /* if(isset()): */?>
-            <?php print render(getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']));?>
+            <?php
+              $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);
+              print render($dateFormate); 
+            ?>
             <?php /* endif; */?>
           </td>
         </tr>
@@ -247,7 +253,10 @@ function getDateFormat($date) {
           <td> 
             <strong>al:</strong>
             <?php /* if(isset()): */?>
-            <?php print render(getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']));?>
+            <?php
+              $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);
+              print render($dateFormate); 
+            ?>
             <?php /* endif; */?>
           </td>
         </tr>
@@ -258,6 +267,11 @@ function getDateFormat($date) {
             <?php /* if(isset()): */?>
             <?php print render($parent_data->title);?>
             <?php /* endif; */?>
+          </td>
+        </tr>
+        
+        <tr>
+          <td> 
             <strong>Forma de Pago:</strong>
             <?php /* if(isset()): */?>
             <?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?>
@@ -275,6 +289,11 @@ function getDateFormat($date) {
                  print("$label_list <br>");
                 }
              ?>
+          </td>
+        </tr>
+        
+        <tr>
+          <td> 
             <?php /* endif; */?>
             <strong>Moneda:</strong>
             <?php /* if(isset()): */?>
@@ -291,7 +310,10 @@ function getDateFormat($date) {
           <td> 
             <strong>Fecha de expedicion:</strong>
             <?php /* if(isset()): */?>
-            <?php print render(getDateFormat($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']));?>
+            <?php
+              $dateFormate = getDateFormat($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);
+              print render($dateFormate); 
+            ?>
             <?php /* endif; */?>
           </td>
         </tr>
@@ -367,7 +389,7 @@ function getDateFormat($date) {
           <td> 
             <strong>Emision:</strong>
             <?php /* if(isset()): */?>
-            $<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?>
+            $<?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?>
             <?php /* endif; */?>
           </td>
         </tr>
@@ -501,7 +523,10 @@ function getDateFormat($date) {
           <td> 
             <strong>Vencimiento del Recibo:</strong>
             <?php /* if(isset()): */?>
-            <?php print render(getDateFormat($node->field_vencimiento[LANGUAGE_NONE][0]['value'])); ?>
+            <?php
+              $dateFormate = getDateFormat($node->field_vencimiento[LANGUAGE_NONE][0]['value']);
+              print render($dateFormate); 
+            ?>
             <?php /* endif; */?>
         </tr>
         
@@ -509,7 +534,10 @@ function getDateFormat($date) {
           <td> 
             <strong>Periodo de cobertura del:</strong>
             <?php /* if(isset()): */?>
-            <?php print render(getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']));?>
+            <?php
+              $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);
+              print render($dateFormate); 
+            ?>
             <?php /* endif; */?>
           </td>
         </tr>
@@ -518,7 +546,10 @@ function getDateFormat($date) {
           <td> 
             <strong>al:</strong>
             <?php /* if(isset()): */?>
-            <?php print render(getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']));?>
+            <?php
+              $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);
+              print render($dateFormate); 
+            ?>
             <?php /* endif; */?>
           </td>
         </tr>
@@ -529,6 +560,11 @@ function getDateFormat($date) {
             <?php /* if(isset()): */?>
             <?php print render($parent_data->title);?>
             <?php /* endif; */?>
+          </td>
+        </tr>
+        
+        <tr>
+          <td> 
             <strong>Forma de Pago:</strong>
             <?php /* if(isset()): */?>
             <?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?>
@@ -546,6 +582,11 @@ function getDateFormat($date) {
                  print("$label_list <br>");
                 }
              ?>
+          </td>
+        </tr>
+        
+        <tr>
+          <td> 
             <?php /* endif; */?>
             <strong>Moneda:</strong>
             <?php /* if(isset()): */?>
@@ -562,7 +603,10 @@ function getDateFormat($date) {
           <td> 
             <strong>Fecha de expedicion:</strong>
             <?php /* if(isset()): */?>
-            <?php print render(getDateFormat($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']));?>
+            <?php
+              $dateFormate = getDateFormat($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);
+              print render($dateFormate); 
+            ?>
             <?php /* endif; */?>
           </td>
         </tr>
@@ -638,7 +682,7 @@ function getDateFormat($date) {
           <td> 
             <strong>Emision:</strong>
             <?php /* if(isset()): */?>
-            $<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?>
+            $<?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?>
             <?php /* endif; */?>
           </td>
         </tr>
