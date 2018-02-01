@@ -91,9 +91,11 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   // get serie from payment type
   $payments = $parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value'];
   $serie = getSerie($payments);
+  $serieNumber = substr($serie,1);
   
   // count array to get new payment key
   $paymentKey = count($nids_childs) +1;
+  $childsNumber = count($nids_childs);
   $receiptSerie = $paymentKey.$serie;
   // add from poliza to recibo
   $payments = $parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value'];
@@ -110,8 +112,9 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   } else {
     print ("<h1>Es pago subsecuente</h1>");
     $form['field_pago_subsecuente'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value'];
-    $paymentKey = array_search($child_nid, $nids_childs) +1;
-    $form['field_serie'][LANGUAGE_NONE][0]['value']['#default_value'] = $receiptSerie;
+    if ($childsNumber != $serieNumber) {
+      $form['field_serie'][LANGUAGE_NONE][0]['value']['#default_value'] = $receiptSerie;
+    }
     $form['field_importe_con_letra'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value']));
     $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value2'] = getCoverage($payments, $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value']);
     $form['field_vencimiento'][LANGUAGE_NONE][0]['#default_value']['value'] = getGracePeriod($parent_data->field_periodo_de_gracia[LANGUAGE_NONE][0]['value']);

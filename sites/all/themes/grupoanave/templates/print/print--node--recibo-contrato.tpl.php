@@ -65,6 +65,7 @@
  * @see page.tpl.php
  * @ingroup print
  */
+$style_css = url(drupal_get_path('theme', 'grupoanave') . '/css/style.css', array('absolute'=>TRUE));
 $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', array('absolute'=>TRUE));
 ?>
 
@@ -82,6 +83,9 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
       <link rel='shortcut icon' href='<?php print theme_get_setting('favicon') ?>' type='image/x-icon' />
     <?php endif; ?>
     <?php print $css; ?>
+    <style>
+      @import url(<?php print $style_css;?>);
+    </style>
     <style>
       @import url(<?php print $extra_css;?>);
     </style>
