@@ -407,7 +407,7 @@ if ($primer_pago == 0 || $primer_pago == '') {
         <table>
           <tr>
             <td> 
-              <strong>Prima Neta:</strong>
+              <strong class="netpremium">Prima Neta:</strong>
               <?php /* if(isset()): */?>
               $<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?>
               <?php /* endif; */?>
@@ -416,7 +416,7 @@ if ($primer_pago == 0 || $primer_pago == '') {
           
           <tr>
             <td> 
-              <strong>Emision:</strong>
+              <strong class="emission">Emision:</strong>
               <?php /* if(isset()): */?>
               $<?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?>
               <?php /* endif; */?>
@@ -425,7 +425,7 @@ if ($primer_pago == 0 || $primer_pago == '') {
           
           <tr>
             <td> 
-              <strong>I.V.A:</strong>
+              <strong class="iva">I.V.A:</strong>
               <?php /* if(isset()): */?>
               $<?php print render($iva);?>
               <?php /* endif; */?>
@@ -705,7 +705,7 @@ if ($primer_pago == 0 || $primer_pago == '') {
         <table>
           <tr>
             <td> 
-              <strong>Prima Neta:</strong>
+              <strong class="netpremium">Prima Neta:</strong>
               <?php /* if(isset()): */?>
               $<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?>
               <?php /* endif; */?>
@@ -714,7 +714,7 @@ if ($primer_pago == 0 || $primer_pago == '') {
           
           <tr>
             <td> 
-              <strong>Emision:</strong>
+              <strong class="emission">Emision:</strong>
               <?php /* if(isset()): */?>
               $<?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?>
               <?php /* endif; */?>
@@ -723,7 +723,7 @@ if ($primer_pago == 0 || $primer_pago == '') {
           
           <tr>
             <td> 
-              <strong>I.V.A:</strong>
+              <strong class="iva">I.V.A:</strong>
               <?php /* if(isset()): */?>
               $<?php print render($iva);?>
               <?php /* endif; */?>

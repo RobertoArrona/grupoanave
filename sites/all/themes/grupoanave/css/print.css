@@ -370,6 +370,18 @@ table.print.coberturas {
 #main-payment-2 strong.to {
   padding-left: 144px;
 }
+#main-payment strong.netpremium,
+#main-payment-2 strong.netpremium {
+  margin-right: 6px;
+}
+#main-payment strong.emission,
+#main-payment-2 strong.emission {
+  margin-right: 28px;
+}
+#main-payment strong.iva,
+#main-payment-2 strong.iva {
+  margin-right: 50px;
+}
 #main-payment .barcode,
 #main-payment-2 .barcode {
   width: 106px;
@@ -378,7 +390,7 @@ table.print.coberturas {
 #main-payment .recibo,
 #main-payment-2 .recibo {
   background-image: url('../images/watermark.png');
-  background-size: 86%;
+  background-size: 70%;
   background-repeat: no-repeat;
   width: auto;
   height: 302px;
