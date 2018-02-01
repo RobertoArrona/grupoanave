@@ -351,6 +351,10 @@ table.print.coberturas {
   text-align: left;
   margin-top: -50px;
 }
+#main-payment .main-payment-header,
+#main-payment-2 .main-payment-header {
+  display: none;
+}
 #main-payment .recibo,
 #main-payment-2 .recibo {
   background-image: url('../images/watermark.png');

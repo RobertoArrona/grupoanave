@@ -8613,7 +8613,7 @@ body {
 }
 .page-node.node-type-poliza .tipo-poliza-block .inner-block,
 .page-node.node-type-siniestro .tipo-poliza-block .inner-block {
-  font-size: 11px;
+  font-size: 16px;
 }
 .page-node.node-type-poliza .tipo-poliza-block > .label-above,
 .page-node.node-type-siniestro .tipo-poliza-block > .label-above,
@@ -8623,7 +8623,7 @@ body {
   padding: 5px;
   background: #19227C;
   color: #fff;
-  font-size: 12px;
+  font-size: 18px;
 }
 .page-node.node-type-poliza .tipo-poliza-block .coberturas-block ul,
 .page-node.node-type-siniestro .tipo-poliza-block .coberturas-block ul {
@@ -8632,14 +8632,14 @@ body {
 }
 .page-node.node-type-poliza .tipo-poliza-block .coberturas-block ul li,
 .page-node.node-type-siniestro .tipo-poliza-block .coberturas-block ul li {
-  font-size: 11px;
+  font-size: 16px;
 }
 .page-node.node-type-poliza #block-block-7,
 .page-node.node-type-siniestro #block-block-7 {
   border: solid 1px #333;
   border-radius: 3px 3px 3px 3px;
   padding: 5px;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: bold;
 }
 .page-node.node-type-poliza #block-block-7 p,
@@ -8649,7 +8649,7 @@ body {
 .page-node.node-type-poliza #block-block-8,
 .page-node.node-type-siniestro #block-block-8 {
   padding: 5px 0;
-  font-size: 11px;
+  font-size: 16px;
 }
 .page-node.node-type-poliza #block-block-8 p,
 .page-node.node-type-siniestro #block-block-8 p {
@@ -8700,7 +8700,7 @@ body {
   padding: 5px;
   background: #19227C !important;
   color: #fff;
-  font-size: 12px;
+  font-size: 18px;
   line-height: 1.2em;
   font-weight: normal;
   text-transform: uppercase;
@@ -8710,7 +8710,7 @@ body {
 .page-node.node-type-siniestro table.print > tbody > tr > td {
   padding: 5px 5px;
   vertical-align: top;
-  font-size: 11px;
+  font-size: 16px;
 }
 .page-node.node-type-poliza table.print > tbody > tr > td + td,
 .page-node.node-type-siniestro table.print > tbody > tr > td + td {
@@ -8726,13 +8726,13 @@ body {
 .page-node.node-type-siniestro table.print-child tbody tr td {
   padding: 0;
   padding-bottom: 10px;
-  font-size: 11px;
+  font-size: 16px;
   vertical-align: top;
 }
 .page-node.node-type-poliza table.print-child tbody tr td .field,
 .page-node.node-type-siniestro table.print-child tbody tr td .field {
   margin: 0;
-  font-size: 11px;
+  font-size: 16px;
 }
 .page-node.node-type-poliza table.print-child tbody tr td .field .field,
 .page-node.node-type-siniestro table.print-child tbody tr td .field .field {
@@ -8762,7 +8762,7 @@ body {
 }
 .page-node.node-type-poliza .coberturas-block ul li,
 .page-node.node-type-siniestro .coberturas-block ul li {
-  font-size: 11px;
+  font-size: 16px;
 }
 .page-node.node-type-poliza table.print.table-vehiculo > tbody > tr > td,
 .page-node.node-type-siniestro table.print.table-vehiculo > tbody > tr > td {
@@ -8863,6 +8863,100 @@ body {
 }
 .page-node.node-type-siniestro.print-vehiculo-tercero .node-siniestro > table.vehiculo-tercero-active {
   display: table;
+}
+#main-payment-2 {
+  display: none;
+}
+.payment-copy {
+  display: none;
+}
+#main-payment-receip {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  background: white;
+  padding: 50px;
+}
+#main-payment-receip #main-inner {
+  padding: 20px;
+}
+#main-payment-receip .print-header {
+  margin: 20px 0;
+}
+#main-payment-receip .print-header .print-logo {
+  line-height: 20px;
+  font-weight: bold;
+}
+#main-payment-receip .print-header .print-title {
+  width: 42%;
+}
+#main-payment-receip .print-header .print-title h1 {
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  font-size: 18px;
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+}
+#main-payment-receip .recibo table td strong {
+  font-size: 18px;
+}
+#main-payment-receip .recibo table td {
+  font-size: 16px;
+}
+#main-payment-receip .recibo {
+  background-image: url('../images/watermark.png');
+  background-size: 60%;
+  background-repeat: no-repeat;
+  width: auto;
+  height: 350px;
+  background-position: 109px 85px;
+}
+#main-payment-receip .amount td {
+  white-space: nowrap;
+}
+#main-payment-receip strong {
+  white-space: nowrap;
+  margin-right: 5px;
+}
+#main-payment-receip strong + strong {
+  margin-left: 20px;
+}
+#main-payment-receip table tr td,
+#main-payment-receip table tr td strong,
+#main-payment-receip table tr td + td {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#main-payment-receip .col6 {
+  float: left;
+  position: relative;
+}
+#main-payment-receip .col6.one {
+  width: 56%;
+}
+#main-payment-receip .col6.two {
+  width: 44%;
+  margin-top: -35px;
+  padding-left: 20px;
+}
+#main-payment-receip .col6.three {
+  width: 55%;
+}
+#main-payment-receip .col6.last {
+  width: 44%;
+  margin-top: 10px;
+  margin-bottom: 70px;
+  padding-left: 100px;
+}
+#main-payment-2.content {
+  display: none;
+}
+#main-payment-2.print {
+  display: inline;
 }
 .block-webform {
   padding: 0;

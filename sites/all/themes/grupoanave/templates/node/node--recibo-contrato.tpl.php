@@ -82,8 +82,6 @@
 
 <?php $parent_data = node_collection_api_get_parent_node_instance($node ->nid);
 
-$extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', array('absolute'=>TRUE)); 
-
 // get field collections field_poliza_coberturas items from parent node
 $fcentity = field_collection_item_load($parent_data->field_poliza_coberturas[LANGUAGE_NONE][0]['value'], $reset = FALSE);
 // get field collection items from field_cobertura
@@ -197,273 +195,292 @@ function getDateFormat($date) {
   <?php endif; ?>
 
   <div class="content"<?php print $content_attributes; ?>>
-    
-  <div class="recibo">
-    
-    <div class="col6 one">
+    <div id="main-payment-receip">
+
+    <div class="print-header main-payment-header">
       <table>
-        <tr>
-          <td>
-            <div class="barcode"><?php print render($content['field_codigo_de_barras'][0]['#svg']); ?></div>
-          </td>
-        </tr>
-        <tr>
-      </table>    
-    </div>
-    
-    <div class="col6 two">
-      <table>
-        <tr>
-          <td> 
-            <strong>Serie:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($node->field_serie[LANGUAGE_NONE][0]['value']); ?>
-            <?php /* endif; */?>
-            <strong>Folio del Recibo:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($node->title); ?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Vencimiento del Recibo:</strong>
-            <?php /* if(isset()): */?>
-            <?php
-              $dateFormate = getDateFormat($node->field_vencimiento[LANGUAGE_NONE][0]['value']);
-              print render($dateFormate); 
-            ?>
-            <?php /* endif; */?>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Periodo de cobertura del:</strong>
-            <?php /* if(isset()): */?>
-            <?php
-              $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);
-              print render($dateFormate); 
-            ?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>al:</strong>
-            <?php /* if(isset()): */?>
-            <?php
-              $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);
-              print render($dateFormate); 
-            ?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Contrato No:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->title);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Forma de Pago:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Tipo de Contrato:</strong>
-            <?php /* if(isset()): */?>
-            <?php
-               foreach($keys_fc_list as $key => $value) {
-                 $label_list = $field_info['settings']['allowed_values'][$value];
-                 print("$label_list <br>");
-                }
-             ?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <?php /* endif; */?>
-            <strong>Moneda:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_poliza_moneda[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-      </table>
-    </div>
-    
-    <div class="col6 three">
-      <table>
-        <tr>
-          <td> 
-            <strong>Fecha de expedicion:</strong>
-            <?php /* if(isset()): */?>
-            <?php
-              $dateFormate = getDateFormat($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);
-              print render($dateFormate); 
-            ?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <strong>Solicitante de contrato:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <strong>Calle y No:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <strong>Colonia:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['premise']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <strong>Municipio:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <strong>C.P:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-    
-        <tr class="last amount">
-          <td>
-            <strong>Importe con Letra:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-      </table>
-    </div>
-    
-    <div class="col6 last">
-      <table>
-        <tr>
-          <td> 
-            <strong>Prima Neta:</strong>
-            <?php /* if(isset()): */?>
-            $<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Emision:</strong>
-            <?php /* if(isset()): */?>
-            $<?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>I.V.A:</strong>
-            <?php /* if(isset()): */?>
-            $<?php print render($parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Prima Total:</strong>
-            <?php /* if(isset()): */?>
-            $<?php print render($parent_data->field_poliza_prima_total[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
+        <tbody>
+          <tr>
+            <td class="print-logo">
+              <strong>MN Global Protec A.C.</strong><br>
+              Calzada Independencia  Norte No. 1131, Colonia <br>
+              Independencia, Guadalajara, Jalisco, Mexico<br>
+              C.P. 44290 <br>
+            </td>
+            <td class="print-title">
+              <h1>CONCENTRACION EMPRESARIAL DE PAGO PARA USO EXCLUSIVO DEL BANCO</h1>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
 
-  </div>
+    <div class="recibo">
+      
+      <div class="col6 one">
+        <table>
+          <tr>
+            <td>
+              <div class="barcode"><?php print render($content['field_codigo_de_barras'][0]['#svg']); ?></div>
+            </td>
+          </tr>
+          <tr>
+        </table>    
+      </div>
+      
+      <div class="col6 two">
+        <table>
+          <tr>
+            <td> 
+              <strong>Serie:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($node->field_serie[LANGUAGE_NONE][0]['value']); ?>
+              <?php /* endif; */?>
+              <strong>Folio del Recibo:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($node->title); ?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Vencimiento del Recibo:</strong>
+              <?php /* if(isset()): */?>
+              <?php
+                $dateFormate = getDateFormat($node->field_vencimiento[LANGUAGE_NONE][0]['value']);
+                print render($dateFormate); 
+              ?>
+              <?php /* endif; */?>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Periodo de cobertura del:</strong>
+              <?php /* if(isset()): */?>
+              <?php
+                $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);
+                print render($dateFormate); 
+              ?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>al:</strong>
+              <?php /* if(isset()): */?>
+              <?php
+                $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);
+                print render($dateFormate); 
+              ?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Contrato No:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->title);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Forma de Pago:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Tipo de Contrato:</strong>
+              <?php /* if(isset()): */?>
+              <?php
+                 foreach($keys_fc_list as $key => $value) {
+                   $label_list = $field_info['settings']['allowed_values'][$value];
+                   print("$label_list <br>");
+                  }
+               ?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <?php /* endif; */?>
+              <strong>Moneda:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_poliza_moneda[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="col6 three">
+        <table>
+          <tr>
+            <td> 
+              <strong>Fecha de expedicion:</strong>
+              <?php /* if(isset()): */?>
+              <?php
+                $dateFormate = getDateFormat($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);
+                print render($dateFormate); 
+              ?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Solicitante de contrato:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Calle y No:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Colonia:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['premise']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Municipio:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>C.P:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+      
+          <tr class="last amount">
+            <td>
+              <strong>Importe con Letra:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="col6 last">
+        <table>
+          <tr>
+            <td> 
+              <strong>Prima Neta:</strong>
+              <?php /* if(isset()): */?>
+              $<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Emision:</strong>
+              <?php /* if(isset()): */?>
+              $<?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>I.V.A:</strong>
+              <?php /* if(isset()): */?>
+              $<?php print render($parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Prima Total:</strong>
+              <?php /* if(isset()): */?>
+              $<?php print render($parent_data->field_poliza_prima_total[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+        </table>
+      </div>
   
-  <div class="payment-copy">
-    <p>En caso de no realizarce el pago del recibo de contrato, este sera cancelado.</p>
-    <div class="row-payment">
-      <div class="number">
-        <p>1.</p>
-      </div>
-      <div class="text">
-        <p>Los pagos deberan realizarce en cualquier sucursarl de Santander y en las oficnas de MN Global Protec A.C. a travez de la referencia bancaria Proporcionada.</p>
-      </div>
     </div>
-    <div class="row-payment">
-      <div class="number">
-        <p>2.</p>
+    <div class="payment-copy">
+      <p>En caso de no realizarce el pago del recibo de contrato, este sera cancelado.</p>
+      <div class="row-payment">
+        <div class="number">
+          <p>1.</p>
+        </div>
+        <div class="text">
+          <p>Los pagos deberan realizarce en cualquier sucursarl de Santander y en las oficnas de MN Global Protec A.C. a travez de la referencia bancaria Proporcionada.</p>
+        </div>
       </div>
-      <div class="text">
-        <p>Este documento solo sera valido mediente comprovante de pago en el banco, con el sello de la compañia, o certificacion del mismo.</p>
+      <div class="row-payment">
+        <div class="number">
+          <p>2.</p>
+        </div>
+        <div class="text">
+          <p>Este documento solo sera valido mediente comprovante de pago en el banco, con el sello de la compañia, o certificacion del mismo.</p>
+        </div>
       </div>
-    </div>
-    <div class="row-payment">
-      <div class="number">
-        <p>3.</p>
+      <div class="row-payment">
+        <div class="number">
+          <p>3.</p>
+        </div>
+        <div class="text">
+          <p>No se aceptara el pago si el recibo ha vencido su fecha de pago.</p>
+        </div>
       </div>
-      <div class="text">
-        <p>No se aceptara el pago si el recibo ha vencido su fecha de pago.</p>
+      <div class="row-payment">
+        <div class="number">
+          <p>4.</p>
+        </div>
+        <div class="text">
+          <p>Si el pago es realizadon con cheque, este sera recibido salvo buen cobro, el cual debera extenderce a nombre de MN Global Protec A.C.</p>
+        </div>
       </div>
-    </div>
-    <div class="row-payment">
-      <div class="number">
-        <p>4.</p>
+      <div class="row-payment">
+        <div class="number">
+          <p>5.</p>
+        </div>
+        <div class="text">
+          <p>Los recibos deberan pagarce segun su orden en la serie que corresponda y en el orden marcado.</p>
+        </div>
       </div>
-      <div class="text">
-        <p>Si el pago es realizadon con cheque, este sera recibido salvo buen cobro, el cual debera extenderce a nombre de MN Global Protec A.C.</p>
-      </div>
-    </div>
-    <div class="row-payment">
-      <div class="number">
-        <p>5.</p>
-      </div>
-      <div class="text">
-        <p>Los recibos deberan pagarce segun su orden en la serie que corresponda y en el orden marcado.</p>
-      </div>
-    </div>
-    <div class="row-payment">
-      <div class="number">
-        <p>6.</p>
-      </div>
-      <div class="text last">
-        <p>Este documento no es un comprovante fiscal. Puede obtener el comprovante fiscal en las oficinas de la compania, o marcando el 01800 999 00 69 o a travez de su intermediario.</p>
+      <div class="row-payment">
+        <div class="number">
+          <p>6.</p>
+        </div>
+        <div class="text last">
+          <p>Este documento no es un comprobante fiscal. Puede obtener el comprovante fiscal en las oficinas de la compania, o marcando el 01800 999 00 69 o a travez de su intermediario.</p>
+        </div>
       </div>
     </div>
     <?php print render($content['links']); ?>
@@ -491,223 +508,223 @@ function getDateFormat($date) {
       </table>
     </div>
 
-  <div class="recibo">
-    
-    <div class="col6 one">
-      <table>
-        <tr>
-          <td>
-            <div class="barcode"><?php print render($content['field_codigo_de_barras'][0]['#svg']); ?></div>
-          </td>
-        </tr>
-        <tr>
-      </table>    
+    <div class="recibo">
+      
+      <div class="col6 one">
+        <table>
+          <tr>
+            <td>
+              <div class="barcode"><?php print render($content['field_codigo_de_barras'][0]['#svg']); ?></div>
+            </td>
+          </tr>
+          <tr>
+        </table>    
+      </div>
+      
+      <div class="col6 two">
+        <table>
+          <tr>
+            <td> 
+              <strong>Serie:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($node->field_serie[LANGUAGE_NONE][0]['value']); ?>
+              <?php /* endif; */?>
+              <strong>Folio del Recibo:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($node->title); ?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Vencimiento del Recibo:</strong>
+              <?php /* if(isset()): */?>
+              <?php
+                $dateFormate = getDateFormat($node->field_vencimiento[LANGUAGE_NONE][0]['value']);
+                print render($dateFormate); 
+              ?>
+              <?php /* endif; */?>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Periodo de cobertura del:</strong>
+              <?php /* if(isset()): */?>
+              <?php
+                $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);
+                print render($dateFormate); 
+              ?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>al:</strong>
+              <?php /* if(isset()): */?>
+              <?php
+                $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);
+                print render($dateFormate); 
+              ?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Contrato No:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->title);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Forma de Pago:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Tipo de Contrato:</strong>
+              <?php /* if(isset()): */?>
+              <?php
+                 foreach($keys_fc_list as $key => $value) {
+                   $label_list = $field_info['settings']['allowed_values'][$value];
+                   print("$label_list <br>");
+                  }
+               ?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <?php /* endif; */?>
+              <strong>Moneda:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_poliza_moneda[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="col6 three">
+        <table>
+          <tr>
+            <td> 
+              <strong>Fecha de expedicion:</strong>
+              <?php /* if(isset()): */?>
+              <?php
+                $dateFormate = getDateFormat($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);
+                print render($dateFormate); 
+              ?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Solicitante de contrato:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Calle y No:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Colonia:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['premise']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Municipio:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>C.P:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+      
+          <tr class="last amount">
+            <td>
+              <strong>Importe con Letra:</strong>
+              <?php /* if(isset()): */?>
+              <?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="col6 last">
+        <table>
+          <tr>
+            <td> 
+              <strong>Prima Neta:</strong>
+              <?php /* if(isset()): */?>
+              $<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Emision:</strong>
+              <?php /* if(isset()): */?>
+              $<?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>I.V.A:</strong>
+              <?php /* if(isset()): */?>
+              $<?php print render($parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+          
+          <tr>
+            <td> 
+              <strong>Prima Total:</strong>
+              <?php /* if(isset()): */?>
+              $<?php print render($parent_data->field_poliza_prima_total[LANGUAGE_NONE][0]['value']);?>
+              <?php /* endif; */?>
+            </td>
+          </tr>
+        </table>
+      </div>
+  
     </div>
-    
-    <div class="col6 two">
-      <table>
-        <tr>
-          <td> 
-            <strong>Serie:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($node->field_serie[LANGUAGE_NONE][0]['value']); ?>
-            <?php /* endif; */?>
-            <strong>Folio del Recibo:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($node->title); ?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Vencimiento del Recibo:</strong>
-            <?php /* if(isset()): */?>
-            <?php
-              $dateFormate = getDateFormat($node->field_vencimiento[LANGUAGE_NONE][0]['value']);
-              print render($dateFormate); 
-            ?>
-            <?php /* endif; */?>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Periodo de cobertura del:</strong>
-            <?php /* if(isset()): */?>
-            <?php
-              $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);
-              print render($dateFormate); 
-            ?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>al:</strong>
-            <?php /* if(isset()): */?>
-            <?php
-              $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);
-              print render($dateFormate); 
-            ?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Contrato No:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->title);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Forma de Pago:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Tipo de Contrato:</strong>
-            <?php /* if(isset()): */?>
-            <?php
-               foreach($keys_fc_list as $key => $value) {
-                 $label_list = $field_info['settings']['allowed_values'][$value];
-                 print("$label_list <br>");
-                }
-             ?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <?php /* endif; */?>
-            <strong>Moneda:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_poliza_moneda[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-      </table>
-    </div>
-    
-    <div class="col6 three">
-      <table>
-        <tr>
-          <td> 
-            <strong>Fecha de expedicion:</strong>
-            <?php /* if(isset()): */?>
-            <?php
-              $dateFormate = getDateFormat($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);
-              print render($dateFormate); 
-            ?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <strong>Solicitante de contrato:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <strong>Calle y No:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <strong>Colonia:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['premise']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <strong>Municipio:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <strong>C.P:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-    
-        <tr class="last amount">
-          <td>
-            <strong>Importe con Letra:</strong>
-            <?php /* if(isset()): */?>
-            <?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-      </table>
-    </div>
-    
-    <div class="col6 last">
-      <table>
-        <tr>
-          <td> 
-            <strong>Prima Neta:</strong>
-            <?php /* if(isset()): */?>
-            $<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Emision:</strong>
-            <?php /* if(isset()): */?>
-            $<?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>I.V.A:</strong>
-            <?php /* if(isset()): */?>
-            $<?php print render($parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-        
-        <tr>
-          <td> 
-            <strong>Prima Total:</strong>
-            <?php /* if(isset()): */?>
-            $<?php print render($parent_data->field_poliza_prima_total[LANGUAGE_NONE][0]['value']);?>
-            <?php /* endif; */?>
-          </td>
-        </tr>
-      </table>
-    </div>
-
-  </div>
 
 
 </div>

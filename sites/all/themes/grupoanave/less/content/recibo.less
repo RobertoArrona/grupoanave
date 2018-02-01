@@ -1,39 +1,57 @@
-@caption_size: 14px;
-@field_size: 14px;
-#main-payment, #main-payment-2 {
-  width: 21.59cm;
-  height: 27.94cm;
+@caption_size: 18px;
+@field_size: 16px;
+
+#main-payment-2 {
+  display: none;
+}
+.payment-copy {
+  display: none;
+}
+
+#main-payment-receip {
+  width: 100%;
+  height: auto;
   margin: 0 auto;
   background: white;
-  padding-bottom: 40px;
+  padding: 50px;
   #main-inner {
     padding: 20px;
   }
   .print-header {
-    margin-top: 20px;
+    margin: 20px 0;
     .print-logo {
-      font-size: 14px;
       line-height: 20px;
+      font-weight: bold;
     }
     .print-title {
-      width: 56%;
+      width: 42%;
       h1 {
         text-align: left;
-        margin-top: -50px;
+        margin-top: 10px;
+        margin-bottom: 40px;
+        font-size: 18px;
+        display: block;
+        font-size: 22px;
+        font-weight: bold;
       }
     }
   }
-  .main-payment-header {
-    display: none;
+  
+  .recibo table td strong {
+    font-size: @caption_size;
+  }
+  
+  .recibo table td {
+    font-size: @field_size;
   }
 
   .recibo {
     background-image: url('../images/watermark.png');
-    background-size: 86%;
+    background-size: 60%;
     background-repeat: no-repeat;
     width: auto;
-    height: 302px;
-    background-position: 46px 103px;
+    height: 350px;
+    background-position: 109px 85px;
   }
 
   .amount td {
@@ -53,40 +71,13 @@
     padding-bottom: 0;
   }
 
-  .payment-copy  {
-    p {
-      margin-top: 0;
-      margin-bottom: 0;
-      line-height: 22px;
-      font-size: 14px;
-    }
-    .number {
-      width: 1%;
-      margin-left: 30px;
-    }
-    .text {
-      width: 90%;
-      padding-left: 15px;
-      padding-right: 15px;
-    }
-    .number, .text {
-      float: left;
-    }
-
-    .text p {
-      margin-left: 10px;
-    }
-    .text.last {
-      margin-bottom: 20px;
-    }
-  }
   .col6 {
 //     width: 42%;
     float: left;
     position: relative;
   }
   .col6.one {
-    width: 42%;
+    width: 56%;
   }
   .col6.two {
     width: 44%;
@@ -94,7 +85,7 @@
     padding-left: 20px;
   }
   .col6.three {
-    width: 42%;
+    width: 55%;
   }
   .col6.last {
     width: 44%;
@@ -105,7 +96,7 @@
 }
 
 #main-payment-2.content {
-  display: inline;
+  display: none;
 }
 
 #main-payment-2.print {
