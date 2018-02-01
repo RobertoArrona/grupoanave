@@ -176,14 +176,39 @@ function getDateFormat($date) {
   }
   return $day."/".$spanishMonth."/".$year;
 }
+//get serie
+$serie = $node->field_serie[LANGUAGE_NONE][0]['value'];
+if ($serie) {
+  //divide serie through "/" character
+  $serie = preg_split("[/]", $serie);
+  //get payments number
+  $serie = $serie[1];
+}
+
+
+$payment_first = $node->field_primer_pago[LANGUAGE_NONE][0]['value'];
+$sub_payment = $node->field_pago_subsecuente[LANGUAGE_NONE][0]['value'];
+$net_premium = $parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value'];
+$net_premium = $net_premium / $serie;
+$right_policy = $node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value'];
+
 // calculate IVA
-$primer_pago = $node->field_primer_pago[LANGUAGE_NONE][0]['value'];
-$pago_subsecuente = $node->field_pago_subsecuente[LANGUAGE_NONE][0]['value'];
-$prima_neta = $parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value'];
-if ($primer_pago == 0 || $primer_pago == '') {
-  $iva = $prima_neta * 0.16;
-}else if($pago_subsecuente == 0 || $pago_subsecuente == '' ) {
-  $iva = $parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value'];
+$iva = $iva / $serie;
+
+// calculate total premium
+$total_premium = $net_premium + $right_policy + $iva;
+
+// round amounts in two decimals
+$payment_first = round($payment_first, 2);
+$sub_payment = round($sub_payment, 2);
+$net_premium = round($net_premium, 2);
+$right_policy = round($right_policy, 2);
+$iva = round($iva, 2);
+$total_premium = round($total_premium, 2);
+
+
+if ($right_policy == 0) {
+  $right_policy = "0.00";
 }
 
 ?>
@@ -409,7 +434,7 @@ if ($primer_pago == 0 || $primer_pago == '') {
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?>
+              $<?php print render($net_premium);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -418,7 +443,7 @@ if ($primer_pago == 0 || $primer_pago == '') {
             <td> 
               <strong class="emission">Emision:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?>
+              $<?php print render($right_policy);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -437,8 +462,8 @@ if ($primer_pago == 0 || $primer_pago == '') {
               <strong>Prima Total:</strong>
               <?php /* if(isset()): */?>
               $<?php
-                $prima_total = $primer_pago + $pago_subsecuente;
-                 print render($prima_total);?>
+//                 $total_premium = $payment_first + $sub_payment;
+                 print render($total_premium);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -707,7 +732,7 @@ if ($primer_pago == 0 || $primer_pago == '') {
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']);?>
+              $<?php print render($net_premium);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -716,7 +741,7 @@ if ($primer_pago == 0 || $primer_pago == '') {
             <td> 
               <strong class="emission">Emision:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value']);?>
+              $<?php print render($right_policy);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -734,9 +759,9 @@ if ($primer_pago == 0 || $primer_pago == '') {
             <td> 
               <strong>Prima Total:</strong>
               <?php /* if(isset()): */?>
-              $<?php 
-                $prima_total = $primer_pago + $pago_subsecuente;
-                 print render($prima_total);?>
+              $<?php
+//                 $total_premium = $payment_first + $sub_payment;
+                 print render($total_premium);?>
               <?php /* endif; */?>
             </td>
           </tr>

@@ -386,6 +386,7 @@ table.print.coberturas {
 #main-payment-2 .barcode {
   width: 106px;
   height: 106px;
+  padding-top: 10px;
 }
 #main-payment .recibo,
 #main-payment-2 .recibo {
