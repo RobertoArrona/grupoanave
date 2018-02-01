@@ -8867,9 +8867,6 @@ body {
 #main-payment-2 {
   display: none;
 }
-.payment-copy {
-  display: none;
-}
 #main-payment-receip {
   width: 100%;
   height: auto;
@@ -8898,6 +8895,12 @@ body {
   display: block;
   font-size: 22px;
   font-weight: bold;
+}
+#main-payment-receip .payment-copy {
+  display: none;
+}
+#main-payment-receip strong.to {
+  padding-left: 186px;
 }
 #main-payment-receip .recibo table td strong {
   font-size: 18px;

@@ -268,7 +268,7 @@ function getDateFormat($date) {
           
           <tr>
             <td> 
-              <strong>al:</strong>
+              <strong class="to">al:</strong>
               <?php /* if(isset()): */?>
               <?php
                 $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);
@@ -561,7 +561,7 @@ function getDateFormat($date) {
           
           <tr>
             <td> 
-              <strong>al:</strong>
+              <strong class="to">al:</strong>
               <?php /* if(isset()): */?>
               <?php
                 $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);

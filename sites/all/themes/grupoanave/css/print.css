@@ -321,6 +321,9 @@ table.print.coberturas {
   position: relative;
   top: 135px;
 }
+#main-payment-receip {
+  padding: 0;
+}
 #main-payment,
 #main-payment-2 {
   width: 21.59cm;
@@ -355,6 +358,18 @@ table.print.coberturas {
 #main-payment-2 .main-payment-header {
   display: none;
 }
+#main-payment .recibo table td strong,
+#main-payment-2 .recibo table td strong {
+  font-size: 14px;
+}
+#main-payment .recibo table td,
+#main-payment-2 .recibo table td {
+  font-size: 14px;
+}
+#main-payment strong.to,
+#main-payment-2 strong.to {
+  padding-left: 144px;
+}
 #main-payment .recibo,
 #main-payment-2 .recibo {
   background-image: url('../images/watermark.png');
@@ -387,6 +402,11 @@ table.print.coberturas {
   padding-right: 0;
   padding-top: 0;
   padding-bottom: 0;
+}
+#main-payment .payment-copy,
+#main-payment-2 .payment-copy {
+  display: block;
+  width: 19.59cm;
 }
 #main-payment .payment-copy p,
 #main-payment-2 .payment-copy p {
