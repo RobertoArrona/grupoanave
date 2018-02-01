@@ -370,6 +370,11 @@ table.print.coberturas {
 #main-payment-2 strong.to {
   padding-left: 144px;
 }
+#main-payment .barcode,
+#main-payment-2 .barcode {
+  width: 106px;
+  height: 106px;
+}
 #main-payment .recibo,
 #main-payment-2 .recibo {
   background-image: url('../images/watermark.png');
@@ -463,8 +468,8 @@ table.print.coberturas {
 #main-payment-2 .col6.last {
   width: 44%;
   margin-top: 10px;
-  margin-bottom: 70px;
-  padding-left: 100px;
+  margin-bottom: 60px;
+  padding-left: 164px;
 }
 #main-payment-2.content {
   display: inline;

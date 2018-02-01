@@ -8902,6 +8902,10 @@ body {
 #main-payment-receip strong.to {
   padding-left: 186px;
 }
+#main-payment-receip .barcode {
+  width: 106px;
+  height: 106px;
+}
 #main-payment-receip .recibo table td strong {
   font-size: 18px;
 }
@@ -8952,8 +8956,8 @@ body {
 #main-payment-receip .col6.last {
   width: 44%;
   margin-top: 10px;
-  margin-bottom: 70px;
-  padding-left: 100px;
+  margin-bottom: 60px;
+  padding-left: 216px;
 }
 #main-payment-2.content {
   display: none;
