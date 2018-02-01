@@ -187,24 +187,21 @@ if ($serie) {
 
 
 $payment_first = $node->field_primer_pago[LANGUAGE_NONE][0]['value'];
-$sub_payment = $node->field_pago_subsecuente[LANGUAGE_NONE][0]['value'];
+$raw_payment = $parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value'];
+$subsecuent_payment = $node->field_pago_subsecuente[LANGUAGE_NONE][0]['value'];
 $net_premium = $parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value'];
 $net_premium = $net_premium / $serie;
 $right_policy = $node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value'];
+$iva = $parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value'];
+
 
 // calculate IVA
 $iva = $iva / $serie;
+$raw_payment = $raw_payment - $iva;
+$payment_first= $payment_first - $iva;
 
-// calculate total premium
-$total_premium = $net_premium + $right_policy + $iva;
-
-// round amounts in two decimals
-$payment_first = round($payment_first, 2);
-$sub_payment = round($sub_payment, 2);
-$net_premium = round($net_premium, 2);
-$right_policy = round($right_policy, 2);
 $iva = round($iva, 2);
-$total_premium = round($total_premium, 2);
+$raw_payment = round($raw_payment, 2);
 
 
 if ($right_policy == 0) {
@@ -434,7 +431,7 @@ if ($right_policy == 0) {
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($net_premium);?>
+              $<?php print render($raw_payment);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -462,8 +459,9 @@ if ($right_policy == 0) {
               <strong>Prima Total:</strong>
               <?php /* if(isset()): */?>
               $<?php
-//                 $total_premium = $payment_first + $sub_payment;
-                 print render($total_premium);?>
+                $total_premium = $payment_first + $subsecuent_payment + $iva;
+                //$total_premium = $subsecuent_payment;
+                print render($total_premium);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -732,7 +730,7 @@ if ($right_policy == 0) {
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($net_premium);?>
+              $<?php print render($raw_payment);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -760,8 +758,11 @@ if ($right_policy == 0) {
               <strong>Prima Total:</strong>
               <?php /* if(isset()): */?>
               $<?php
-//                 $total_premium = $payment_first + $sub_payment;
-                 print render($total_premium);?>
+                  $total_premium = $payment_first + $subsecuent_payment  + $iva;
+                  //$total_premium = $subsecuent_payment;
+                
+                $total_premium = round($total_premium,2);
+                print render($total_premium);?>
               <?php /* endif; */?>
             </td>
           </tr>
