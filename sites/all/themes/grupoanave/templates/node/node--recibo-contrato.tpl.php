@@ -176,6 +176,15 @@ function getDateFormat($date) {
   }
   return $day."/".$spanishMonth."/".$year;
 }
+// calculate IVA
+$primer_pago = $node->field_primer_pago[LANGUAGE_NONE][0]['value'];
+$pago_subsecuente = $node->field_pago_subsecuente[LANGUAGE_NONE][0]['value'];
+$prima_neta = $parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value'];
+if ($primer_pago == 0 || $primer_pago == '') {
+  $iva = $prima_neta * 0.16;
+}else if($pago_subsecuente == 0 || $pago_subsecuente == '' ) {
+  $iva = $parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value'];
+}
 
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
@@ -301,10 +310,13 @@ function getDateFormat($date) {
               <strong>Tipo de Contrato:</strong>
               <?php /* if(isset()): */?>
               <?php
+                print render ($fcentity->field_poliza_tipo[LANGUAGE_NONE][0]['value']);
+/*
                  foreach($keys_fc_list as $key => $value) {
                    $label_list = $field_info['settings']['allowed_values'][$value];
                    print("$label_list <br>");
                   }
+*/
                ?>
             </td>
           </tr>
@@ -415,7 +427,7 @@ function getDateFormat($date) {
             <td> 
               <strong>I.V.A:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value']);?>
+              $<?php print render($iva);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -424,7 +436,9 @@ function getDateFormat($date) {
             <td> 
               <strong>Prima Total:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($parent_data->field_poliza_prima_total[LANGUAGE_NONE][0]['value']);?>
+              $<?php
+                $prima_total = $primer_pago + $pago_subsecuente;
+                 print render($prima_total);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -439,7 +453,7 @@ function getDateFormat($date) {
           <p>1.</p>
         </div>
         <div class="text">
-          <p>Los pagos deberan realizarce en cualquier sucursarl de Santander y en las oficnas de MN Global Protec A.C. a travez de la referencia bancaria Proporcionada.</p>
+          <p>Los pagos deberan realizarce en cualquier sucursal de Santander y en las oficnas de MN Global Protec A.C. a travez de la referencia bancaria Proporcionada.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -594,10 +608,13 @@ function getDateFormat($date) {
               <strong>Tipo de Contrato:</strong>
               <?php /* if(isset()): */?>
               <?php
+                 print render ($fcentity->field_poliza_tipo[LANGUAGE_NONE][0]['value']);
+/*
                  foreach($keys_fc_list as $key => $value) {
                    $label_list = $field_info['settings']['allowed_values'][$value];
                    print("$label_list <br>");
                   }
+*/
                ?>
             </td>
           </tr>
@@ -708,7 +725,7 @@ function getDateFormat($date) {
             <td> 
               <strong>I.V.A:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value']);?>
+              $<?php print render($iva);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -717,7 +734,9 @@ function getDateFormat($date) {
             <td> 
               <strong>Prima Total:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($parent_data->field_poliza_prima_total[LANGUAGE_NONE][0]['value']);?>
+              $<?php 
+                $prima_total = $primer_pago + $pago_subsecuente;
+                 print render($prima_total);?>
               <?php /* endif; */?>
             </td>
           </tr>
