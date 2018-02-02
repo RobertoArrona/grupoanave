@@ -309,7 +309,7 @@ if ($right_policy == 0) {
             </td>
           </tr>
           
-          <tr>
+          <tr class="tr-contract-number">
             <td> 
               <strong>Contrato No:</strong>
               <?php /* if(isset()): */?>
@@ -318,7 +318,7 @@ if ($right_policy == 0) {
             </td>
           </tr>
           
-          <tr>
+          <tr class="tr-payment">
             <td> 
               <strong>Forma de Pago:</strong>
               <?php /* if(isset()): */?>
@@ -327,7 +327,7 @@ if ($right_policy == 0) {
             </td>
           </tr>
           
-          <tr>
+          <tr class="tr-type-contract">
             <td> 
               <strong>Tipo de Contrato:</strong>
               <?php /* if(isset()): */?>
@@ -387,6 +387,7 @@ if ($right_policy == 0) {
             </td>
           </tr>
           
+<!--
           <tr>
             <td>
               <strong>Colonia:</strong>
@@ -395,6 +396,7 @@ if ($right_policy == 0) {
               <?php /* endif; */?>
             </td>
           </tr>
+-->
           
           <tr>
             <td>
@@ -418,7 +420,7 @@ if ($right_policy == 0) {
             <td>
               <strong>Importe con Letra:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>
+              (<?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>)
               <?php /* endif; */?>
             </td>
           </tr>
@@ -431,7 +433,10 @@ if ($right_policy == 0) {
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($raw_payment);?>
+              $<?php
+                 $newRaw_payment = number_format($raw_payment, 2, '.', '');
+                print render($newRaw_payment);
+                 ?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -449,7 +454,8 @@ if ($right_policy == 0) {
             <td> 
               <strong class="iva">I.V.A:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($iva);?>
+              $<?php $newIva = number_format($iva, 2, '.', '');
+                print render($newIva);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -459,9 +465,12 @@ if ($right_policy == 0) {
               <strong>Prima Total:</strong>
               <?php /* if(isset()): */?>
               $<?php
-                $total_premium = $payment_first + $subsecuent_payment + $iva;
-                //$total_premium = $subsecuent_payment;
-                print render($total_premium);?>
+               $total_premium = $payment_first + $subsecuent_payment  + $iva;
+                  //$total_premium = $subsecuent_payment;
+                
+                $total_premium = round($total_premium,2);
+                $newTotal_premium = number_format($total_premium, 2,'.', '');
+                print render($newTotal_premium);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -686,6 +695,7 @@ if ($right_policy == 0) {
             </td>
           </tr>
           
+<!--
           <tr>
             <td>
               <strong>Colonia:</strong>
@@ -694,6 +704,7 @@ if ($right_policy == 0) {
               <?php /* endif; */?>
             </td>
           </tr>
+-->
           
           <tr>
             <td>
@@ -717,7 +728,7 @@ if ($right_policy == 0) {
             <td>
               <strong>Importe con Letra:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>
+              (<?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>)
               <?php /* endif; */?>
             </td>
           </tr>
@@ -730,7 +741,11 @@ if ($right_policy == 0) {
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($raw_payment);?>
+              $<?php 
+                $newRaw_payment = number_format($raw_payment, 2, '.', '');
+                print render($newRaw_payment);
+                
+              ?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -748,7 +763,9 @@ if ($right_policy == 0) {
             <td> 
               <strong class="iva">I.V.A:</strong>
               <?php /* if(isset()): */?>
-              $<?php print render($iva);?>
+              $<?php 
+                $newIva = number_format($iva, 2, '.', '');
+                print render($newIva);?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -762,7 +779,8 @@ if ($right_policy == 0) {
                   //$total_premium = $subsecuent_payment;
                 
                 $total_premium = round($total_premium,2);
-                print render($total_premium);?>
+                $newTotal_premium = number_format($total_premium, 2,'.', '');
+                print render($newTotal_premium);?>
               <?php /* endif; */?>
             </td>
           </tr>
