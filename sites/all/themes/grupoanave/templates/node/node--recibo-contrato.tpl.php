@@ -280,8 +280,11 @@ if ($right_policy == 0) {
               <strong>Vencimiento del Recibo:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_vencimiento[LANGUAGE_NONE][0]['value']);
-                print render($dateFormate); 
+                if(isset($node->field_vencimiento[LANGUAGE_NONE][0]['value'])) {
+                  $due_date = $node->field_vencimiento[LANGUAGE_NONE][0]['value'];
+                  $dateFormate = getDateFormat($due_date);
+                  print render($dateFormate);
+                }
               ?>
               <?php /* endif; */?>
           </tr>
@@ -591,8 +594,11 @@ if ($right_policy == 0) {
               <strong>Vencimiento del Recibo:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_vencimiento[LANGUAGE_NONE][0]['value']);
-                print render($dateFormate); 
+                if(isset($node->field_vencimiento[LANGUAGE_NONE][0]['value'])) {
+                  $due_date = $node->field_vencimiento[LANGUAGE_NONE][0]['value'];
+                  $dateFormate = getDateFormat($due_date);
+                  print render($dateFormate);
+                }
               ?>
               <?php /* endif; */?>
           </tr>

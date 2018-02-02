@@ -50,9 +50,12 @@ if(empty($termid)) {
   }
  $agent_id = $agente->field_agente_clave[LANGUAGE_NONE]['0']['value'];
  $office  = "$termname-$agent_id";
- $termid_vehicle = $elements['#node']->field_vehiculo_descripcion[LANGUAGE_NONE]['0']['tid'];
- $termvehicle_description = taxonomy_term_load($termid_vehicle);
- $termname_vehicle = $termvehicle_description->name;
+ if (isset($elements['#node']->field_vehiculo_descripcion[LANGUAGE_NONE]['0']['tid'])) {
+   $termid_vehicle = $elements['#node']->field_vehiculo_descripcion[LANGUAGE_NONE]['0']['tid'];
+   $termvehicle_description = taxonomy_term_load($termid_vehicle);
+   $termname_vehicle = $termvehicle_description->name;
+ }
+ 
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 

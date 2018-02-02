@@ -50,13 +50,15 @@ function insurance_contract_contract_number_increase($i = 0) {
  * Returns true if a given contract is found at the database.
  */
 function insurance_contract_contract_folio_exists($contract_folio, $nid) {
-  $nid = explode('',$nid);
-  $contract_folio = explode('',$contract_folio);
-  if($nid) {
-    $query = db_query("SELECT nid FROM {nodes} WHERE title = '%s' AND nid != %d". $contract_folio, $nid);
-    if ($item = $query->fetchArray()) {
-      return $item['nid'];
+  if (isset($nid)) {
+    $nid = explode('',$nid);
+    $contract_folio = explode('',$contract_folio);
+    if($nid) {
+      $query = db_query("SELECT nid FROM {nodes} WHERE title = '%s' AND nid != %d". $contract_folio, $nid);
+      if ($item = $query->fetchArray()) {
+        return $item['nid'];
+      }
     }
+    return false;
   }
-  return false;
 }
