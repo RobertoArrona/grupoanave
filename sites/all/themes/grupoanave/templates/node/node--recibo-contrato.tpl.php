@@ -377,7 +377,13 @@ if ($right_policy == 0) {
             <td>
               <strong>Solicitante de contrato:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value']);?>
+              <?php
+                if ($parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value']) {
+                  $insured = $parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value'];
+                  $insured = strtoupper($insured);
+                  print render($insured);
+                }
+              ?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -386,7 +392,13 @@ if ($right_policy == 0) {
             <td>
               <strong>Calle y No:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare']);?>
+              <?php
+                if ($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare']) {
+                  $street = $parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare'];
+                  $street = strtoupper($street);
+                  print render($street);
+                }
+              ?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -401,12 +413,17 @@ if ($right_policy == 0) {
             </td>
           </tr>
 -->
-          
           <tr>
             <td>
               <strong>Municipio:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality']);?>
+              <?php
+                if ($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality']) {
+                  $town = $parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality'];
+                  $town = strtoupper($town);
+                  print render($town);
+                }
+              ?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -415,7 +432,13 @@ if ($right_policy == 0) {
             <td>
               <strong>C.P:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code']);?>
+              <?php
+                if ($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code']) {
+                  $post_code = $parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code'];
+                  $post_code = strtoupper($post_code);
+                  print render($post_code);
+                }
+              ?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -691,7 +714,13 @@ if ($right_policy == 0) {
             <td>
               <strong>Solicitante de contrato:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value']);?>
+              <?php
+                if ($parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value']) {
+                  $insured = $parent_data->field_asegurado_nombre[LANGUAGE_NONE][0]['value'];
+                  $insured = strtoupper($insured);
+                  print render($insured);
+                }
+              ?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -700,7 +729,13 @@ if ($right_policy == 0) {
             <td>
               <strong>Calle y No:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare']);?>
+              <?php
+                if ($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare']) {
+                  $street = $parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['thoroughfare'];
+                  $street = strtoupper($street);
+                  print render($street);
+                }
+              ?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -715,12 +750,17 @@ if ($right_policy == 0) {
             </td>
           </tr>
 -->
-          
           <tr>
             <td>
               <strong>Municipio:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality']);?>
+              <?php
+                if ($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality']) {
+                  $town = $parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['locality'];
+                  $town = strtoupper($town);
+                  print render($town);
+                }
+              ?>
               <?php /* endif; */?>
             </td>
           </tr>
@@ -729,7 +769,13 @@ if ($right_policy == 0) {
             <td>
               <strong>C.P:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code']);?>
+              <?php
+                if ($parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code']) {
+                  $post_code = $parent_data->field_asegurado_domicilio[LANGUAGE_NONE][0]['postal_code'];
+                  $post_code = strtoupper($post_code);
+                  print render($post_code);
+                }
+              ?>
               <?php /* endif; */?>
             </td>
           </tr>
