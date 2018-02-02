@@ -8913,7 +8913,7 @@ body {
 }
 #main-payment-receip .barcode {
   width: 106px;
-  height: 106px;
+  height: 65px;
   padding-top: 10px;
 }
 #main-payment-receip .recibo table td strong {

@@ -192,15 +192,15 @@ $subsecuent_payment = $node->field_pago_subsecuente[LANGUAGE_NONE][0]['value'];
 $net_premium = $parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value'];
 $net_premium = $net_premium / $serie;
 $right_policy = $node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value'];
-$iva = $parent_data->field_poliza_impuesto_iva[LANGUAGE_NONE][0]['value'];
+$iva = 0;
 
 
 // calculate IVA
-$iva = $iva / $serie;
+//$iva = $iva / $serie;
 $raw_payment = $raw_payment - $iva;
 $payment_first= $payment_first - $iva;
 
-$iva = round($iva, 2);
+//$iva = round($iva, 2);
 $raw_payment = round($raw_payment, 2);
 
 
@@ -253,6 +253,7 @@ if ($right_policy == 0) {
           <tr>
             <td>
               <div class="barcode"><?php print render($content['field_codigo_de_barras'][0]['#svg']); ?></div>
+              <?php print render($node->field_codigo_de_barras[LANGUAGE_NONE][0]['safe_value']); ?>
             </td>
           </tr>
           <tr>
@@ -450,6 +451,7 @@ if ($right_policy == 0) {
             </td>
           </tr>
           
+<!--
           <tr>
             <td> 
               <strong class="iva">I.V.A:</strong>
@@ -459,6 +461,7 @@ if ($right_policy == 0) {
               <?php /* endif; */?>
             </td>
           </tr>
+-->
           
           <tr>
             <td> 
@@ -561,6 +564,7 @@ if ($right_policy == 0) {
           <tr>
             <td>
               <div class="barcode"><?php print render($content['field_codigo_de_barras'][0]['#svg']); ?></div>
+              <?php print render($node->field_codigo_de_barras[LANGUAGE_NONE][0]['safe_value']); ?>
             </td>
           </tr>
           <tr>
@@ -759,6 +763,7 @@ if ($right_policy == 0) {
             </td>
           </tr>
           
+<!--
           <tr>
             <td> 
               <strong class="iva">I.V.A:</strong>
@@ -769,6 +774,7 @@ if ($right_policy == 0) {
               <?php /* endif; */?>
             </td>
           </tr>
+-->
           
           <tr>
             <td> 
