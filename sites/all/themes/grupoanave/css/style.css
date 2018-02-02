@@ -8613,7 +8613,7 @@ body {
 }
 .page-node.node-type-poliza .tipo-poliza-block .inner-block,
 .page-node.node-type-siniestro .tipo-poliza-block .inner-block {
-  font-size: 16px;
+  font-size: 11px;
 }
 .page-node.node-type-poliza .tipo-poliza-block > .label-above,
 .page-node.node-type-siniestro .tipo-poliza-block > .label-above,
@@ -8623,7 +8623,7 @@ body {
   padding: 5px;
   background: #19227C;
   color: #fff;
-  font-size: 18px;
+  font-size: 12px;
 }
 .page-node.node-type-poliza .tipo-poliza-block .coberturas-block ul,
 .page-node.node-type-siniestro .tipo-poliza-block .coberturas-block ul {
@@ -8632,14 +8632,14 @@ body {
 }
 .page-node.node-type-poliza .tipo-poliza-block .coberturas-block ul li,
 .page-node.node-type-siniestro .tipo-poliza-block .coberturas-block ul li {
-  font-size: 16px;
+  font-size: 11px;
 }
 .page-node.node-type-poliza #block-block-7,
 .page-node.node-type-siniestro #block-block-7 {
   border: solid 1px #333;
   border-radius: 3px 3px 3px 3px;
   padding: 5px;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: bold;
 }
 .page-node.node-type-poliza #block-block-7 p,
@@ -8649,7 +8649,7 @@ body {
 .page-node.node-type-poliza #block-block-8,
 .page-node.node-type-siniestro #block-block-8 {
   padding: 5px 0;
-  font-size: 16px;
+  font-size: 11px;
 }
 .page-node.node-type-poliza #block-block-8 p,
 .page-node.node-type-siniestro #block-block-8 p {
@@ -8700,7 +8700,7 @@ body {
   padding: 5px;
   background: #19227C !important;
   color: #fff;
-  font-size: 18px;
+  font-size: 12px;
   line-height: 1.2em;
   font-weight: normal;
   text-transform: uppercase;
@@ -8710,7 +8710,7 @@ body {
 .page-node.node-type-siniestro table.print > tbody > tr > td {
   padding: 5px 5px;
   vertical-align: top;
-  font-size: 16px;
+  font-size: 11px;
 }
 .page-node.node-type-poliza table.print > tbody > tr > td + td,
 .page-node.node-type-siniestro table.print > tbody > tr > td + td {
@@ -8726,13 +8726,13 @@ body {
 .page-node.node-type-siniestro table.print-child tbody tr td {
   padding: 0;
   padding-bottom: 10px;
-  font-size: 16px;
+  font-size: 11px;
   vertical-align: top;
 }
 .page-node.node-type-poliza table.print-child tbody tr td .field,
 .page-node.node-type-siniestro table.print-child tbody tr td .field {
   margin: 0;
-  font-size: 16px;
+  font-size: 11px;
 }
 .page-node.node-type-poliza table.print-child tbody tr td .field .field,
 .page-node.node-type-siniestro table.print-child tbody tr td .field .field {
@@ -8762,7 +8762,7 @@ body {
 }
 .page-node.node-type-poliza .coberturas-block ul li,
 .page-node.node-type-siniestro .coberturas-block ul li {
-  font-size: 16px;
+  font-size: 11px;
 }
 .page-node.node-type-poliza table.print.table-vehiculo > tbody > tr > td,
 .page-node.node-type-siniestro table.print.table-vehiculo > tbody > tr > td {
@@ -8864,6 +8864,10 @@ body {
 .page-node.node-type-siniestro.print-vehiculo-tercero .node-siniestro > table.vehiculo-tercero-active {
   display: table;
 }
+/*
+@caption_size: 18px;
+@field_size: 16px;
+*/
 #main-payment-2 {
   display: none;
 }

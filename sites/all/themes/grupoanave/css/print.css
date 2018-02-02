@@ -47,7 +47,7 @@ body .row h2 {
   padding: 5px;
   background: #19227C !important;
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.2em;
   font-weight: normal;
   text-transform: uppercase;
@@ -63,7 +63,7 @@ body .label-inline {
   font-weight: bold;
 }
 body .field {
-  font-size: 14px;
+  font-size: 11px;
 }
 body .field .field {
   margin: 0;
@@ -125,7 +125,7 @@ body .group-poliza .subcolumn.first .inner-block {
   margin-bottom: 10px;
 }
 .tipo-poliza-block .inner-block {
-  font-size: 14px;
+  font-size: 11px;
 }
 .tipo-poliza-block > .label-above,
 .tipo-poliza-block .coberturas-block > .label-above {
@@ -133,20 +133,20 @@ body .group-poliza .subcolumn.first .inner-block {
   padding: 5px;
   background: #19227C !important;
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
 }
 .tipo-poliza-block .coberturas-block ul {
   margin: 0;
   padding: 5px 5px 5px 26px;
 }
 .tipo-poliza-block .coberturas-block ul li {
-  font-size: 14px;
+  font-size: 11px;
 }
 #block-block-7 {
   border: solid 1px #333;
   border-radius: 3px 3px 3px 3px;
   padding: 5px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
 }
 #block-block-7 p {
@@ -154,7 +154,7 @@ body .group-poliza .subcolumn.first .inner-block {
 }
 #block-block-8 {
   padding: 5px 0;
-  font-size: 14px;
+  font-size: 11px;
 }
 #block-block-8 p {
   margin: 0;
@@ -196,7 +196,7 @@ table.print thead tr th {
   padding: 5px;
   background: #19227C !important;
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.2em;
   font-weight: normal;
   text-transform: uppercase;
@@ -205,7 +205,7 @@ table.print thead tr th {
 table.print > tbody > tr > td {
   padding: 5px 5px;
   vertical-align: top;
-  font-size: 14px;
+  font-size: 11px;
 }
 table.print > tbody > tr > td + td {
   border-left: solid 1px #333;
@@ -218,12 +218,12 @@ table.print-child {
 table.print-child tbody tr td {
   padding: 0;
   padding-bottom: 10px;
-  font-size: 14px;
+  font-size: 11px;
   vertical-align: top;
 }
 table.print-child tbody tr td .field {
   margin: 0;
-  font-size: 14px;
+  font-size: 11px;
 }
 table.print-child tbody tr td .field .field {
   margin: 0;
@@ -247,7 +247,7 @@ table.generic tbody tr td {
   padding: 0 5px 0 26px;
 }
 .coberturas-block ul li {
-  font-size: 14px;
+  font-size: 11px;
 }
 table.print.table-vehiculo > tbody > tr > td {
   padding: 0;
@@ -286,7 +286,7 @@ table.generic tbody tr td.padding-descripcion {
   padding: 5px;
 }
 table.print.coberturas {
-  margin-bottom: 160px;
+  margin-bottom: 10px;
 }
 .galeria {
   display: none;
@@ -321,6 +321,10 @@ table.print.coberturas {
   position: relative;
   top: 135px;
 }
+/*
+@caption_size: 14px;
+@field_size: 14px;
+*/
 #main-payment-receip {
   padding: 0;
 }
