@@ -193,10 +193,10 @@ if(empty($termid)) {
                 <?php endif;?>
               </td>
               <td>
-                <?php if(isset($elements['field_poliza_emision'])):?>
+                <?php if(isset($elements['#node']->field_derecho_de_poliza2)):?>
                 <table class="generic"><tr>
                   <td><strong><?php print $elements['field_poliza_emision']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_reduccion']);?></td>
+                  <td align="right"><?php print render ($elements['#node']->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value']);?></td>
                 </tr></table>
                 <?php endif;?>
               </td>
