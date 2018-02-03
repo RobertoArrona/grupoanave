@@ -1,0 +1,19 @@
+(function ($) {
+   $( document ).ready(function() {
+     var contractFolio = $('.nodecollectionnavigationwrapper .nodecollectionmenulevel1 .menu li.first.leaf a').attr('href');
+     if (contractFolio) {
+       contractFolio = contractFolio.split('/');
+       contractFolio = contractFolio[2];
+       contractFolio = contractFolio.split('');
+       contractFolio = contractFolio[0];
+       contractFolio = contractFolio.toUpperCase();
+       var contract = $('.nodecollectionnavigationwrapper .nodecollectionmenulevel1 .menu li.first.leaf a');
+       contract.text('Contrato' + contractFolio)
+       var receipt = $(".nodecollectionnavigationwrapper .nodecollectionmenulevel1 .menu li:not('.first') a");
+       receipt.each(function(){
+         var receiptFolio = $(this).text();
+         $(this).text('Recibo'+receiptFolio);
+       });  
+     }
+   });
+ })(jQuery);
