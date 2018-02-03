@@ -161,10 +161,9 @@ function getSerie($payment_type){
 
 // Get grace period 
 function getGracePeriod($grace_day) {
-  if (isset($due_date)) {
+    $due_date = "";
     $due_date = date('Y-m-d', strtotime("$due_date +$grace_day day" )); 
     return $due_date;
-  }
 }
 
 // get series data for payments
@@ -372,27 +371,26 @@ function payment_receipt_node_form_validate($form, &$form_state) {
     $split = preg_split('[=]', $actionString);
     $parent_node_id = $split[1];
     $parent_nid = str_replace('/node/add/recibo-contrato?parent_node_id=','',$actionString);
-  } else if (!empty($node ->nid)) {
-    $parentInstance = node_collection_api_get_parent_node_instance($node ->nid);
-    $parent_node_id = $parentInstance ->nid;
-  }
-  $parent_data = node_load($parent_node_id);
-  $payments = $parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value'];
-  $serie = getSerie($payments);
-  $serieNumber = substr($serie,1);
-  $nids_childs = node_collection_api_get_child_node_instances($parent_node_id);
-  $childsNumber = count($nids_childs);
-  
-  
-  
-  if(empty($node ->nid)) {
+    
+    $parent_data = node_load($parent_node_id);
+    $payments = $parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value'];
+    $serie = getSerie($payments);
+    $serieNumber = substr($serie,1);
+    $nids_childs = node_collection_api_get_child_node_instances($parent_node_id);
+    $childsNumber = count($nids_childs);
+    
     $payment_receipt_folio = $form_state['values']['title'];
     if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
       $newfolio = payment_receipt_receipt_new_folio();
       $form_state['values']['title'] = $newfolio;
     }
+  
+    if ($childsNumber == $serieNumber){
+       form_set_error('title', t('No se puede crear otro recibo, porque ya se supero el límite para este contrato, en base al método de pago.'));
+    }
+    
+  } else if (!empty($node ->nid)) {
+    $parentInstance = node_collection_api_get_parent_node_instance($node ->nid);
+    $parent_node_id = $parentInstance ->nid;
   }
-  if ($childsNumber == $serieNumber){
-     form_set_error('title', t('No se puede crear otro recibo, porque ya se supero el límite para este contrato, en base al método de pago.'));
-  } 
 }

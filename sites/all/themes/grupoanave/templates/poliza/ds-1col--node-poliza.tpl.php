@@ -5,12 +5,17 @@
  * Display Suite 1 column template.
  */
 //print_r($elements);exit;
- $agente_uid = $elements['author']['#object']->uid;
- $agente = user_load($agente_uid);
- $agente_nombre = "{$agente->field_first_name[LANGUAGE_NONE][0]['safe_value']} {$agente->field_last_name[LANGUAGE_NONE][0]['safe_value']}";
+ 
+ if (isset($elements['author']['#object']->uid)) {
+   $agente_uid = $elements['author']['#object']->uid;
+   $agente = user_load($agente_uid);
+   $agente_nombre = "{$agente->field_first_name[LANGUAGE_NONE][0]['safe_value']} {$agente->field_last_name[LANGUAGE_NONE][0] ['safe_value']}";
+ }
+ 
  if ( isset($elements['field_asegurado_domicilio']['#items'][0]) ) {
    $address = $elements['field_asegurado_domicilio']['#items'][0];
  }
+ 
  if (isset($elements['field_poliza_forma_pago'])) {
   $plazo = $elements['field_poliza_forma_pago']['#items'][0]['value'];
   $pagos_sub_label = 'Primas Recibos Subs:';
