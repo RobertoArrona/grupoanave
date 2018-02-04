@@ -49,7 +49,9 @@ function payment_receipt_form_settings() {
  * Implements hook_form_FORM_ID_alter().
  */
 function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_state, $form_id) {
-
+    
+    
+  
   if (!(isset($form['nid']['#value']) && !empty($form['nid']['#value']))) {
     $payment_receipt_folio = payment_receipt_receipt_number_folio_get();
     if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
@@ -62,7 +64,7 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   $form['title']['#attributes']['style']  = 'display: none;';
   $form['#validate'][] = 'payment_receipt_node_form_validate';
   $node = menu_get_object();
-  
+
   if(empty($node ->nid)) {
     $actionString = $form['#action'];
     $split = preg_split('[=]', $actionString);
@@ -72,7 +74,6 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
     $parentInstance = node_collection_api_get_parent_node_instance($node ->nid);
     $parent_node_id = $parentInstance ->nid;
   }
-  
   
   /**
    * logic to fill payment receipt fields
@@ -99,7 +100,13 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   $receiptSerie = $paymentKey.$serie;
   // add from poliza to recibo
   $payments = $parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value'];
+  $form['field_referencia_contrato'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->title;
+  $form['field_referencia_contrato']['#attributes']['readonly'] = 'readonly';
+  $form['field_referencia_contrato']['#attributes']['style']  = 'display: none;';
+//   print_r($parent_data->title);exit;
     
+  
+  
   // define when is the first payemnt or not and assign data.
   if (empty($nids_childs) || $nids_childs[0] == $child_nid) {
     print ("<h1>Es el primer pago</h1>");
@@ -366,6 +373,9 @@ function num2letras($num, $fem = false, $dec = true) {
 
 function payment_receipt_node_form_validate($form, &$form_state) {
   $node = menu_get_object();
+  
+  
+  
   if(empty($node ->nid)) {
     $actionString = $form['#action'];
     $split = preg_split('[=]', $actionString);
@@ -379,12 +389,19 @@ function payment_receipt_node_form_validate($form, &$form_state) {
     $nids_childs = node_collection_api_get_child_node_instances($parent_node_id);
     $childsNumber = count($nids_childs);
     
+    // get serie     
+    $serie = getSerie($payments);
+    // count array to get new payment key
+    $paymentKey = count($nids_childs) +1;
+    $receiptSerie = $paymentKey.$serie;
+    $form_state['values']['field_serie'][LANGUAGE_NONE][0]['value'] = $receiptSerie;
+    
     $payment_receipt_folio = $form_state['values']['title'];
     if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
       $newfolio = payment_receipt_receipt_new_folio();
       $form_state['values']['title'] = $newfolio;
     }
-  
+    
     if ($childsNumber == $serieNumber){
        form_set_error('title', t('No se puede crear otro recibo, porque ya se supero el límite para este contrato, en base al método de pago.'));
     }
