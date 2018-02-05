@@ -398,14 +398,22 @@ function payment_receipt_node_form_validate($form, &$form_state) {
     $receiptSerie = $paymentKey.$serie;
     $form_state['values']['field_serie_rc'][LANGUAGE_NONE][0]['value'] = $receiptSerie;
     
+    //validating for folio receipt     
     $payment_receipt_folio = $form_state['values']['title'];
     if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {
       $newfolio = payment_receipt_receipt_new_folio();
       $form_state['values']['title'] = $newfolio;
     }
     
+    //validating for serie receipt 
     if ($childsNumber == $serieNumber){
        form_set_error('title', t('No se puede crear otro recibo, porque ya se supero el límite para este contrato, en base al método de pago.'));
+    }
+    
+    //validating for subpayments receipt
+    if (count($nids_childs) >= 1) {
+      $form_state['values']['field_primer_pago_rc'][LANGUAGE_NONE][0]['value'] = 0;
+      $form_state['values']['field_pago_subsecuente_rc'][LANGUAGE_NONE][0]['value'] = $parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value'];
     }
     
   } else if (!empty($node ->nid)) {
