@@ -100,9 +100,11 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   $receiptSerie = $paymentKey.$serie;
   // add from poliza to recibo
   $payments = $parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value'];
+/*
   $form['field_referencia_contrato'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->title;
   $form['field_referencia_contrato']['#attributes']['readonly'] = 'readonly';
   $form['field_referencia_contrato']['#attributes']['style']  = 'display: none;';
+*/
 //   print_r($parent_data->title);exit;
     
   
@@ -110,34 +112,34 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   // define when is the first payemnt or not and assign data.
   if (empty($nids_childs) || $nids_childs[0] == $child_nid) {
     print ("<h1>Es el primer pago</h1>");
-    $form['field_primer_pago'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value'];
-    $form['field_serie'][LANGUAGE_NONE][0]['value']['#default_value'] = "1$serie";
-    $form['field_importe_con_letra'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value']));
-    $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value2'] = getCoverage($payments, $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value']);
-    $form['field_vencimiento'][LANGUAGE_NONE][0]['#default_value']['value'] = getGracePeriod($parent_data->field_periodo_de_gracia[LANGUAGE_NONE][0]['value']);
-    $form['field_emision_recibo_ref'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value'];
-    $form['field_pago_subsecuente'][LANGUAGE_NONE][0]['value']['#default_value'] = 0;
+    $form['field_primer_pago_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value'];
+    $form['field_serie_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = "1$serie";
+    $form['field_importe_con_letra_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value']));
+    $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['#default_value']['value2'] = getCoverage($payments, $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['#default_value']['value']);
+    $form['field_vencimiento_rc'][LANGUAGE_NONE][0]['#default_value']['value'] = getGracePeriod($parent_data->field_periodo_de_gracia[LANGUAGE_NONE][0]['value']);
+    $form['field_emision_recibo_ref_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value'];
+    $form['field_pago_subsecuente_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = 0;
   } else {
     print ("<h1>Es pago subsecuente</h1>");
-    $form['field_pago_subsecuente'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value'];
+    $form['field_pago_subsecuente_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value'];
     if ($childsNumber != $serieNumber) {
-      $form['field_serie'][LANGUAGE_NONE][0]['value']['#default_value'] = $receiptSerie;
+      $form['field_serie_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = $receiptSerie;
     }
-    $form['field_importe_con_letra'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value']));
-    $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value2'] = getCoverage($payments, $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['#default_value']['value']);
-    $form['field_vencimiento'][LANGUAGE_NONE][0]['#default_value']['value'] = getGracePeriod($parent_data->field_periodo_de_gracia[LANGUAGE_NONE][0]['value']);
-    $form['field_emision_recibo_ref'][LANGUAGE_NONE][0]['value']['#default_value'] = 0;
-    $form['field_primer_pago'][LANGUAGE_NONE][0]['value']['#default_value'] = 0;
+    $form['field_importe_con_letra_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value']));
+    $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['#default_value']['value2'] = getCoverage($payments, $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['#default_value']['value']);
+    $form['field_vencimiento_rc'][LANGUAGE_NONE][0]['#default_value']['value'] = getGracePeriod($parent_data->field_periodo_de_gracia[LANGUAGE_NONE][0]['value']);
+    $form['field_emision_recibo_ref_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = 0;
+    $form['field_primer_pago_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = 0;
   }
   
 /*
-  $form['field_primer_pago'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
-  $form['field_serie'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
-  $form['field_importe_con_letra'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
-  $form['field_periodo_cobertura'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
-  $form['field_vencimiento'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
-  $form['field_emision_recibo_ref'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
-  $form['field_pago_subsecuente'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
+  $form['field_primer_pago_rc'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
+  $form['field_serie_rc'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
+  $form['field_importe_con_letra_rc'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
+  $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
+  $form['field_vencimiento_rc'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
+  $form['field_emision_recibo_ref_rc'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
+  $form['field_pago_subsecuente_rc'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
 */
   
 }
@@ -394,7 +396,7 @@ function payment_receipt_node_form_validate($form, &$form_state) {
     // count array to get new payment key
     $paymentKey = count($nids_childs) +1;
     $receiptSerie = $paymentKey.$serie;
-    $form_state['values']['field_serie'][LANGUAGE_NONE][0]['value'] = $receiptSerie;
+    $form_state['values']['field_serie_rc'][LANGUAGE_NONE][0]['value'] = $receiptSerie;
     
     $payment_receipt_folio = $form_state['values']['title'];
     if (payment_receipt_receipt_number_folio_exists($payment_receipt_folio)) {

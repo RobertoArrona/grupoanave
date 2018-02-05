@@ -177,7 +177,7 @@ function getDateFormat($date) {
   return $day."/".$spanishMonth."/".$year;
 }
 //get serie
-$serie = $node->field_serie[LANGUAGE_NONE][0]['value'];
+$serie = $node->field_serie_rc[LANGUAGE_NONE][0]['value'];
 if ($serie) {
   //divide serie through "/" character
   $serie = preg_split("[/]", $serie);
@@ -186,12 +186,12 @@ if ($serie) {
 }
 
 
-$payment_first = $node->field_primer_pago[LANGUAGE_NONE][0]['value'];
+$payment_first = $node->field_primer_pago_rc[LANGUAGE_NONE][0]['value'];
 $raw_payment = $parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value'];
-$subsecuent_payment = $node->field_pago_subsecuente[LANGUAGE_NONE][0]['value'];
+$subsecuent_payment = $node->field_pago_subsecuente_rc[LANGUAGE_NONE][0]['value'];
 $net_premium = $parent_data->field_poliza_prima_neta[LANGUAGE_NONE][0]['value'];
 $net_premium = $net_premium / $serie;
-$right_policy = $node->field_emision_recibo_ref[LANGUAGE_NONE][0]['value'];
+$right_policy = $node->field_emision_recibo_ref_rc[LANGUAGE_NONE][0]['value'];
 $iva = 0;
 
 
@@ -252,8 +252,8 @@ if ($right_policy == 0) {
         <table>
           <tr>
             <td>
-              <div class="barcode"><?php print render($content['field_codigo_de_barras'][0]['#svg']); ?></div>
-              <?php print render($node->field_codigo_de_barras[LANGUAGE_NONE][0]['safe_value']); ?>
+              <div class="barcode"><?php print render($content['field_codigo_de_barras_rc'][0]['#svg']); ?></div>
+              <?php print render($node->field_codigo_de_barras_rc[LANGUAGE_NONE][0]['safe_value']); ?>
             </td>
           </tr>
           <tr>
@@ -266,7 +266,7 @@ if ($right_policy == 0) {
             <td> 
               <strong>Serie:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($node->field_serie[LANGUAGE_NONE][0]['value']); ?>
+              <?php print render($node->field_serie_rc[LANGUAGE_NONE][0]['value']); ?>
               <?php /* endif; */?>
               <strong>Folio del Recibo:</strong>
               <?php /* if(isset()): */?>
@@ -280,8 +280,8 @@ if ($right_policy == 0) {
               <strong>Vencimiento del Recibo:</strong>
               <?php /* if(isset()): */?>
               <?php
-                if(isset($node->field_vencimiento[LANGUAGE_NONE][0]['value'])) {
-                  $due_date = $node->field_vencimiento[LANGUAGE_NONE][0]['value'];
+                if(isset($node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'])) {
+                  $due_date = $node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'];
                   $dateFormate = getDateFormat($due_date);
                   print render($dateFormate);
                 }
@@ -294,7 +294,7 @@ if ($right_policy == 0) {
               <strong>Periodo de cobertura del:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);
+                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value']);
                 print render($dateFormate); 
               ?>
               <?php /* endif; */?>
@@ -306,7 +306,7 @@ if ($right_policy == 0) {
               <strong class="to">al:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);
+                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value2']);
                 print render($dateFormate); 
               ?>
               <?php /* endif; */?>
@@ -366,7 +366,7 @@ if ($right_policy == 0) {
               <strong>Fecha de expedicion:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);
+                $dateFormate = getDateFormat($node->field_fecha_de_expedicion_rc[LANGUAGE_NONE][0]['value']);
                 print render($dateFormate); 
               ?>
               <?php /* endif; */?>
@@ -447,7 +447,7 @@ if ($right_policy == 0) {
             <td>
               <strong>Importe con Letra:</strong>
               <?php /* if(isset()): */?>
-              (<?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>)
+              (<?php print render($node->field_importe_con_letra_rc[LANGUAGE_NONE][0]['value']); ?>)
               <?php /* endif; */?>
             </td>
           </tr>
@@ -589,8 +589,8 @@ if ($right_policy == 0) {
         <table>
           <tr>
             <td>
-              <div class="barcode"><?php print render($content['field_codigo_de_barras'][0]['#svg']); ?></div>
-              <?php print render($node->field_codigo_de_barras[LANGUAGE_NONE][0]['safe_value']); ?>
+              <div class="barcode"><?php print render($content['field_codigo_de_barras_rc'][0]['#svg']); ?></div>
+              <?php print render($node->field_codigo_de_barras_rc[LANGUAGE_NONE][0]['safe_value']); ?>
             </td>
           </tr>
           <tr>
@@ -603,7 +603,7 @@ if ($right_policy == 0) {
             <td> 
               <strong>Serie:</strong>
               <?php /* if(isset()): */?>
-              <?php print render($node->field_serie[LANGUAGE_NONE][0]['value']); ?>
+              <?php print render($node->field_serie_rc[LANGUAGE_NONE][0]['value']); ?>
               <?php /* endif; */?>
               <strong>Folio del Recibo:</strong>
               <?php /* if(isset()): */?>
@@ -617,8 +617,8 @@ if ($right_policy == 0) {
               <strong>Vencimiento del Recibo:</strong>
               <?php /* if(isset()): */?>
               <?php
-                if(isset($node->field_vencimiento[LANGUAGE_NONE][0]['value'])) {
-                  $due_date = $node->field_vencimiento[LANGUAGE_NONE][0]['value'];
+                if(isset($node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'])) {
+                  $due_date = $node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'];
                   $dateFormate = getDateFormat($due_date);
                   print render($dateFormate);
                 }
@@ -631,7 +631,7 @@ if ($right_policy == 0) {
               <strong>Periodo de cobertura del:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value']);
+                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value']);
                 print render($dateFormate); 
               ?>
               <?php /* endif; */?>
@@ -643,7 +643,7 @@ if ($right_policy == 0) {
               <strong class="to">al:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura[LANGUAGE_NONE][0]['value2']);
+                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value2']);
                 print render($dateFormate); 
               ?>
               <?php /* endif; */?>
@@ -703,7 +703,7 @@ if ($right_policy == 0) {
               <strong>Fecha de expedicion:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_fecha_de_expedicion[LANGUAGE_NONE][0]['value']);
+                $dateFormate = getDateFormat($node->field_fecha_de_expedicion_rc[LANGUAGE_NONE][0]['value']);
                 print render($dateFormate); 
               ?>
               <?php /* endif; */?>
@@ -784,7 +784,7 @@ if ($right_policy == 0) {
             <td>
               <strong>Importe con Letra:</strong>
               <?php /* if(isset()): */?>
-              (<?php print render($node->field_importe_con_letra[LANGUAGE_NONE][0]['value']); ?>)
+              (<?php print render($node->field_importe_con_letra_rc[LANGUAGE_NONE][0]['value']); ?>)
               <?php /* endif; */?>
             </td>
           </tr>
