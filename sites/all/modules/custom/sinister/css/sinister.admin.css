@@ -2,14 +2,14 @@
  * CSS Siniestros > Vehiculo tercero && Lesiones y Danos.
  */
 .form-item-title label {
-  display:none;
+  display: none;
 }
 #field-vehiculo-tercero-values thead tr {
-  display:none;
-} 
+  display: table-row;
+}
 
 #field-lesionado-values thead tr {
-  display:none;
+  display: none;
 }
 
 #field-vehiculo-tercero-add-more-wrapper table.sticky-header {
@@ -20,25 +20,29 @@
   display: none;
 }
 #field-vehiculo-tercero-add-more-wrapper .tabledrag-toggle-weight {
-  display:none;   
+  display: none;   
 }
 #field-lesionado-add-more-wrapper .tabledrag-toggle-weight{
-  display:none;
+  display: none;
 }
 #field-vehiculo-tercero-values .tabledrag-handle {
-  display:none;
+  display: none;
 }
 #field-lesionado-values .tabledrag-handle {
-  display:none;
+  display: none;
 }
 #field-vehiculo-tercero-values .odd{
-  border:none;
+  border: none;
 }
 #field-lesionado-values .odd{
-  border:none;
+  border: none;
 }
 #field-lesionado-values .required-fields{
   border-width: 1 1;
   border-style: solid;
   border-color: #bebfb9;
+}
+
+#field-vehiculo-tercero-und-0-field-taller-values {
+  margin-top: 10px;
 }
