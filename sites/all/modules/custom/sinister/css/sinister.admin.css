@@ -47,3 +47,13 @@
 #field-lesionado-und-0-field-hospital-values {
   margin-top: 10px;
 }
+
+#edit-field-conductor-und-0-field-nombre-de-quien-reporta,
+#edit-field-conductor-und-0-field-tel-fono {
+  display: none;
+}
+
+#edit-field-conductor-und-0-field-nombre-de-quien-reporta.displayblock,
+#edit-field-conductor-und-0-field-tel-fono.displayblock {
+  display: block;
+}

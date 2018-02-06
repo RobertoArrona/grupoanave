@@ -6,8 +6,11 @@
 function sinister_form_alter(&$form, &$form_state, $form_id) {
   switch ($form_id) {
     case 'siniestro_node_form':
-      $path = drupal_get_path('module', 'sinister') . '/css/sinister.admin.css';
-      drupal_add_css($path);
+      $pathCSS = drupal_get_path('module', 'sinister') . '/css/sinister.admin.css';
+      drupal_add_css($pathCSS);
+      
+      $pathJS = drupal_get_path('module', 'sinister') . '/js/siniestro.reserva.js';
+      drupal_add_js($pathJS);
       break;
   }
 }
@@ -49,5 +52,4 @@ function sinister_form_siniestro_node_form_alter(&$form, &$form_state, $form_id)
   //$form Validate
   //$form['#validate'][] = 'sinister_number_siniestro_node_validate'; 
   //$form attached JS
-  drupal_add_js(drupal_get_path('module', 'sinister') . '/js/siniestro.reserva.js');
 }
