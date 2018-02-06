@@ -13,7 +13,7 @@
 }
 
 #field-vehiculo-tercero-add-more-wrapper table.sticky-header {
-  display: none;
+  display: table-row;
 }
 
 #field-lesionado-add-more-wrapper table.sticky-header {
@@ -43,6 +43,7 @@
   border-color: #bebfb9;
 }
 
-#field-vehiculo-tercero-und-0-field-taller-values {
+#field-vehiculo-tercero-und-0-field-taller-values,
+#field-lesionado-und-0-field-hospital-values {
   margin-top: 10px;
 }
