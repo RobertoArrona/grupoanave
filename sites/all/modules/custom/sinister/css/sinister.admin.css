@@ -9,11 +9,11 @@
 }
 
 #field-lesionado-values thead tr {
-  display: none;
+  display: table-row;
 }
 
 #field-vehiculo-tercero-add-more-wrapper table.sticky-header {
-  display: table-row;
+  display: none;
 }
 
 #field-lesionado-add-more-wrapper table.sticky-header {
