@@ -92,6 +92,14 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
               <?php endif;?>
             </td></tr>
             
+            <tr><td>
+              <?php if(isset($elements['field_comentarios_del_siniestro'])):?>
+              <div>
+              <?php print render($elements['field_comentarios_del_siniestro']);?>
+              </div>
+              <?php endif;?>
+            </td></tr>
+            
           </tbody>
         </table>
       </td>
