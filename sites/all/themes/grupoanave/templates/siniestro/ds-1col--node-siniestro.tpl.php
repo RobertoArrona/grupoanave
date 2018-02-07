@@ -93,9 +93,10 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
             </td></tr>
             
             <tr><td>
-              <?php if(isset($elements['field_comentarios_del_siniestro'])):?>
+              <strong>Comentarios del Siniestro:</strong>
+              <?php if(isset($node->field_comentarios_del_siniestro[LANGUAGE_NONE][0]['value'])):?>
               <div>
-              <?php print render($elements['field_comentarios_del_siniestro']);?>
+              <?php print render($node->field_comentarios_del_siniestro[LANGUAGE_NONE][0]['value']);?>
               </div>
               <?php endif;?>
             </td></tr>
