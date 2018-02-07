@@ -63,7 +63,11 @@ if(empty($termid)) {
    $termvehicle_description = taxonomy_term_load($termid_vehicle);
    $termname_vehicle = $termvehicle_description->name;
  }
- 
+  if (isset($elements['#node']->field_vehiculo_carroceria_select[LANGUAGE_NONE]['0']['tid'])) {
+   $termid_carroceria = $elements['#node']->field_vehiculo_carroceria_select[LANGUAGE_NONE]['0']['tid'];
+   $termcarroceria_description = taxonomy_term_load($termid_carroceria);
+   $termname_carroceria = $termcarroceria_description->name;
+ }
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 
@@ -382,10 +386,10 @@ if(empty($termid)) {
             <?php endif;?>
           </td>
           <td>
-            <?php if(isset($elements['field_vehiculo_uso'])):?>
+            <?php if(isset($elements['field_uso_vehiculo'])):?>
             <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_uso']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_uso']);?></td>
+              <td><strong><?php print $elements['field_uso_vehiculo']['#title'];?>:</strong></td>
+              <td align="right"><?php print render($elements['field_uso_vehiculo']);?></td>
             </tr></table>
             <?php endif;?>
           </td>
@@ -479,10 +483,10 @@ if(empty($termid)) {
             <?php endif;?>
           </td>
           <td>
-            <?php if(isset($elements['field_vehiculo_carroceria'])):?>
+            <?php if(isset($elements['#node']->field_vehiculo_carroceria_select[LANGUAGE_NONE]['0']['tid'])):?>
             <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_carroceria']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_carroceria']);?></td>
+              <td><strong><?php print 'Carrocería'?>:</strong></td>
+              <td align="right"><?php print $termname_carroceria;?></td>
             </tr></table>
             <?php endif;?>
           </td>

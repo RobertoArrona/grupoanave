@@ -167,8 +167,8 @@ function grupoanave_preprocess_print_node(&$variables) {
 
 function grupoanave_preprocess_print_node_poliza(&$variables) {
   $node = $variables['node'];
-  $service_type = $node->field_vehiculo_servicio[LANGUAGE_NONE][0]['value'];
-  $variables['poliza_title'] = "CONTRATO DE PROTECCION PARA SERVICIO {$service_type}";
+  $service_type = $node->field_uso_vehiculo[LANGUAGE_NONE][0]['value'];
+  $variables['poliza_title'] = "CONTRATO DE PROTECCION PARA {$service_type}";
 }
 
 function grupoanave_preprocess_print_node_siniestro(&$variables) {

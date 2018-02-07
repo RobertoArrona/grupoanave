@@ -49,6 +49,12 @@ if(empty($termid)) {
 
 $agent_id = $agente->field_agente_clave[LANGUAGE_NONE]['0']['value'];
 $office  = "$termname-$agent_id";
+
+ if (isset($elements['#node']->field_vehiculo_carroceria_select[LANGUAGE_NONE]['0']['tid'])) {
+   $termid_carroceria = $elements['#node']->field_vehiculo_carroceria_select[LANGUAGE_NONE]['0']['tid'];
+   $termcarroceria_description = taxonomy_term_load($termid_carroceria);
+   $termname_carroceria = $termcarroceria_description->name;
+ }
 ?>
 <<?php print $ds_content_wrapper; print $layout_attributes; ?> class="ds-1col <?php print $classes;?> clearfix">
 
@@ -468,14 +474,14 @@ $office  = "$termname-$agent_id";
             <?php endif;?>
           </td>
           <td>
-            <?php if(isset($elements['field_vehiculo_carroceria'])):?>
+            <?php if(isset($elements['#node']->field_vehiculo_carroceria_select[LANGUAGE_NONE]['0']['tid'])):?>
             <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_carroceria']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_carroceria']);?></td>
+              <td><strong><?php print 'Carrocería'?>:</strong></td>
+              <td align="right"><?php print $termname_carroceria;?></td>
             </tr></table>
             <?php endif;?>
           </td>
-
+          
           <td>
             <?php if(isset($elements['field_vehiculo_tipo_remolque'])):?>
             <table class="generic"><tr>
@@ -486,8 +492,12 @@ $office  = "$termname-$agent_id";
           </td>
 
           <td>
+            <?php if(isset($elements['field_uso_vehiculo'])):?>
             <table class="generic"><tr>
+              <td><strong><?php print $elements['field_uso_vehiculo']['#title'];?>:</strong></td>
+              <td align="right"><?php print render($elements['field_uso_vehiculo']);?></td>
             </tr></table>
+            <?php endif;?>
           </td>
         </tr>
 
