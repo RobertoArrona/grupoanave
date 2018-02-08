@@ -492,10 +492,10 @@ $office  = "$termname-$agent_id";
           </td>
 
           <td>
-            <?php if(isset($elements['field_uso_vehiculo'])):?>
+            <?php if(isset($elements['#node']->field_uso_vehiculo[LANGUAGE_NONE]['0']['value'])):?>
             <table class="generic"><tr>
-              <td><strong><?php print $elements['field_uso_vehiculo']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_uso_vehiculo']);?></td>
+              <td><strong><?php print 'Uso';?>:</strong></td>
+              <td align="right"><?php print render($elements['#node']->field_uso_vehiculo[LANGUAGE_NONE]['0']['value']);?></td>
             </tr></table>
             <?php endif;?>
           </td>
