@@ -7818,9 +7818,14 @@ body.navbar-is-fixed-top {
 }
 /** All Pages **/
 .tabs--primary.nav.nav-tabs {
-  padding-top: 20px;
   max-width: 1170px;
   margin: 0 auto;
+}
+.logged-in .tabs--primary.nav.nav-tabs {
+  padding-top: 20px;
+}
+.not-logged-in .tabs--primary.nav.nav-tabs {
+  padding-top: 100px;
 }
 /** Micrositio **/
 .page-node.node-type-home-blocks {
