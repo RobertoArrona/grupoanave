@@ -448,10 +448,10 @@ if(empty($termid)) {
             <?php endif;?>
           </td>
           <td>
-            <?php if(isset($elements['field_vehiculo_numero_pedimento'])):?>
+            <?php if(isset($elements['#node']->field_uso_vehiculo[LANGUAGE_NONE]['0']['value'])):?>
             <table class="generic"><tr>
-              <td><strong><?php print $elements['field_vehiculo_numero_pedimento']['#title'];?>:</strong></td>
-              <td align="right"><?php print render($elements['field_vehiculo_numero_pedimento']);?></td>
+              <td><strong><?php print 'Uso';?>:</strong></td>
+              <td align="right"><?php print render($elements['#node']->field_uso_vehiculo[LANGUAGE_NONE]['0']['value']);?></td>
             </tr></table>
             <?php endif;?>
           </td>
