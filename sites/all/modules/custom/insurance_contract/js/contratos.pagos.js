@@ -138,12 +138,12 @@
   function getIVA (netPre, rightPo) {
     sum = Math.round(netPre * 100) / 100 + Math.round(rightPo * 100) / 100;
     IVA = sum * 0.16;
-    return Math.round(IVA * 100) / 100
+    return Math.round(IVA * 100) / 100;
   }
   
   function getTotalPremium (netPre, rightPo, IVAin) {
     var totalPremium = Math.round(netPre * 100) / 100 + Math.round(rightPo * 100) / 100 + Math.round(IVAin * 100) / 100;
-    return Math.round(totalPremium * 100) / 100
+    return Math.round(totalPremium * 100) / 100;
   }
   
   function getPaymentFirst (netPre, rightPo, IVAin) {
@@ -153,7 +153,7 @@
     var firstPayment = netPre + IVAin;
     firstPayment = firstPayment / getnumPayments();
     firstPayment = firstPayment + rightPo;
-    return Math.round(firstPayment * 100) / 100;;
+    return Math.round(firstPayment * 100) / 100;
   }
   
   function getSubPayments (netPre, rightPo, IVAin) {
@@ -162,7 +162,7 @@
     IVAin = Math.round(IVAin * 100) / 100;
     var SubPayments = netPre + IVAin;
     SubPayments = SubPayments / getnumPayments();
-    return Math.round(SubPayments * 100) / 100;;
+    return Math.round(SubPayments * 100) / 100;
   }
   
   function getnumPayments () {
