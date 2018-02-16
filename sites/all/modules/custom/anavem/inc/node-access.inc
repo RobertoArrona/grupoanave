@@ -191,7 +191,7 @@ function anavem_user_can_access_poliza($nid, $account) {
  */
 function anavem_siniestro_user_access($siniestro, $account) {
   static $cache;
-  if (isset($cache[$siniestro->nid][$account->nid])) {
+  if (isset($cache[$siniestro->nid][$account->uid])) {
     return $cache;
   }
 
@@ -199,47 +199,47 @@ function anavem_siniestro_user_access($siniestro, $account) {
     switch($role) {
       case 'ajustador':
         if ( ($uid = anavem_siniestro_get_ajustador_uid($siniestro)) && $uid == $account->uid ) {
-          $cache = true;
+          $cache[$siniestro->nid][$account->uid] = true;
           return true;
         }
         break;
 
       case 'abogado':
         if ( ($uid = anavem_siniestro_get_abogado_uid($siniestro)) && $uid == $account->uid ) {
-          $cache = true;
+          $cache[$siniestro->nid][$account->uid] = true;
           return true;
         }
         break;
 
       case 'taller':
         if ( ($uid = anavem_siniestro_get_taller_uid($siniestro)) && $uid == $account->uid ) {
-          $cache = true;
+          $cache[$siniestro->nid][$account->uid] = true;
           return true;
         }
         break;
 
       case 'hospital':
         if ( ($uid = anavem_siniestro_get_hospital_uid($siniestro)) && $uid == $account->uid ) {
-          $cache = true;
+          $cache[$siniestro->nid][$account->uid] = true;
           return true;
         }
         break;
       case 'gruas':
         if ( ($uid = anavem_siniestro_get_gruas_uid($siniestro)) && $uid == $account->uid ) {
-          $cache = true;
+          $cache[$siniestro->nid][$account->uid] = true;
           return true;
         }
         break;
       case 'proveedores':
         if ( ($uid = anavem_siniestro_get_proveedores_uid($siniestro)) && $uid == $account->uid ) {
-          $cache = true;
+          $cache[$siniestro->nid][$account->uid] = true;
           return true;
         }
         break;  
     }
   }
 
-  $cache = false;
+  $cache[$siniestro->nid][$account->uid] = false;
   return false;
 }
 
