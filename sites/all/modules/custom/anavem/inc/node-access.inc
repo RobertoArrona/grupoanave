@@ -47,15 +47,20 @@ function anavem_node_access_records($node) {
  * Implements hook_node_grants.
  */
 function anavem_node_grants($account, $op) {
-  $grants = array();
+  static $grants;
+  if (isset($grants[$account->uid][$op])) {
+    return $grants[$account->uid][$op];
+  }
+
+  $grants[$account->uid][$op] = array();
 
   // Grants for Node Siniestro
-  anavem_node_grants_siniestro($account, $op, $grants);
+  anavem_node_grants_siniestro($account, $op, $grants[$account->uid][$op]);
   
   // Grants for Node Poliza
-  anavem_node_grants_poliza($account, $op, $grants);
+  anavem_node_grants_poliza($account, $op, $grants[$account->uid][$op]);
 
-  return $grants;
+  return $grants[$account->uid][$op];
 }
 
 /**
@@ -93,33 +98,74 @@ function anavem_node_grants_poliza($account, $op, &$grants) {
  * Determines if a siniestro node can be accesed by a given user.
  */
 function anavem_user_can_access_siniestro($nid, $account) {
+  // Static Cache.
+  static $access;
+  if (isset($access[$nid][$account->uid])) {
+    return $access[$nid][$account->uid];
+  }
+
+  // DB Cache.
+  $cid = 'anavem_user_can_access_siniestro_' . $nid . '_' . $account->uid;
+  if (($cache = cache_get($cid))) {
+    return $cache->data;
+  }
+
+  // Cache Expire Default.
+  $cache_expire = intval(time()) + (60 * 60);
+
   // Scenarios where a Siniestro can be accessed.
   // 1.- If the user has right to see all siniestros.
   if ( user_access('Administrar Todos los Siniestros', $account) ) {
+    $access[$nid][$account->uid] = true;
+    cache_set($cid, true, 'cache', $cache_expire);
     return true;
   }
   
   // Validate we can load the node.
   if ( !($node=node_load($nid)) ) {
+    $access[$nid][$account->uid] = false;
+    cache_set($cid, false, 'cache', $cache_expire);
     return false;
   }
 
   // 2.- If the user has the role Ajustador and the siniestro has him as ajustador.
-  return anavem_siniestro_user_access($node, $account);
+  $response = anavem_siniestro_user_access($node, $account);
+  $access[$nid][$account->uid] = $response;
+  cache_set($cid, $response, 'cache', $cache_expire);
+  return $response;
 }
 
 /**
  * Determines if a poliza node can be accesed by a given user.
  */
 function anavem_user_can_access_poliza($nid, $account) {
+  // Static Cache.
+  static $access;
+  if (isset($access[$nid][$account->uid])) {
+    return $access[$nid][$account->uid];
+  }
+
+  // DB Cache.
+  $cid = 'anavem_user_can_access_poliza_' . $nid . '_' . $account->uid;
+  if (($cache = cache_get($cid))) {
+    return $cache->data;
+  }
+
+  // Cache Expire Default.
+  $cache_expire = intval(time()) + (60 * 60);
+
   // Scenarios where a Siniestro can be accessed.
   // 1.- If the user has right to see all Polizas.
   if ( user_access('Administrar Todas las Polizas', $account) ) {
+    $access[$nid][$account->uid] = true;
+    cache_set($cid, true, 'cache', $cache_expire);
     return true;
   }
   
   // Validate we can load the node.
-  if ( !($node=node_load($nid)) ) {
+  if (!($node=node_load($nid)) ) {
+    $access[$nid][$account->uid] = false;
+    cache_set($cid, false, 'cache', $cache_expire);
     return false;
   }
   
@@ -128,11 +174,15 @@ function anavem_user_can_access_poliza($nid, $account) {
   
   // If the user has the right to access a siniestro then give him access to the poliza.
   foreach($siniestros as $siniestro) {
-    if ( anavem_siniestro_user_access($siniestro, $account) ) {
+    if (anavem_siniestro_user_access($siniestro, $account)) {
+      $access[$nid][$account->uid] = true;
+      cache_set($cid, true, 'cache', $cache_expire);
       return true;
     }
   }
 
+  cache_set($cid, false, 'cache', $cache_expire);
+  $access[$nid][$account->uid] = false;
   return false;
 }
 
@@ -140,44 +190,56 @@ function anavem_user_can_access_poliza($nid, $account) {
  * Helper function to know if a user has the rigth to access a given Siniestro.
  */
 function anavem_siniestro_user_access($siniestro, $account) {
+  static $cache;
+  if (isset($cache[$siniestro->nid][$account->nid])) {
+    return $cache;
+  }
+
   foreach($account->roles as $role) {
     switch($role) {
       case 'ajustador':
         if ( ($uid = anavem_siniestro_get_ajustador_uid($siniestro)) && $uid == $account->uid ) {
+          $cache = true;
           return true;
         }
         break;
 
       case 'abogado':
         if ( ($uid = anavem_siniestro_get_abogado_uid($siniestro)) && $uid == $account->uid ) {
+          $cache = true;
           return true;
         }
         break;
 
       case 'taller':
         if ( ($uid = anavem_siniestro_get_taller_uid($siniestro)) && $uid == $account->uid ) {
+          $cache = true;
           return true;
         }
         break;
 
       case 'hospital':
         if ( ($uid = anavem_siniestro_get_hospital_uid($siniestro)) && $uid == $account->uid ) {
+          $cache = true;
           return true;
         }
         break;
       case 'gruas':
         if ( ($uid = anavem_siniestro_get_gruas_uid($siniestro)) && $uid == $account->uid ) {
+          $cache = true;
           return true;
         }
         break;
       case 'proveedores':
         if ( ($uid = anavem_siniestro_get_proveedores_uid($siniestro)) && $uid == $account->uid ) {
+          $cache = true;
           return true;
         }
         break;  
     }
   }
-  
+
+  $cache = false;
   return false;
 }
 
