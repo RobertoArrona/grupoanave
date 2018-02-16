@@ -192,7 +192,7 @@ function anavem_user_can_access_poliza($nid, $account) {
 function anavem_siniestro_user_access($siniestro, $account) {
   static $cache;
   if (isset($cache[$siniestro->nid][$account->uid])) {
-    return $cache;
+    return $cache[$siniestro->nid][$account->uid];
   }
 
   foreach($account->roles as $role) {
