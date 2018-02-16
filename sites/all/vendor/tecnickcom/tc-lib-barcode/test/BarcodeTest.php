@@ -15,8 +15,6 @@
 
 namespace Test;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * Barcode class test
  *
@@ -28,7 +26,7 @@ use PHPUnit\Framework\TestCase;
  * @license     http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE.TXT)
  * @link        https://github.com/tecnickcom/tc-lib-barcode
  */
-class BarcodeTest extends TestCase
+class BarcodeTest extends \PHPUnit_Framework_TestCase
 {
     protected $obj = null;
 
@@ -44,11 +42,9 @@ class BarcodeTest extends TestCase
         $this->assertEquals(36, count($types));
     }
 
-    /**
-     * @expectedException \Com\Tecnick\Barcode\Exception
-     */
     public function testGetBarcodeObjException()
     {
+        $this->setExpectedException('\Com\Tecnick\Barcode\Exception');
         $this->obj->getBarcodeObj(
             'ERROR',
             '01001100011100001111,10110011100011110000',
@@ -58,11 +54,9 @@ class BarcodeTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \Com\Tecnick\Barcode\Exception
-     */
     public function testSetPaddingException()
     {
+        $this->setExpectedException('\Com\Tecnick\Barcode\Exception');
         $this->obj->getBarcodeObj(
             'LRAW,AB,12,E3F',
             '01001100011100001111,10110011100011110000',
@@ -73,19 +67,15 @@ class BarcodeTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \Com\Tecnick\Barcode\Exception
-     */
     public function testEmptyColumns()
     {
+        $this->setExpectedException('\Com\Tecnick\Barcode\Exception');
         $this->obj->getBarcodeObj('LRAW', '');
     }
 
-    /**
-     * @expectedException \Com\Tecnick\Barcode\Exception
-     */
     public function testEmptyInput()
     {
+        $this->setExpectedException('\Com\Tecnick\Barcode\Exception');
         $this->obj->getBarcodeObj('LRAW', array());
     }
 
@@ -116,11 +106,9 @@ class BarcodeTest extends TestCase
         $this->assertEquals('#66cdaaff', $bobj->getArray()['bg_color_obj']->getRgbaHexColor());
     }
 
-    /**
-     * @expectedException \Com\Tecnick\Barcode\Exception
-     */
     public function testNoColorException()
     {
+        $this->setExpectedException('\Com\Tecnick\Barcode\Exception');
         $this->obj->getBarcodeObj(
             'LRAW',
             '01001100011100001111,10110011100011110000',
