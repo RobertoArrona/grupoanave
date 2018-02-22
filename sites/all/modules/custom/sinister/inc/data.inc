@@ -3,7 +3,7 @@
 /**
  * Returns all of the sinisters assign to an ajustdor user.
  */
-function sinister_get_ajustador_sinisters($uid, $type = 1) {
+function sinister_get_ajustador_sinisters($uid, $type) {
   static $sinisters;
   if (isset($sinisters[$uid][$type])) {
     return $sinisters[$uid][$type];

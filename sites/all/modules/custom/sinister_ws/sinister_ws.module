@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Module file for Housing Schemes Services.
+ * Module file Sinister Web Service.
  * Contains the resource declarations for the service APIs
  * and other commons functions/hooks. if necessary
  */
@@ -19,7 +19,7 @@ function sinister_ws_services_resources() {
 
   // Service Apis for contents.
   $resources = array(
-    'sinister_ws' => array(
+    'siniestros-activos' => array(
       'operations' => array(
         'retrieve' => array(
           'help' => 'Retrieves Sinister Info.',
@@ -29,6 +29,34 @@ function sinister_ws_services_resources() {
             'name' => 'includes/sinister_ws.services',
           ),
           'callback' => 'sinister_ws_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'uid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'siniestros-terminados' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieves Inactive Sinister Info.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_inactive.services',
+          ),
+          'callback' => 'sinister_ws_inactive_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,

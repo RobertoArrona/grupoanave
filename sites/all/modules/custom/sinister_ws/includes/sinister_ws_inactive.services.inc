@@ -6,8 +6,8 @@
  * @param $nid The nid of the housing_scheme node.
  * @return array The node processed information array.
  */
-function sinister_ws_resource_retrieve($uid) {
-  $sinisters = sinister_get_ajustador_sinisters($uid, 1);
+function sinister_ws_inactive_resource_retrieve($uid) {
+  $sinisters = sinister_get_ajustador_sinisters($uid, 2);
   $objects = array();
   foreach ($sinisters as $nid => $sinister) {
     if (!($node = node_load($nid))) {
