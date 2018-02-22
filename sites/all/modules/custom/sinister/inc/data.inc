@@ -1,6 +1,36 @@
 <?php
 
 /**
+ * Returns all of the sinisters assign to an ajustdor user.
+ */
+function sinister_get_ajustador_sinisters($uid, $type = 1) {
+  static $sinisters;
+  if (isset($sinisters[$uid][$type])) {
+    return $sinisters[$uid][$type];
+  }
+
+  $key = 'sinister_get_ajustador_sinisters_' . $uid . '_' . $type;
+  if (($cache = cache_get($key))) {
+    $sinisters[$uid][$type] = $cache->data;
+    return $sinisters[$uid][$type];
+  }
+
+  $sql = 'SELECT ajustador.entity_id nid FROM field_data_field_ajustador ajustador 
+    INNER JOIN field_data_field_sinister_status status ON ajustador.entity_id = status.entity_id 
+    WHERE ajustador.field_ajustador_target_id = %d AND 
+    status.field_sinister_status_value = %d';
+  $sql = sprintf($sql, $uid, $type);
+  $results = db_query($sql);
+  $sinisters[$uid][$type] = array();
+  while (($row = $results->fetchAssoc())) {
+    $sinisters[$uid][$type][$row['nid']] = $row['nid'];
+  }
+
+  cache_set($key, $sinisters[$uid][$type], 'cache', strtotime('+1 hour'));
+  return $sinisters[$uid][$type];
+}
+
+/**
  * Returns the Contract Folio.
  * @return INT The contract folio.
  */

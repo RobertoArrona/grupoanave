@@ -1,0 +1,6 @@
+name = sinister_ws
+description = WebService APIs for Sinister.
+core = 7.x
+package = d4all
+dependencies[] = services
+dependencies[] = rest_server
