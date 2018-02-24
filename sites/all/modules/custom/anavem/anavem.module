@@ -1,16 +1,22 @@
 <?php
+
+/**
+ * @file
+ * This is the main controller file for module anavem.
+ */
+
 /**
  * Required elements.
  */
-include_once('inc/block.inc');
-include_once('inc/data.inc');
-include_once('inc/field-alter.inc');
-include_once('inc/field-collection.inc');
-include_once('inc/forms.inc');
-include_once('inc/menu.inc');
-include_once('inc/node-access.inc');
-include_once('inc/node-insert.inc');
-include_once('inc/node-presave.inc');
-include_once('inc/permission.inc');
-include_once('inc/preprocess-page.inc');
-include_once('inc/theme.inc');
+include_once 'inc/block.inc';
+include_once 'inc/data.inc';
+include_once 'inc/field-alter.inc';
+include_once 'inc/field-collection.inc';
+include_once 'inc/forms.inc';
+include_once 'inc/menu.inc';
+include_once 'inc/node-access.inc';
+include_once 'inc/node-insert.inc';
+include_once 'inc/node-presave.inc';
+include_once 'inc/permission.inc';
+include_once 'inc/preprocess-page.inc';
+include_once 'inc/theme.inc';
