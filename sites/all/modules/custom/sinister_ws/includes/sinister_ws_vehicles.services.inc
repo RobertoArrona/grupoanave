@@ -1,24 +1,28 @@
 <?php
 
 /**
- * [sinister_ws_vehicles_resource_retrieve] definition.
- * Returns the information about a sinister
- * @param $nid The nid of the sinister_scheme node.
- * @return array The node processed information array.
+ * @file
+ * Retrieve a third vehicle info from nid.
+ */
+
+/**
+ * Return data from third vehicles.
  */
 function sinister_ws_vehicles_resource_retrieve($nid) {
   $node = node_load($nid);
+
   // Get field collection field_vehiculo item from node.
   $fc_vehiculo = field_collection_item_load($node->field_vehiculo_tercero[LANGUAGE_NONE][0]['value'], $reset = FALSE);
-  $result = getVehicle($fc_vehiculo);
+  $result = get_vehicle($fc_vehiculo);
   return $result;
 }
 
 /**
  * Returns array from field_vehiculo_tercero.
+ *
  * @params $fc_vehiculo The id item of field_siniestro_archivo field.
  */
-function getVehicle($fc_vehiculo) {
+function get_vehicle($fc_vehiculo) {
   $vehiculoTercero = array();
   // Get value from $field_propietario_nombre.
   $field_propietario_nombre = $fc_vehiculo->field_propietario_nombre[LANGUAGE_NONE][0]['value'];
@@ -45,7 +49,6 @@ function getVehicle($fc_vehiculo) {
   $field_conductor_es_propietario = $field['settings']['allowed_values'][$key_propietario];
   // Get value from $field_propietario_nombre.
   $field_conductor_nombre = $fc_vehiculo->field_conductor_nombre[LANGUAGE_NONE][0]['value'];
-
 
   // Get value from $field_propietario_nombre.
   $field_conductor_nombre = $fc_vehiculo->field_conductor_nombre[LANGUAGE_NONE][0]['value'];
@@ -87,7 +90,7 @@ function getVehicle($fc_vehiculo) {
   $type_term = taxonomy_term_load($field_vehiculo_tipo_tid);
   $type_vehicle = $type_term->name;
 
-  $vehiculoTercero = array (
+  $vehiculoTercero = array(
     'owner_name' => $field_propietario_nombre,
     'owner_thoroughfare' => $thoroughfare,
     'owner_premise' => $premise,
@@ -108,14 +111,6 @@ function getVehicle($fc_vehiculo) {
     'type_vehicle' => $type_vehicle,
     'field_vehiculo_modelo' => $field_vehiculo_modelo,
   );
+
   return $vehiculoTercero;
-  // Get number of images from field_visualizador
-  $items = count($field_image[LANGUAGE_NONE]);
-  for($i=0;$i<$items;$i++) {
-    $images = array();
-    $images[$i] = $field_image[LANGUAGE_NONE][$i]['uri'];
-    $path = $base_url . drupal_realpath($images[$i]);
-    $pathImages[$i] = $path;
-  }
-  return $pathImages;
 }

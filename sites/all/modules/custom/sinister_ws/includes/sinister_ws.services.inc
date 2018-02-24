@@ -2,12 +2,12 @@
 
 /**
  * @file
- * Sinister [sinister_ws_resource_retrieve] definition.
- * Returns the information about a sinister.
- * @param $nid The nid of the sinister_ws node.
- * @return array The node processed information array.
+ * Retrieve a sinister info from uid.
  */
 
+/**
+ * Return data from sinister.
+ */
 function sinister_ws_resource_retrieve($uid) {
   $sinisters = sinister_get_ajustador_sinisters($uid, 1);
   $objects = array();

@@ -3,12 +3,11 @@
 /**
  * @file
  * Module file Sinister Web Service.
- * Contains the resource declarations for the service APIs
- * and other commons functions/hooks. if necessary
  */
 
 /**
  * Implements hook_services_resources().
+ *
  * Create service resource for APIs to return the necessary json data.
  */
 function sinister_ws_services_resources() {
@@ -270,16 +269,11 @@ function sinister_ws_services_resources() {
       ),
     ),
   );
-
   return $resources;
 }
 
-// noteresource.module
 /**
- * Gets a note object by id.
- *
- * @param int $id
- * @return object
+ * Get sinister term object by id.
  */
 function sinister_ws_get_term($id) {
   return db_fetch_object(db_query("SELECT * FROM {termino} WHERE id=:id", array(
@@ -288,24 +282,9 @@ function sinister_ws_get_term($id) {
 }
 
 /**
- * Writes a note to the database
- *
- * @param object $note
- * @return void
+ * Writes a term to the database.
  */
 function sinister_ws_write_term($note) {
   $primary_key = !empty($note->id) ? array('id') : NULL;
   drupal_write_record('note', $note, $primary_key);
-}
-
-/**
- * Deletes a note from the database.
- *
- * @param int $id
- * @return void
- */
-function sinister_ws_delete_term($id) {
-  db_query("DELETE FROM {termino} WHERE id=:id", array(
-    ':id' => $id,
-  ));
 }

@@ -1,10 +1,12 @@
 <?php
 
 /**
- * A [sinister_ws_resource_retrieve] definition.
- * Returns the information about a sinister
- * @param $nid The nid of the sinister node.
- * @return array The node processed information array.
+ * @file
+ * Retrieve a term info from nid.
+ */
+
+/**
+ * Return data term from sinister.
  */
 function sinister_ws_termino_resource_retrieve($nid) {
   $objects = array();
