@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Module file Sinister Info Web Service.
+ * Contains the resource declarations for the service APIs
+ * and other commons functions/hooks. if necessary
+ */
+
+/**
+ * Implements hook_services_resources().
+ * Create service resource for APIs to return the necessary json data.
+ */
+function sinister_info_services_resources() {
+  $resources = array();
+
+  // Include the necessary inc files.
+  module_load_include('inc', 'sinister_info', 'includes/data');
+
+  // Service Apis for contents.
+  $resources = array(
+    'siniestro-info' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieves Sinister Info.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_info',
+            'name' => 'includes/data',
+          ),
+          'callback' => 'sinister_info_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  return $resources;
+}
