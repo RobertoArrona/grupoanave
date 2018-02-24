@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * This file implements hook_menu().
+ */
+
+/**
  * Implements hook_menu().
  */
 function insurance_contract_menu() {
@@ -34,6 +39,9 @@ function insurance_contract_menu() {
   return $items;
 }
 
+/**
+ * Debugs a contract.
+ */
 function insurance_contract_menu_debug() {
   $contract_folio = insurance_contract_contract_folio_get();
   print $contract_folio;

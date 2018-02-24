@@ -1,12 +1,17 @@
 <?php
 
 /**
+ * @file
+ * This is the main controller file for module insurance_contract.
+ */
+
+/**
  * Required elements.
  */
 
-include_once('inc/data.inc');
-include_once('inc/forms.inc');
-include_once('inc/menu.inc');
-include_once('inc/node.inc');
-include_once('inc/permission.inc');
-include_once('inc/user.inc');
+include_once 'inc/data.inc';
+include_once 'inc/forms.inc';
+include_once 'inc/menu.inc';
+include_once 'inc/node.inc';
+include_once 'inc/permission.inc';
+include_once 'inc/user.inc';

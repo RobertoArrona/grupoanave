@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * This files manipulates contract title.
+ */
+
+/**
  * Implements hook_node_insert().
  */
 /*
@@ -10,27 +15,24 @@ function insurance_contract_node_insert($node) {
       insurance_contract_node_insert_poliza($node);
       break;
   }
-
 }
-*/
-
+ */
 
 /**
  * Implements hook_node_submit().
  */
-function insurance_contract_node_submit($node){
-  if(empty($node ->nid)) {
-    switch ($node ->type){
+function insurance_contract_node_submit($node) {
+  if (empty($node->nid)) {
+    switch ($node->type) {
       case 'poliza':
         insurance_contract_node_insert_poliza($node);
         break;
     }
   }
-}       
-	
+}
 
 /**
- * Helper function for insurance_contract_node_insert when the node type is poliza.
+ * Helper for insurance_contract_node_insert when the node type is poliza.
  */
 function insurance_contract_node_insert_poliza($node) {
   $i = $j = 0;
@@ -43,6 +45,7 @@ function insurance_contract_node_insert_poliza($node) {
       $j = 1;
     }
   }
+
   $node->title = $contract_folio;
   insurance_contract_contract_number_increase($i);
 }
