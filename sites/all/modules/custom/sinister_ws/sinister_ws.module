@@ -131,7 +131,181 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
+    'informacion-legal' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieves Any Legal Info.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_legal.services',
+          ),
+          'callback' => 'sinister_ws_legal_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'datos-conductor' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieve sinister vehicle data.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_conductor.services',
+          ),
+          'callback' => 'sinister_ws_conductor_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'lesiones-dano' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieve sinister injured data.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_lesiones.services',
+          ),
+          'callback' => 'sinister_ws_lesiones_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'termino' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieve sinister termino data.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_termino.services',
+          ),
+          'callback' => 'sinister_ws_termino_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'actualizar-termino' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Update term data.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_update_term.services',
+          ),
+          'callback' => 'sinister_ws_update_term_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'data',
+              'type' => 'struct',
+              'description' => 'Function to perform',
+              'source' => 'data',
+              'optional' => FALSE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
   );
 
   return $resources;
+}
+
+// noteresource.module
+/**
+ * Gets a note object by id.
+ *
+ * @param int $id
+ * @return object
+ */
+function sinister_ws_get_term($id) {
+  return db_fetch_object(db_query("SELECT * FROM {termino} WHERE id=:id", array(
+    ':id' => $id,
+  )));
+}
+
+/**
+ * Writes a note to the database
+ *
+ * @param object $note
+ * @return void
+ */
+function sinister_ws_write_term($note) {
+  $primary_key = !empty($note->id) ? array('id') : NULL;
+  drupal_write_record('note', $note, $primary_key);
+}
+
+/**
+ * Deletes a note from the database.
+ *
+ * @param int $id
+ * @return void
+ */
+function sinister_ws_delete_term($id) {
+  db_query("DELETE FROM {termino} WHERE id=:id", array(
+    ':id' => $id,
+  ));
 }
