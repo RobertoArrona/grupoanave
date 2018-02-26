@@ -1,11 +1,16 @@
 <?php
 
 /**
+ * @file
+ * This has data manipulation functions.
+ */
+
+/**
  * Required elements.
  */
 
-include_once('inc/data.inc');
-include_once('inc/forms.inc');
-include_once('inc/menu.inc');
-include_once('inc/node.inc');
-include_once('inc/permission.inc');
+include_once 'inc/data.inc';
+include_once 'inc/forms.inc';
+include_once 'inc/menu.inc';
+include_once 'inc/node.inc';
+include_once 'inc/permission.inc';

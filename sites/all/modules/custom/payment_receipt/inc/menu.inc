@@ -1,4 +1,9 @@
-<?php 
+<?php
+
+/**
+ * @file
+ * This has data manipulation functions.
+ */
 
 /**
  * Implements hook_menu().
@@ -15,7 +20,7 @@ function payment_receipt_menu() {
     'file' => 'system.admin.inc',
     'file path' => drupal_get_path('module', 'system'),
   );
-  
+
   $items['admin/config/payment/receipt'] = array(
     'title' => 'Payment Receipt Number',
     'description' => 'Defines what is the current payment receipt number that each receipt will use to generate a folio.',
@@ -34,6 +39,9 @@ function payment_receipt_menu() {
   return $items;
 }
 
+/**
+ * Implements payment_receipt_menu_debug().
+ */
 function payment_receipt_menu_debug() {
   $payment_receipt_folio = payment_receipt_receipt_number_folio_get();
   print $payment_receipt_folio;

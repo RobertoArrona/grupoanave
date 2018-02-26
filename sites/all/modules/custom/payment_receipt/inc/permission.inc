@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * This has data manipulation functions.
+ */
+
+/**
  * Implements hook_permission().
  */
 function payment_receipt_permission() {

@@ -1,8 +1,9 @@
 /**
  * CSS Recibo contrato.
  */
-.node-recibo_contrato-form .form-item-title label, .action-links {
-  display:none;
+.node-recibo_contrato-form .form-item-title label,
+.action-links {
+  display: none;
 }
 
 body > h1 {
