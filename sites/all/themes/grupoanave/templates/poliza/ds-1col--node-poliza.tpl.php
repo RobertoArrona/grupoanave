@@ -310,7 +310,7 @@ if(empty($termid)) {
                 </tr></table>
               </td>
               <td>
-                <?php if(isset($elements['field_poliza_primas_recibos_subs'])):?>
+                <?php if(isset($elements['field_poliza_primas_recibos_subs']) && $plazo != 'anual'):?>
                 <table class="generic"><tr>
                   <td><strong><?php print $pagos_sub_label;?>:</strong></td>
                   <td align="right"><?php print render($elements['field_poliza_primas_recibos_subs']['#items'][0]['value']);?></td>
