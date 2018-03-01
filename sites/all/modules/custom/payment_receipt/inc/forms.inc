@@ -123,6 +123,21 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   }
 }
 
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+$form['title']['#attributes']['readonly'] = 'readonly';
+
 /**
  * Get series data for payments.
  */
