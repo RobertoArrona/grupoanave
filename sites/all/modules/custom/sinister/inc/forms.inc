@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Retrieve contract number data.
+ */
+
+/**
  * Implements hook_form_alter().
  */
 function sinister_form_alter(&$form, &$form_state, $form_id) {
@@ -8,7 +13,7 @@ function sinister_form_alter(&$form, &$form_state, $form_id) {
     case 'siniestro_node_form':
       $pathCSS = drupal_get_path('module', 'sinister') . '/css/sinister.admin.css';
       drupal_add_css($pathCSS);
-      
+
       $pathJS = drupal_get_path('module', 'sinister') . '/js/siniestro.reserva.js';
       drupal_add_js($pathJS);
       break;
@@ -33,7 +38,6 @@ function sinister_form_settings() {
     '#required' => TRUE,
   );
 
-
   return system_settings_form($form);
 }
 
@@ -46,10 +50,10 @@ function sinister_form_siniestro_node_form_alter(&$form, &$form_state, $form_id)
       $form['title']['#default_value'] = $sinister_folio;
     }
   }
-	// field title(numero de siniestro)
+  // Field title(numero de siniestro)
   $form['title']['#attributes']['readonly'] = 'readonly';
-  $form['title']['#attributes']['style']  = 'display: none;';
-  //$form Validate
-  //$form['#validate'][] = 'sinister_number_siniestro_node_validate'; 
-  //$form attached JS
+  $form['title']['#attributes']['style'] = 'display: none;';
+  // $form Validate
+  // $form['#validate'][] = 'sinister_number_siniestro_node_validate';
+  // $form attached JS.
 }

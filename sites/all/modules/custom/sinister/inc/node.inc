@@ -1,33 +1,22 @@
 <?php
 
 /**
- * Implements hook_node_insert().
+ * @file
+ * Increments sinister folio.
  */
-/*
-function sinister_number_node_insert($node) {
-  switch ($node->type) {
-    case 'siniestro':
-      sinister_number_node_insert_siniestro($node);
-      break;
-  }
-
-}
-*/
-
 
 /**
  * Implements hook_node_submit().
  */
-function sinister_node_submit($node){
-  if(empty($node ->nid)) {
-    switch ($node ->type){
+function sinister_node_submit($node) {
+  if (empty($node->nid)) {
+    switch ($node->type) {
       case 'siniestro':
         sinister_node_insert_siniestro($node);
         break;
     }
   }
-}       
-	
+}
 
 /**
  * Helper function for sinister_node_insert when the node type is siniestro.
@@ -45,4 +34,4 @@ function sinister_node_insert_siniestro($node) {
   }
   $node->title = $sinister_folio;
   sinister_number_increase($i);
-} 
+}

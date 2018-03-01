@@ -20,6 +20,7 @@ function sinister_ws_archivos_resource_retrieve($nid) {
  * Returns value from field_siniestros_archivo.
  */
 function get_image($fc_archivo) {
+  $percent = 0;
   $base_url = $GLOBALS['base_root'];
   $pathImages = array();
   // Get value from field_visualizador.
@@ -30,7 +31,15 @@ function get_image($fc_archivo) {
     $images = array();
     $images[$i] = $field_image[LANGUAGE_NONE][$i]['uri'];
     $path = $base_url . drupal_realpath($images[$i]);
-    $pathImages[$i] = $path;
+    $width = $field_image[LANGUAGE_NONE][$i]['metadata']['width'];
+    $height = $field_image[LANGUAGE_NONE][$i]['metadata']['height'];
+    $Images['url'][$i] = $path;
+    $Images['width'][$i] = $width;
+    $Images['height'][$i] = $height;
+    if (isset($field_image[LANGUAGE_NONE][$i]['uri'])) {
+      $percent = 1.538461538461538;
+    }
   }
-  return $pathImages;
+  $Images['percent'] = $percent;
+  return $Images;
 }

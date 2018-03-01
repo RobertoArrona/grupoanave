@@ -20,9 +20,9 @@
   display: none;
 }
 #field-vehiculo-tercero-add-more-wrapper .tabledrag-toggle-weight {
-  display: none;   
+  display: none;
 }
-#field-lesionado-add-more-wrapper .tabledrag-toggle-weight{
+#field-lesionado-add-more-wrapper .tabledrag-toggle-weight {
   display: none;
 }
 #field-vehiculo-tercero-values .tabledrag-handle {
@@ -31,13 +31,13 @@
 #field-lesionado-values .tabledrag-handle {
   display: none;
 }
-#field-vehiculo-tercero-values .odd{
+#field-vehiculo-tercero-values .odd {
   border: none;
 }
-#field-lesionado-values .odd{
+#field-lesionado-values .odd {
   border: none;
 }
-#field-lesionado-values .required-fields{
+#field-lesionado-values .required-fields {
   border-width: 1 1;
   border-style: solid;
   border-color: #bebfb9;

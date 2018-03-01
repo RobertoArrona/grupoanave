@@ -1,4 +1,9 @@
-<?php 
+<?php
+
+/**
+ * @file
+ * Retrieves items from sinister.
+ */
 
 /**
  * Implements hook_menu().
@@ -15,7 +20,7 @@ function sinister_menu() {
     'file' => 'system.admin.inc',
     'file path' => drupal_get_path('module', 'system'),
   );
-  
+
   $items['admin/config/sinister/number'] = array(
     'title' => 'Sinister Number',
     'description' => 'Defines what is the current contract number that each sinister will use to generate a folio.',
@@ -34,6 +39,9 @@ function sinister_menu() {
   return $items;
 }
 
+/**
+ * Returns sinister folio.
+ */
 function sinister_menu_debug() {
   $sinister_folio = sinister_number_folio_get();
   print $sinister_folio;

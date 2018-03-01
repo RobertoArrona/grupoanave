@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Sinister permission Administer Sinister Number.
+ */
+
+/**
  * Implements hook_permission().
  */
 function sinister_permission() {
