@@ -22,9 +22,8 @@
       total = 0;
     });
 
-    $('#edit-field-conductor-und-0-field-conductor-es-quien-reporta-und').on('change', function () {
-      $('#edit-field-conductor-und-0-field-nombre-de-quien-reporta, #edit-field-conductor-und-0-field-tel-fono').toggleClass('displayblock');
-      console.log('change event');
+    $('#edit-field-conductor-und-0-field-conductor-reporta').on('change', function () {
+      $('#edit-field-conductor-und-0-field-nombre-quien-reporta, #edit-field-conductor-und-0-field-telefono-quien-reporta').toggleClass('displayblock');
     });
   });
 

@@ -48,12 +48,12 @@
   margin-top: 10px;
 }
 
-#edit-field-conductor-und-0-field-nombre-de-quien-reporta,
-#edit-field-conductor-und-0-field-tel-fono {
+#edit-field-conductor-und-0-field-nombre-quien-reporta,
+#edit-field-conductor-und-0-field-telefono-quien-reporta {
   display: none;
 }
 
-#edit-field-conductor-und-0-field-nombre-de-quien-reporta.displayblock,
-#edit-field-conductor-und-0-field-tel-fono.displayblock {
+#edit-field-conductor-und-0-field-nombre-quien-reporta.displayblock,
+#edit-field-conductor-und-0-field-telefono-quien-reporta.displayblock {
   display: block;
 }
