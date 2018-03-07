@@ -30,12 +30,14 @@ function get_image($fc_archivo) {
   for ($i = 0; $i < $items; $i++) {
     $images = array();
     $images[$i] = $field_image[LANGUAGE_NONE][$i]['uri'];
+    $filename = $field_image[LANGUAGE_NONE][$i]['filename'];
     $path = $base_url . drupal_realpath($images[$i]);
     $width = $field_image[LANGUAGE_NONE][$i]['metadata']['width'];
     $height = $field_image[LANGUAGE_NONE][$i]['metadata']['height'];
     $Images['url'][$i] = $path;
     $Images['width'][$i] = $width;
     $Images['height'][$i] = $height;
+    $Images['filename'][$i] = $filename;
     if (isset($field_image[LANGUAGE_NONE][$i]['uri'])) {
       $percent = 1.538461538461538;
     }
