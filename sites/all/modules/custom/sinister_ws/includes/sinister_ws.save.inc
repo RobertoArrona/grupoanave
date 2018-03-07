@@ -148,8 +148,8 @@ function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
   $data_field_i_data_field = "{$data_field_i}_{$first_data_field}";
 
   while (isset($data[$data_field_i_data_field])) {
-    if (($fc_item_wrapper = sinister_ws_get_fc($node, $data_field, $i))) {
-      $fc_item_wrapper = sinister_ws_save_fc($data_field_i, $data_fields, $fc_item_wrapper, $node, $data);
+    if (($fc_item = sinister_ws_get_fc($node, $data_field, $i))) {
+      $fc_item = sinister_ws_save_fc($data_field_i, $data_fields, $fc_item, $node, $data);
     }
 
     $field_data_field = "field_{$data_field}";
@@ -165,7 +165,7 @@ function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
 /**
  * Saves a Field collection section.
  */
-function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item_wrapper, $node, $data) {
+function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $data) {
   foreach ($fc_data_fields as $fc_data_field => $value_field) {
     // If this is an array, it must be a Postal Address.
     if (is_array($value_field)) {
@@ -173,8 +173,7 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item_wrapper, $
         $data_field_field = "{$data_field_i}_{$fc_data_field}_{$value_field_item}";
         if (isset($data[$data_field_field])) {
           $fc_field_name = "field_{$fc_data_field}";
-          $fc_item_wrapper->{$fc_field_name}->set($data[$data_field_field]);
-          // $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field_item] = $data[$data_field_field];
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field_item] = $data[$data_field_field];
         }
       }
     }
@@ -185,8 +184,7 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item_wrapper, $
         if (!empty($data[$data_field_field])) {
           // Try to load Term by Tid.
           if (($term = taxonomy_term_load($data[$data_field_field]))) {
-            $fc_item_wrapper->{$fc_field_name}->set($term->tid);
-            //$fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $term->tid;
+            $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $term->tid;
           }
         }
         else {
@@ -199,11 +197,10 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item_wrapper, $
       $data_field_field = "{$data_field_i}_{$fc_data_field}";
       if (isset($data[$data_field_field])) {
         if (!empty($data[$data_field_field])) {
-          $fc_item_wrapper->{$fc_field_name}->set(strtotime($data[$data_field_field]));
-          /*$fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = strtotime($data[$data_field_field]);
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = strtotime($data[$data_field_field]);
           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone'] = 'America/Mazatlan';
           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
-          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['date_type'] = 'datestamp';*/
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['date_type'] = 'datestamp';
         }
         else {
           // pending $fc_item->{$fc_field_name} = array();
@@ -218,8 +215,7 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item_wrapper, $
         $fc_field_name = "field_{$fc_data_field}";
         
         if (!empty($data[$data_field_field])) {
-          $fc_item_wrapper->{$fc_field_name}->set($data[$data_field_field]);
-          // $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data[$data_field_field];
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data[$data_field_field];
         }
         else {
           // pending $fc_item->{$fc_field_name} = array();
@@ -228,9 +224,8 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item_wrapper, $
     }
   }
 
-  $fc_item_wrapper->save(TRUE);
-  // $fc_item->save();
-  return $fc_item_wrapper;
+  $fc_item->save(TRUE);
+  return $fc_item;
 }
 
 /**
@@ -240,22 +235,23 @@ function sinister_ws_get_fc($node, $field, $i = 0) {
   // Create field collection item.
   $field_field = "field_{$field}";
   if (!(isset($node->{$field_field}[LANGUAGE_NONE][$i]['value']) && $node->{$field_field}[LANGUAGE_NONE][$i]['value'] > 0)) {
-    $fc = array();
-    $fc['field_name'] = "field_{$field}";
-    $fc_item = entity_create('field_collection_item', $fc);
+    $fc_item = entity_create('field_collection_item', array(
+      'field_name' => "field_{$field}"
+    ));
     $fc_item->setHostEntity('node', $node);
-    $fc_item->save();
 
     return $fc_item;
   }
 
-  return sinister_ws_load_fc($node->{$field_field}[LANGUAGE_NONE][$i]['value']);
+  return sinister_ws_load_fc($node->{$field_field}[LANGUAGE_NONE][$i]['value'], $node);
 }
 
 /**
  * Loads a Field Collection Item.
  */
-function sinister_ws_load_fc($id) {
-  $fc_wrapper = entity_metadata_wrapper('field_collection_item', $id);
-  return $fc_wrapper;
+function sinister_ws_load_fc($id, $node) {
+  $fc_item = entity_load('field_collection_item', array($id));
+  $fc_item = $fc_item[$id];
+  //$fc_item->setHostEntity('node', $node);
+  return $fc_item;
 }
