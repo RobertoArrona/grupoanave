@@ -276,7 +276,7 @@ function sinister_ws_services_resources() {
           'module' => 'sinister_ws',
           'name' => 'includes/sinister_ws.save.inc',
         ),
-        'callback' => 'sinister_ws_save',
+        'callback' => 'sinister_ws_save_controller',
         'access callback' => 'user_access',
         'access arguments' => array('Administrar Siniestros'),
         'access arguments append' => TRUE,
