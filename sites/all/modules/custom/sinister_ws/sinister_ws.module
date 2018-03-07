@@ -268,39 +268,22 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'siniestro' => array(
-      'update' => array(
-        'help' => 'Updates a sinister',
-        'file' => array(
-          'file' => 'inc',
-          'module' => 'sinister_ws',
-          'name' => 'includes/sinister_ws.save.inc',
-        ),
-        'callback' => 'sinister_ws_save_controller',
-        'access callback' => 'user_access',
-        'access arguments' => array('Administrar Siniestros'),
-        'access arguments append' => TRUE,
-        'args' => array(
-          array(
-            'name' => 'nid',
-            'type' => 'int',
-            'description' => 'The id of the node to update',
-            'source' => array('path' => '0'),
-            'optional' => FALSE,
-          ),
-          array(
-            'name' => 'data',
-            'type' => 'struct',
-            'description' => 'The sinister data object',
-            'source' => 'data',
-            'optional' => FALSE,
-          ),
+    'sinister-post' => array(
+      'operations' => array(
+        'create' => array(
+          'help' => 'Updates a sinister.',
+          'callback' => 'sinister_ws_save_controller',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
         ),
       ),
     ),
   );
   return $resources;
 }
+
+include_once 'includes/sinister_ws.save.inc';
 
 /**
  * Get sinister term object by id.
