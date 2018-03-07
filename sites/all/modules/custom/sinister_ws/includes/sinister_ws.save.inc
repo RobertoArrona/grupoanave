@@ -148,15 +148,13 @@ function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
   $data_field_i_data_field = "{$data_field_i}_{$first_data_field}";
 
   while (isset($data[$data_field_i_data_field])) {
-    if (($fc_item = sinister_ws_get_fc($node, $data_field, $i))) {
-      // watchdog('sinister_ws', $fc_item->item_id);
-      $fc_item_wrapper = entity_metadata_wrapper('field_collection_item', $fc_item);
-      $fc_item_wrapper = sinister_ws_save_fc($data_field_i, $data_fields, $fc_item_wrapper);
+    if (($fc_item_wrapper = sinister_ws_get_fc($node, $data_field, $i))) {
+      $fc_item_wrapper = sinister_ws_save_fc($data_field_i, $data_fields, $fc_item_wrapper, $node, $data);
     }
 
     $field_data_field = "field_{$data_field}";
-    $node->{$field_data_field}[LANGUAGE_NONE][$i]['value'] = $fc_item->item_id;
-    $node->{$field_data_field}[LANGUAGE_NONE][$i]['revision_id'] = $fc_item->revision_id;
+    //$node->{$field_data_field}[LANGUAGE_NONE][$i]['value'] = $fc_item_wrapper->item_id;
+    //$node->{$field_data_field}[LANGUAGE_NONE][$i]['revision_id'] = $fc_item_wrapper->revision_id;
     $i++;
 
     $data_field_i = "{$data_field}_{$i}";
@@ -167,7 +165,7 @@ function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
 /**
  * Saves a Field collection section.
  */
-function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item_wrapper) {
+function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item_wrapper, $node, $data) {
   foreach ($fc_data_fields as $fc_data_field => $value_field) {
     // If this is an array, it must be a Postal Address.
     if (is_array($value_field)) {
@@ -215,10 +213,10 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item_wrapper) {
     // If its a regular value, then it can be any field.
     else {
       $data_field_field = "{$data_field_i}_{$fc_data_field}";
-      //watchdog('sinister_ws', 'data_field_field = ' . $data_field_field);
       
       if (isset($data[$data_field_field])) {
         $fc_field_name = "field_{$fc_data_field}";
+        
         if (!empty($data[$data_field_field])) {
           $fc_item_wrapper->{$fc_field_name}->set($data[$data_field_field]);
           // $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data[$data_field_field];
@@ -230,7 +228,7 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item_wrapper) {
     }
   }
 
-  $fc_item_wrapper->save();
+  $fc_item_wrapper->save(TRUE);
   // $fc_item->save();
   return $fc_item_wrapper;
 }
@@ -245,7 +243,6 @@ function sinister_ws_get_fc($node, $field, $i = 0) {
     $fc = array();
     $fc['field_name'] = "field_{$field}";
     $fc_item = entity_create('field_collection_item', $fc);
-    watchdog('sinister_ws', '1');
     $fc_item->setHostEntity('node', $node);
     $fc_item->save();
 
@@ -259,13 +256,6 @@ function sinister_ws_get_fc($node, $field, $i = 0) {
  * Loads a Field Collection Item.
  */
 function sinister_ws_load_fc($id) {
-  if (!($items = entity_load('field_collection_item', array($id)))) {
-    return FALSE;
-  }
-
-  if (!isset($items[$id])) {
-    return FALSE;
-  }
-
-  return $items[$id];
+  $fc_wrapper = entity_metadata_wrapper('field_collection_item', $id);
+  return $fc_wrapper;
 }
