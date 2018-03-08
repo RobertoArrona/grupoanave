@@ -40,7 +40,7 @@ function sinister_ws_resource_retrieve($uid) {
     if (isset($vehicle_model)) {
       $return_obj['model'] = $vehicle_model;
     }
-    $objects[$nid] = $return_obj;
+    $objects[] = $return_obj;
   }
   return $objects;
 }
