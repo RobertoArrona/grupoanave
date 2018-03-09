@@ -121,22 +121,13 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
     $form['field_primer_pago_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = 0;
     $form['field_primer_pago_rc']['#attributes']['style'] = 'display: none;';
   }
+  $form['title']['#attributes']['readonly'] = 'readonly';
+  $form['field_emision_recibo_ref_rc']['#attributes']['style'] = 'display: none;';
+  $form['field_primer_pago_rc']['#attributes']['style'] = 'display: none;';
+  $form['field_periodo_cobertura_rc']['#attributes']['style'] = 'display: none;';
+  $form['field_importe_con_letra_rc']['#attributes']['style'] = 'display: none;';
+  $form['field_fecha_de_expedicion_rc']['#attributes']['style'] = 'display: none;';
 }
-
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
-$form['title']['#attributes']['readonly'] = 'readonly';
 
 /**
  * Get series data for payments.
