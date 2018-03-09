@@ -31,8 +31,8 @@ function sinister_ws_save($data) {
   $data_fields['poliza_comentarios'] = 'value';
   $data_fields['poblacion'] = 'value';
   $data_fields['estado_single'] = 'tid';
-  $data_fields['lugar_referencia'] = 'value';
-  $data_fields['comentarios_del_siniestro'] = 'value';
+  $data_fields['lugar_referencias'] = 'value';
+  $data_fields['comentarios_de_siniestro'] = 'value';
   $data_fields['lugar_atencion'] = 'value';
 
   // Lugar de Siniestro.
@@ -72,11 +72,13 @@ function sinister_ws_save($data) {
     ),
     'rfc' => 'value',
     'licencia_numero' => 'value',
-    'licencia_tipo' => 'value',
-    'licencia_alta_lugar' => 'value',
+    'licencia_tipo' => 'tid',
+    'licencia_alta_lugar' => 'tid',
     'licencia_alta_fecha' => 'date',
     'telefono' => 'value',
-    'es_quien_reporta' => 'value',
+    'conductor_reporta' => 'value',
+    'nombre_quien_reporta' => 'value',
+    'telefono_quien_reporta' => 'value',
   );
   sinister_ws_save_fc_data($node, 'conductor', $data_fields, $data);
 
@@ -91,7 +93,6 @@ function sinister_ws_save($data) {
       'postal_code',
     ),
     'propietario_telefono' => 'value',
-    'conductor_es_propietario' => 'value',
     'licencia_numero' => 'value',
     // Pendiente taxonomy.
     'vehiculo_marca' => 'tid',
@@ -109,12 +110,23 @@ function sinister_ws_save($data) {
     '3ro_siniestro' => 'value',
     '3ro_ajustador' => 'tid',
     'taller' => 'target_id',
+    'conductor_nombre' => 'value',
+    'conductor_telefono' => 'value',
+    'conductor_domicilio' => array(
+      'thoroughfare',
+      'premise',
+      'locality',
+      'administrative_area',
+      'postal_code',
+    ),
+    'conductor_es_propietario' => 'value',
   );
   sinister_ws_save_fc_data($node, 'vehiculo_tercero', $data_fields, $data);
 
   // Lesiones y Danos.
   $data_fields = array(
     'lesionado_nombre' => 'value',
+    'lesionado_edad' => 'value',
     'lesionado_domicilio' => array(
       'thoroughfare',
       'premise',
@@ -126,6 +138,7 @@ function sinister_ws_save($data) {
     'lesionado_riesgo_b' => 'value',
     'lesionado_lesiones' => 'value',
     'lesionado_ambulancia' => 'value',
+    'lesionado_ambulancia_info' => 'value',
     'lesionado_pase_medico' => 'value',
     'hospital' => 'target_id',
   );
@@ -184,7 +197,9 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
         if (!empty($data[$data_field_field])) {
           // Try to load Term by Tid.
           if (($term = taxonomy_term_load($data[$data_field_field]))) {
+            //$fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data_field_field;
             $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $term->tid;
+            print_r($fc_item);
           }
         }
         else {
