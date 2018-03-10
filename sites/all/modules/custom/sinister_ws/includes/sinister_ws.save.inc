@@ -53,6 +53,7 @@ function sinister_ws_save($data) {
       $data_field_name = "field_{$data_field}";
       if (!empty($data[$data_field])) {
         $node->{$data_field_name}[LANGUAGE_NONE][0][$data_value] = $data[$data_field];
+        watchdog('sinister_ws', '<pre>' . print_r( $data_field_name, TRUE) . "</pre>");
       }
       else {
         $node->{$data_field_name} = array();
@@ -76,9 +77,9 @@ function sinister_ws_save($data) {
     'licencia_alta_lugar' => 'tid',
     'licencia_alta_fecha' => 'date',
     'telefono' => 'value',
-    'conductor_reporta' => 'value',
     'nombre_quien_reporta' => 'value',
     'telefono_quien_reporta' => 'value',
+    'conductor_reporta' => 'checkbox',
   );
   sinister_ws_save_fc_data($node, 'conductor', $data_fields, $data);
 
@@ -110,6 +111,7 @@ function sinister_ws_save($data) {
     '3ro_siniestro' => 'value',
     '3ro_ajustador' => 'tid',
     'taller' => 'target_id',
+    'conductor_es_propietario' => 'checkbox',
     'conductor_nombre' => 'value',
     'conductor_telefono' => 'value',
     'conductor_domicilio' => array(
@@ -119,7 +121,6 @@ function sinister_ws_save($data) {
       'administrative_area',
       'postal_code',
     ),
-    'conductor_es_propietario' => 'value',
   );
   sinister_ws_save_fc_data($node, 'vehiculo_tercero', $data_fields, $data);
 
@@ -137,7 +138,7 @@ function sinister_ws_save($data) {
     'lesionado_telefono' => 'value',
     'lesionado_riesgo_b' => 'value',
     'lesionado_lesiones' => 'value',
-    'lesionado_ambulancia' => 'value',
+    'lesionado_ambulancia' => 'checkbox',
     'lesionado_ambulancia_info' => 'value',
     'lesionado_pase_medico' => 'value',
     'hospital' => 'target_id',
@@ -198,8 +199,9 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
           // Try to load Term by Tid.
           if (($term = taxonomy_term_load($data[$data_field_field]))) {
             //$fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data_field_field;
+            $fc_field_name = "field_{$fc_data_field}";
             $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $term->tid;
-            print_r($fc_item);
+           // watchdog('sinister_ws', '<pre>' . print_r($fc_item->{$fc_field_name}, TRUE) . "</pre>");
           }
         }
         else {
@@ -212,15 +214,28 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
       $data_field_field = "{$data_field_i}_{$fc_data_field}";
       if (isset($data[$data_field_field])) {
         if (!empty($data[$data_field_field])) {
-          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = strtotime($data[$data_field_field]);
-          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone'] = 'America/Mazatlan';
-          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
-          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['date_type'] = 'datestamp';
-        }
+         $fc_field_name = "field_{$fc_data_field}";
+         $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = strtotime($data[$data_field_field]);
+         $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone'] = 'America/Mazatlan';
+         $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
+         $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['date_type'] = 'datestamp';
+         //watchdog('sinister_ws', '<pre>' . print_r( $data[$data_field_field], TRUE) . "</pre>");
+       }
         else {
           // pending $fc_item->{$fc_field_name} = array();
         }
       }
+    }
+    // If this is a checkbox
+    elseif ($value_field == 'checkbox') {
+      $data_field_field = "{$data_field_i}_{$fc_data_field}";
+      $fc_field_name = "field_{$fc_data_field}";
+      if (isset($data[$data_field_field])) {
+         $fc_field_name = "field_{$fc_data_field}";
+           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = $data[$data_field_field];
+            $fc_item->{$fc_field_name}[LANGUAGE_NONE][1]['value'] = $data[$data_field_field];
+           // watchdog('sinister_ws', '<pre>' . print_r($fc_item->{$fc_field_name}, TRUE) . "</pre>");
+       }
     }
     // If its a regular value, then it can be any field.
     else {
@@ -231,6 +246,7 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
         
         if (!empty($data[$data_field_field])) {
           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data[$data_field_field];
+          // watchdog('sinister_ws', '<pre>' . print_r($fc_field_name, TRUE) . "</pre>");
         }
         else {
           // pending $fc_item->{$fc_field_name} = array();
