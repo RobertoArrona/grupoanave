@@ -22,6 +22,9 @@ function sinister_ws_inactive_resource_retrieve($uid) {
     // Get fields value from vehicle brand.
     $sub_brand_term = taxonomy_term_load($poliza_fields->field_vehiculo_submarca[LANGUAGE_NONE][0]['tid']);
     $sub_brand = $sub_brand_term->name;
+    
+    // Get poliza field title
+    $contract = $poliza_fields->title;
 
     // Get vehicle model field value.
     $vehicle_model = $poliza_fields->field_vehiculo_modelo[LANGUAGE_NONE][0]['value'];
@@ -35,9 +38,12 @@ function sinister_ws_inactive_resource_retrieve($uid) {
       'sinister' => $node->title,
       'created' => date('Y/m/d H:s A', $node->created),
     );
+    if (isset($contract)) {
+      $return_obj['contract'] = $contract;
+    }
 
     if (isset($sub_brand)) {
-      $return_obj['tipo'] = $sub_brand;
+      $return_obj['type'] = $sub_brand;
     }
 
     if (isset($vehicle_color)) {

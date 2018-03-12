@@ -11,7 +11,7 @@
 function sinister_ws_save_controller() {
   //watchdog('sinister_ws', '<pre>' . print_r($_POST, TRUE) . "</pre>");
   sinister_ws_save($_POST);
-  return array('valid' => 1, 'msg' => 'Yeaaa baby', 'post' => $_POST);
+  return array('valid' => 1, 'msg' => 'Los datos se guardaron satisfactoriamente', 'post' => $_POST);
 }
 
 /**

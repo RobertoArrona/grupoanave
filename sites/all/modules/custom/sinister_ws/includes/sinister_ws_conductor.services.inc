@@ -89,20 +89,21 @@ function sinister_ws_conductor_resource_retrieve($nid) {
       'thoroughfare' => $driver_data->field_domicilio[LANGUAGE_NONE][0]['thoroughfare'],
       'premise' => $driver_data->field_domicilio[LANGUAGE_NONE][0]['premise'],
       'locality' => $driver_data->field_domicilio[LANGUAGE_NONE][0]['locality'],
-      'administrative_area' => $admin_area,
+      'administrative_area' => $driver_data->field_domicilio[LANGUAGE_NONE][0]['administrative_area'],
       'postal_code' => $driver_data->field_domicilio[LANGUAGE_NONE][0]['postal_code'],
       'driver_rfc' => $driver_data->field_rfc[LANGUAGE_NONE][0]['value'],
       'driver_license' => $driver_data->field_licencia_numero[LANGUAGE_NONE][0]['value'],
-      'license_type' => $license_type->name,
-      'license_place' => $license_place->name,
-      'license_date' => date('Y/m/d H:s A', $driver_data->field_licencia_alta_fecha[LANGUAGE_NONE][0]['value']),
+      'license_type' => $driver_data->field_licencia_tipo[LANGUAGE_NONE][0]['tid'],
+      'license_place' => $driver_data->field_licencia_alta_lugar[LANGUAGE_NONE][0]['tid'],
+      'license_date' => date('Y/m/d', $driver_data->field_licencia_alta_fecha[LANGUAGE_NONE][0]['value']),
       'phone' => $driver_data->field_telefono[LANGUAGE_NONE][0]['value'],
       'conductor_es_quien_reporta' => $driver_data->field_conductor_es_quien_reporta[LANGUAGE_NONE][0]['value'],
-      'nombre_de_quien_reporta' => $driver_data->field_nombre_de_quien_reporta[LANGUAGE_NONE][0]['value'],
-      'nombre_phone' => $driver_data->field_tel_fono[LANGUAGE_NONE][0]['value'],
+      'nombre_de_quien_reporta' => $driver_data->field_nombre_quien_reporta[LANGUAGE_NONE][0]['value'],
+      'phone' => $driver_data->field_telefono[LANGUAGE_NONE][0]['value'],
+      'phone_who_reports' => $driver_data->field_telefono_quien_reporta[LANGUAGE_NONE][0]['value'],
       'percent' => $percent,
     );
-    $objects[$nid] = $return_obj;
+    $objects[] = $return_obj;
   }
   return $objects;
 }
