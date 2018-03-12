@@ -72,7 +72,7 @@ function sinister_ws_conductor_resource_retrieve($nid) {
     if (isset($driver_data->field_telefono[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    if ($driver_data->field_conductor_es_quien_reporta[LANGUAGE_NONE][0]['value']!='1') {
+    if ($driver_data->field_conductor_reporta[LANGUAGE_NONE][0]['value']!='1') {
       $percent = $percent + 3.076923076923076;
     }
     else {
@@ -97,7 +97,7 @@ function sinister_ws_conductor_resource_retrieve($nid) {
       'license_place' => $driver_data->field_licencia_alta_lugar[LANGUAGE_NONE][0]['tid'],
       'license_date' => date('Y/m/d', $driver_data->field_licencia_alta_fecha[LANGUAGE_NONE][0]['value']),
       'phone' => $driver_data->field_telefono[LANGUAGE_NONE][0]['value'],
-      'conductor_es_quien_reporta' => $driver_data->field_conductor_es_quien_reporta[LANGUAGE_NONE][0]['value'],
+      'conductor_reporta' => $driver_data->field_conductor_reporta[LANGUAGE_NONE][0]['value'],
       'nombre_de_quien_reporta' => $driver_data->field_nombre_quien_reporta[LANGUAGE_NONE][0]['value'],
       'phone' => $driver_data->field_telefono[LANGUAGE_NONE][0]['value'],
       'phone_who_reports' => $driver_data->field_telefono_quien_reporta[LANGUAGE_NONE][0]['value'],
