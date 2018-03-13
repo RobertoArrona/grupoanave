@@ -30,6 +30,10 @@ function sinister_ws_save($data) {
     return FALSE;
   }
 
+  if (!isset($data['uid'])) {
+    $data['uid'] = 1;
+  }
+
   // Datos Generales.
   $data_fields = array();
   $data_fields['poliza_comentarios'] = 'value';
@@ -38,6 +42,22 @@ function sinister_ws_save($data) {
   $data_fields['lugar_referencias'] = 'value';
   $data_fields['comentarios_de_siniestro'] = 'value';
   $data_fields['lugar_atencion'] = 'value';
+
+  // Archivos.
+  // Prepare siniestro_archivo_visualizador (imagenes).
+  if (isset($_FILES['siniestro_archivo_visualizador'])) {
+    $data['siniestro_archivo_visualizadores'] = array();
+    foreach ($_FILES['siniestro_archivo_visualizador']['name'] as $i => $siniestro_archivo_visualizador) {
+      $data['siniestro_archivo_visualizadores'][] = array(
+        'name' => $_FILES['siniestro_archivo_visualizador']['name'][$i],
+        'type' => $_FILES['siniestro_archivo_visualizador']['type'][$i],
+        'tmp_name' => $_FILES['siniestro_archivo_visualizador']['tmp_name'][$i],
+        'error' => $_FILES['siniestro_archivo_visualizador']['error'][$i],
+        'size' => $_FILES['siniestro_archivo_visualizador']['size'][$i],
+      );
+    }
+    sinister_ws_save_fc_archivo_visualizador($node, $data);
+  }
 
   // Lugar de Siniestro.
   $data_fields['mapa_siniestro'] = 'lat';
@@ -175,6 +195,36 @@ function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
     $data_field_i = "{$data_field}_{$i}";
     $data_field_i_data_field = "{$data_field_i}_{$first_data_field}";
   }
+}
+
+/**
+ * Saves archivo visualizador into a new field collection.
+ */
+function sinister_ws_save_fc_archivo_visualizador($node, $data) {
+  // Create Field Collection.
+  $fc_item = entity_create('field_collection_item', array(
+    'field_name' => "field_siniestro_archivo",
+  ));
+  $fc_item->setHostEntity('node', $node);
+
+  // Save Files.
+  $fc_item->field_visualizador[LANGUAGE_NONE] = array();
+  foreach ($data['siniestro_archivo_visualizadores'] as $i => $file_raw) {
+    $file_contents = file_get_contents($file_raw['tmp_name']);
+    $file_uri = file_default_scheme() . '://siniestros/archivos/' . $file_raw['name'];
+    if (($file = file_save_data($file_contents, $file_uri))) {
+      $file->uid = $data['uid'];
+      $file->status = FILE_STATUS_PERMANENT;
+      $fc_item->field_visualizador[LANGUAGE_NONE][$i] = array(
+        'fid' => $file->fid,
+      );
+      $fc_item->field_archivo_categoria[LANGUAGE_NONE][0]['value'] = 'Fotografías de siniestro';
+      $fc_item->field_fecha[LANGUAGE_NONE][0]['date'] = 'pendiente';
+      $fc_item->field_archivo_autor[LANGUAGE_NONE][0]['target_id'] = $data['uid'];
+    }
+  }
+
+  $fc_item->save();
 }
 
 /**
