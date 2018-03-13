@@ -28,51 +28,51 @@ function sinister_ws_conductor_resource_retrieve($nid) {
     if (isset($driver_data->field_nombre[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($driver_data->field_domicilio[LANGUAGE_NONE][0]['thoroughfare'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($driver_data->field_domicilio[LANGUAGE_NONE][0]['premise'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($driver_data->field_domicilio[LANGUAGE_NONE][0]['locality'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($admin_area)) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($driver_data->field_domicilio[LANGUAGE_NONE][0]['postal_code'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($driver_data->field_rfc[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($driver_data->field_licencia_numero[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($license_type->name)) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($license_place->name)) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($driver_data->field_licencia_alta_fecha[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($driver_data->field_telefono[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    if ($driver_data->field_conductor_reporta[LANGUAGE_NONE][0]['value']!='1') {
+    if ($driver_data->field_conductor_reporta[LANGUAGE_NONE][0]['value'] != '1') {
       $percent = $percent + 3.076923076923076;
     }
     else {
@@ -101,7 +101,7 @@ function sinister_ws_conductor_resource_retrieve($nid) {
       'nombre_de_quien_reporta' => $driver_data->field_nombre_quien_reporta[LANGUAGE_NONE][0]['value'],
       'phone' => $driver_data->field_telefono[LANGUAGE_NONE][0]['value'],
       'phone_who_reports' => $driver_data->field_telefono_quien_reporta[LANGUAGE_NONE][0]['value'],
-      'percent' => $percent
+      'percent' => $percent,
     );
     $objects[] = $return_obj;
   }
@@ -113,6 +113,6 @@ function sinister_ws_conductor_resource_retrieve($nid) {
  */
 function get_percent() {
   $percent = 0;
-  var_dump($driver_data->field_nombre[LANGUAGE_NONE][0]['value']); exit;
+  var_dump($driver_data->field_nombre[LANGUAGE_NONE][0]['value']);
   return $percent;
 }

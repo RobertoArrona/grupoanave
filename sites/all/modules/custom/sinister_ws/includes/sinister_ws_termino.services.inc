@@ -16,27 +16,27 @@ function sinister_ws_termino_resource_retrieve($nid) {
     if (isset($node->field_informe[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($node->field_danos_materiales[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($node->field_robo[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($node->field_resp_civil[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($node->field_gastos_medicos[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($node->field_rc_viajero[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }
-    // Add value to $percent variable
+    // Add value to $percent variable.
     if (isset($node->field_reserva_total[LANGUAGE_NONE][0]['value'])) {
       $percent = $percent + 1.538461538461538;
     }

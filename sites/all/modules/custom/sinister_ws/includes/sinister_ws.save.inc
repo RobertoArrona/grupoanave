@@ -9,9 +9,13 @@
  * Controller function to save a sinsiter node using the $_POST variables.
  */
 function sinister_ws_save_controller() {
-  //watchdog('sinister_ws', '<pre>' . print_r($_POST, TRUE) . "</pre>");
+  // watchdog('sinister_ws', '<pre>' . print_r($_POST, TRUE) . "</pre>");.
   sinister_ws_save($_POST);
-  return array('valid' => 1, 'msg' => 'Los datos se guardaron satisfactoriamente', 'post' => $_POST);
+  return array(
+    'valid' => 1,
+    'msg' => 'Los datos se guardaron satisfactoriamente',
+    'post' => $_POST,
+  );
 }
 
 /**
@@ -53,7 +57,6 @@ function sinister_ws_save($data) {
       $data_field_name = "field_{$data_field}";
       if (!empty($data[$data_field])) {
         $node->{$data_field_name}[LANGUAGE_NONE][0][$data_value] = $data[$data_field];
-        watchdog('sinister_ws', '<pre>' . print_r( $data_field_name, TRUE) . "</pre>");
       }
       else {
         $node->{$data_field_name} = array();
@@ -167,8 +170,6 @@ function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
     }
 
     $field_data_field = "field_{$data_field}";
-    //$node->{$field_data_field}[LANGUAGE_NONE][$i]['value'] = $fc_item_wrapper->item_id;
-    //$node->{$field_data_field}[LANGUAGE_NONE][$i]['revision_id'] = $fc_item_wrapper->revision_id;
     $i++;
 
     $data_field_i = "{$data_field}_{$i}";
@@ -198,14 +199,12 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
         if (!empty($data[$data_field_field])) {
           // Try to load Term by Tid.
           if (($term = taxonomy_term_load($data[$data_field_field]))) {
-            //$fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data_field_field;
             $fc_field_name = "field_{$fc_data_field}";
             $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $term->tid;
-           // watchdog('sinister_ws', '<pre>' . print_r($fc_item->{$fc_field_name}, TRUE) . "</pre>");
           }
         }
         else {
-          // pending $fc_item->{$fc_field_name} = array();
+          // Pending $fc_item->{$fc_field_name} = array();.
         }
       }
     }
@@ -214,42 +213,37 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
       $data_field_field = "{$data_field_i}_{$fc_data_field}";
       if (isset($data[$data_field_field])) {
         if (!empty($data[$data_field_field])) {
-         $fc_field_name = "field_{$fc_data_field}";
-         $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = strtotime($data[$data_field_field]);
-         $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone'] = 'America/Mazatlan';
-         $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
-         $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['date_type'] = 'datestamp';
-         //watchdog('sinister_ws', '<pre>' . print_r( $data[$data_field_field], TRUE) . "</pre>");
-       }
+          $fc_field_name = "field_{$fc_data_field}";
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = strtotime($data[$data_field_field]);
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone'] = 'America/Mazatlan';
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['date_type'] = 'datestamp';
+        }
         else {
-          // pending $fc_item->{$fc_field_name} = array();
+          // Pending $fc_item->{$fc_field_name} = array();
         }
       }
     }
-    // If this is a checkbox
+    // If this is a checkbox.
     elseif ($value_field == 'checkbox') {
       $data_field_field = "{$data_field_i}_{$fc_data_field}";
       $fc_field_name = "field_{$fc_data_field}";
       if (isset($data[$data_field_field])) {
-         $fc_field_name = "field_{$fc_data_field}";
-           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = $data[$data_field_field];
-            $fc_item->{$fc_field_name}[LANGUAGE_NONE][1]['value'] = $data[$data_field_field];
-           // watchdog('sinister_ws', '<pre>' . print_r($fc_item->{$fc_field_name}, TRUE) . "</pre>");
-       }
+        $fc_field_name = "field_{$fc_data_field}";
+        $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = $data[$data_field_field];
+        $fc_item->{$fc_field_name}[LANGUAGE_NONE][1]['value'] = $data[$data_field_field];
+      }
     }
     // If its a regular value, then it can be any field.
     else {
       $data_field_field = "{$data_field_i}_{$fc_data_field}";
-      
       if (isset($data[$data_field_field])) {
         $fc_field_name = "field_{$fc_data_field}";
-        
         if (!empty($data[$data_field_field])) {
           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data[$data_field_field];
-          // watchdog('sinister_ws', '<pre>' . print_r($fc_field_name, TRUE) . "</pre>");
         }
         else {
-          // pending $fc_item->{$fc_field_name} = array();
+          // Pending $fc_item->{$fc_field_name} = array();.
         }
       }
     }
@@ -267,7 +261,7 @@ function sinister_ws_get_fc($node, $field, $i = 0) {
   $field_field = "field_{$field}";
   if (!(isset($node->{$field_field}[LANGUAGE_NONE][$i]['value']) && $node->{$field_field}[LANGUAGE_NONE][$i]['value'] > 0)) {
     $fc_item = entity_create('field_collection_item', array(
-      'field_name' => "field_{$field}"
+      'field_name' => "field_{$field}",
     ));
     $fc_item->setHostEntity('node', $node);
 
@@ -283,6 +277,6 @@ function sinister_ws_get_fc($node, $field, $i = 0) {
 function sinister_ws_load_fc($id, $node) {
   $fc_item = entity_load('field_collection_item', array($id));
   $fc_item = $fc_item[$id];
-  //$fc_item->setHostEntity('node', $node);
+  // $fc_item->setHostEntity('node', $node);.
   return $fc_item;
 }

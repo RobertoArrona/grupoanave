@@ -30,57 +30,57 @@ function sinister_ws_lesiones_resource_retrieve($nid) {
       if (isset($injured_data->field_lesionado_nombre[LANGUAGE_NONE][0]['value'])) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($injured_data->field_lesionado_edad[LANGUAGE_NONE][0]['value'])) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($injured_data->field_lesionado_domicilio[LANGUAGE_NONE][0]['thoroughfare'])) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($injured_data->field_lesionado_domicilio[LANGUAGE_NONE][0]['premise'])) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($injured_data->field_lesionado_domicilio[LANGUAGE_NONE][0]['locality'])) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($admin_area)) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($injured_data->field_lesionado_domicilio[LANGUAGE_NONE][0]['postal_code'])) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($injured_data->field_lesionado_telefono[LANGUAGE_NONE][0]['value'])) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($risk_b)) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($injured_data->field_lesionado_lesiones[LANGUAGE_NONE][0]['value'])) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
-      if ($injured_data->field_lesionado_ambulancia[LANGUAGE_NONE][0]['value']=='0') {
+      // Add value to $percent variable.
+      if ($injured_data->field_lesionado_ambulancia[LANGUAGE_NONE][0]['value'] == '0') {
         $percent = $percent + 1.538461538461538;
       }
       else {
-        // Add value to $percent variable
+        // Add value to $percent variable.
         if (isset($injured_data->field_lesionado_ambulancia_info[LANGUAGE_NONE][0]['value'])) {
           $percent = $percent + 1.538461538461538;
         }
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($injured_data->field_lesionado_pase_medico[LANGUAGE_NONE][0]['value'])) {
         $percent = $percent + 1.538461538461538;
       }
-      // Add value to $percent variable
+      // Add value to $percent variable.
       if (isset($injured_data->field_hospital[LANGUAGE_NONE][0]['target_id'])) {
         $percent = $percent + 1.538461538461538;
       }

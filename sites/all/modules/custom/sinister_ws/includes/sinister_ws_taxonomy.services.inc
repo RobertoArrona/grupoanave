@@ -19,20 +19,16 @@ function sinister_ws_taxonomy_resource_retrieve($nid) {
     // Get taxonomy from field_licencia_tipo value.
     $license_type = taxonomy_term_load($driver_data->field_licencia_tipo[LANGUAGE_NONE][0]['tid']);
     $license_type_vocabulary = taxonomy_get_tree($license_type->vid);
-     //watchdog('sinister_ws', '<pre>' . print_r($license_type_vocabulary, TRUE) . "</pre>");
-    // Get taxonomy from field_liencia_alta_lugar
+    // Get taxonomy from field_liencia_alta_lugar.
     $license_place = taxonomy_term_load($driver_data->field_licencia_alta_lugar[LANGUAGE_NONE][0]['tid']);
     $license_place_vocabulary = taxonomy_get_tree($license_place->vid);
-watchdog('sinister_ws', '<pre>' . print_r($license_place_vocabulary, TRUE) . "</pre>");
     // Get fields value from vehicle brand.
     $brand_vehicle = taxonomy_term_load($vehicle_data->field_vehiculo_marca[LANGUAGE_NONE][0]['tid']);
     $brand_vehicle_vocabulary = taxonomy_get_tree($brand_vehicle->vid);
- watchdog('sinister_ws', '<pre>' . print_r($brand_vehicle_vocabulary, TRUE) . "</pre>");
     // Get fields value from vehicle brand.
     $type_vehicle = taxonomy_term_load($vehicle_data->field_vehiculo_tipo[LANGUAGE_NONE][0]['tid']);
     $type_vehicle_vocabulary = taxonomy_get_tree($type_vehicle->vid);
-    
-    // Get fields value from $ajustador field
+    // Get fields value from $ajustador field.
     $insurance_agent = taxonomy_term_load($vehicle_data->field_3ro_ajustador[LANGUAGE_NONE][0]['tid']);
     $insurance_agent_vocabulary = taxonomy_get_tree($insurance_agent->vid);
 
@@ -40,7 +36,7 @@ watchdog('sinister_ws', '<pre>' . print_r($license_place_vocabulary, TRUE) . "</
     $color_vehicle = taxonomy_term_load($vehicle_data->field_3ro_vehiculo_color[LANGUAGE_NONE][0]['tid']);
     $color_vehicle_vocabulary = taxonomy_get_tree($color_vehicle->vid);
 
-    // Get fields value from $aseguradora field
+    // Get fields value from $aseguradora field.
     $insurance_company = taxonomy_term_load($vehicle_data->field_3ro_aseguradora[LANGUAGE_NONE][0]['tid']);
     $insurance_company_vocabulary = taxonomy_get_tree($insurance_company->vid);
 
