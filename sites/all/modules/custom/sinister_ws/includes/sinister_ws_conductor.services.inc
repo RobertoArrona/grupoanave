@@ -101,7 +101,7 @@ function sinister_ws_conductor_resource_retrieve($nid) {
       'nombre_de_quien_reporta' => $driver_data->field_nombre_quien_reporta[LANGUAGE_NONE][0]['value'],
       'phone' => $driver_data->field_telefono[LANGUAGE_NONE][0]['value'],
       'phone_who_reports' => $driver_data->field_telefono_quien_reporta[LANGUAGE_NONE][0]['value'],
-      'percent' => $percent,
+      'percent' => $percent
     );
     $objects[] = $return_obj;
   }
