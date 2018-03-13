@@ -268,7 +268,7 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'get-taxonomy' => array(
+    'taxonomy-get' => array(
       'operations' => array(
         'retrieve' => array(
           'help' => 'Retrieve sinister taxonomy data.',

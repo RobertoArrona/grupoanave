@@ -219,8 +219,12 @@ function sinister_ws_save_fc_archivo_visualizador($node, $data) {
         'fid' => $file->fid,
       );
       $fc_item->field_archivo_categoria[LANGUAGE_NONE][0]['value'] = 'Fotografías de siniestro';
-      $fc_item->field_fecha[LANGUAGE_NONE][0]['date'] = 'pendiente';
+      $fc_item->field_fecha[LANGUAGE_NONE][0]['value'] = strtotime('now');
+      $fc_item->field_fecha[LANGUAGE_NONE][0]['timezone'] = 'America/Mazatlan';
+      $fc_item->field_fecha[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
+      $fc_item->field_fecha[LANGUAGE_NONE][0]['date_type'] = 'datestamp';
       $fc_item->field_archivo_autor[LANGUAGE_NONE][0]['target_id'] = $data['uid'];
+       watchdog('sinister_ws', '<pre>' . print_r($fc_item, TRUE) . "</pre>");
     }
   }
 
