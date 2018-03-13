@@ -51,7 +51,7 @@ function sinister_ws_termino_resource_retrieve($nid) {
       'total_reserve' => $node->field_reserva_total[LANGUAGE_NONE][0]['value'],
       'percent' => $percent,
     );
-    $objects[$nid] = $return_obj;
+    $objects[] = $return_obj;
   }
   return $objects;
 }
