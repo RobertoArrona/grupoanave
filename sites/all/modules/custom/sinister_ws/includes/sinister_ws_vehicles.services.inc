@@ -13,10 +13,9 @@ function sinister_ws_vehicles_resource_retrieve($nid) {
 
   // Get field collection field_vehiculo item from node.
   $results = array();
-  foreach ($node->field_vehiculo_tercero as $i => $item) {
-    $fc_item = entity_load('field_collection_item', array($item['value']));
-    $fc_item = $fc_item[$id];
-    $results[] = get_vehicle($fc_item);
+  for ($i=0; $i < count($node->field_vehiculo_tercero[LANGUAGE_NONE]); $i++) {
+    $fc_vehiculo[$i] = field_collection_item_load($node->field_vehiculo_tercero[LANGUAGE_NONE][$i]['value'], $reset = FALSE);
+    $results[] = get_vehicle($fc_vehiculo[$i]);
   }
   return $results;
 }

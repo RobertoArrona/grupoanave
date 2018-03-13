@@ -11,9 +11,11 @@
 function sinister_ws_archivos_resource_retrieve($nid) {
   $node = node_load($nid);
   // Get field collection field_siniestro_archivo item from node.
-  $fc_archivo = field_collection_item_load($node->field_siniestro_archivo[LANGUAGE_NONE][0]['value'], $reset = FALSE);
-  $result = get_image($fc_archivo);
-  return $result;
+  for ($i=0; $i < count($node->field_siniestro_archivo[LANGUAGE_NONE]); $i++) {
+    $fc_archivo[$i] = field_collection_item_load($node->field_siniestro_archivo[LANGUAGE_NONE][$i]['value'], $reset = FALSE);
+    $results[] = get_image($fc_archivo[$i]);
+  }
+  return $results;
 }
 
 /**
