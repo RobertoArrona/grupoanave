@@ -34,13 +34,17 @@ function get_image($fc_archivo) {
     $images = array();
     $images[$i] = $field_image[LANGUAGE_NONE][$i]['uri'];
     $filename = $field_image[LANGUAGE_NONE][$i]['filename'];
+    $comment_files = $fc_archivo->field_archivo_comentario[LANGUAGE_NONE][$i]['value'];
     $path = file_create_url($images[$i]);
     $width = $field_image[LANGUAGE_NONE][$i]['metadata']['width'];
     $height = $field_image[LANGUAGE_NONE][$i]['metadata']['height'];
+    $date = $fc_archivo->field_fecha[LANGUAGE_NONE][$i]['value'];
     $Images['url'][$i] = $path;
     $Images['width'][$i] = $width;
     $Images['height'][$i] = $height;
     $Images['filename'][$i] = $filename;
+    $Images['date'][$i] = date('Y/m/d h:i:s', $date);
+    $Images['comment'][$i] = $comment_files;
     if (isset($field_image[LANGUAGE_NONE][$i]['uri'])) {
       $percent = 1.538461538461538;
     }
