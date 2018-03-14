@@ -224,7 +224,7 @@ function sinister_ws_save_fc_archivo_visualizador($node, $data) {
       $fc_item->field_fecha[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
       $fc_item->field_fecha[LANGUAGE_NONE][0]['date_type'] = 'datestamp';
       $fc_item->field_archivo_autor[LANGUAGE_NONE][0]['target_id'] = $data['uid'];
-      $fc_item->field_archivo_comentario[LANGUAGE_NONE][0]['value'] = 'Comentario de prueba';
+      $fc_item->field_archivo_comentario[LANGUAGE_NONE][0]['value'] = $data['field_archivo_comentario'];
        watchdog('sinister_ws', '<pre>' . print_r($fc_item, TRUE) . "</pre>");
     }
   }
