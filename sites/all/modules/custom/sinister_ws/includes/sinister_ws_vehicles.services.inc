@@ -301,7 +301,7 @@ function get_vehicle($fc_vehiculo) {
     'numero_poliza' => $vehiculo_numero_poliza,
     'vehiculo_cobertura' => $vehiculo_cobertura,
     'vehiculo_deducible' => $vehiculo_deducible,
-    'vehiculo_vencimiento' => date('Y/m/d H:s A', $vehiculo_vencimiento),
+    'vehiculo_vencimiento' => date('Y/m/d', $vehiculo_vencimiento),
     'vehiculo_siniestro' => $vehiculo_siniestro,
     'vehiculo_ajustador' => $fc_vehiculo->field_3ro_ajustador[LANGUAGE_NONE][0]['tid'],
     'vehiculo_taller' => $taller_nid,
