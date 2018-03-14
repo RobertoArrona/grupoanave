@@ -23,7 +23,8 @@ function sinister_ws_archivos_resource_retrieve($nid) {
  */
 function get_image($fc_archivo) {
   $percent = 0;
-  $base_url = $GLOBALS['base_root'];
+  //$base_url = $GLOBALS['base_root'];
+  //$pathfile = file_directory_path() . '/siniestros/images/';
   $pathImages = array();
   // Get value from field_visualizador.
   $field_image = $fc_archivo->field_visualizador;
@@ -33,7 +34,7 @@ function get_image($fc_archivo) {
     $images = array();
     $images[$i] = $field_image[LANGUAGE_NONE][$i]['uri'];
     $filename = $field_image[LANGUAGE_NONE][$i]['filename'];
-    $path = $base_url . drupal_realpath($images[$i]);
+    $path = file_create_url($images[$i]);
     $width = $field_image[LANGUAGE_NONE][$i]['metadata']['width'];
     $height = $field_image[LANGUAGE_NONE][$i]['metadata']['height'];
     $Images['url'][$i] = $path;
