@@ -242,26 +242,28 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'actualizar-termino' => array(
+    'historico' => array(
       'operations' => array(
         'retrieve' => array(
-          'help' => 'Update term data.',
+          'help' => 'Retrieve data from finished sinister info.',
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_update_term.services',
+            'name' => 'includes/sinister_ws_historical.services',
           ),
-          'callback' => 'sinister_ws_update_term_resource_retrieve',
+          'callback' => 'sinister_ws_historical_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
           'args' => array(
             array(
-              'name' => 'data',
-              'type' => 'struct',
+              'name' => 'nid',
+              'type' => 'int',
               'description' => 'Function to perform',
-              'source' => 'data',
-              'optional' => FALSE,
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
               'default' => '0',
             ),
           ),
