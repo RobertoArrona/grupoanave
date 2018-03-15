@@ -270,7 +270,7 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'sinister-taxonomy-get' => array(
+    'sinister-get-taxonomy' => array(
       'operations' => array(
         'retrieve' => array(
           'help' => 'Retrieve sinister taxonomy data.',
@@ -298,7 +298,7 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'sinister-entity-reference-get' => array(
+    'sinister-get-entity-reference' => array(
       'operations' => array(
         'retrieve' => array(
           'help' => 'Retrieve sinister entity referencedata.',
