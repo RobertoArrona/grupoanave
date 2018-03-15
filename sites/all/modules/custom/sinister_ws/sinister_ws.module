@@ -311,7 +311,6 @@ function sinister_ws_services_resources() {
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
-/*
           'args' => array(
             array(
               'name' => 'nid',
@@ -324,7 +323,6 @@ function sinister_ws_services_resources() {
               'default' => '0',
             ),
           ),
-*/
         ),
       ),
     ),

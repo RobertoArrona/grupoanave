@@ -8,7 +8,7 @@
 /**
  * Return data entity reference from sinister.
  */
-function sinister_ws_entity_reference_resource_retrieve() {
+function sinister_ws_entity_reference_resource_retrieve($nid) {
   /**
      * Users with role
      *
