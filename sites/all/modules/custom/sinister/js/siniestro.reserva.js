@@ -22,8 +22,23 @@
       total = 0;
     });
 
-    $('#edit-field-conductor-und-0-field-conductor-reporta').on('change', function () {
-      $('#edit-field-conductor-und-0-field-nombre-quien-reporta, #edit-field-conductor-und-0-field-telefono-quien-reporta').toggleClass('displayblock');
+    // Vefify if driver reports field is checked on document ready.
+    if ($('#edit-field-conductor-und-0-field-conductor-reporta-und').prop('checked') == true){
+      $('#edit-field-conductor-und-0-field-nombre-quien-reporta, #edit-field-conductor-und-0-field-telefono-quien-reporta').removeClass('displayblock');
+    }
+    else if ($('#edit-field-conductor-und-0-field-conductor-reporta-und').prop('checked') == false) {
+      $('#edit-field-conductor-und-0-field-nombre-quien-reporta, #edit-field-conductor-und-0-field-telefono-quien-reporta').addClass('displayblock');
+    }
+
+    // Vefify if driver reports field is checked on click event.
+    $(document).on('click', '#edit-field-conductor-und-0-field-conductor-reporta-und', function () {
+       console.log('clecked..');
+      if ($(this).prop('checked') == true){
+        $('#edit-field-conductor-und-0-field-nombre-quien-reporta, #edit-field-conductor-und-0-field-telefono-quien-reporta').removeClass('displayblock');
+      }
+      else if ($(this).prop('checked') == false) {
+        $('#edit-field-conductor-und-0-field-nombre-quien-reporta, #edit-field-conductor-und-0-field-telefono-quien-reporta').addClass('displayblock');
+      }
     });
   });
 
