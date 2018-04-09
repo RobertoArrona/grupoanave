@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Retrieve a term info from nid.
@@ -11,46 +10,36 @@
 function sinister_ws_taxonomy_resource_retrieve($nid) {
   $objects = array();
   $percent = 0;
-  if (($node = node_load($nid))) {
-    // Get driver information.
-    $driver_data = entity_load_single('field_collection_item', $node->field_conductor[LANGUAGE_NONE][0]['value']);
-    // Get vehicle information.
-    $vehicle_data = entity_load_single('field_collection_item', $node->field_vehiculo_tercero[LANGUAGE_NONE][0]['value']);
-    // Get taxonomy from field_licencia_tipo value.
-    $license_type = taxonomy_term_load($driver_data->field_licencia_tipo[LANGUAGE_NONE][0]['tid']);
-    $license_type_vocabulary = taxonomy_get_tree($license_type->vid);
-    // Get taxonomy from field_liencia_alta_lugar.
-    $license_place = taxonomy_term_load($driver_data->field_licencia_alta_lugar[LANGUAGE_NONE][0]['tid']);
-    $license_place_vocabulary = taxonomy_get_tree($license_place->vid);
-    // Get fields value from vehicle brand.
-    $brand_vehicle = taxonomy_term_load($vehicle_data->field_vehiculo_marca[LANGUAGE_NONE][0]['tid']);
-    $brand_vehicle_vocabulary = taxonomy_get_tree($brand_vehicle->vid);
-    // Get fields value from vehicle brand.
-    $type_vehicle = taxonomy_term_load($vehicle_data->field_vehiculo_tipo[LANGUAGE_NONE][0]['tid']);
-    $type_vehicle_vocabulary = taxonomy_get_tree($type_vehicle->vid);
-    // Get fields value from $ajustador field.
-    $insurance_agent = taxonomy_term_load($vehicle_data->field_3ro_ajustador[LANGUAGE_NONE][0]['tid']);
-    $insurance_agent_vocabulary = taxonomy_get_tree($insurance_agent->vid);
 
-    // Get fields value from vehicle color.
-    $color_vehicle = taxonomy_term_load($vehicle_data->field_3ro_vehiculo_color[LANGUAGE_NONE][0]['tid']);
-    $color_vehicle_vocabulary = taxonomy_get_tree($color_vehicle->vid);
+  // Asign vocabulary ids.
+  $license_type_vid = 4;
+  $license_place_vid = 5;
+  $brand_vehicle_vid = 6;
+  $type_vehicle_vid = 8;
+  $color_vehicle_vid = 9;
+  $insurance_company_vid = 10;
+  $insurance_agent_vid = 11;
 
-    // Get fields value from $aseguradora field.
-    $insurance_company = taxonomy_term_load($vehicle_data->field_3ro_aseguradora[LANGUAGE_NONE][0]['tid']);
-    $insurance_company_vocabulary = taxonomy_get_tree($insurance_company->vid);
+  // Load taxonomies by vocabulary id.
+  $license_type_vocabulary = taxonomy_get_tree($license_type_vid);
+  $license_place_vocabulary = taxonomy_get_tree($license_place_vid);
+  $brand_vehicle_vocabulary = taxonomy_get_tree($brand_vehicle_vid);
+  $type_vehicle_vocabulary = taxonomy_get_tree($type_vehicle_vid);
+  $color_vehicle_vocabulary = taxonomy_get_tree($color_vehicle_vid);
+  $insurance_company_vocabulary = taxonomy_get_tree($insurance_company_vid);
+  $insurance_agent_vocabulary = taxonomy_get_tree($insurance_agent_vid);
 
-    // Create return object.
-    $return_obj = array(
-      'license_type' => $license_type_vocabulary,
-      'license_place' => $license_place_vocabulary,
-      'brand_vehicle' => $brand_vehicle_vocabulary,
-      'type_vehicle' => $type_vehicle_vocabulary,
-      'insurance_agent' => $insurance_agent_vocabulary,
-      'color_vehicle' => $color_vehicle_vocabulary,
-      'insurance_company' => $insurance_company_vocabulary,
-    );
-    $objects[] = $return_obj;
-  }
+  // Create return object.
+  $return_obj = array(
+    'license_type' => $license_type_vocabulary,
+    'license_place' => $license_place_vocabulary,
+    'brand_vehicle' => $brand_vehicle_vocabulary,
+    'type_vehicle' => $type_vehicle_vocabulary,
+    'insurance_agent' => $insurance_agent_vocabulary,
+    'color_vehicle' => $color_vehicle_vocabulary,
+    'insurance_company' => $insurance_company_vocabulary,
+  );
+  $objects[] = $return_obj;
+
   return $objects;
 }
