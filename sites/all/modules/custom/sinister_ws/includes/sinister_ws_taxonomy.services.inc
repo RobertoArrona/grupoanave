@@ -35,9 +35,9 @@ function sinister_ws_taxonomy_resource_retrieve($nid) {
     'license_place' => $license_place_vocabulary,
     'brand_vehicle' => $brand_vehicle_vocabulary,
     'type_vehicle' => $type_vehicle_vocabulary,
-    'insurance_agent' => $insurance_agent_vocabulary,
     'color_vehicle' => $color_vehicle_vocabulary,
     'insurance_company' => $insurance_company_vocabulary,
+    'insurance_agent' => $insurance_agent_vocabulary
   );
   $objects[] = $return_obj;
 
