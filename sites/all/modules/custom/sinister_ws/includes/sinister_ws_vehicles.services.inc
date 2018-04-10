@@ -10,12 +10,13 @@
  */
 function sinister_ws_vehicles_resource_retrieve($nid) {
   $node = node_load($nid);
+  $count = count($node->field_vehiculo_tercero[LANGUAGE_NONE]);
 
   // Get field collection field_vehiculo item from node.
   $results = array();
-  for ($i=0; $i < count($node->field_vehiculo_tercero[LANGUAGE_NONE]); $i++) {
+  for ($i=0; $i < $count; $i++) {
     $fc_vehiculo[$i] = field_collection_item_load($node->field_vehiculo_tercero[LANGUAGE_NONE][$i]['value'], $reset = FALSE);
-    $results[] = get_vehicle($fc_vehiculo[$i]);
+    $results[] = get_vehicle($fc_vehiculo[$i], $count);
   }
   return $results;
 }
@@ -25,9 +26,10 @@ function sinister_ws_vehicles_resource_retrieve($nid) {
  *
  * @params $fc_vehiculo The id item of field_siniestro_archivo field.
  */
-function get_vehicle($fc_vehiculo) {
+function get_vehicle($fc_vehiculo, $count) {
   $vehiculoTercero = array();
   $percent = 0;
+  $number = (1.538461538461538 / $count);
   // Get value from $field_propietario_nombre.
   $field_propietario_nombre = $fc_vehiculo->field_propietario_nombre[LANGUAGE_NONE][0]['value'];
   // Get value from $thoroughfare.
@@ -144,133 +146,133 @@ function get_vehicle($fc_vehiculo) {
 
   // Add value to $percent variable.
   if (isset($field_propietario_nombre)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($thoroughfare)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($premise)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($locality)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($administrative_area)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($postal_code)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($field_propietario_telefono)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if ($key_propietario == '1') {
-    $percent = $percent + 10.769230769230766;
+    $percent = $percent + (10.769230769230766 / $count);
   }
   else {
     // Add value to $percent variable.
     if (isset($field_conductor_nombre) && !empty($field_conductor_nombre)) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + $number;
     }
     // Add value to $percent variable.
     if (isset($thoroughfare_conductor) && !empty($thoroughfare_conductor)) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + $number;
     }
     // Add value to $percent variable.
     if (isset($premise_conductor) && !empty($premise_conductor)) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + $number;
     }
     // Add value to $percent variable.
     if (isset($locality_conductor) && !empty($locality_conductor)) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + $number;
     }
     // Add value to $percent variable.
     if (isset($administrative_area_conductor) && !empty($administrative_area_conductor)) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + $number;
     }
     // Add value to $percent variable.
     if (isset($postal_code_conductor) && !empty($postal_code_conductor)) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + $number;
     }
     // Add value to $percent variable.
     if (isset($field_conductor_telefono) && !empty($field_conductor_telefono)) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + $number;
     }
   }
   // Add value to $percent variable.
   if (isset($field_licencia_numero)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($admin_area)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($sub_brand)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($type_vehicle)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($field_vehiculo_modelo)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($vehiculo_color)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($vehiculo_placas)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($vehiculo_serie)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($vehiculo_danos)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($aseguradora)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($vehiculo_numero_poliza)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($vehiculo_cobertura)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($vehiculo_deducible)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($vehiculo_vencimiento)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($vehiculo_siniestro)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($field_ajustador_name)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($taller_nid)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
 
   $vehiculoTercero = array(

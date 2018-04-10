@@ -10,13 +10,16 @@
  */
 function sinister_ws_lesiones_resource_retrieve($nid) {
   $node = node_load($nid);
+  $count = count($node->field_lesionado[LANGUAGE_NONE]);
 
   // Get field collection field_vehiculo item from node.
   $results = array();
-  for ($i=0; $i < count($node->field_vehiculo_tercero[LANGUAGE_NONE]); $i++) {
+
+  for ($i=0; $i < $count; $i++) {
     $injured_data[$i] = field_collection_item_load($node->field_lesionado[LANGUAGE_NONE][$i]['value'], $reset = FALSE);
-    $results[] = get_injured($injured_data[$i]);
+    $results[] = get_injured($injured_data[$i], $count);
   }
+  
   return $results;
 }
 
@@ -25,9 +28,10 @@ function sinister_ws_lesiones_resource_retrieve($nid) {
  *
  * @params $fc_injured The id item of field_siniestro_archivo field.
  */
-function get_injured($injured_data) {
+function get_injured($injured_data, $count) {
   $objects = array();
   $percent = 0;
+  $number = (1.538461538461538 / $count);
   // Get riesgo b field value.
   $key_riesgo = $injured_data->field_lesionado_riesgo_b[LANGUAGE_NONE][0]['value'];
   $field_info = field_info_field('field_lesionado_riesgo_b');
@@ -40,61 +44,61 @@ function get_injured($injured_data) {
   $admin_area = $administrative_areas[$key_admin_area];
   // Add value to $percent variable.
   if (isset($injured_data->field_lesionado_nombre[LANGUAGE_NONE][0]['value'])) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($injured_data->field_lesionado_edad[LANGUAGE_NONE][0]['value'])) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($injured_data->field_lesionado_domicilio[LANGUAGE_NONE][0]['thoroughfare'])) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($injured_data->field_lesionado_domicilio[LANGUAGE_NONE][0]['premise'])) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($injured_data->field_lesionado_domicilio[LANGUAGE_NONE][0]['locality'])) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($admin_area)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($injured_data->field_lesionado_domicilio[LANGUAGE_NONE][0]['postal_code'])) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($injured_data->field_lesionado_telefono[LANGUAGE_NONE][0]['value'])) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($risk_b)) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($injured_data->field_lesionado_lesiones[LANGUAGE_NONE][0]['value'])) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if ($injured_data->field_lesionado_ambulancia[LANGUAGE_NONE][0]['value'] == '0') {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   else {
     // Add value to $percent variable.
     if (isset($injured_data->field_lesionado_ambulancia_info[LANGUAGE_NONE][0]['value'])) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + $number;
     }
   }
   // Add value to $percent variable.
   if (isset($injured_data->field_lesionado_pase_medico[LANGUAGE_NONE][0]['value'])) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Add value to $percent variable.
   if (isset($injured_data->field_hospital[LANGUAGE_NONE][0]['target_id'])) {
-    $percent = $percent + 1.538461538461538;
+    $percent = $percent + $number;
   }
   // Create return object.
   $return_obj[] = array(

@@ -102,62 +102,6 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'vehiculos-tercero' => array(
-      'operations' => array(
-        'retrieve' => array(
-          'help' => 'Retrieves Third Vehicles Info.',
-          'file' => array(
-            'type' => 'inc',
-            'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_vehicles.services',
-          ),
-          'callback' => 'sinister_ws_vehicles_resource_retrieve',
-          'access callback' => 'user_access',
-          'access arguments' => array('access content'),
-          'access arguments append' => FALSE,
-          'args' => array(
-            array(
-              'name' => 'nid',
-              'type' => 'int',
-              'description' => 'Function to perform',
-              'source' => array(
-                'path' => '0',
-              ),
-              'optional' => TRUE,
-              'default' => '0',
-            ),
-          ),
-        ),
-      ),
-    ),
-    'informacion-legal' => array(
-      'operations' => array(
-        'retrieve' => array(
-          'help' => 'Retrieves Any Legal Info.',
-          'file' => array(
-            'type' => 'inc',
-            'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_legal.services',
-          ),
-          'callback' => 'sinister_ws_legal_resource_retrieve',
-          'access callback' => 'user_access',
-          'access arguments' => array('access content'),
-          'access arguments append' => FALSE,
-          'args' => array(
-            array(
-              'name' => 'nid',
-              'type' => 'int',
-              'description' => 'Function to perform',
-              'source' => array(
-                'path' => '0',
-              ),
-              'optional' => TRUE,
-              'default' => '0',
-            ),
-          ),
-        ),
-      ),
-    ),
     'datos-conductor' => array(
       'operations' => array(
         'retrieve' => array(
@@ -168,6 +112,34 @@ function sinister_ws_services_resources() {
             'name' => 'includes/sinister_ws_conductor.services',
           ),
           'callback' => 'sinister_ws_conductor_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'vehiculos-terceros' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieves Third Vehicles Info.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_vehicles.services',
+          ),
+          'callback' => 'sinister_ws_vehicles_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
@@ -224,6 +196,34 @@ function sinister_ws_services_resources() {
             'name' => 'includes/sinister_ws_termino.services',
           ),
           'callback' => 'sinister_ws_termino_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'informacion-legal' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieves Any Legal Info.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_legal.services',
+          ),
+          'callback' => 'sinister_ws_legal_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
