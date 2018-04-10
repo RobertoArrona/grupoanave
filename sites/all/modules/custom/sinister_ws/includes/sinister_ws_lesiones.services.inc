@@ -100,6 +100,10 @@ function get_injured($injured_data, $count) {
   if (isset($injured_data->field_hospital[LANGUAGE_NONE][0]['target_id'])) {
     $percent = $percent + $number;
   }
+  
+  $field_risk_b = field_info_field('field_lesionado_riesgo_b'); // Get info field_lesionado_riesgo_b
+  $allowed_values_risk_b = list_allowed_values($field_risk_b); // Add all allowed values.
+  
   // Create return object.
   $return_obj[] = array(
     'name' => $injured_data->field_lesionado_nombre[LANGUAGE_NONE][0]['value'],
@@ -115,8 +119,10 @@ function get_injured($injured_data, $count) {
     'ambulance' => $injured_data->field_lesionado_ambulancia[LANGUAGE_NONE][0]['value'],
     'ambulance_description' => $injured_data->field_lesionado_ambulancia_info[LANGUAGE_NONE][0]['value'],
     'medical_pass' => $injured_data->field_lesionado_pase_medico[LANGUAGE_NONE][0]['value'],
+    'risk_b_options' => $allowed_values_risk_b,
     'percent' => $percent,
   );
+  
   $objects[] = $return_obj;
   return $objects;
 }
