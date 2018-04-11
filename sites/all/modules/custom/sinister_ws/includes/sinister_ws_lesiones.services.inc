@@ -105,7 +105,7 @@ function get_injured($injured_data, $count) {
   $allowed_values_risk_b = list_allowed_values($field_risk_b); // Add all allowed values.
   
   // Create return object.
-  $return_obj[] = array(
+  $lesionesDanos = array(
     'name' => $injured_data->field_lesionado_nombre[LANGUAGE_NONE][0]['value'],
     'age' => $injured_data->field_lesionado_edad[LANGUAGE_NONE][0]['value'],
     'thoroughfare' => $injured_data->field_lesionado_domicilio[LANGUAGE_NONE][0]['thoroughfare'],
@@ -122,7 +122,6 @@ function get_injured($injured_data, $count) {
     'risk_b_options' => $allowed_values_risk_b,
     'percent' => $percent,
   );
-  
-  $objects[] = $return_obj;
-  return $objects;
+
+  return $lesionesDanos;
 }
