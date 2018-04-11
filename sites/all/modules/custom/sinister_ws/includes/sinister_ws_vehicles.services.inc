@@ -133,16 +133,8 @@ function get_vehicle($fc_vehiculo, $count) {
   $type_term = taxonomy_term_load($field_ajustador_tid);
   $field_ajustador_name = $type_term->name;
 
-  /*
-  $field_taller_tid = $fc_vehiculo->field_taller[LANGUAGE_NONE][0]['target_id'];
-  // Get fields value from $aseguradora field
-  $type_term = taxonomy_term_load($field_taller_tid);
-  print_r($type_term); exit;
-  $field_taller_name = $type_term->name;
-   */
   // Get fields from taller.
-  $taller_nid = $fc_vehiculo->field_taller[LANGUAGE_NONE][0]['target_id'];
-  $taller_fields = entity_load_single('node', $taller_nid);
+  $taller_tid = $fc_vehiculo->field_taller[LANGUAGE_NONE][0]['target_id'];
 
   // Add value to $percent variable.
   if (isset($field_propietario_nombre)) {
