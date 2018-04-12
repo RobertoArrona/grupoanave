@@ -19,7 +19,7 @@ function sinister_ws_lesiones_resource_retrieve($nid) {
     $fc_lesiones[$i] = field_collection_item_load($node->field_lesionado[LANGUAGE_NONE][$i]['value'], $reset = FALSE);
     $results[] = get_injured($fc_lesiones[$i], $count);
   }
-  
+
   return $results;
 }
 
@@ -33,9 +33,8 @@ function get_injured($fc_lesiones, $count) {
   $percent = 0;
   $number = (1.538461538461538 / $count);
   // Get riesgo b field value.
-  $key_riesgo = $fc_lesiones->field_lesionado_riesgo_b[LANGUAGE_NONE][0]['value'];
-  $field_info = field_info_field('field_lesionado_riesgo_b');
-  $risk_b = $field_info['settings']['allowed_values'][$key_riesgo];
+  $risk_b = $fc_lesiones->field_lesionado_riesgo_b[LANGUAGE_NONE][0]['value'];
+
   // Get administrative area field value.
   $key_admin_area = $fc_lesiones->field_lesionado_domicilio[LANGUAGE_NONE][0]['administrative_area'];
   $country = 'MX';
