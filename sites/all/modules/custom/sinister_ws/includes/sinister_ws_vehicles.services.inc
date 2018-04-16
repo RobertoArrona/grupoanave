@@ -298,7 +298,7 @@ function get_vehicle($fc_vehiculo, $count) {
     'vehiculo_vencimiento' => date('Y/m/d', $vehiculo_vencimiento),
     'vehiculo_siniestro' => $vehiculo_siniestro,
     'vehiculo_ajustador' => $fc_vehiculo->field_3ro_ajustador[LANGUAGE_NONE][0]['tid'],
-    'vehiculo_taller' => $taller_nid,
+    'vehiculo_taller' => $taller_tid,
     'percent' => $percent,
 
   );
