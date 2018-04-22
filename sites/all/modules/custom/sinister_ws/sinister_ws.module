@@ -4,6 +4,19 @@
  * @file
  * Module file Sinister Web Service.
  */
+/**
+ *
+ */
+function sinister_ws_menu() {
+  $items = [];
+  $items['calis-de-fuego'] = array(
+    'page callback' => 'sinister_ws_delete_fc',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'includes/sinister_ws_delete_fc.services.inc',
+  );
+  return $items;
+}
 
 /**
  * Implements hook_services_resources().
@@ -326,6 +339,34 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
+    'sinister-delete-field-collection' => array(
+      'operations' => array(
+        'create' => array(
+          'help' => 'Delete field collections.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_delete_fc.services',
+          ),
+          'callback' => 'sinister_ws_delete_fc',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
     'sinister-post' => array(
       'operations' => array(
         'create' => array(
@@ -334,6 +375,8 @@ function sinister_ws_services_resources() {
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
+        ),
+        'retrieve' => array(
         ),
       ),
     ),
