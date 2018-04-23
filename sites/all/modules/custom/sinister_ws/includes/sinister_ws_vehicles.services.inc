@@ -14,10 +14,12 @@ function sinister_ws_vehicles_resource_retrieve($nid) {
 
   // Get field collection field_vehiculo item from node.
   $results = array();
+
   for ($i=0; $i < $count; $i++) {
     $fc_thirds[$i] = field_collection_item_load($node->field_vehiculo_tercero[LANGUAGE_NONE][$i]['value'], $reset = FALSE);
     $results[] = get_vehicle($fc_thirds[$i], $count);
   }
+
   return $results;
 }
 
@@ -27,7 +29,6 @@ function sinister_ws_vehicles_resource_retrieve($nid) {
  * @params $fc_thirds The id item of field_siniestro_archivo field.
  */
 function get_vehicle($fc_thirds, $count) {
-  $objects = array();
   $thirds = array();
   $percent = 0;
   $number = (1.538461538461538 / $count);
@@ -68,7 +69,7 @@ function get_vehicle($fc_thirds, $count) {
     $thirds['owner_locality'] = null;
   }
 
-  if (!empty($fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
+  if (!empty($fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['administrative_area']) && $fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['administrative_area'] != '_none') {
     $percent = $percent + $number; // Add value to $percent variable.
     $owner_key_admin_area = $fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['administrative_area']; // Get administrative area field value.
     $country = 'MX';
@@ -93,7 +94,7 @@ function get_vehicle($fc_thirds, $count) {
   if (!empty($fc_thirds->field_propietario_telefono[LANGUAGE_NONE][0]['value'])) {
     $percent = $percent + $number; // Add value to $percent variable.
     $owner_phone = $fc_thirds->field_propietario_telefono[LANGUAGE_NONE][0]['value'];
-    $thirds['owner_phone_number'] = $field_propietario_nombre;
+    $thirds['owner_phone_number'] = $owner_phone;
   }
   else {
     $thirds['owner_phone_number'] = null;
@@ -177,7 +178,7 @@ function get_vehicle($fc_thirds, $count) {
     $thirds['diver_locality'] = null;
   }
 
-  if (isset($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area']) && !empty($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
+  if (isset($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area']) && !empty($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area']) && $$fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area'] != '_none') {
     $driver_key_admin_area = $fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area'];
     module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
     $administrative_areas = addressfield_get_administrative_areas($country);
@@ -321,6 +322,7 @@ function get_vehicle($fc_thirds, $count) {
   if (!empty($fc_thirds->field_3ro_vencimiento[LANGUAGE_NONE][0]['value'])) {
     $percent = $percent + $number; // Add value to $percent variable.
     $vehiculo_vencimiento = $fc_thirds->field_3ro_vencimiento[LANGUAGE_NONE][0]['value'];
+    $vehiculo_vencimiento = date('Y/m/d', $vehiculo_vencimiento);
     $thirds['vehiculo_vencimiento'] = $vehiculo_vencimiento;
   }
   else {
@@ -354,7 +356,5 @@ function get_vehicle($fc_thirds, $count) {
     $thirds['vehiculo_taller'] = null;
   }
 
-  $objects[] = $thirds;
-
-  return $objects;
+  return $thirds;
 }

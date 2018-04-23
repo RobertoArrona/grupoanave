@@ -25,6 +25,6 @@ function sinister_ws_delete_fc($nid = null) {
     $fc_ids
   );
 
-  return $_POST;
+  return $result;
 }
 

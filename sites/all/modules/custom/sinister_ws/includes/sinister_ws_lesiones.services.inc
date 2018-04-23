@@ -30,7 +30,6 @@ function sinister_ws_lesiones_resource_retrieve($nid) {
  * @params $fc_injured The id item of field_siniestro_archivo field.
  */
 function get_injured($fc_injuries, $count, $fc_id) {
-  $objects = array();
   $injuries = array();
   $percent = 0;
   $number = (1.538461538461538 / $count);
