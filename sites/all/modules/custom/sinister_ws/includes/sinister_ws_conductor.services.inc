@@ -95,7 +95,7 @@ function sinister_ws_conductor_resource_retrieve($nid) {
 
   if (!empty($driver_data->field_licencia_tipo[LANGUAGE_NONE][0]['tid'])) {
     $percent = $percent + 1.538461538461538; // Add value to $percent variable.
-    $driver_license_type = taxonomy_term_load($driver_data->field_licencia_tipo[LANGUAGE_NONE][0]['tid']);
+    $driver_license_type = $driver_data->field_licencia_tipo[LANGUAGE_NONE][0]['tid'];
     $driver['license_type'] = $driver_license_type;
   }
   else {
@@ -104,7 +104,7 @@ function sinister_ws_conductor_resource_retrieve($nid) {
 
   if (!empty($driver_data->field_licencia_alta_lugar[LANGUAGE_NONE][0]['tid'])) {
     $percent = $percent + 1.538461538461538; // Add value to $percent variable.
-    $driver_license_place = taxonomy_term_load($driver_data->field_licencia_alta_lugar[LANGUAGE_NONE][0]['tid']);
+    $driver_license_place = $driver_data->field_licencia_alta_lugar[LANGUAGE_NONE][0]['tid'];
     $driver['license_place'] = $driver_license_place;
   }
   else {
