@@ -16,6 +16,18 @@ function sinister_form_alter(&$form, &$form_state, $form_id) {
 
       $pathJS = drupal_get_path('module', 'sinister') . '/js/siniestro.reserva.js';
       drupal_add_js($pathJS);
+
+      $sinister_folio = $form['title']['#default_value'];
+
+      foreach ($form['field_vehiculo_tercero'][LANGUAGE_NONE] as $delta => $field) {
+        if (is_numeric($delta)) {
+
+          $form['field_vehiculo_tercero'][LANGUAGE_NONE][$delta]['field_3ro_siniestro'][LANGUAGE_NONE][0]['value']['#value'] = $sinister_folio;
+          $form['field_vehiculo_tercero'][LANGUAGE_NONE][$delta]['field_3ro_siniestro']['und']['0']['value']['#attributes']['disabled'] = TRUE;
+
+        }
+      }
+
       break;
   }
 }
@@ -50,10 +62,8 @@ function sinister_form_siniestro_node_form_alter(&$form, &$form_state, $form_id)
       $form['title']['#default_value'] = $sinister_folio;
     }
   }
+
   // Field title(numero de siniestro)
   $form['title']['#attributes']['readonly'] = 'readonly';
   $form['title']['#attributes']['style'] = 'display: none;';
-  // $form Validate
-  // $form['#validate'][] = 'sinister_number_siniestro_node_validate';
-  // $form attached JS.
 }
