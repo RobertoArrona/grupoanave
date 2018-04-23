@@ -41,7 +41,7 @@ function get_image($fc_archivo) {
     $images['width'][$i] = $width;
     $images['height'][$i] = $height;
     $images['filename'][$i] = $filename;
-    $images['date'][$i] = date('Y/m/d h:i', $date);
+    $images['date'][$i] = date('Y/m/d h:i a', $date);
     $images['comment'][$i] = $comment_files;
     if (isset($field_image[LANGUAGE_NONE][$i]['uri'])) {
       $percent = 1.538461538461538;

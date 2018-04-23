@@ -36,7 +36,7 @@ function sinister_ws_inactive_resource_retrieve($uid) {
     $return_obj = array(
       'id' => $node->nid,
       'sinister' => $node->title,
-      'created' => date('Y/m/d H:s A', $node->created),
+      'created' => date('Y/m/d h:i a', $node->created),
     );
     if (isset($contract)) {
       $return_obj['contract'] = $contract;
