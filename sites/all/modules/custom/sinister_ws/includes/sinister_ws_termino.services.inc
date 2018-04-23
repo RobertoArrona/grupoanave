@@ -9,37 +9,66 @@
  * Return data term from sinister.
  */
 function sinister_ws_termino_resource_retrieve($nid) {
-  $objects = array();
+  $term = array();
   $percent = 0;
   if (($node = node_load($nid))) {
-    // Add value to $percent variable.
-    if (isset($node->field_informe[LANGUAGE_NONE][0]['value'])) {
-      $percent = $percent + 1.538461538461538;
+    if (!empty($node->field_informe[LANGUAGE_NONE][0]['value'])) {
+      $percent = $percent + 1.538461538461538; // Add value to $percent variable.
+      $inform = $node->field_informe[LANGUAGE_NONE][0]['value'];
+      $term['inform'] = $inform;
     }
-    // Add value to $percent variable.
+    else {
+      $term['inform'] = null;
+    }
     if (isset($node->field_danos_materiales[LANGUAGE_NONE][0]['value'])) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + 1.538461538461538; // Add value to $percent variable.
+      $material_damage = $node->field_danos_materiales[LANGUAGE_NONE][0]['value'];
+      $term['material_damage'] = $material_damage;
     }
-    // Add value to $percent variable.
+    else {
+      $term['material_damage'] = null;
+    }
     if (isset($node->field_robo[LANGUAGE_NONE][0]['value'])) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + 1.538461538461538; // Add value to $percent variable.
+      $robbery = $node->field_robo[LANGUAGE_NONE][0]['value'];
+      $term['robbery'] = $robbery;
     }
-    // Add value to $percent variable.
+    else {
+      $term['robbery'] = null;
+    }
     if (isset($node->field_resp_civil[LANGUAGE_NONE][0]['value'])) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + 1.538461538461538; // Add value to $percent variable.
+      $civil_liability = $node->field_resp_civil[LANGUAGE_NONE][0]['value'];
+      $term['civil_liability'] = $civil_liability;
     }
-    // Add value to $percent variable.
+    else {
+      $term['civil_liability'] = null;
+    }
     if (isset($node->field_gastos_medicos[LANGUAGE_NONE][0]['value'])) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + 1.538461538461538; // Add value to $percent variable.
+      $medical_expenses = $node->field_gastos_medicos[LANGUAGE_NONE][0]['value'];
+      $term['medical_expenses'] = $medical_expenses;
     }
-    // Add value to $percent variable.
+    else {
+      $term['medical_expenses'] = null;
+    }
     if (isset($node->field_rc_viajero[LANGUAGE_NONE][0]['value'])) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + 1.538461538461538; // Add value to $percent variable.
+      $rc_traveler = $node->field_rc_viajero[LANGUAGE_NONE][0]['value'];
+      $term['rc_traveler'] = $rc_traveler;
     }
-    // Add value to $percent variable.
+    else {
+      $term['rc_traveler'] = null;
+    }
     if (isset($node->field_reserva_total[LANGUAGE_NONE][0]['value'])) {
-      $percent = $percent + 1.538461538461538;
+      $percent = $percent + 1.538461538461538; // Add value to $percent variable.
+      $total_reserve = $node->field_reserva_total[LANGUAGE_NONE][0]['value'];
+      $term['total_reserve'] = $total_reserve;
     }
+    else {
+      $term['total_reserve'] = null;
+    }
+/*
     // Create return object.
     $return_obj = array(
       'inform' => $node->field_informe[LANGUAGE_NONE][0]['value'],
@@ -51,7 +80,7 @@ function sinister_ws_termino_resource_retrieve($nid) {
       'total_reserve' => $node->field_reserva_total[LANGUAGE_NONE][0]['value'],
       'percent' => $percent,
     );
-    $objects[] = $return_obj;
+*/
   }
-  return $objects;
+  return $term;
 }
