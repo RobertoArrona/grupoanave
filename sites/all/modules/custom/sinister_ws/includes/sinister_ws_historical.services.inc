@@ -8,15 +8,18 @@
 /**
  * Return data from finished sinister.
  */
- 
+
 include_once 'sinister_ws_conductor.services.inc';
 include_once 'sinister_ws_vehicles.services.inc';
 include_once 'sinister_ws_lesiones.services.inc';
 include_once 'sinister_ws_termino.services.inc';
 include_once 'sinister_ws_files.services.inc';
- 
+
+/**
+ * Function to retrieve sinister historical datas.
+ */
 function sinister_ws_historical_resource_retrieve($nid) {
-  //$node = node_load($nid);
+
   $sinister = array();
   // Get field conductor info.
   $sinister['driver'] = sinister_ws_conductor_resource_retrieve($nid);

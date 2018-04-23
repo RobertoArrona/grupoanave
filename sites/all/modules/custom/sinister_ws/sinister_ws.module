@@ -4,8 +4,9 @@
  * @file
  * Module file Sinister Web Service.
  */
+
 /**
- *
+ * Function to test sinister_ws_delete_fc function.
  */
 function sinister_ws_menu() {
   $items = [];
@@ -376,8 +377,7 @@ function sinister_ws_services_resources() {
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
         ),
-        'retrieve' => array(
-        ),
+        'retrieve' => array(),
       ),
     ),
   );

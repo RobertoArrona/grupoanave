@@ -22,4 +22,3 @@ function sinister_ws_legal_resource_retrieve($nid) {
   }
   return $objects;
 }
-

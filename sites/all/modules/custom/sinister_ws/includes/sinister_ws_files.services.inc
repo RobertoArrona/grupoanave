@@ -11,7 +11,7 @@
 function sinister_ws_archivos_resource_retrieve($nid) {
   $node = node_load($nid);
   // Get field collection field_siniestro_archivo item from node.
-  for ($i=0; $i < count($node->field_siniestro_archivo[LANGUAGE_NONE]); $i++) {
+  for ($i = 0; $i < count($node->field_siniestro_archivo[LANGUAGE_NONE]); $i++) {
     $fc_archivo[$i] = field_collection_item_load($node->field_siniestro_archivo[LANGUAGE_NONE][$i]['value'], $reset = FALSE);
     $results[] = get_image($fc_archivo[$i]);
   }
@@ -23,8 +23,6 @@ function sinister_ws_archivos_resource_retrieve($nid) {
  */
 function get_image($fc_archivo) {
   $percent = 0;
-  //$base_url = $GLOBALS['base_root'];
-  //$pathfile = file_directory_path() . '/siniestros/images/';
   $pathImages = array();
   // Get value from field_visualizador.
   $field_image = $fc_archivo->field_visualizador;
@@ -39,16 +37,16 @@ function get_image($fc_archivo) {
     $width = $field_image[LANGUAGE_NONE][$i]['metadata']['width'];
     $height = $field_image[LANGUAGE_NONE][$i]['metadata']['height'];
     $date = $fc_archivo->field_fecha[LANGUAGE_NONE][$i]['value'];
-    $Images['url'][$i] = $path;
-    $Images['width'][$i] = $width;
-    $Images['height'][$i] = $height;
-    $Images['filename'][$i] = $filename;
-    $Images['date'][$i] = date('Y/m/d h:i', $date);
-    $Images['comment'][$i] = $comment_files;
+    $images['url'][$i] = $path;
+    $images['width'][$i] = $width;
+    $images['height'][$i] = $height;
+    $images['filename'][$i] = $filename;
+    $images['date'][$i] = date('Y/m/d h:i', $date);
+    $images['comment'][$i] = $comment_files;
     if (isset($field_image[LANGUAGE_NONE][$i]['uri'])) {
       $percent = 1.538461538461538;
     }
   }
-  $Images['percent'] = $percent;
-  return $Images;
+  $images['percent'] = $percent;
+  return $images;
 }

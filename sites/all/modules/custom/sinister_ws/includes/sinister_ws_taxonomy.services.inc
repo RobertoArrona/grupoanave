@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Retrieve a term info from nid.
@@ -37,7 +38,7 @@ function sinister_ws_taxonomy_resource_retrieve($nid) {
     'type_vehicle' => $type_vehicle_vocabulary,
     'color_vehicle' => $color_vehicle_vocabulary,
     'insurance_company' => $insurance_company_vocabulary,
-    'insurance_agent' => $insurance_agent_vocabulary
+    'insurance_agent' => $insurance_agent_vocabulary,
   );
   $objects[] = $return_obj;
 
