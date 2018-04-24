@@ -163,17 +163,16 @@ function sinister_ws_conductor_resource_retrieve($nid) {
     $driver['conductor_reporta'] = $driver_reports;
   }
 
-  if (!empty($driver_data->field_nombre_de_quien_reporta[LANGUAGE_NONE][0]['value'])) {
-    $name_who_reports = $driver_data->field_nombre_de_quien_reporta[LANGUAGE_NONE][0]['value'];
+  if (!empty($driver_data->field_nombre_quien_reporta[LANGUAGE_NONE][0]['value'])) {
+    $name_who_reports = $driver_data->field_nombre_quien_reporta[LANGUAGE_NONE][0]['value'];
     $driver['nombre_de_quien_reporta'] = $name_who_reports;
   }
   else {
     $driver['nombre_de_quien_reporta'] = NULL;
   }
 
-  if (!empty($driver_data->field_tel_fono[LANGUAGE_NONE][0]['value'])) {
-    $driver_reports = $driver_data->field_conductor_reporta[LANGUAGE_NONE][0]['value'];
-    $phone_who_reports = $driver_data->field_tel_fono[LANGUAGE_NONE][0]['value'];
+  if (!empty($driver_data->field_telefono_quien_reporta[LANGUAGE_NONE][0]['value'])) {
+    $phone_who_reports = $driver_data->field_telefono_quien_reporta[LANGUAGE_NONE][0]['value'];
     $driver['phone_who_reports'] = $phone_who_reports;
   }
   else {
