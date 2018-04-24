@@ -28,10 +28,17 @@ function sinister_ws_archivos_resource_retrieve($nid) {
 function get_image($fc_archivo) {
   $percent = 0;
   $pathImages = array();
-  // Get value from field_visualizador.
-  $field_image = $fc_archivo->field_visualizador;
-  // Get number of images from field_visualizador.
-  $items = count($field_image[LANGUAGE_NONE]);
+
+  if (!empty($fc_archivo->field_visualizador)) {
+    // Get value from field_visualizador.
+    $field_image = $fc_archivo->field_visualizador;
+    // Get number of images from field_visualizador.
+    $items = count($field_image[LANGUAGE_NONE]);
+  }
+  else {
+    $items = 0;
+  }
+
   $images = array();
 
   for ($i = 0; $i < $items; $i++) {
