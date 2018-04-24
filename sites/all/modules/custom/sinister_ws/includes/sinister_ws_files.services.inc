@@ -45,6 +45,16 @@ function get_image($fc_archivo) {
 
     $j = $i + 1;
 
+    if (!empty($fc_archivo->field_fecha[LANGUAGE_NONE][$i]['value'])) {
+      $date = $fc_archivo->field_fecha[LANGUAGE_NONE][$i]['value'];
+      $images['date'] = date('Y/m/d h:i a', $date);
+    }
+
+    if (!empty($fc_archivo->field_archivo_comentario[LANGUAGE_NONE][$i]['value'])) {
+      $comment_files = $fc_archivo->field_archivo_comentario[LANGUAGE_NONE][$i]['value'];
+      $images['comment'] = $comment_files;
+    }
+
     if (!empty($field_image[LANGUAGE_NONE][$i]['uri'])) {
       $uri = $field_image[LANGUAGE_NONE][$i]['uri'];
       $path = file_create_url($uri);
@@ -67,15 +77,6 @@ function get_image($fc_archivo) {
       $images["image_$j"]['filename'] = $filename;
     }
 
-    if (!empty($fc_archivo->field_fecha[LANGUAGE_NONE][$i]['value'])) {
-      $date = $fc_archivo->field_fecha[LANGUAGE_NONE][$i]['value'];
-      $images["image_$j"]['date'] = date('Y/m/d h:i a', $date);
-    }
-
-    if (!empty($fc_archivo->field_archivo_comentario[LANGUAGE_NONE][$i]['value'])) {
-      $comment_files = $fc_archivo->field_archivo_comentario[LANGUAGE_NONE][$i]['value'];
-      $images["image_$j"]['comment'] = $comment_files;
-    }
   }
 
   $images['percent'] = $percent;
