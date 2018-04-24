@@ -148,11 +148,11 @@ function sinister_ws_conductor_resource_retrieve($nid) {
     $driver['conductor_reporta'] = '0';
   }
   else {
-    if (isset($driver_data->field_nombre_de_quien_reporta[LANGUAGE_NONE][0]['value'])) {
+    if (!empty($driver_data->field_nombre_de_quien_reporta[LANGUAGE_NONE][0]['value'])) {
       // Add value to $percent variable.
       $percent = $percent + 1.538461538461538;
     }
-    if (isset($driver_data->field_tel_fono[LANGUAGE_NONE][0]['value'])) {
+    if (!empty($driver_data->field_tel_fono[LANGUAGE_NONE][0]['value'])) {
       // Add value to $percent variable.
       $percent = $percent + 1.538461538461538;
     }
