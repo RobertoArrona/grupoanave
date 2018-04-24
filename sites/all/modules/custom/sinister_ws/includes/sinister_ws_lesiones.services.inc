@@ -12,9 +12,9 @@ function sinister_ws_lesiones_resource_retrieve($nid) {
   $node = node_load($nid);
   $count = count($node->field_lesionado[LANGUAGE_NONE]);
 
-  // Get field collection field_vehiculo item from node.
   $results = array();
 
+  // Get field collection field_vehiculo item from node.
   for ($i = 0; $i < $count; $i++) {
     $fc_id = $node->field_lesionado[LANGUAGE_NONE][$i]['value'];
     $fc_injuries[$i] = field_collection_item_load($fc_id, $reset = FALSE);
