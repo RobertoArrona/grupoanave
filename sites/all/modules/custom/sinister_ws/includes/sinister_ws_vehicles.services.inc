@@ -194,7 +194,7 @@ function get_vehicle($fc_thirds, $count) {
     $thirds['diver_locality'] = NULL;
   }
 
-  if (isset($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
+  if (!empty($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
     $driver_key_admin_area = $fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area'];
     module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
     $administrative_areas = addressfield_get_administrative_areas($country);
