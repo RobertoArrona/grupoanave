@@ -235,9 +235,7 @@ function get_vehicle($fc_thirds, $count) {
     // Add value to $percent variable.
     $percent = $percent + $number;
     $brand_tid = $fc_thirds->field_vehiculo_marca[LANGUAGE_NONE][0]['tid'];
-    $brand_term = taxonomy_term_load($brand_tid);
-    $brand = $brand_term->name;
-    $thirds['vehiculo_marca'] = $brand;
+    $thirds['vehiculo_marca'] = $brand_tid;
   }
   else {
     $thirds['vehiculo_marca'] = NULL;
@@ -247,9 +245,7 @@ function get_vehicle($fc_thirds, $count) {
     // Add value to $percent variable.
     $percent = $percent + $number;
     $type_tid = $fc_thirds->field_vehiculo_tipo[LANGUAGE_NONE][0]['tid'];
-    $type_term = taxonomy_term_load($type_tid);
-    $type_vehicle = $type_term->name;
-    $thirds['vehiculo_tipo'] = $type_vehicle;
+    $thirds['vehiculo_tipo'] = $type_tid;
   }
   else {
     $thirds['vehiculo_tipo'] = NULL;
@@ -269,9 +265,7 @@ function get_vehicle($fc_thirds, $count) {
     // Add value to $percent variable.
     $percent = $percent + $number;
     $color_tid = $fc_thirds->field_3ro_vehiculo_color[LANGUAGE_NONE][0]['tid'];
-    $color_term = taxonomy_term_load($color_tid);
-    $vehiculo_color = $color_term->name;
-    $thirds['vehiculo_color'] = $vehiculo_color;
+    $thirds['vehiculo_color'] = $color_tid;
   }
   else {
     $thirds['vehiculo_color'] = NULL;
