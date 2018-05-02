@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Retrieve a third vehicle info from nid.
+ * This file has a function to delete Field Collections.
  */
 
 /**
