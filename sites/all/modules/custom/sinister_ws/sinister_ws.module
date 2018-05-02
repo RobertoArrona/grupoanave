@@ -367,23 +367,6 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'sinister-login' => array(
-      'operations' => array(
-        'create' => array(
-          'help' => 'Login to web system.',
-          'file' => array(
-            'type' => 'inc',
-            'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_login.services',
-          ),
-          'callback' => 'sinister_ws_login',
-          'access callback' => 'user_access',
-          'access arguments' => array('access content'),
-          'access arguments append' => FALSE,
-        ),
-        'retrieve' => array(),
-      ),
-    ),
     'sinister-post' => array(
       'operations' => array(
         'create' => array(
