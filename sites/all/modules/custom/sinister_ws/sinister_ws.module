@@ -11,10 +11,9 @@
 function sinister_ws_menu() {
   $items = [];
   $items['calis-de-fuego'] = array(
-    'page callback' => 'sinister_ws_delete_fc',
+    'page callback' => 'ws_testing_login',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-    'file' => 'includes/sinister_ws_delete_fc.services.inc',
   );
   return $items;
 }
@@ -366,6 +365,23 @@ function sinister_ws_services_resources() {
             ),
           ),
         ),
+      ),
+    ),
+    'sinister-login' => array(
+      'operations' => array(
+        'create' => array(
+          'help' => 'Login to web system.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_login.services',
+          ),
+          'callback' => 'sinister_ws_login',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+        ),
+        'retrieve' => array(),
       ),
     ),
     'sinister-post' => array(
