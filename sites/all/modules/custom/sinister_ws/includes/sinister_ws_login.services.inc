@@ -10,6 +10,7 @@
  */
 function sinister_ws_login() {
 
+/*
   $username = $_POST['username'];
   $password = $_POST['password'];
 
@@ -40,5 +41,8 @@ function sinister_ws_login() {
   else {
     return FALSE;
   }
+*/
+
+  return $_POST;
 
 }
