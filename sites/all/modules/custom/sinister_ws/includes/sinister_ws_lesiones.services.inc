@@ -83,7 +83,7 @@ function get_injured($fc_injuries, $count, $fc_id) {
     $injuries['premise'] = NULL;
   }
 
-  if (isset($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
+  if (!empty($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
     // Add value to $percent variable.
     $percent = $percent + $number;
     // Get administrative area field value.
