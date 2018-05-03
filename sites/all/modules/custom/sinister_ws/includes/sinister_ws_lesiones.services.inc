@@ -91,8 +91,10 @@ function get_injured($fc_injuries, $count, $fc_id) {
     $country = 'MX';
     module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
     $administrative_areas = addressfield_get_administrative_areas($country);
-    $admin_area = $administrative_areas[$key_admin_area];
-    $injuries['administrative_area'] = $admin_area;
+    if (!empty($administrative_areas)) {
+      $admin_area = $administrative_areas[$key_admin_area];
+      $injuries['administrative_area'] = $admin_area;
+    }
   }
   else {
     $injuries['administrative_area'] = NULL;
