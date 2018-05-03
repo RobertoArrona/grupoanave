@@ -11,7 +11,10 @@
 function sinister_ws_delete_fc($nid = NULL) {
 
   // Assign array of field collection ids.
-  $fc_ids = $_POST;
+//   $fc_ids = $_POST;
+  $fc_ids = array(
+    10950
+  );
 
   entity_delete_multiple('field_collection_item', $fc_ids);
 
