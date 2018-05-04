@@ -44,10 +44,9 @@
     $('#edit-field-fecha-arribo-und-0-value-datepicker-popup-0').prop('disabled',true);
     $('#edit-field-fecha-arribo-und-0-value-timeEntry-popup-1').prop('disabled',true);
     $('#edit-field-mapa-arribo-und-0-address-field').prop('disabled',true);
-    $('#geolocation-address-geocode-340-0').css('display','none');
-    $('#geolocation-client-location-340-0').css('display','none');
-    $('#geolocation-remove-340-0').css('display','none');
-    $('#geolocation-help-340-0').css('display','none');
+    $('#edit-field-mapa-arribo [id^="geolocation-address-geocode"]').css('display','none');
+    $('#edit-field-mapa-arribo [id^="geolocation-client-location"]').css('display','none');
+    $('#edit-field-mapa-arribo [id^="geolocation-remove"]').css('display','none');
   });
 
   $(document).on('change', function () {
