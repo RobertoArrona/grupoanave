@@ -86,7 +86,7 @@ function sinister_ws_save($data) {
         if ($data_field == 'mapa_arribo_lat') {
           $node->field_mapa_arribo[LANGUAGE_NONE][0][$data_value] = $data[$data_field];
         }
-        else if ($data_field == 'mapa_arribo_lng') {
+        elseif ($data_field == 'mapa_arribo_lng') {
           $node->field_mapa_arribo[LANGUAGE_NONE][0][$data_value] = $data[$data_field];
         }
         else {
