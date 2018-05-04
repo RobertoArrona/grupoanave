@@ -75,14 +75,23 @@ function sinister_ws_save($data) {
 
   // Arribo.
   $data_fields['fecha_arribo'] = 'value';
-  $data_fields['mapa_arribo'] = 'lat';
-  $data_fields['mapa_arribo'] = 'lng';
+  $data_fields['mapa_arribo_lat'] = 'lat';
+  $data_fields['mapa_arribo_lng'] = 'lng';
 
   foreach ($data_fields as $data_field => $data_value) {
     if (isset($data[$data_field])) {
       $data_field_name = "field_{$data_field}";
       if (!empty($data[$data_field])) {
-        $node->{$data_field_name}[LANGUAGE_NONE][0][$data_value] = $data[$data_field];
+
+        if ($data_field == 'mapa_arribo_lat') {
+          $node->field_mapa_arribo[LANGUAGE_NONE][0][$data_value] = $data[$data_field];
+        }
+        else if ($data_field == 'mapa_arribo_lng') {
+          $node->field_mapa_arribo[LANGUAGE_NONE][0][$data_value] = $data[$data_field];
+        }
+        else {
+          $node->{$data_field_name}[LANGUAGE_NONE][0][$data_value] = $data[$data_field];
+        }
       }
       else {
         $node->{$data_field_name} = array();
