@@ -33,7 +33,8 @@ function sinister_ws_arrival_resource_retrieve($nid) {
     $arrival['longitude'] = NULL;
   }
 
-  if ($count == 2) {
+  // if ($count == 2) {
+  if ($count >= 1) {
     $arrival['checked-arrival'] = TRUE;
   }
   else {
