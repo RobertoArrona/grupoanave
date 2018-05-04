@@ -47,6 +47,7 @@
     $('#edit-field-mapa-arribo [id^="geolocation-address-geocode"]').css('display','none');
     $('#edit-field-mapa-arribo [id^="geolocation-client-location"]').css('display','none');
     $('#edit-field-mapa-arribo [id^="geolocation-remove"]').css('display','none');
+    $('#edit-field-mapa-arribo [id^="geolocation-help"]').css('display','none');
   });
 
   $(document).on('change', function () {
