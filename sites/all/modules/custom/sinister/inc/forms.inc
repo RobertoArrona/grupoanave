@@ -23,7 +23,7 @@ function sinister_form_alter(&$form, &$form_state, $form_id) {
         if (is_numeric($delta)) {
 
           $form['field_vehiculo_tercero'][LANGUAGE_NONE][$delta]['field_3ro_siniestro'][LANGUAGE_NONE][0]['value']['#value'] = $sinister_folio;
-          $form['field_vehiculo_tercero'][LANGUAGE_NONE][$delta]['field_3ro_siniestro']['und']['0']['value']['#attributes']['disabled'] = TRUE;
+          $form['field_vehiculo_tercero'][LANGUAGE_NONE][$delta]['field_3ro_siniestro'][LANGUAGE_NONE][0]['value']['#attributes']['disabled'] = TRUE;
 
         }
       }
@@ -66,4 +66,5 @@ function sinister_form_siniestro_node_form_alter(&$form, &$form_state, $form_id)
   // Field title(numero de siniestro)
   $form['title']['#attributes']['readonly'] = 'readonly';
   $form['title']['#attributes']['style'] = 'display: none;';
+
 }

@@ -73,6 +73,11 @@ function sinister_ws_save($data) {
   $data_fields['rc_viajero'] = 'value';
   $data_fields['reserva_total'] = 'value';
 
+  // Arribo.
+  $data_fields['fecha_arribo'] = 'value';
+  $data_fields['mapa_arribo'] = 'lat';
+  $data_fields['mapa_arribo'] = 'lng';
+
   foreach ($data_fields as $data_field => $data_value) {
     if (isset($data[$data_field])) {
       $data_field_name = "field_{$data_field}";
