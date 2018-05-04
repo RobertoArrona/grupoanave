@@ -283,6 +283,34 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
+    'sinister-get-arrival' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieve sinister arrival data.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_arrival.services',
+          ),
+          'callback' => 'sinister_ws_arrival_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
     'sinister-get-taxonomy' => array(
       'operations' => array(
         'retrieve' => array(
