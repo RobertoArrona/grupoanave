@@ -29,7 +29,7 @@ function sinister_ws_resource_retrieve($uid) {
     $vehicle_color = $poliza_fields->field_vehiculo_color[LANGUAGE_NONE][0]['value'];
     // Create return object.
     $return_obj = array(
-      'id' => $node->nid,
+      'nid' => $node->nid,
       'sinister' => $node->title,
       'created' => date('Y/m/d h:i a', $node->created),
     );
