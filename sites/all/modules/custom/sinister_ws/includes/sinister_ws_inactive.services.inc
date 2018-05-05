@@ -18,7 +18,7 @@ function sinister_ws_inactive_resource_retrieve($uid) {
 
     // Create return object.
     $return_obj = array(
-      'id' => $node->nid,
+      'nid' => $node->nid,
       'sinister' => $node->title,
       'created' => date('Y/m/d h:i a', $node->created),
     );
