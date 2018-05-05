@@ -11,9 +11,6 @@
 function sinister_ws_legal_resource_retrieve($nid) {
   $legal = array();
 
-  // This nid has the legal information.
-  $nid = 1921;
-
   if (($node = node_load($nid))) {
 
     if (!empty($node->nid)) {
