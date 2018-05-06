@@ -27,7 +27,6 @@ function sinister_ws_archivos_resource_retrieve($nid) {
  */
 function get_image($fc_archivo) {
   $percent = 0;
-  $pathImages = array();
 
   if (!empty($fc_archivo->field_visualizador)) {
     // Get value from field_visualizador.

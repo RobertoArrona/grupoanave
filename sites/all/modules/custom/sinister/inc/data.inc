@@ -87,13 +87,15 @@ function sinister_number_increase($i = 0) {
  * Returns TRUE if a given sinister is found at the database.
  */
 function sinister_number_folio_exists($sinister_folio, $nid) {
-  $nid = explode('', $nid);
-  $sinister_folio = explode('', $sinister_folio);
-  if ($nid) {
+
+  if (!empty($nid)) {
+    $nid = explode('', $nid);
+    $sinister_folio = explode('', $sinister_folio);
     $query = db_query("SELECT nid FROM {nodes} WHERE title = '%s' AND nid != %d" . $sinister_folio, $nid);
     if ($item = $query->fetchArray()) {
       return $item['nid'];
     }
   }
+
   return FALSE;
 }
