@@ -166,8 +166,8 @@ function get_injured($fc_injuries, $count, $fc_id) {
     $injuries['ambulance_description'] = NULL;
   }
 
-  // Get fields from taller.
   if (!empty($fc_injuries->field_hospital[LANGUAGE_NONE][0]['target_id'])) {
+    // Get target id from hispital user role.
     $hospital_tid = $fc_injuries->field_hospital[LANGUAGE_NONE][0]['target_id'];
     $injuries['hospital'] = $hospital_tid;
   }
