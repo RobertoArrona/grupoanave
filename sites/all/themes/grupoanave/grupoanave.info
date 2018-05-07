@@ -56,8 +56,8 @@ scripts[] = 'bootstrap/js/tab.js'
 scripts[] = 'bootstrap/js/transition.js'
 scripts[] = 'js/search-home.js'
 scripts[] = 'js/mmenu/jquery.mmenu.all.js'
-scripts[] = 'js/cotizacion.block.js'
 scripts[] = 'js/jquery.cookie.js'
+scripts[] = 'js/cotizacion.block.js'
 scripts[] = 'js/node_collection.js'
 
 
