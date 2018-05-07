@@ -7385,6 +7385,8 @@ table .checkbox input[type="checkbox"] {
 .main-container.container .row section.col-sm-12 {
   padding-left: 0;
   padding-right: 0;
+}
+.logged-in .main-container.container .row section.col-sm-12 {
   margin-top: 35px;
 }
 body.navbar-is-fixed-top {
