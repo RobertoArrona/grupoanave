@@ -41,13 +41,16 @@ function sinister_ws_percent_resource_retrieve($nid) {
     // Get field collection id.
     $fc_id = $node->field_lesionado[LANGUAGE_NONE][0]['value'];
     // Get field collection field_lesionado item from node.
-    $fc_injuries[0] = field_collection_item_load($fc_id, $reset = FALSE);
-    $percent['injuried'] = get_injuried_percent($fc_injuries[0]);
+    $fc_thirds[0] = field_collection_item_load($fc_id, $reset = FALSE);
+    $percent['injuries'] = get_injuries_percent($fc_thirds[0]);
   }
 
   if (!empty($nid)) {
-    $percent['term'] = get_term_percent();
+    $percent['term'] = get_term_percent($node);
   }
+
+  // Sum all percents.
+  $percent['total'] = intval($percent['images'], 10) + intval($percent['driver'], 10) + intval($percent['injuries'], 10) + intval($percent['term'], 10);
 
   return $percent;
 }
@@ -65,10 +68,6 @@ function get_image_percent($fc_archivo) {
   }
 
   $images = array();
-
-  if (!empty($fc_archivo->field_archivo_comentario[LANGUAGE_NONE][0]['value'])) {
-    $count++;
-  }
 
   if (!empty($field_image[LANGUAGE_NONE][0]['uri'])) {
     $count++;
@@ -170,7 +169,7 @@ function get_driver_percent($driver_data) {
 /**
  * Returns percent from field_lesionado.
  */
-function get_injuried_percent($fc_injuries) {
+function get_injuries_percent($fc_injuries) {
   $count = 0;
   $percent = 0;
 
@@ -236,34 +235,36 @@ function get_injuried_percent($fc_injuries) {
 /**
  * Returns percent from term fields.
  */
-function get_term_percent() {
+function get_term_percent($node) {
   $count = 0;
   $percent = 0;
 
-  if (!empty($fc_archivo->field_visualizador)) {
-    // Get value from field_visualizador.
-    $field_image = $fc_archivo->field_visualizador;
-  }
-
-  $images = array();
-
-  if (!empty($fc_archivo->field_archivo_comentario[LANGUAGE_NONE][0]['value'])) {
+  if (!empty($node->field_informe[LANGUAGE_NONE][0]['value'])) {
     $count++;
   }
 
-  if (!empty($field_image[LANGUAGE_NONE][0]['uri'])) {
+  if (!empty($node->field_danos_materiales[LANGUAGE_NONE][0]['value']) && $node->field_danos_materiales[LANGUAGE_NONE][0]['value'] != '0.00') {
+    $count++;
+    $damages = $node->field_danos_materiales[LANGUAGE_NONE][0]['value'];
+  }
+
+  if (!empty($node->field_robo[LANGUAGE_NONE][0]['value']) && $node->field_robo[LANGUAGE_NONE][0]['value'] != '0.00') {
     $count++;
   }
 
-  if (!empty($field_image[LANGUAGE_NONE][0]['metadata']['width'])) {
+  if (!empty($node->field_resp_civil[LANGUAGE_NONE][0]['value']) && $node->field_resp_civil[LANGUAGE_NONE][0]['value'] != '0.00') {
     $count++;
   }
 
-  if (!empty($field_image[LANGUAGE_NONE][0]['metadata']['height'])) {
+  if (!empty($node->field_gastos_medicos[LANGUAGE_NONE][0]['value']) && $node->field_gastos_medicos[LANGUAGE_NONE][0]['value'] != '0.00') {
     $count++;
   }
 
-  if (!empty($field_image[LANGUAGE_NONE][0]['filename'])) {
+  if (!empty($node->field_rc_viajero[LANGUAGE_NONE][0]['value']) && $node->field_rc_viajero[LANGUAGE_NONE][0]['value'] != '0.00') {
+    $count++;
+  }
+
+  if (!empty($node->field_reserva_total[LANGUAGE_NONE][0]['value']) && $node->field_reserva_total[LANGUAGE_NONE][0]['value'] != '0.00') {
     $count++;
   }
 

@@ -16,7 +16,8 @@ function sinister_ws_vehicles_resource_retrieve($nid) {
   $results = array();
 
   for ($i = 0; $i < $count; $i++) {
-    $fc_thirds[$i] = field_collection_item_load($node->field_vehiculo_tercero[LANGUAGE_NONE][$i]['value'], $reset = FALSE);
+    $fc_id = $node->field_vehiculo_tercero[LANGUAGE_NONE][$i]['value'];
+    $fc_thirds[$i] = field_collection_item_load($fc_id, $reset = FALSE);
     $results[] = get_vehicle($fc_thirds[$i], $count);
   }
 
