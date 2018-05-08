@@ -22,27 +22,15 @@ function sinister_ws_percent_resource_retrieve($nid) {
   $percent['total'] = 0;
 
   if (!empty($node->field_siniestro_archivo[LANGUAGE_NONE][0]['value'])) {
-    // Get field collection id.
-    $fc_id = $node->field_siniestro_archivo[LANGUAGE_NONE][0]['value'];
-    // Get field collection field_siniestro_archivo item from node.
-    $fc_archivo[0] = field_collection_item_load($fc_id, $reset = FALSE);
-    $percent['images'] = get_image_percent($fc_archivo[0]);
+    $percent['images'] = get_image_percent($node);
   }
 
   if (!empty($node->field_conductor[LANGUAGE_NONE][0]['value'])) {
-    // Get field collection id.
-    $fc_id = $node->field_conductor[LANGUAGE_NONE][0]['value'];
-    // Get field collection field_conductor item from node.
-    $driver_data = entity_load_single('field_collection_item', $fc_id);
-    $percent['driver'] = get_driver_percent($driver_data);
+    $percent['driver'] = get_driver_percent($node);
   }
 
   if (!empty($node->field_lesionado[LANGUAGE_NONE][0]['value'])) {
-    // Get field collection id.
-    $fc_id = $node->field_lesionado[LANGUAGE_NONE][0]['value'];
-    // Get field collection field_lesionado item from node.
-    $fc_thirds[0] = field_collection_item_load($fc_id, $reset = FALSE);
-    $percent['injuries'] = get_injuries_percent($fc_thirds[0]);
+    $percent['injuries'] = get_injuries_percent($node);
   }
 
   if (!empty($nid)) {
@@ -58,31 +46,41 @@ function sinister_ws_percent_resource_retrieve($nid) {
 /**
  * Returns percent from field_siniestros_archivo.
  */
-function get_image_percent($fc_archivo) {
+function get_image_percent($node) {
   $count = 0;
   $percent = 0;
+  $fc_count = count($node->field_siniestro_archivo[LANGUAGE_NONE]);
 
-  if (!empty($fc_archivo->field_visualizador)) {
-    // Get value from field_visualizador.
-    $field_image = $fc_archivo->field_visualizador;
-  }
+  for ($i = 0; $i < $fc_count; $i++) {
 
-  $images = array();
+    // Get field collection id.
+    $fc_id = $node->field_siniestro_archivo[LANGUAGE_NONE][$i]['value'];
+    // Get field collection field_siniestro_archivo item from node.
+    $fc_archivo[$i] = field_collection_item_load($fc_id, $reset = FALSE);
 
-  if (!empty($field_image[LANGUAGE_NONE][0]['uri'])) {
-    $count++;
-  }
+    if (!empty($fc_archivo[$i]->field_visualizador)) {
+      // Get value from field_visualizador.
+      $field_image = $fc_archivo[$i]->field_visualizador;
+    }
 
-  if (!empty($field_image[LANGUAGE_NONE][0]['metadata']['width'])) {
-    $count++;
-  }
+    $images = array();
 
-  if (!empty($field_image[LANGUAGE_NONE][0]['metadata']['height'])) {
-    $count++;
-  }
+    if (!empty($field_image[LANGUAGE_NONE][0]['uri'])) {
+      $count++;
+    }
 
-  if (!empty($field_image[LANGUAGE_NONE][0]['filename'])) {
-    $count++;
+    if (!empty($field_image[LANGUAGE_NONE][0]['metadata']['width'])) {
+      $count++;
+    }
+
+    if (!empty($field_image[LANGUAGE_NONE][0]['metadata']['height'])) {
+      $count++;
+    }
+
+    if (!empty($field_image[LANGUAGE_NONE][0]['filename'])) {
+      $count++;
+    }
+
   }
 
   if ($count > 0) {
@@ -95,9 +93,14 @@ function get_image_percent($fc_archivo) {
 /**
  * Returns percent from field_conductor.
  */
-function get_driver_percent($driver_data) {
+function get_driver_percent($node) {
   $count = 0;
   $percent = 0;
+
+  // Get field collection id.
+  $fc_id = $node->field_conductor[LANGUAGE_NONE][0]['value'];
+  // Get field collection field_conductor item from node.
+  $driver_data = entity_load_single('field_collection_item', $fc_id);
 
   if (!empty($driver_data->field_nombre[LANGUAGE_NONE][0]['value'])) {
     $count++;
@@ -169,60 +172,70 @@ function get_driver_percent($driver_data) {
 /**
  * Returns percent from field_lesionado.
  */
-function get_injuries_percent($fc_injuries) {
+function get_injuries_percent($node) {
   $count = 0;
   $percent = 0;
+  $fc_count = count($node->field_lesionado[LANGUAGE_NONE]);
 
-  if (!empty($fc_injuries->field_lesionado_nombre[LANGUAGE_NONE][0]['value'])) {
-    $count++;
-  }
+  for ($i = 0; $i < $fc_count; $i++) {
 
-  if (!empty($fc_injuries->field_lesionado_edad[LANGUAGE_NONE][0]['value'])) {
-    $count++;
-  }
+    // Get field collection id.
+    $fc_id = $node->field_lesionado[LANGUAGE_NONE][$i]['value'];
+    // Get field collection field_lesionado item from node.
+    $fc_injuries[$i] = field_collection_item_load($fc_id, $reset = FALSE);
 
-  if (!empty($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['thoroughfare'])) {
-    $count++;
-  }
+    if (!empty($fc_injuries[$i]->field_lesionado_nombre[LANGUAGE_NONE][0]['value'])) {
+      $count++;
+    }
 
-  if (!empty($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['locality'])) {
-    $count++;
-  }
+    if (!empty($fc_injuries[$i]->field_lesionado_edad[LANGUAGE_NONE][0]['value'])) {
+      $count++;
+    }
 
-  if (!empty($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['premise'])) {
-    $count++;
-  }
+    if (!empty($fc_injuries[$i]->field_lesionado_domicilio[LANGUAGE_NONE][0]['thoroughfare'])) {
+      $count++;
+    }
 
-  if (!empty($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
-    $count++;
-  }
+    if (!empty($fc_injuries[$i]->field_lesionado_domicilio[LANGUAGE_NONE][0]['locality'])) {
+      $count++;
+    }
 
-  if (!empty($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['postal_code'])) {
-    $count++;
-  }
+    if (!empty($fc_injuries[$i]->field_lesionado_domicilio[LANGUAGE_NONE][0]['premise'])) {
+      $count++;
+    }
 
-  if (!empty($fc_injuries->field_lesionado_telefono[LANGUAGE_NONE][0]['value'])) {
-    $count++;
-  }
+    if (!empty($fc_injuries[$i]->field_lesionado_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
+      $count++;
+    }
 
-  if (isset($fc_injuries->field_lesionado_riesgo_b[LANGUAGE_NONE][0]['value'])) {
-    $count++;
-  }
+    if (!empty($fc_injuries[$i]->field_lesionado_domicilio[LANGUAGE_NONE][0]['postal_code'])) {
+      $count++;
+    }
 
-  if (!empty($fc_injuries->field_lesionado_lesiones[LANGUAGE_NONE][0]['value'])) {
-    $count++;
-  }
+    if (!empty($fc_injuries[$i]->field_lesionado_telefono[LANGUAGE_NONE][0]['value'])) {
+      $count++;
+    }
 
-  if (!empty($fc_injuries->field_lesionado_ambulancia[LANGUAGE_NONE][0]['value'])) {
-    $count++;
-  }
+    if (isset($fc_injuries[$i]->field_lesionado_riesgo_b[LANGUAGE_NONE][0]['value'])) {
+      $count++;
+    }
 
-  if (!empty($fc_injuries->field_lesionado_ambulancia_info[LANGUAGE_NONE][0]['value'])) {
-    $count++;
-  }
+    if (!empty($fc_injuries[$i]->field_lesionado_lesiones[LANGUAGE_NONE][0]['value'])) {
+      $count++;
+    }
 
-  if (!empty($fc_injuries->field_hospital[LANGUAGE_NONE][0]['target_id'])) {
-    $count++;
+    if (!empty($fc_injuries[$i]->field_lesionado_ambulancia[LANGUAGE_NONE][0]['value'])) {
+      $count++;
+    }
+
+    if (!empty($fc_injuries[$i]->field_lesionado_ambulancia_info[LANGUAGE_NONE][0]['value'])) {
+      $count++;
+    }
+
+    if (!empty($fc_injuries[$i]->field_hospital[LANGUAGE_NONE][0]['target_id'])) {
+      $count++;
+    }
+
   }
 
   if ($count > 0) {

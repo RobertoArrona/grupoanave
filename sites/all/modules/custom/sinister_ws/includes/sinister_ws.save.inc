@@ -43,6 +43,7 @@ function sinister_ws_save($data) {
   $data_fields['lugar_referencias'] = 'value';
   $data_fields['comentarios_de_siniestro'] = 'value';
   $data_fields['lugar_atencion'] = 'value';
+  $data_fields['sinister_status'] = 'value';
 
   // Archivos.
   // Prepare siniestro_archivo_visualizador (imagenes).
