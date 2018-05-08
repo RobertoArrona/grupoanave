@@ -286,7 +286,7 @@ function sinister_ws_services_resources() {
     'sinister-get-location' => array(
       'operations' => array(
         'retrieve' => array(
-          'help' => 'Retrieve map location sinister.',
+          'help' => 'Retrieve sinister map location.',
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
