@@ -18,6 +18,14 @@
  */
 function theme_photoswipe_image_formatter($variables) {
   $item = $variables['item'];
+
+  if (empty($item['width'])) {
+    $item['width'] = '320';
+  }
+  if (empty($item['height'])) {
+    $item['height'] = '200';
+  }
+
   $node = $variables['node'];
   $field = $variables['field'];
   $settings = $variables['display_settings'];
@@ -80,6 +88,7 @@ function theme_photoswipe_image_formatter($variables) {
   }
 
   return theme('photoswipe_imagefield', array('image' => $image, 'path' => $path, 'dimensions' => $dimensions['width'] . 'x' . $dimensions['height'], 'caption' => $caption));
+
 }
 
 /**
