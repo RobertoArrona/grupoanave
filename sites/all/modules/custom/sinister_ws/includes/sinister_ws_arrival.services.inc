@@ -14,6 +14,7 @@ function sinister_ws_arrival_resource_retrieve($nid) {
   $count = 0;
 
   if (!empty($node->field_fecha_arribo[LANGUAGE_NONE][0]['value'])) {
+    // Get date arribal.
     $date = $node->field_fecha_arribo[LANGUAGE_NONE][0]['value'];
     $arrival['date'] = $date;
     $count++;
@@ -22,8 +23,11 @@ function sinister_ws_arrival_resource_retrieve($nid) {
     $arrival['date'] = NULL;
   }
   if (!empty($node->field_mapa_arribo[LANGUAGE_NONE][0]['lat'])) {
+    // Get latitude from arribal map.
     $lat = $node->field_mapa_arribo[LANGUAGE_NONE][0]['lat'];
+    // Get longitude from arribal map.
     $lng = $node->field_mapa_arribo[LANGUAGE_NONE][0]['lng'];
+    // Add values to array.
     $arrival['latitude'] = $lat;
     $arrival['longitude'] = $lng;
     $count++;
