@@ -251,7 +251,9 @@ function sinister_ws_save_fc_archivo_visualizador($node, $data) {
  * Saves a Field collection section.
  */
 function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $data) {
+
   foreach ($fc_data_fields as $fc_data_field => $value_field) {
+
     // If this is an array, it must be a Postal Address.
     if (is_array($value_field)) {
       foreach ($value_field as $value_field_item) {
@@ -299,7 +301,6 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
       $data_field_field = "{$data_field_i}_{$fc_data_field}";
       $fc_field_name = "field_{$fc_data_field}";
       if (isset($data[$data_field_field])) {
-        $fc_field_name = "field_{$fc_data_field}";
         $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = $data[$data_field_field];
         $fc_item->{$fc_field_name}[LANGUAGE_NONE][1]['value'] = $data[$data_field_field];
       }
@@ -310,6 +311,9 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
       if (isset($data[$data_field_field])) {
         $fc_field_name = "field_{$fc_data_field}";
         if (!empty($data[$data_field_field])) {
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data[$data_field_field];
+        }
+        elseif ($data[$data_field_field] == '0') {
           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data[$data_field_field];
         }
         else {
