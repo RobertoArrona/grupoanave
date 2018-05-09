@@ -427,28 +427,12 @@ function sinister_ws_services_resources() {
       'operations' => array(
         'create' => array(
           'help' => 'Delete field collections.',
-          'file' => array(
-            'type' => 'inc',
-            'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_delete_fc.services',
-          ),
           'callback' => 'sinister_ws_delete_fc',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
-          'args' => array(
-            array(
-              'name' => 'nid',
-              'type' => 'int',
-              'description' => 'Function to perform',
-              'source' => array(
-                'path' => '0',
-              ),
-              'optional' => TRUE,
-              'default' => '0',
-            ),
-          ),
         ),
+        'retrieve' => array(),
       ),
     ),
     'sinister-post' => array(
@@ -468,6 +452,7 @@ function sinister_ws_services_resources() {
 }
 
 include_once 'includes/sinister_ws.save.inc';
+include_once 'includes/sinister_ws_delete_fc.services.inc';
 
 /**
  * Get sinister term object by id.
