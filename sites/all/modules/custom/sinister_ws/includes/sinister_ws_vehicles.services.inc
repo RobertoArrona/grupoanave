@@ -79,11 +79,7 @@ function get_vehicle($fc_thirds, $count) {
     $percent = $percent + $number;
     // Get administrative area field value.
     $owner_key_admin_area = $fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['administrative_area'];
-    $country = 'MX';
-    module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
-    $owner_administrative_areas = addressfield_get_administrative_areas($country);
-    $owner_admin_area = $owner_administrative_areas[$owner_key_admin_area];
-    $thirds['owner_administrative_area'] = $owner_admin_area;
+    $thirds['owner_administrative_area'] = $owner_key_admin_area;
   }
   else {
     $thirds['owner_administrative_area'] = NULL;
@@ -111,8 +107,6 @@ function get_vehicle($fc_thirds, $count) {
 
   if (isset($fc_thirds->field_conductor_es_propietario[LANGUAGE_NONE][0]['value'])) {
     $check_owner = $fc_thirds->field_conductor_es_propietario[LANGUAGE_NONE][0]['value'];
-    $field = field_info_field('field_conductor_es_propietario');
-    $driver_is_owner = $field['settings']['allowed_values'][$check_owner];
     $thirds['is_owner'] = $check_owner;
   }
   else {
@@ -197,10 +191,7 @@ function get_vehicle($fc_thirds, $count) {
 
   if (!empty($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
     $driver_key_admin_area = $fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area'];
-    module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
-    $administrative_areas = addressfield_get_administrative_areas($country);
-    $administrative_area_conductor = $administrative_areas[$driver_key_admin_area];
-    $thirds['driver_administrative_area'] = $administrative_area_conductor;
+    $thirds['driver_administrative_area'] = $driver_key_admin_area;
   }
   else {
     $thirds['driver_administrative_area'] = NULL;

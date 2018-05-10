@@ -61,11 +61,7 @@ function sinister_ws_conductor_resource_retrieve($nid) {
     // Add value to $percent variable.
     $percent = $percent + 1.538461538461538;
     $key_admin_area = $driver_data->field_domicilio[LANGUAGE_NONE][0]['administrative_area'];
-    $country = 'MX';
-    module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
-    $administrative_areas = addressfield_get_administrative_areas($country);
-    $driver_admin_area = $administrative_areas[$key_admin_area];
-    $driver['administrative_area'] = $driver_admin_area;
+    $driver['administrative_area'] = $key_admin_area;
   }
   else {
     $driver['administrative_area'] = NULL;
