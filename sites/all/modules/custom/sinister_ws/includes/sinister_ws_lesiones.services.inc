@@ -88,13 +88,7 @@ function get_injured($fc_injuries, $count, $fc_id) {
     $percent = $percent + $number;
     // Get administrative area field value.
     $key_admin_area = $fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['administrative_area'];
-    $country = 'MX';
-    module_load_include('inc', 'addressfield', 'addressfield.administrative_areas');
-    $administrative_areas = addressfield_get_administrative_areas($country);
-    if (!empty($administrative_areas[$key_admin_area])) {
-      $admin_area = $administrative_areas[$key_admin_area];
-      $injuries['administrative_area'] = $admin_area;
-    }
+    $injuries['administrative_area'] = $key_admin_area;
   }
   else {
     $injuries['administrative_area'] = NULL;
