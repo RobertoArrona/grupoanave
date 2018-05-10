@@ -58,4 +58,38 @@
     linkcontrato.attr("target", "_blank");
   });
 
+  /**
+   * Function to format phone number fields.
+   */
+  $(document).on('change', 'input[id*="telefono"]', function (e) {
+    e.preventDefault();
+
+    var phonenumber = $(this).val(); // Clone input value.
+    $(this).val(Phone.format(phonenumber)); // Assign formated phone number.
+  });
+
+  // Format phone numbers.
+  var Phone = {
+    format: function (phone) {
+      var key;
+      var numberPhone;
+      var formatted = '';
+
+      // Declare strings to be deleted.
+      key = {
+        '-': '',
+        ' ': ''
+      };
+
+      if (phone) {
+        // Delete indicated strings.
+        numberPhone = phone.replace(/[- ]/g, (char) => key[char] || '');
+        // Format phone number.
+        formatted = numberPhone.substr(0, 3) + '-' + numberPhone.substr(3, 3) + '-' + numberPhone.substr(6,4);
+      }
+
+      return formatted;
+    }
+  }
+
 })(jQuery);
