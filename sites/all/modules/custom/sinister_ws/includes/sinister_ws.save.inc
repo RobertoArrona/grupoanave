@@ -46,9 +46,10 @@ function sinister_ws_save($data) {
   $data_fields['sinister_status'] = 'value';
 
   // Archivos.
-  // Prepare siniestro_archivo_visualizador (imagenes).
-  if (isset($_FILES['siniestro_archivo_visualizador'])) {
+  if (isset($_FILES['siniestro_archivo_visualizador']) || isset($_FILES['siniestro_archivo_documento'])) {
     $data['siniestro_archivo_visualizadores'] = array();
+    $data['siniestro_archivo_documentos'] = array();
+    // Prepare siniestro_archivo_visualizador (imagenes).
     foreach ($_FILES['siniestro_archivo_visualizador']['name'] as $i => $siniestro_archivo_visualizador) {
       $data['siniestro_archivo_visualizadores'][] = array(
         'name' => $_FILES['siniestro_archivo_visualizador']['name'][$i],
@@ -58,7 +59,17 @@ function sinister_ws_save($data) {
         'size' => $_FILES['siniestro_archivo_visualizador']['size'][$i],
       );
     }
-    sinister_ws_save_fc_archivo_visualizador($node, $data);
+    // Prepare siniestro_archivo_documento (documentos).
+    foreach ($_FILES['siniestro_archivo_documento']['name'] as $i => $siniestro_archivo_documento) {
+      $data['siniestro_archivo_documentos'][] = array(
+        'name' => $_FILES['siniestro_archivo_documento']['name'][$i],
+        'type' => $_FILES['siniestro_archivo_documento']['type'][$i],
+        'tmp_name' => $_FILES['siniestro_archivo_documento']['tmp_name'][$i],
+        'error' => $_FILES['siniestro_archivo_documento']['error'][$i],
+        'size' => $_FILES['siniestro_archivo_documento']['size'][$i],
+      );
+    }
+    sinister_ws_save_fc_siniestro_archivo($node, $data);
   }
 
   // Lugar de Siniestro.
@@ -216,14 +227,23 @@ function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
 /**
  * Saves archivo visualizador into a new field collection.
  */
-function sinister_ws_save_fc_archivo_visualizador($node, $data) {
+function sinister_ws_save_fc_siniestro_archivo($node, $data) {
   // Create Field Collection.
   $fc_item = entity_create('field_collection_item', array(
     'field_name' => "field_siniestro_archivo",
   ));
   $fc_item->setHostEntity('node', $node);
 
-  // Save Files.
+  // Save general datas.
+  $fc_item->field_archivo_categoria[LANGUAGE_NONE][0]['value'] = 'Fotografías de siniestro';
+  $fc_item->field_fecha[LANGUAGE_NONE][0]['value'] = strtotime('now');
+  $fc_item->field_fecha[LANGUAGE_NONE][0]['timezone'] = 'America/Mazatlan';
+  $fc_item->field_fecha[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
+  $fc_item->field_fecha[LANGUAGE_NONE][0]['date_type'] = 'datestamp';
+  $fc_item->field_archivo_autor[LANGUAGE_NONE][0]['target_id'] = $data['uid'];
+  $fc_item->field_archivo_comentario[LANGUAGE_NONE][0]['value'] = $data['field_archivo_comentario'];
+
+  // Save Images.
   $fc_item->field_visualizador[LANGUAGE_NONE] = array();
   foreach ($data['siniestro_archivo_visualizadores'] as $i => $file_raw) {
     $file_contents = file_get_contents($file_raw['tmp_name']);
@@ -234,13 +254,21 @@ function sinister_ws_save_fc_archivo_visualizador($node, $data) {
       $fc_item->field_visualizador[LANGUAGE_NONE][$i] = array(
         'fid' => $file->fid,
       );
-      $fc_item->field_archivo_categoria[LANGUAGE_NONE][0]['value'] = 'Fotografías de siniestro';
-      $fc_item->field_fecha[LANGUAGE_NONE][0]['value'] = strtotime('now');
-      $fc_item->field_fecha[LANGUAGE_NONE][0]['timezone'] = 'America/Mazatlan';
-      $fc_item->field_fecha[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
-      $fc_item->field_fecha[LANGUAGE_NONE][0]['date_type'] = 'datestamp';
-      $fc_item->field_archivo_autor[LANGUAGE_NONE][0]['target_id'] = $data['uid'];
-      $fc_item->field_archivo_comentario[LANGUAGE_NONE][0]['value'] = $data['field_archivo_comentario'];
+    }
+  }
+
+  // Save Documents.
+  $fc_item->field_documentos[LANGUAGE_NONE] = array();
+  foreach ($data['siniestro_archivo_documentos'] as $i => $file_raw) {
+    $file_contents = file_get_contents($file_raw['tmp_name']);
+    $file_uri = file_default_scheme() . '://siniestros/archivos/' . $file_raw['name'];
+    if (($file = file_save_data($file_contents, $file_uri))) {
+      $file->uid = $data['uid'];
+      $file->status = FILE_STATUS_PERMANENT;
+      $fc_item->field_documentos[LANGUAGE_NONE][$i] = array(
+        'fid' => $file->fid,
+        'display' => TRUE,
+      );
     }
   }
 
