@@ -6,19 +6,6 @@
  */
 
 /**
- * Function to test sinister_ws_delete_fc function.
- */
-function sinister_ws_menu() {
-  $items = [];
-  $items['calis-de-fuego'] = array(
-    'page callback' => 'ws_testing_login',
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-  return $items;
-}
-
-/**
  * Implements hook_services_resources().
  *
  * Create service resource for APIs to return the necessary json data.
@@ -435,6 +422,18 @@ function sinister_ws_services_resources() {
         'retrieve' => array(),
       ),
     ),
+    'sinister-update-password' => array(
+      'operations' => array(
+        'create' => array(
+          'help' => 'Change user password.',
+          'callback' => 'sinister_ws_update_pass',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+        ),
+        'retrieve' => array(),
+      ),
+    ),
     'sinister-post' => array(
       'operations' => array(
         'create' => array(
@@ -453,6 +452,7 @@ function sinister_ws_services_resources() {
 
 include_once 'includes/sinister_ws.save.inc';
 include_once 'includes/sinister_ws_delete_fc.services.inc';
+include_once 'includes/sinister_ws_update_password.services.inc';
 
 /**
  * Get sinister term object by id.
