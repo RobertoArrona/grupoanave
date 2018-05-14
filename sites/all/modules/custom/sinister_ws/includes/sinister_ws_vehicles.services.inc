@@ -18,7 +18,7 @@ function sinister_ws_vehicles_resource_retrieve($nid) {
   for ($i = 0; $i < $count; $i++) {
     $fc_id = $node->field_vehiculo_tercero[LANGUAGE_NONE][$i]['value'];
     $fc_thirds[$i] = field_collection_item_load($fc_id, $reset = FALSE);
-    $results[] = get_vehicle($fc_thirds[$i], $count);
+    $results[] = get_vehicle($fc_thirds[$i], $count, $fc_id);
   }
 
   return $results;
@@ -29,10 +29,11 @@ function sinister_ws_vehicles_resource_retrieve($nid) {
  *
  * @params $fc_thirds The id item of field_siniestro_archivo field.
  */
-function get_vehicle($fc_thirds, $count) {
+function get_vehicle($fc_thirds, $count, $fc_id) {
   $thirds = array();
   $percent = 0;
   $number = (1.538461538461538 / $count);
+  $thirds['fc_id'] = $fc_id;
 
   if (!empty($fc_thirds->field_propietario_nombre[LANGUAGE_NONE][0]['value'])) {
     // Add value to $percent variable.
