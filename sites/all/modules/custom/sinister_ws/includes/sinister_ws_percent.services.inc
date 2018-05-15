@@ -150,10 +150,6 @@ function get_driver_percent($node) {
     $count++;
   }
 
-  if ($driver_data->field_conductor_reporta[LANGUAGE_NONE][0]['value'] == '0') {
-    $count++;
-  }
-
   if (!empty($driver_data->field_nombre_quien_reporta[LANGUAGE_NONE][0]['value'])) {
     $count++;
   }
