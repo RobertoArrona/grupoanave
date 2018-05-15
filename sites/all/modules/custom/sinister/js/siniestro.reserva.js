@@ -4,6 +4,8 @@
  */
 
 (function ($) {
+  // Declare global variable.
+  var arrival_date;
   $(document).on('ready', function () {
     var group = $('.group-reserva input');
     var reservatotal = $('#edit-field-reserva-total input');
@@ -39,8 +41,7 @@
       }
     });
 
-    $('#edit-field-fecha-arribo-und-0-value-datepicker-popup-0').prop('disabled',true);
-    $('#edit-field-fecha-arribo-und-0-value-timeEntry-popup-1').prop('disabled',true);
+    arrival_date = $('#edit-field-fecha-arribo-und-0-value-date').val();
     $('#edit-field-mapa-arribo-und-0-address-field').prop('disabled',true);
     $('#edit-field-mapa-arribo [id^="geolocation-address-geocode"]').css('display','none');
     $('#edit-field-mapa-arribo [id^="geolocation-client-location"]').css('display','none');
@@ -58,6 +59,16 @@
 
   /**
    * Function to format phone number fields.
+   */
+  $(document).on('change', '#edit-field-fecha-arribo-und-0-value-date', function (e) {
+    e.preventDefault();
+
+    // Previous date.
+    $(this).val(arrival_date);
+  });
+
+  /**
+   * Function to change arrival date.
    */
   $(document).on('change', 'input[id*="telefono"]', function (e) {
     e.preventDefault();

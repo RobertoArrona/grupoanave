@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Retrieve contract number data.
+ * Retrieve sinister number data.
  */
 
 /**
@@ -33,7 +33,7 @@ function sinister_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
- * Form builder; The contract number form.
+ * Form builder; The sinister number form.
  *
  * @ingroup forms
  * @see system_settings_form()
