@@ -5,7 +5,8 @@
 
 (function ($) {
   // Declare global variable.
-  var arrival_date;
+  var arrival_date,
+      contract_folio;
   $(document).on('ready', function () {
     var group = $('.group-reserva input');
     var reservatotal = $('#edit-field-reserva-total input');
@@ -42,6 +43,8 @@
     });
 
     arrival_date = $('#edit-field-fecha-arribo-und-0-value-date').val();
+    contract_folio = $('div.form-item-field-poliza-und-0-target-id .field-suffix label span a').text();
+    $('#edit-field-vehiculo-tercero-und-0-field-3ro-numero-poliza-und-0-value').val(contract_folio);
     $('#edit-field-mapa-arribo-und-0-address-field').prop('disabled',true);
     $('#edit-field-mapa-arribo [id^="geolocation-address-geocode"]').css('display','none');
     $('#edit-field-mapa-arribo [id^="geolocation-client-location"]').css('display','none');
@@ -60,21 +63,43 @@
   /**
    * Function to format phone number fields.
    */
-  $(document).on('change', '#edit-field-fecha-arribo-und-0-value-date', function (e) {
-    e.preventDefault();
-
-    // Previous date.
-    $(this).val(arrival_date);
-  });
-
-  /**
-   * Function to change arrival date.
-   */
   $(document).on('change', 'input[id*="telefono"]', function (e) {
     e.preventDefault();
 
     var phonenumber = $(this).val(); // Clone input value.
     $(this).val(Phone.format(phonenumber)); // Assign formated phone number.
+  });
+
+  /**
+   * Function to change arrival date.
+   */
+  $(document).on('change', '#edit-field-fecha-arribo-und-0-value-date', function (e) {
+    e.preventDefault();
+
+    // Add previous date.
+    $(this).val(arrival_date);
+  });
+
+  /**
+   * Change event for field piliza table.
+   */
+   $(document).on('DOMSubtreeModified', '#field-poliza-values tr td', function (e) {
+     e.preventDefault();
+
+     // Clone link text.
+     contract_folio = $('div.form-item-field-poliza-und-0-target-id .field-suffix label span a').text();
+     // Add contract folio to contract number input.
+     $('#edit-field-vehiculo-tercero-und-0-field-3ro-numero-poliza-und-0-value').val(contract_folio);
+   })
+
+  /**
+   * Function to change contract number input.
+   */
+  $(document).on('change', '#edit-field-vehiculo-tercero-und-0-field-3ro-numero-poliza-und-0-value', function (e) {
+    e.preventDefault();
+
+    // Add contract folio.
+    $('#edit-field-vehiculo-tercero-und-0-field-3ro-numero-poliza-und-0-value').val(contract_folio);
   });
 
   // Format phone numbers.

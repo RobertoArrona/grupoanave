@@ -296,12 +296,15 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
     elseif ($value_field == 'tid') {
       $data_field_field = "{$data_field_i}_{$fc_data_field}";
       if (isset($data[$data_field_field])) {
+        $fc_field_name = "field_{$fc_data_field}";
         if (!empty($data[$data_field_field])) {
           // Try to load Term by Tid.
           if (($term = taxonomy_term_load($data[$data_field_field]))) {
-            $fc_field_name = "field_{$fc_data_field}";
             $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $term->tid;
           }
+        }
+        elseif ($data[$data_field_field] == '') {
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = NULL;
         }
         else {
           // Pending $fc_item->{$fc_field_name} = array();.
@@ -312,12 +315,18 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
     elseif ($value_field == 'date') {
       $data_field_field = "{$data_field_i}_{$fc_data_field}";
       if (isset($data[$data_field_field])) {
+        $fc_field_name = "field_{$fc_data_field}";
         if (!empty($data[$data_field_field])) {
-          $fc_field_name = "field_{$fc_data_field}";
           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = strtotime($data[$data_field_field]);
           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone'] = 'America/Mazatlan';
           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['date_type'] = 'datestamp';
+        }
+        elseif ($data[$data_field_field] == '') {
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['value'] = NULL;
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone'] = NULL;
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['timezone_db'] = NULL;
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0]['date_type'] = NULL;
         }
         else {
           // Pending $fc_item->{$fc_field_name} = array();
@@ -343,6 +352,9 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
         }
         elseif ($data[$data_field_field] == '0') {
           $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $data[$data_field_field];
+        }
+        elseif ($data[$data_field_field] == '') {
+          $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = NULL;
         }
         else {
           // Pending $fc_item->{$fc_field_name} = array();.
