@@ -10,12 +10,25 @@
  */
 function sinister_ws_update_pass() {
 
-  require_once DRUPAL_ROOT . '/includes/password.inc';
-
   $user = user_load($_POST['uid']);
   if (user_check_password($_POST['current_pass'], $user)) {
+
     // Add new password from POST.
-    $user->pass = $_POST['pass'];
+    $password = $_POST['pass'];
+    // Encrypy password.
+    $hash = user_hash_password($password);
+    // Add encrypted password to user pass field.
+    $user->pass = $hash;
+
+    // Save user datas.
+    user_save($user);
+
+    return array(
+      'valid' => 1,
+      'msg' => 'Los datos se guardaron satisfactoriamente',
+      'post' => $_POST,
+    );
+
   }
   else {
     return array(
@@ -25,12 +38,7 @@ function sinister_ws_update_pass() {
     );
   }
 
-  // Save user datas.
-  user_save($user);
-
-  return array(
-    'valid' => 1,
-    'msg' => 'Los datos se guardaron satisfactoriamente',
-    'post' => $_POST,
-  );
 }
+
+// File needed to work with drupal passwords.
+require_once DRUPAL_ROOT . '/includes/password.inc';
