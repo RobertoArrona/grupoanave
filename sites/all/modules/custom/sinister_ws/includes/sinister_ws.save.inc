@@ -14,7 +14,7 @@ function sinister_ws_save_controller() {
 
   return array(
     'valid' => 1,
-    'msg' => 'Los datos se guardaron satisfactoriamente',
+    'msg' => 'Los datos se guardaron satisfactoriamente.',
     'post' => $_POST,
   );
 }
