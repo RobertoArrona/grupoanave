@@ -292,6 +292,26 @@ function sinister_ws_save_fc($data_field_i, $fc_data_fields, $fc_item, $node, $d
         }
       }
     }
+    // If this is a Target id.
+    elseif ($value_field == 'target_id') {
+      $data_field_field = "{$data_field_i}_{$fc_data_field}";
+      if (isset($data[$data_field_field])) {
+        $fc_field_name = "field_{$fc_data_field}";
+        if (!empty($data[$data_field_field])) {
+          // Try to load User by uid.
+          if (($user = user_load($data[$data_field_field]))) {
+            $fc_item->{$fc_field_name}[LANGUAGE_NONE][0][$value_field] = $user->uid;
+          }
+        }
+        elseif ($data[$data_field_field] == '') {
+          // Delete field entity reference.
+          unset($fc_item->{$fc_field_name}[LANGUAGE_NONE][0]);
+        }
+        else {
+          // Pending $fc_item->{$fc_field_name} = array();.
+        }
+      }
+    }
     // If this is a Term.
     elseif ($value_field == 'tid') {
       $data_field_field = "{$data_field_i}_{$fc_data_field}";
