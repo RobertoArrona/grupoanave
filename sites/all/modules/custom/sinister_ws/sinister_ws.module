@@ -410,7 +410,7 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'sinister-delete-field-collection' => array(
+    'sinister-delete-field-colddddlection' => array(
       'operations' => array(
         'create' => array(
           'help' => 'Delete field collections.',
