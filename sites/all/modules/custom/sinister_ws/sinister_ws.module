@@ -410,18 +410,6 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'sinister-delete-field-colddddlection' => array(
-      'operations' => array(
-        'create' => array(
-          'help' => 'Delete field collections.',
-          'callback' => 'sinister_ws_delete_fc',
-          'access callback' => 'user_access',
-          'access arguments' => array('access content'),
-          'access arguments append' => FALSE,
-        ),
-        'retrieve' => array(),
-      ),
-    ),
     'sinister-update-password' => array(
       'operations' => array(
         'create' => array(
@@ -452,7 +440,6 @@ function sinister_ws_services_resources() {
 }
 
 include_once 'includes/sinister_ws.save.inc';
-include_once 'includes/sinister_ws_delete_fc.services.inc';
 include_once 'includes/sinister_ws_update_password.services.inc';
 
 /**
