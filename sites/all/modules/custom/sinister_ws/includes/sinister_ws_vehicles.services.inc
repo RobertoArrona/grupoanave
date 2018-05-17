@@ -31,13 +31,9 @@ function sinister_ws_vehicles_resource_retrieve($nid) {
  */
 function get_vehicle($fc_thirds, $count, $fc_id) {
   $thirds = array();
-  $percent = 0;
-  $number = (1.538461538461538 / $count);
   $thirds['fc_id'] = $fc_id;
 
   if (!empty($fc_thirds->field_propietario_nombre[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $field_propietario_nombre = $fc_thirds->field_propietario_nombre[LANGUAGE_NONE][0]['value'];
     $thirds['owner_name'] = $field_propietario_nombre;
   }
@@ -46,8 +42,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['thoroughfare'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $owner_thoroughfare = $fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['thoroughfare'];
     $thirds['owner_thoroughfare'] = $owner_thoroughfare;
   }
@@ -56,8 +50,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['premise'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $owner_premise = $fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['premise'];
     $thirds['owner_premise'] = $owner_premise;
   }
@@ -66,8 +58,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['locality'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $owner_locality = $fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['locality'];
     $thirds['owner_locality'] = $owner_locality;
   }
@@ -76,8 +66,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     // Get administrative area field value.
     $owner_key_admin_area = $fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['administrative_area'];
     $thirds['owner_administrative_area'] = $owner_key_admin_area;
@@ -87,8 +75,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['postal_code'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $owner_postal_code = $fc_thirds->field_propietario_domicilio[LANGUAGE_NONE][0]['postal_code'];
     $thirds['owner_postal_code'] = $owner_postal_code;
   }
@@ -97,8 +83,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_propietario_telefono[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $owner_phone = $fc_thirds->field_propietario_telefono[LANGUAGE_NONE][0]['value'];
     $thirds['owner_phone_number'] = $owner_phone;
   }
@@ -113,49 +97,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   else {
     $check_owner = '0';
     $thirds['is_owner'] = $check_owner;
-  }
-
-  if ($check_owner == '1') {
-    // Add value to $percent variable.
-    $percent = $percent + (10.769230769230766 / $count);
-  }
-
-  else {
-
-    if (isset($fc_thirds->field_conductor_nombre[LANGUAGE_NONE][0]['value']) && !empty($fc_thirds->field_conductor_nombre[LANGUAGE_NONE][0]['value'])) {
-      // Add value to $percent variable.
-      $percent = $percent + $number;
-    }
-
-    if (isset($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['thoroughfare']) && !empty($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['thoroughfare'])) {
-      // Add value to $percent variable.
-      $percent = $percent + $number;
-    }
-
-    if (isset($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['premise']) && !empty($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['premise'])) {
-      // Add value to $percent variable.
-      $percent = $percent + $number;
-    }
-
-    if (isset($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['locality']) && !empty($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['locality'])) {
-      // Add value to $percent variable.
-      $percent = $percent + $number;
-    }
-
-    if (isset($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area']) && !empty($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
-      // Add value to $percent variable.
-      $percent = $percent + $number;
-    }
-
-    if (isset($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['postal_code']) && !empty($fc_thirds->field_conductor_domicilio[LANGUAGE_NONE][0]['postal_code'])) {
-      // Add value to $percent variable.
-      $percent = $percent + $number;
-    }
-
-    if (isset($fc_thirds->field_conductor_telefono[LANGUAGE_NONE][0]['value']) && !empty($fc_thirds->field_conductor_telefono[LANGUAGE_NONE][0]['value'])) {
-      // Add value to $percent variable.
-      $percent = $percent + $number;
-    }
   }
 
   if (isset($fc_thirds->field_conductor_nombre[LANGUAGE_NONE][0]['value']) && !empty($fc_thirds->field_conductor_nombre[LANGUAGE_NONE][0]['value'])) {
@@ -215,8 +156,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_licencia_numero[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $license_number = $fc_thirds->field_licencia_numero[LANGUAGE_NONE][0]['value'];
     $thirds['license_number'] = $license_number;
   }
@@ -225,8 +164,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_vehiculo_marca[LANGUAGE_NONE][0]['tid'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $brand_tid = $fc_thirds->field_vehiculo_marca[LANGUAGE_NONE][0]['tid'];
     $thirds['vehiculo_marca'] = $brand_tid;
   }
@@ -235,8 +172,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_vehiculo_tipo[LANGUAGE_NONE][0]['tid'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $type_tid = $fc_thirds->field_vehiculo_tipo[LANGUAGE_NONE][0]['tid'];
     $thirds['vehiculo_tipo'] = $type_tid;
   }
@@ -245,8 +180,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_vehiculo_modelo[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $model_vehicle = $fc_thirds->field_3ro_vehiculo_modelo[LANGUAGE_NONE][0]['value'];
     $thirds['vehiculo_modelo'] = $model_vehicle;
   }
@@ -255,8 +188,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_vehiculo_color[LANGUAGE_NONE][0]['tid'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $color_tid = $fc_thirds->field_3ro_vehiculo_color[LANGUAGE_NONE][0]['tid'];
     $thirds['vehiculo_color'] = $color_tid;
   }
@@ -265,8 +196,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_vehiculo_placas[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $vehiculo_placas = $fc_thirds->field_3ro_vehiculo_placas[LANGUAGE_NONE][0]['value'];
     $thirds['vehiculo_placas'] = $vehiculo_placas;
   }
@@ -275,8 +204,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_vehiculo_serie[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $vehiculo_serie = $fc_thirds->field_3ro_vehiculo_serie[LANGUAGE_NONE][0]['value'];
     $thirds['vehiculo_serie'] = $vehiculo_serie;
   }
@@ -285,8 +212,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_vehiculo_danos[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $vehiculo_danos = $fc_thirds->field_3ro_vehiculo_danos[LANGUAGE_NONE][0]['value'];
     $thirds['vehiculo_danos'] = $vehiculo_danos;
   }
@@ -295,8 +220,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_aseguradora[LANGUAGE_NONE][0]['tid'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $aseguradora_tid = $fc_thirds->field_3ro_aseguradora[LANGUAGE_NONE][0]['tid'];
     $thirds['aseguradora'] = $aseguradora_tid;
   }
@@ -305,8 +228,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_numero_poliza[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $vehiculo_numero_poliza = $fc_thirds->field_3ro_numero_poliza[LANGUAGE_NONE][0]['value'];
     $thirds['numero_poliza'] = $vehiculo_numero_poliza;
   }
@@ -315,8 +236,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_cobertura[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $vehiculo_cobertura = $fc_thirds->field_3ro_cobertura[LANGUAGE_NONE][0]['value'];
     $thirds['vehiculo_cobertura'] = $vehiculo_cobertura;
   }
@@ -325,8 +244,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_deducible[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $vehiculo_deducible = $fc_thirds->field_3ro_deducible[LANGUAGE_NONE][0]['value'];
     $thirds['vehiculo_deducible'] = $vehiculo_deducible;
   }
@@ -335,8 +252,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_vencimiento[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $vehiculo_vencimiento = $fc_thirds->field_3ro_vencimiento[LANGUAGE_NONE][0]['value'];
     $vehiculo_vencimiento = date('Y/m/d', $vehiculo_vencimiento);
     $thirds['vehiculo_vencimiento'] = $vehiculo_vencimiento;
@@ -346,8 +261,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_siniestro[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $vehiculo_siniestro = $fc_thirds->field_3ro_siniestro[LANGUAGE_NONE][0]['value'];
     $thirds['vehiculo_siniestro'] = $vehiculo_siniestro;
   }
@@ -356,8 +269,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_3ro_ajustador[LANGUAGE_NONE][0]['tid'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $field_ajustador_tid = $fc_thirds->field_3ro_ajustador[LANGUAGE_NONE][0]['tid'];
     $thirds['vehiculo_ajustador'] = $field_ajustador_tid;
   }
@@ -366,8 +277,6 @@ function get_vehicle($fc_thirds, $count, $fc_id) {
   }
 
   if (!empty($fc_thirds->field_taller[LANGUAGE_NONE][0]['target_id'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $taller_tid = $fc_thirds->field_taller[LANGUAGE_NONE][0]['target_id'];
     $thirds['vehiculo_taller'] = $taller_tid;
   }

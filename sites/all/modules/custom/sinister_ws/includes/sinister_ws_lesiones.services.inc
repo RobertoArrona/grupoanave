@@ -31,13 +31,9 @@ function sinister_ws_lesiones_resource_retrieve($nid) {
  */
 function get_injured($fc_injuries, $count, $fc_id) {
   $injuries = array();
-  $percent = 0;
-  $number = (1.538461538461538 / $count);
   $injuries['fc_id'] = $fc_id;
 
   if (!empty($fc_injuries->field_lesionado_nombre[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $injured_name = $fc_injuries->field_lesionado_nombre[LANGUAGE_NONE][0]['value'];
     $injuries['name'] = $injured_name;
   }
@@ -46,8 +42,6 @@ function get_injured($fc_injuries, $count, $fc_id) {
   }
 
   if (!empty($fc_injuries->field_lesionado_edad[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $injured_age = $fc_injuries->field_lesionado_edad[LANGUAGE_NONE][0]['value'];
     $injuries['age'] = $injured_age;
   }
@@ -64,8 +58,6 @@ function get_injured($fc_injuries, $count, $fc_id) {
   }
 
   if (!empty($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['locality'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $injured_locality = $fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['locality'];
     $injuries['locality'] = $injured_locality;
   }
@@ -74,8 +66,6 @@ function get_injured($fc_injuries, $count, $fc_id) {
   }
 
   if (!empty($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['premise'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $injured_premise = $fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['premise'];
     $injuries['premise'] = $injured_premise;
   }
@@ -84,8 +74,6 @@ function get_injured($fc_injuries, $count, $fc_id) {
   }
 
   if (!empty($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['administrative_area'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     // Get administrative area field value.
     $key_admin_area = $fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['administrative_area'];
     $injuries['administrative_area'] = $key_admin_area;
@@ -95,8 +83,6 @@ function get_injured($fc_injuries, $count, $fc_id) {
   }
 
   if (!empty($fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['postal_code'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $injured_postal_code = $fc_injuries->field_lesionado_domicilio[LANGUAGE_NONE][0]['postal_code'];
     $injuries['postal_code'] = $injured_postal_code;
   }
@@ -105,8 +91,6 @@ function get_injured($fc_injuries, $count, $fc_id) {
   }
 
   if (!empty($fc_injuries->field_lesionado_telefono[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $injured_phone = $fc_injuries->field_lesionado_telefono[LANGUAGE_NONE][0]['value'];
     $injuries['phone'] = $injured_phone;
   }
@@ -115,8 +99,6 @@ function get_injured($fc_injuries, $count, $fc_id) {
   }
 
   if (isset($fc_injuries->field_lesionado_riesgo_b[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $injured_risk_b = $fc_injuries->field_lesionado_riesgo_b[LANGUAGE_NONE][0]['value'];
     $injuries['risk_b'] = $injured_risk_b;
   }
@@ -131,8 +113,6 @@ function get_injured($fc_injuries, $count, $fc_id) {
   $injuries['risk_b_options'] = $allowed_values_risk_b;
 
   if (!empty($fc_injuries->field_lesionado_lesiones[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $injured_injuries = $fc_injuries->field_lesionado_lesiones[LANGUAGE_NONE][0]['value'];
     $injuries['injuries'] = $injured_injuries;
   }
@@ -141,8 +121,6 @@ function get_injured($fc_injuries, $count, $fc_id) {
   }
 
   if (!empty($fc_injuries->field_lesionado_ambulancia[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $injured_ambulance = $fc_injuries->field_lesionado_ambulancia[LANGUAGE_NONE][0]['value'];
     $injuries['ambulance'] = $injured_ambulance;
   }
@@ -151,8 +129,6 @@ function get_injured($fc_injuries, $count, $fc_id) {
   }
 
   if (!empty($fc_injuries->field_lesionado_ambulancia_info[LANGUAGE_NONE][0]['value'])) {
-    // Add value to $percent variable.
-    $percent = $percent + $number;
     $injured_ambulance_info = $fc_injuries->field_lesionado_ambulancia_info[LANGUAGE_NONE][0]['value'];
     $injuries['ambulance_description'] = $injured_ambulance_info;
   }
