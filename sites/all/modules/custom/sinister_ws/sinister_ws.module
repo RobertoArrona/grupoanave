@@ -444,6 +444,7 @@ function sinister_ws_services_resources() {
           'access arguments append' => FALSE,
         ),
         'retrieve' => array(),
+        'delete' => array(),
       ),
     ),
   );

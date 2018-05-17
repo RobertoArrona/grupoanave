@@ -8,6 +8,7 @@
 /**
  * Return data from third vehicles.
  */
+/*
 function sinister_ws_delete_fc($nid = NULL) {
 
   // Assign array of field collection ids.
@@ -22,3 +23,4 @@ function sinister_ws_delete_fc($nid = NULL) {
 
   return $result;
 }
+*/
