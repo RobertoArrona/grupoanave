@@ -5,6 +5,8 @@
  * This file has all functions to save data to sinister.
  */
 
+$saved_fc_ids = array();
+
 /**
  * Controller function to save a sinsiter node using the $_POST variables.
  */
@@ -206,6 +208,7 @@ function sinister_ws_save($data) {
  */
 function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
   $i = 0;
+  $saved_fc_ids = array();
   $first_data_field = array_keys($data_fields);
   $first_data_field = $first_data_field[0];
   $data_field_i = "{$data_field}_{$i}";
@@ -214,6 +217,7 @@ function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
   while (isset($data[$data_field_i_data_field])) {
     if (($fc_item = sinister_ws_get_fc($node, $data_field, $i))) {
       $fc_item = sinister_ws_save_fc($data_field_i, $data_fields, $fc_item, $node, $data);
+      $saved_fc_ids[$i] = $fc_item->item_id;
     }
 
     $field_data_field = "field_{$data_field}";
@@ -222,6 +226,14 @@ function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
     $data_field_i = "{$data_field}_{$i}";
     $data_field_i_data_field = "{$data_field_i}_{$first_data_field}";
   }
+
+  if ($_POST['delete_fc'] == TRUE) {
+    if (count($saved_fc_ids) > 0) {
+      // Call function to to delete field collections items.
+      sinister_ws_delete_fc($node, $saved_fc_ids);
+    }
+  }
+
 }
 
 /**
@@ -402,15 +414,38 @@ function sinister_ws_get_fc($node, $field, $i = 0) {
     return $fc_item;
   }
 
-  return sinister_ws_load_fc($node->{$field_field}[LANGUAGE_NONE][$i]['value'], $node);
+  return sinister_ws_load_fc($node, $node->{$field_field}[LANGUAGE_NONE][$i]['value']);
 }
 
 /**
  * Loads a Field Collection Item.
  */
-function sinister_ws_load_fc($id, $node) {
+function sinister_ws_load_fc($node, $id) {
   $fc_item = entity_load('field_collection_item', array($id));
   $fc_item = $fc_item[$id];
   // $fc_item->setHostEntity('node', $node);.
   return $fc_item;
+}
+
+/**
+ * Delete a Field Collections Items.
+ */
+function sinister_ws_delete_fc($node, $saved_fc_ids) {
+  foreach ($node->field_lesionado[LANGUAGE_NONE] as $key => $value) {
+
+    $fc_id = $value['value'];
+
+    // Check if field collections id is not in $saved_fc_ids array.
+    if (!(in_array($fc_id, $saved_fc_ids))) {
+      // Build array of field collection values.
+      $field_collection_item_values[] = $value['value'];
+
+      // Unset them.
+      unset($node->field_lesionado[LANGUAGE_NONE][$key]);
+    }
+
+  }
+
+  // Delete field collection items.
+  entity_delete_multiple('field_collection_item', $field_collection_item_values);
 }
