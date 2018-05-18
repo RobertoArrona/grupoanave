@@ -442,7 +442,6 @@ function sinister_ws_delete_fc($node, $field_data_field, $saved_fc_ids) {
     if (!(in_array($fc_id, $saved_fc_ids))) {
       // Build array of field collection values.
       $field_collection_item_values[] = $value['value'];
-      watchdog('sinister_ws', '<pre>' . print_r($field_collection_item_values, TRUE) . '</pre>');
 
       // Unset them.
       unset($node->{$field_data_field}[LANGUAGE_NONE][$key]);
