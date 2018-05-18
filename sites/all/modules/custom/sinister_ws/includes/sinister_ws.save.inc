@@ -433,7 +433,7 @@ function sinister_ws_load_fc($node, $id) {
  * Delete a Field Collections Items.
  */
 function sinister_ws_delete_fc($node, $field_data_field, $saved_fc_ids) {
-  foreach ($node->$field_data_field[LANGUAGE_NONE] as $key => $value) {
+  foreach ($node->{$field_data_field}[LANGUAGE_NONE] as $key => $value) {
 
     $fc_id = $value['value'];
     $field_collection_item_values = array();
@@ -445,7 +445,7 @@ function sinister_ws_delete_fc($node, $field_data_field, $saved_fc_ids) {
       watchdog('sinister_ws', '<pre>' . print_r($field_collection_item_values, TRUE) . '</pre>');
 
       // Unset them.
-      unset($node->$field_data_field[LANGUAGE_NONE][$key]);
+      unset($node->{$field_data_field}[LANGUAGE_NONE][$key]);
     }
 
   }
