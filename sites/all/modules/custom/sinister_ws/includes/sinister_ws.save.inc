@@ -227,10 +227,12 @@ function sinister_ws_save_fc_data(&$node, $data_field, $data_fields, $data) {
     $data_field_i_data_field = "{$data_field_i}_{$first_data_field}";
   }
 
-  if ($_POST['delete_fc'] == TRUE) {
-    if (count($saved_fc_ids) > 0) {
-      // Call function to to delete field collections items.
-      sinister_ws_delete_fc($node, $field_data_field, $saved_fc_ids);
+  if (isset($_POST['delete_fc'])) {
+    if ($_POST['delete_fc'] == TRUE) {
+      if (count($saved_fc_ids) > 0) {
+        // Call function to to delete field collections items.
+        sinister_ws_delete_fc($node, $field_data_field, $saved_fc_ids);
+      }
     }
   }
 
@@ -434,11 +436,13 @@ function sinister_ws_delete_fc($node, $field_data_field, $saved_fc_ids) {
   foreach ($node->$field_data_field[LANGUAGE_NONE] as $key => $value) {
 
     $fc_id = $value['value'];
+    $field_collection_item_values = array();
 
     // Check if field collections id is not in $saved_fc_ids array.
     if (!(in_array($fc_id, $saved_fc_ids))) {
       // Build array of field collection values.
       $field_collection_item_values[] = $value['value'];
+      watchdog('sinister_ws', '<pre>' . print_r($field_collection_item_values, TRUE) . '</pre>');
 
       // Unset them.
       unset($node->$field_data_field[LANGUAGE_NONE][$key]);
