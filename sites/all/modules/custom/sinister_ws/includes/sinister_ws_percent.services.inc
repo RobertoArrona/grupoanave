@@ -15,14 +15,14 @@ function sinister_ws_percent_resource_retrieve($nid) {
   $percent = array();
 
   // Declare array index.
-  $percent['images'] = 0;
+  $percent['files'] = 0;
   $percent['driver'] = 0;
   $percent['injuries'] = 0;
   $percent['term'] = 0;
   $percent['total'] = 0;
 
   if (!empty($node->field_siniestro_archivo[LANGUAGE_NONE][0]['value'])) {
-    $percent['images'] = get_image_percent($node);
+    $percent['files'] = get_files_percent($node);
   }
 
   if (!empty($node->field_conductor[LANGUAGE_NONE][0]['value'])) {
@@ -38,7 +38,7 @@ function sinister_ws_percent_resource_retrieve($nid) {
   }
 
   // Sum all percents.
-  $percent['total'] = intval($percent['images'], 10) + intval($percent['driver'], 10) + intval($percent['injuries'], 10) + intval($percent['term'], 10);
+  $percent['total'] = intval($percent['files'], 10) + intval($percent['driver'], 10) + intval($percent['injuries'], 10) + intval($percent['term'], 10);
 
   return $percent;
 }
@@ -46,7 +46,7 @@ function sinister_ws_percent_resource_retrieve($nid) {
 /**
  * Returns percent from field_siniestros_archivo.
  */
-function get_image_percent($node) {
+function get_files_percent($node) {
   $count = 0;
   $percent = 0;
   $fc_count = count($node->field_siniestro_archivo[LANGUAGE_NONE]);
@@ -61,6 +61,11 @@ function get_image_percent($node) {
     if (!empty($fc_archivo[$i]->field_visualizador)) {
       // Get value from field_visualizador.
       $field_image = $fc_archivo[$i]->field_visualizador;
+    }
+
+    if (!empty($fc_archivo[$i]->field_documentos)) {
+      // Get value from field_documentos.
+      $field_document = $fc_archivo[$i]->field_documentos;
     }
 
     $images = array();
@@ -78,6 +83,10 @@ function get_image_percent($node) {
     }
 
     if (!empty($field_image[LANGUAGE_NONE][0]['filename'])) {
+      $count++;
+    }
+
+    if (!empty($field_document[LANGUAGE_NONE][0]['filename'])) {
       $count++;
     }
 
