@@ -48,7 +48,21 @@ function sinister_ws_save($data) {
   $data_fields['sinister_status'] = 'value';
 
   // Archivos.
-  if (isset($_FILES['siniestro_archivo_visualizador']) || isset($_FILES['siniestro_archivo_documento'])) {
+  if (isset($_FILES['siniestro_archivo_visualizador']) || isset($data['siniestro_archivo_visualizador']) || isset($_FILES['siniestro_archivo_documento'])) {
+
+    if (!empty($data['siniestro_archivo_visualizador'])) {
+      $data['siniestro_archivo_visualizadores'] = array();
+      // Prepare siniestro_archivo_visualizador (imagenes).
+      foreach ($_FILES['siniestro_archivo_visualizador']['name'] as $i => $siniestro_archivo_visualizador) {
+        $data['siniestro_archivo_visualizadores'][] = array(
+          'name' => $_FILES['siniestro_archivo_visualizador']['name'][$i],
+          'type' => $_FILES['siniestro_archivo_visualizador']['type'][$i],
+          'tmp_name' => $_FILES['siniestro_archivo_visualizador']['tmp_name'][$i],
+          'error' => $_FILES['siniestro_archivo_visualizador']['error'][$i],
+          'size' => $_FILES['siniestro_archivo_visualizador']['size'][$i],
+        );
+      }
+    }
 
     if (!empty($_FILES['siniestro_archivo_visualizador'])) {
       $data['siniestro_archivo_visualizadores'] = array();
