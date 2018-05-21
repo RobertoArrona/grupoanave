@@ -49,6 +49,7 @@ function sinister_ws_save($data) {
 
   // Archivos.
   if (isset($_FILES['siniestro_archivo_visualizador']) || isset($_FILES['siniestro_archivo_documento'])) {
+    watchdog('sinister_ws', '<pre>' . print_r($_FILES['siniestro_archivo_visualizador']) . '</pre>');
     $data['siniestro_archivo_visualizadores'] = array();
     $data['siniestro_archivo_documentos'] = array();
     // Prepare siniestro_archivo_visualizador (imagenes).
