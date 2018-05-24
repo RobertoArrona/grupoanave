@@ -6,9 +6,9 @@
  */
 
 /**
- * Return data from map location sinister.
+ * Return data from map sinister.
  */
-function sinister_ws_location_resource_retrieve($nid) {
+function sinister_ws_map_resource_retrieve($nid) {
   $node = node_load($nid);
   $map = array();
 
