@@ -8,7 +8,7 @@
 /**
  * Return driver info from node.
  */
-function sinister_ws_conductor_resource_retrieve($nid) {
+function sinister_ws_driver_resource_retrieve($nid) {
   $node = node_load($nid);
   $objects = array();
   $driver = array();

@@ -255,7 +255,7 @@ function sinister_ws_save_fc_siniestro_archivo($node, $data) {
   ));
   $fc_item->setHostEntity('node', $node);
 
-  // Save general datas.
+  // Save general data.
   $fc_item->field_archivo_categoria[LANGUAGE_NONE][0]['value'] = 'Fotografías de siniestro';
   $fc_item->field_fecha[LANGUAGE_NONE][0]['value'] = strtotime('now');
   $fc_item->field_fecha[LANGUAGE_NONE][0]['timezone'] = 'America/Mazatlan';

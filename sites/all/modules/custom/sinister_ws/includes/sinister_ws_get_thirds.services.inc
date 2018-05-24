@@ -8,7 +8,7 @@
 /**
  * Return data from third vehicles.
  */
-function sinister_ws_vehicles_resource_retrieve($nid) {
+function sinister_ws_thirds_resource_retrieve($nid) {
   $node = node_load($nid);
   $count = count($node->field_vehiculo_tercero[LANGUAGE_NONE]);
 
