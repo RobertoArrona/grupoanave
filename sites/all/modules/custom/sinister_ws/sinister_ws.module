@@ -270,16 +270,16 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'sinister-get-location' => array(
+    'sinister-get-map' => array(
       'operations' => array(
         'retrieve' => array(
           'help' => 'Retrieve sinister map location.',
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
-            'name' => 'includes/sinister_get_location.services',
+            'name' => 'includes/sinister_ws_map.services',
           ),
-          'callback' => 'sinister_ws_location_resource_retrieve',
+          'callback' => 'sinister_ws_map_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
