@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Retrieve a map location sinister.
+ * Retrieve a map sinister.
  */
 
 /**

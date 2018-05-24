@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Retrieve injury info from nid.
+ * Retrieve injuries info from nid.
  */
 
 /**
  * Return data from sinister injuries and damages.
  */
-function sinister_ws_lesiones_resource_retrieve($nid) {
+function sinister_ws_injuries_resource_retrieve($nid) {
   $node = node_load($nid);
   $count = count($node->field_lesionado[LANGUAGE_NONE]);
 

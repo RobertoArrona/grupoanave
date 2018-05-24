@@ -13,21 +13,74 @@
 function sinister_ws_services_resources() {
   $resources = array();
 
-  // Include the necessary inc files.
-  module_load_include('inc', 'sinister_ws', 'includes/sinister_ws.services');
-
   // Service Apis for contents.
   $resources = array(
-    'siniestros-activos' => array(
+    'sinister-get-taxonomy' => array(
       'operations' => array(
         'retrieve' => array(
-          'help' => 'Retrieves Sinister Info.',
+          'help' => 'Retrieve sinister taxonomy data.',
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws.services',
+            'name' => 'includes/sinister_ws_get_taxonomy.services',
           ),
-          'callback' => 'sinister_ws_resource_retrieve',
+          'callback' => 'sinister_ws_taxonomy_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'sinister-get-entity-reference' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieve sinister entity referencedata.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_get_entity_reference.services',
+          ),
+          'callback' => 'sinister_ws_entity_reference_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'sinister-get-list-sinisters' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieves list sinisters info.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_get_list_sinisters.services',
+          ),
+          'callback' => 'sinister_ws_list_sinisters_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
@@ -46,44 +99,16 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'siniestros-terminados' => array(
+    'sinister-get-files' => array(
       'operations' => array(
         'retrieve' => array(
-          'help' => 'Retrieves Inactive Sinister Info.',
+          'help' => 'Retrieves sinister files.',
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_inactive.services',
+            'name' => 'includes/sinister_ws_get_files.services',
           ),
-          'callback' => 'sinister_ws_inactive_resource_retrieve',
-          'access callback' => 'user_access',
-          'access arguments' => array('access content'),
-          'access arguments append' => FALSE,
-          'args' => array(
-            array(
-              'name' => 'uid',
-              'type' => 'int',
-              'description' => 'Function to perform',
-              'source' => array(
-                'path' => '0',
-              ),
-              'optional' => TRUE,
-              'default' => '0',
-            ),
-          ),
-        ),
-      ),
-    ),
-    'archivos' => array(
-      'operations' => array(
-        'retrieve' => array(
-          'help' => 'Retrieves File Image URL.',
-          'file' => array(
-            'type' => 'inc',
-            'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_files.services',
-          ),
-          'callback' => 'sinister_ws_archivos_resource_retrieve',
+          'callback' => 'sinister_ws_files_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
@@ -102,16 +127,16 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'datos-conductor' => array(
+    'sinister-get-driver' => array(
       'operations' => array(
         'retrieve' => array(
-          'help' => 'Retrieve sinister vehicle data.',
+          'help' => 'Retrieve sinister driver data.',
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_conductor.services',
+            'name' => 'includes/sinister_ws_get_driver.services',
           ),
-          'callback' => 'sinister_ws_conductor_resource_retrieve',
+          'callback' => 'sinister_ws_driver_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
@@ -130,16 +155,16 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'vehiculos-terceros' => array(
+    'sinister-get-thirds' => array(
       'operations' => array(
         'retrieve' => array(
-          'help' => 'Retrieves Third Vehicles Info.',
+          'help' => 'Retrieves thirds vehicles data.',
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_vehicles.services',
+            'name' => 'includes/sinister_ws_get_thirds.services',
           ),
-          'callback' => 'sinister_ws_vehicles_resource_retrieve',
+          'callback' => 'sinister_ws_thirds_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
@@ -158,16 +183,16 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'lesiones-danos' => array(
+    'sinister-get-injuries' => array(
       'operations' => array(
         'retrieve' => array(
-          'help' => 'Retrieve sinister injured data.',
+          'help' => 'Retrieve sinister injuries and damages data.',
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_lesiones.services',
+            'name' => 'includes/sinister_ws_get_injuries.services',
           ),
-          'callback' => 'sinister_ws_lesiones_resource_retrieve',
+          'callback' => 'sinister_ws_injuries_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
@@ -186,72 +211,16 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'sinister-get-termino' => array(
+    'sinister-get-term' => array(
       'operations' => array(
         'retrieve' => array(
-          'help' => 'Retrieve sinister termino data.',
+          'help' => 'Retrieve sinister term data.',
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_termino.services',
+            'name' => 'includes/sinister_ws_get_term.services',
           ),
-          'callback' => 'sinister_ws_termino_resource_retrieve',
-          'access callback' => 'user_access',
-          'access arguments' => array('access content'),
-          'access arguments append' => FALSE,
-          'args' => array(
-            array(
-              'name' => 'nid',
-              'type' => 'int',
-              'description' => 'Function to perform',
-              'source' => array(
-                'path' => '0',
-              ),
-              'optional' => TRUE,
-              'default' => '0',
-            ),
-          ),
-        ),
-      ),
-    ),
-    'informacion-legal' => array(
-      'operations' => array(
-        'retrieve' => array(
-          'help' => 'Retrieves Any Legal Info.',
-          'file' => array(
-            'type' => 'inc',
-            'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_legal.services',
-          ),
-          'callback' => 'sinister_ws_legal_resource_retrieve',
-          'access callback' => 'user_access',
-          'access arguments' => array('access content'),
-          'access arguments append' => FALSE,
-          'args' => array(
-            array(
-              'name' => 'nid',
-              'type' => 'int',
-              'description' => 'Function to perform',
-              'source' => array(
-                'path' => '0',
-              ),
-              'optional' => TRUE,
-              'default' => '0',
-            ),
-          ),
-        ),
-      ),
-    ),
-    'historico' => array(
-      'operations' => array(
-        'retrieve' => array(
-          'help' => 'Retrieve data from finished sinister info.',
-          'file' => array(
-            'type' => 'inc',
-            'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_historical.services',
-          ),
-          'callback' => 'sinister_ws_historical_resource_retrieve',
+          'callback' => 'sinister_ws_term_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,
@@ -277,7 +246,7 @@ function sinister_ws_services_resources() {
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_map.services',
+            'name' => 'includes/sinister_ws_get_map.services',
           ),
           'callback' => 'sinister_ws_map_resource_retrieve',
           'access callback' => 'user_access',
@@ -298,7 +267,91 @@ function sinister_ws_services_resources() {
         ),
       ),
     ),
-    'sinister-get-arrival' => array(
+    'sinister-get-list-historicals' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieves list historicals info.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_get_list_historicals.services',
+          ),
+          'callback' => 'sinister_ws_list_historicals_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'uid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'sinister-get-historical' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieve data from finished sinisters.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_get_historical.services',
+          ),
+          'callback' => 'sinister_ws_historical_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'get-legal-info' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'help' => 'Retrieves legal info.',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'sinister_ws',
+            'name' => 'includes/sinister_ws_get_legal.services',
+          ),
+          'callback' => 'sinister_ws_legal_resource_retrieve',
+          'access callback' => 'user_access',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'Function to perform',
+              'source' => array(
+                'path' => '0',
+              ),
+              'optional' => TRUE,
+              'default' => '0',
+            ),
+          ),
+        ),
+      ),
+    ),
+    'sinister-get-sd-arrival' => array(
       'operations' => array(
         'retrieve' => array(
           'help' => 'Retrieve sinister arrival data.',
@@ -333,65 +386,9 @@ function sinister_ws_services_resources() {
           'file' => array(
             'type' => 'inc',
             'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_percent.services',
+            'name' => 'includes/sinister_ws_get_percent.services',
           ),
           'callback' => 'sinister_ws_percent_resource_retrieve',
-          'access callback' => 'user_access',
-          'access arguments' => array('access content'),
-          'access arguments append' => FALSE,
-          'args' => array(
-            array(
-              'name' => 'nid',
-              'type' => 'int',
-              'description' => 'Function to perform',
-              'source' => array(
-                'path' => '0',
-              ),
-              'optional' => TRUE,
-              'default' => '0',
-            ),
-          ),
-        ),
-      ),
-    ),
-    'sinister-get-taxonomy' => array(
-      'operations' => array(
-        'retrieve' => array(
-          'help' => 'Retrieve sinister taxonomy data.',
-          'file' => array(
-            'type' => 'inc',
-            'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_taxonomy.services',
-          ),
-          'callback' => 'sinister_ws_taxonomy_resource_retrieve',
-          'access callback' => 'user_access',
-          'access arguments' => array('access content'),
-          'access arguments append' => FALSE,
-          'args' => array(
-            array(
-              'name' => 'nid',
-              'type' => 'int',
-              'description' => 'Function to perform',
-              'source' => array(
-                'path' => '0',
-              ),
-              'optional' => TRUE,
-              'default' => '0',
-            ),
-          ),
-        ),
-      ),
-    ),
-    'sinister-get-entity-reference' => array(
-      'operations' => array(
-        'retrieve' => array(
-          'help' => 'Retrieve sinister entity referencedata.',
-          'file' => array(
-            'type' => 'inc',
-            'module' => 'sinister_ws',
-            'name' => 'includes/sinister_ws_entity_reference.services',
-          ),
-          'callback' => 'sinister_ws_entity_reference_resource_retrieve',
           'access callback' => 'user_access',
           'access arguments' => array('access content'),
           'access arguments append' => FALSE,

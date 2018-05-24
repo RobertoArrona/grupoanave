@@ -2,11 +2,11 @@
 
 /**
  * @file
- * Retrieve a term info from nid.
+ * Retrieve a taxonomies info from nid.
  */
 
 /**
- * Return data term from sinister.
+ * Return taxonomies data from sinister.
  */
 function sinister_ws_taxonomy_resource_retrieve($nid) {
   $objects = array();

@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Retrieve a sinister info from uid.
+ * Retrieve list sinisters info from uid.
  */
 
 /**
- * Return data from sinister.
+ * Return list sinisters info.
  */
-function sinister_ws_resource_retrieve($uid) {
+function sinister_ws_list_sinisters_resource_retrieve($uid) {
   $sinisters = sinister_get_ajustador_sinisters($uid, 1);
   $objects = array();
   foreach ($sinisters as $nid => $sinister) {

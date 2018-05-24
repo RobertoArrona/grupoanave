@@ -20,7 +20,7 @@ function sinister_ws_update_pass() {
     // Add encrypted password to user pass field.
     $user->pass = $hash;
 
-    // Save user datas.
+    // Save user data.
     user_save($user);
 
     return array(

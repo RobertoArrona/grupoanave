@@ -8,7 +8,7 @@
 /**
  * Return file data from sinister.
  */
-function sinister_ws_archivos_resource_retrieve($nid) {
+function sinister_ws_files_resource_retrieve($nid) {
   $node = node_load($nid);
   $count = count($node->field_siniestro_archivo[LANGUAGE_NONE]);
 

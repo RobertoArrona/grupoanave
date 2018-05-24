@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Retrieve inactive sinisters info from nid.
+ * Retrieve list historicals info from uid.
  */
 
 /**
- * Return inactive sinister from node.
+ * Return list historicals info.
  */
-function sinister_ws_inactive_resource_retrieve($uid) {
+function sinister_ws_list_historicals_resource_retrieve($uid) {
   $sinisters = sinister_get_ajustador_sinisters($uid, 2);
   $objects = array();
   foreach ($sinisters as $nid => $sinister) {

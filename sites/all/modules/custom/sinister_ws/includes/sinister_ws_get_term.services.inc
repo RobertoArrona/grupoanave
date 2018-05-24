@@ -8,7 +8,7 @@
 /**
  * Return data term from sinister.
  */
-function sinister_ws_termino_resource_retrieve($nid) {
+function sinister_ws_term_resource_retrieve($nid) {
   $node = node_load($nid);
   $term = array();
 

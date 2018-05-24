@@ -2,16 +2,17 @@
 
 /**
  * @file
- * Retrieve a filling percent of sinister fields from nid.
+ * Retrieve sinister percent and arrival data from nid.
  */
 
 /**
- * Return data from sinister arrival.
+ * Return sinister percent and arrival data.
  */
 function sinister_ws_percent_resource_retrieve($nid) {
 
   $node = node_load($nid);
 
+  $sinister = array();
   $percent = array();
 
   // Declare array index.
@@ -40,7 +41,13 @@ function sinister_ws_percent_resource_retrieve($nid) {
   // Sum all percents.
   $percent['total'] = intval($percent['files'], 10) + intval($percent['driver'], 10) + intval($percent['injuries'], 10) + intval($percent['term'], 10);
 
-  return $percent;
+  // Add arrival data.
+  $arrival = sinister_ws_arrival_resource_retrieve($node);
+
+  $sinister['percent'] = $percent;
+  $sinister['arrival'] = $arrival;
+
+  return $sinister;
 }
 
 /**
@@ -291,4 +298,45 @@ function get_term_percent($node) {
   }
 
   return $percent;
+}
+
+/**
+ * Return data from sinister arrival.
+ */
+function sinister_ws_arrival_resource_retrieve($node) {
+  $arrival = array();
+  $count = 0;
+
+  if (!empty($node->field_fecha_arribo[LANGUAGE_NONE][0]['value'])) {
+    // Get date arribal.
+    $date = $node->field_fecha_arribo[LANGUAGE_NONE][0]['value'];
+    $arrival['date'] = $date;
+    $count++;
+  }
+  else {
+    $arrival['date'] = NULL;
+  }
+  if (!empty($node->field_mapa_arribo[LANGUAGE_NONE][0]['lat'])) {
+    // Get latitude from arribal map.
+    $lat = $node->field_mapa_arribo[LANGUAGE_NONE][0]['lat'];
+    // Get longitude from arribal map.
+    $lng = $node->field_mapa_arribo[LANGUAGE_NONE][0]['lng'];
+    // Add values to array.
+    $arrival['latitude'] = $lat;
+    $arrival['longitude'] = $lng;
+    $count++;
+  }
+  else {
+    $arrival['latitude'] = NULL;
+    $arrival['longitude'] = NULL;
+  }
+
+  if ($count >= 1) {
+    $arrival['checked-arrival'] = TRUE;
+  }
+  else {
+    $arrival['checked-arrival'] = FALSE;
+  }
+
+  return $arrival;
 }
