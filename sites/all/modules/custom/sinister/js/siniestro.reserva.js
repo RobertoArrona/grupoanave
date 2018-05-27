@@ -42,14 +42,22 @@
       }
     });
 
+    // Clone values.
     arrival_date = $('#edit-field-fecha-arribo-und-0-value-date').val();
     contract_folio = $('div.form-item-field-poliza-und-0-target-id .field-suffix label span a').text();
+
+    // Add contract folio value.
     $('#edit-field-vehiculo-tercero-und-0-field-3ro-numero-poliza-und-0-value').val(contract_folio);
+
+    // Disible and hide map arrival fields.
+/*
     $('#edit-field-mapa-arribo-und-0-address-field').prop('disabled',true);
     $('#edit-field-mapa-arribo [id^="geolocation-address-geocode"]').css('display','none');
     $('#edit-field-mapa-arribo [id^="geolocation-client-location"]').css('display','none');
     $('#edit-field-mapa-arribo [id^="geolocation-remove"]').css('display','none');
     $('#edit-field-mapa-arribo [id^="geolocation-help"]').css('display','none');
+*/
+
   });
 
   $(document).on('change', function () {
@@ -77,7 +85,7 @@
     e.preventDefault();
 
     // Add previous date.
-    $(this).val(arrival_date);
+//     $(this).val(arrival_date);
   });
 
   /**
