@@ -67,4 +67,24 @@ function sinister_form_siniestro_node_form_alter(&$form, &$form_state, $form_id)
   $form['title']['#attributes']['readonly'] = 'readonly';
   $form['title']['#attributes']['style'] = 'display: none;';
 
+  $uid = $GLOBALS["user"]->uid;
+  $user = user_load($uid);
+  $restricted_roles = array(
+    'abogado',
+    'taller',
+    'hospital',
+  );
+
+  if (is_array($user->roles)) {
+
+    $user_roles = $user->roles;
+
+    foreach ($restricted_roles as $restricted_role) {
+      if (in_array($restricted_role, $user_roles)) {
+        drupal_add_css(drupal_get_path('module', 'sinister') . '/css/sinister-files-form.css');
+      }
+    }
+
+  }
+
 }
