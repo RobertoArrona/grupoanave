@@ -1,0 +1,3 @@
+.node-siniestro-form #field-siniestro-archivo-values input[id*="remove-button"] {
+  display: none;
+}
