@@ -81,7 +81,7 @@ function sinister_form_siniestro_node_form_alter(&$form, &$form_state, $form_id)
 
     foreach ($restricted_roles as $restricted_role) {
       if (in_array($restricted_role, $user_roles)) {
-        drupal_add_css(drupal_get_path('module', 'sinister') . '/css/sinister-files-form.css');
+        drupal_add_css(drupal_get_path('module', 'sinister') . '/css/sinister-form.css');
       }
     }
 
