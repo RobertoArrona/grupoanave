@@ -1,3 +1,4 @@
+.node-siniestro-form #edit-group_usuarios,
 .node-siniestro-form #field-siniestro-archivo-values input[id*="remove-button"] {
-  display: none;
+  display: none !important;
 }
