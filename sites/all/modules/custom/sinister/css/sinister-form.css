@@ -1,4 +1,9 @@
 .node-siniestro-form #edit-group_usuarios,
-.node-siniestro-form #field-siniestro-archivo-values input[id*="remove-button"] {
+.node-siniestro-form table[id*="field-siniestro-archivo-values"] input[id*="remove-button"] {
   display: none !important;
+}
+
+table[id*="field-siniestro-archivo-values"] fieldset[id*="visualizador"] input[id*="remove-button"],
+table[id*="field-siniestro-archivo-values"] fieldset[id*="documentos"] input[id*="remove-button"] {
+  display: block !important;
 }
