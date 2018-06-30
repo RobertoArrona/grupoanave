@@ -1,5 +1,6 @@
 .node-siniestro-form #edit-group_usuarios,
-.node-siniestro-form table[id*="field-siniestro-archivo-values"] input[id*="remove-button"] {
+.node-siniestro-form table[id*="field-siniestro-archivo-values"] input[id*="remove-button"],
+.node-siniestro-form table[id*="field-siniestro-archivo-values"] .draggable .handle {
   display: none !important;
 }
 
