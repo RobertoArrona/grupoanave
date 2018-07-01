@@ -15,7 +15,7 @@
 <!--   <td class="archivo"><?php print render($elements['archivo_nombre']);?></td> -->
   <td class="archivo"><?php print render($elements['field_documentos']);?></td>
   <td class="autor"><?php print render($elements['field_archivo_autor']);?></td>
-  <td class="categoria"><?php print render($elements['field_categoria_archivo']);?></td>
+  <td class="categoria"><?php print render($elements['field_archivo_categoria']);?></td>
 <!--
   <td class="operaciones">
     <a href="<?php print render($elements['field_siniestro_archivo_adjunto']);?>" target="_blank">Ver</a>
