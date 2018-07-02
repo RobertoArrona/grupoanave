@@ -73,6 +73,8 @@ function sinister_form_siniestro_node_form_alter(&$form, &$form_state, $form_id)
     'abogado',
     'taller',
     'hospital',
+    'proveedores',
+    'gruas',
   );
 
   if (is_array($user->roles)) {
