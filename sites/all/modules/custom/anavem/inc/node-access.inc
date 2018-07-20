@@ -89,8 +89,8 @@ function anavem_node_grants_poliza($account, $op, &$grants) {
   // Get a list of all poliza nodes.
   $all_nids = anavem_poliza_get_all();
 
-  // Get a list of assiged poliza nodes.
-  $assiged_nids = anavem_poliza_get_assigned($account->uid);
+  // Get a list of assigned poliza nodes.
+  $assigned_nids = anavem_poliza_get_assigned($account->uid);
 
   // Determine if the user can access this poliza node.
   foreach ($all_nids as $nid) {
@@ -100,7 +100,7 @@ function anavem_node_grants_poliza($account, $op, &$grants) {
   }
 
   // Determine if the user can access this poliza node.
-  foreach ($assiged_nids as $nid) {
+  foreach ($assigned_nids as $nid) {
     if (anavem_user_can_access_assigned_poliza($nid, $account)) {
       $grants['anavem_poliza_node_access_view'][] = $nid;
     }
