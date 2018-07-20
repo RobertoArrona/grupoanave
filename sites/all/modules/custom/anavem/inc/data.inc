@@ -125,6 +125,29 @@ function anavem_poliza_get_all() {
 }
 
 /**
+ * Get assigned polizas ids.
+ */
+function anavem_poliza_get_assigned($uid) {
+  static $rows;
+  if (isset($rows)) {
+    return $rows;
+  }
+
+  $type = 'poliza';
+  $results = db_query("SELECT nid FROM {node} WHERE type = :type AND uid = :uid",
+  array(
+    ':type' => $type,
+    ':uid' => $uid,
+  ));
+  $rows = array();
+  while (($row = $results->fetchAssoc())) {
+    $rows[$row['nid']] = $row['nid'];
+  }
+
+  return $rows;
+}
+
+/**
  * Returns the Poliza attached to a Siniestro.
  */
 function anavem_get_poliza_from_siniestro($siniestro) {
