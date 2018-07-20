@@ -27,7 +27,6 @@ function payment_receipt_receipt_number_increase() {
   }
 
   $payment_receipt_number = intval($payment_receipt_number) + 1;
-  // print_r($payment_receipt_number);exit;
   if ($payment_receipt_number > 9999999) {
     $payment_receipt_number = 1000000;
   }
