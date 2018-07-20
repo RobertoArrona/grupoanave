@@ -357,8 +357,8 @@ function anavem_siniestro_get_taller_uid($node) {
  * Gets the grúas id from a Siniestro.
  */
 function anavem_siniestro_get_gruas_uid($node) {
-  if (isset($node->field_gruas[LANGUAGE_NONE][0]['target_id']) && !empty($node->field_gruas[LANGUAGE_NONE][0]['target_id'])) {
-    return $node->field_gruas[LANGUAGE_NONE][0]['target_id'];
+  if (isset($node->field_grua[LANGUAGE_NONE][0]['target_id']) && !empty($node->field_grua[LANGUAGE_NONE][0]['target_id'])) {
+    return $node->field_grua[LANGUAGE_NONE][0]['target_id'];
   }
 
   return FALSE;
