@@ -128,7 +128,6 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
   $form['field_importe_con_letra_rc']['#attributes']['style'] = 'display: none;';
   $form['field_fecha_de_expedicion_rc']['#attributes']['style'] = 'display: none;';
 
-
   $uid = $GLOBALS["user"]->uid;
   $user = user_load($uid);
   $restricted_roles = array(
@@ -184,29 +183,32 @@ function get_grace_period($grace_day) {
  * Get coverages.
  */
 function get_coverage($payment_type, $date) {
+
+  $dt = new DateTime($date);
+
   if ($payment_type == 'mensual') {
-    $dateAumented = date('Y-m-d', strtotime("$date +1 month"));
-    return $dateAumented;
+    $dt->modify('+1 month');
+    return $dt->format('Y-m-d');
   }
   if ($payment_type == '3meses') {
-    $dateAumented = date('Y-m-d', strtotime("$date +1 month"));
-    return $dateAumented;
+    $dt->modify('+1 month');
+    return $dt->format('Y-m-d');
   }
   if ($payment_type == 'trimestral') {
-    $dateAumented = date('Y-m-d', strtotime("$date +3 month"));
-    return $dateAumented;
+    $dt->modify('+3 month');
+    return $dt->format('Y-m-d');
   }
   if ($payment_type == 'cuatrimestral') {
-    $dateAumented = date('Y-m-d', strtotime("$date +4 month"));
-    return $dateAumented;
+    $dt->modify('+4 month');
+    return $dt->format('Y-m-d');
   }
   if ($payment_type == 'semestral') {
-    $dateAumented = date('Y-m-d', strtotime("$date +6 month"));
-    return $dateAumented;
+    $dt->modify('+6 month');
+    return $dt->format('Y-m-d');
   }
   if ($payment_type == 'anual') {
-    $dateAumented = date('Y-m-d', strtotime("$date +1 year"));
-    return $dateAumented;
+    $dt->modify('+1 year');
+    return $dt->format('Y-m-d');
   }
 }
 

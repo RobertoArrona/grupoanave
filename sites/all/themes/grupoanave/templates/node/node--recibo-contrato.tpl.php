@@ -128,18 +128,17 @@ if ($typePage == "content") {
 }
 
 function getDateFormat($date) {
-  $day = date_create($date);
-  $day = date_format($day,"d");
-  
-  $month = date_create($date);
-  $month = date_format($month,"n");
-  
-  $year = date_create($date);
-  $year = date_format($year,"Y");
-  
+
+  $date = new DateTime($date);
+
+  $day = $date->format('d');
+  $month = $date->format('n');
+  $year = $date->format('Y');
+
   switch ($month) {
   case 1:
     $spanishMonth = "Enero";
+    break;
   case 2:
     $spanishMonth = "Febrero";
     break;
@@ -174,7 +173,7 @@ function getDateFormat($date) {
     $spanishMonth = "Diciembre";
     break;
   }
-  return $day."/".$spanishMonth."/".$year;
+  return "{$day}/{$spanishMonth}/{$year}";
 }
 //get serie
 $serie = $node->field_serie_rc[LANGUAGE_NONE][0]['value'];
@@ -282,8 +281,8 @@ if ($right_policy == 0) {
               <?php
                 if(isset($node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'])) {
                   $due_date = $node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'];
-                  $dateFormate = getDateFormat($due_date);
-                  print render($dateFormate);
+                  $due_date_format = getDateFormat($due_date);
+                  print render($due_date_format);
                 }
               ?>
               <?php /* endif; */?>
@@ -294,8 +293,8 @@ if ($right_policy == 0) {
               <strong>Periodo de cobertura del:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value']);
-                print render($dateFormate); 
+                $coverage_period_format = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value']);
+                print render($coverage_period_format); 
               ?>
               <?php /* endif; */?>
             </td>
@@ -306,8 +305,8 @@ if ($right_policy == 0) {
               <strong class="to">al:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value2']);
-                print render($dateFormate); 
+                $coverage_period_2_format = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value2']);
+                print render($coverage_period_2_format); 
               ?>
               <?php /* endif; */?>
             </td>
@@ -366,8 +365,8 @@ if ($right_policy == 0) {
               <strong>Fecha de expedicion:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_fecha_de_expedicion_rc[LANGUAGE_NONE][0]['value']);
-                print render($dateFormate); 
+                $expedition_date_format = getDateFormat($node->field_fecha_de_expedicion_rc[LANGUAGE_NONE][0]['value']);
+                print render($expedition_date_format); 
               ?>
               <?php /* endif; */?>
             </td>
@@ -619,8 +618,8 @@ if ($right_policy == 0) {
               <?php
                 if(isset($node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'])) {
                   $due_date = $node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'];
-                  $dateFormate = getDateFormat($due_date);
-                  print render($dateFormate);
+                  $due_date_format = getDateFormat($due_date);
+                  print render($due_date_format);
                 }
               ?>
               <?php /* endif; */?>
@@ -631,8 +630,8 @@ if ($right_policy == 0) {
               <strong>Periodo de cobertura del:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value']);
-                print render($dateFormate); 
+                $due_date_format = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value']);
+                print render($due_date_format); 
               ?>
               <?php /* endif; */?>
             </td>
@@ -643,8 +642,8 @@ if ($right_policy == 0) {
               <strong class="to">al:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value2']);
-                print render($dateFormate); 
+                $due_date_2_format = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value2']);
+                print render($due_date_2_format); 
               ?>
               <?php /* endif; */?>
             </td>
@@ -703,8 +702,8 @@ if ($right_policy == 0) {
               <strong>Fecha de expedicion:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_fecha_de_expedicion_rc[LANGUAGE_NONE][0]['value']);
-                print render($dateFormate); 
+                $expedition_date_format = getDateFormat($node->field_fecha_de_expedicion_rc[LANGUAGE_NONE][0]['value']);
+                print render($expedition_date_format); 
               ?>
               <?php /* endif; */?>
             </td>
