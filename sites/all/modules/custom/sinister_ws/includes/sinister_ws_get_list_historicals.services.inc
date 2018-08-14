@@ -52,6 +52,24 @@ function sinister_ws_list_historicals_resource_retrieve($uid) {
       $return_obj['model'] = $vehicle_model;
     }
 
+    if (isset($poliza_fields->field_vehiculo_serie[LANGUAGE_NONE][0]['value'])) {
+      // Get vehicle model field value.
+      $vehicle_serie = $poliza_fields->field_vehiculo_serie[LANGUAGE_NONE][0]['value'];
+      $return_obj['serie'] = $vehicle_serie;
+    }
+    else {
+      $return_obj['serie'] = NULL;
+    }
+
+    if (isset($poliza_fields->field_vehiculo_motor[LANGUAGE_NONE][0]['value'])) {
+      // Get vehicle model field value.
+      $vehicle_engine = $poliza_fields->field_vehiculo_motor[LANGUAGE_NONE][0]['value'];
+      $return_obj['engine'] = $vehicle_engine;
+    }
+    else {
+      $return_obj['engine'] = NULL;
+    }
+
     $objects[] = $return_obj;
   }
   return $objects;
