@@ -75,10 +75,10 @@ function sinister_ws_list_sinisters_resource_retrieve($uid) {
     if (isset($poliza_fields->field_vehiculo_motor[LANGUAGE_NONE][0]['value'])) {
       // Get vehicle model field value.
       $vehicle_engine = $poliza_fields->field_vehiculo_motor[LANGUAGE_NONE][0]['value'];
-      $return_obj['motor'] = $vehicle_engine;
+      $return_obj['engine'] = $vehicle_engine;
     }
     else {
-      $return_obj['motor'] = NULL;
+      $return_obj['engine'] = NULL;
     }
 
     $objects[] = $return_obj;
