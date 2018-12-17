@@ -278,9 +278,9 @@ function ffc_condition_execute_rules_event(&$build, $source, $configuration, $co
  */
 function _target_string_search(&$build, $configuration, $context = NULL) {
   // Only search if the field is not empty.
-  if (!empty($context['entity']->$configuration['target']) || !empty($build[$configuration['target']]['#items'])) {
+  if (!empty($context['entity']->{$configuration['target']}) || !empty($build[$configuration['target']]['#items'])) {
     // Check if we have $context and use it if set, otherwise use $build.
-    $target = isset($context) ? $context['entity']->$configuration['target'] : $build[$configuration['target']]['#items'];
+    $target = isset($context) ? $context['entity']->{$configuration['target']} : $build[$configuration['target']]['#items'];
     // Convert any Objects into Arrays in our target field.
     $converted_target = json_decode(json_encode($target), TRUE);
     $string = $configuration['string'];
