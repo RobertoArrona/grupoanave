@@ -1,5 +1,7 @@
 <?php
 
+
+
 /**
  * @file
  * Display Suite 1 column template.
@@ -43,25 +45,21 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
               </div>
               <?php endif;?>
             </td></tr>
-            
             <tr><td>
               <strong>Fecha de Siniestro:</strong>
               <div>
               <?php print render($elements['post_date']);?>
               </div>
             </td></tr>
-            
             <tr class="last"><td>
               <strong>Asegurado:</strong>
               <div>
               <?php print render($elements['asegurado']);?>
               </div>
             </td></tr>
-            
           </tbody>
         </table>
       </td>
-      
       <td class="table-generales">
         <table class="print-child">
           <tbody>
@@ -73,7 +71,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
               </div>
               <?php endif;?>
             </td></tr>
-            
             <tr><td>
               <strong>Estado:</strong>
               <?php if(isset($elements['field_poblacion'])):?>
@@ -82,7 +79,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
               </div>
               <?php endif;?>
             </td></tr>
-            
             <tr><td>
               <strong>Referencias del Lugar:</strong>
               <?php if(isset($elements['field_lugar_referencias'])):?>
@@ -91,7 +87,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
               </div>
               <?php endif;?>
             </td></tr>
-            
             <tr><td>
               <strong>Comentarios del Siniestro:</strong>
               <?php if(isset($node->field_comentarios_del_siniestro[LANGUAGE_NONE][0]['value'])):?>
@@ -104,7 +99,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
           </tbody>
         </table>
       </td>
-      
       <td class="table-agentes">
         <table class="print-child">
           <tbody>
@@ -116,7 +110,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
                 </div>
               </td>
             </tr>
-            
             <tr>
               <td>
                 <strong>Ajustador:</strong>
@@ -127,7 +120,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
                 <?php endif;?>
               </td>
             </tr>
-            
             <tr>
               <td>
                 <strong>Abogado:</strong>
@@ -136,7 +128,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
                 <?php endif;?>
               </td>
             </tr>
-            
             <tr>
               <td>
                 <strong>Hospital:</strong>
@@ -154,8 +145,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
                 <?php endif;?>
               </td>
             </tr>
-            
-                        
           </tbody>
         </table>
       </td>
@@ -200,6 +189,71 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
   <?php print render($elements['field_lesionado']);?>
   <?php endif;?>
   
+<table class="print">
+  <thead>
+    <tr>
+      <th colspan="2">término</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="nombre-edad">
+      <td>
+        <table class="print-child-2">
+          <tbody>
+            <tr>
+              <td>
+                <strong>informe</strong>:
+                <br/>
+                <?php print render($elements['field_informe']);?>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr class="lesiones">
+      <td>
+        <table class="print-child-2">
+          <tbody>
+            <tr class="nombre-edad">
+              <td width="33.333%">
+                <strong>Daños Materiales</strong>:
+                <br/>
+                <?php print render($elements['field_danos_materiales']);?>&nbsp;
+              </td>
+              <td width="33.333%">
+                <strong>Robo</strong>:
+                <br/>
+                <?php print render($elements['field_robo']);?>&nbsp;
+              </td>
+              <td width="33.333%" class="last">
+                <strong>Resp. Civil</strong>:
+                <br/>
+                <?php print render($elements['field_resp_civil']);?>&nbsp;
+              </td>
+            </tr>
+            <tr>
+              <td width="33.333%">
+                <strong>Gastos Medicos</strong>:
+                <br/>
+                <?php print render($elements['field_gastos_medicos']);?>&nbsp;
+              </td>
+              <td width="33.333%">
+                <strong>RC Viajero</strong>:
+                <br/>
+                <?php print render($elements['field_rc_viajero']);?>&nbsp;
+              </td>
+              <td width="33.333%" class="last">
+                <strong>Reserva Total</strong>:
+                <br/>
+                <?php print render($elements['field_reserva_total']);?>&nbsp;
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+  </tbody>
+</table>
   <?php if(isset($elements['links'])):?>
   <?php print render($elements['links']);?>
   <?php endif;?>
