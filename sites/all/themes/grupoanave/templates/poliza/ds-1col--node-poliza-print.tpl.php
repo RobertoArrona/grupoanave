@@ -151,24 +151,6 @@ $office  = "$termname-$agent_id";
       <td class="table-poliza">
         <table class="print-child">
           <tbody>
-	          <tr>
-	            <td>
-                <?php if(isset($office)):?>
-                <table class="generic"><tr>
-                  <td><strong>Oficina</strong></td>
-                  <td align="right"><?php print $office?></td>
-                </tr></table>
-                <?php endif;?>
-              </td>
-              <td>
-                <?php if(isset($office)):?>
-                <table class="generic"><tr>
-                  <td><strong></strong></td>
-                  <td align="right"></td>
-                </tr></table>
-                <?php endif;?>
-              </td>
-	          </tr>
             <tr>
               <td>
                 <?php if(isset($elements['title'])):?>
@@ -187,7 +169,22 @@ $office  = "$termname-$agent_id";
                 <?php endif;?>
               </td>
             </tr>
-            
+            <?php if(isset($office)):?>
+	          <tr>
+	            <td>
+                <table class="generic"><tr>
+                  <td><strong>Oficina</strong></td>
+                  <td align="right"><?php print $office?></td>
+                </tr></table>
+              </td>
+              <td>
+                <table class="generic"><tr>
+                  <td><strong></strong></td>
+                  <td align="right"></td>
+                </tr></table>
+              </td>
+	          </tr>
+	          <?php endif;?>
             <tr>
               <td>
                 <?php if(isset($elements['field_poliza_emision'])):?>

@@ -45,7 +45,7 @@ body .row {
 body .row h2 {
   margin: 0;
   padding: 5px;
-  background: #19227C !important;
+  background: #272167 !important;
   color: #fff;
   font-size: 12px;
   line-height: 1.2em;
@@ -131,7 +131,7 @@ body .group-poliza .subcolumn.first .inner-block {
 .tipo-poliza-block .coberturas-block > .label-above {
   margin: 0;
   padding: 5px;
-  background: #19227C !important;
+  background: #272167 !important;
   color: #fff;
   font-size: 12px;
 }
@@ -189,12 +189,12 @@ table.print {
   border-collapse: separate;
 }
 table.print tr.odd {
-  background-color: #EAEBF3 !important;
+  background-color: #93ffff !important;
 }
 table.print thead tr th {
   margin: 0;
   padding: 5px;
-  background: #19227C !important;
+  background: #272167 !important;
   color: #fff;
   font-size: 12px;
   line-height: 1.2em;
