@@ -232,10 +232,10 @@ if ($right_policy == 0) {
         <tbody>
           <tr>
             <td class="print-logo">
-              <strong>MN Global Protec A.C.</strong><br>
-              Calzada Independencia  Norte No. 1131, Colonia <br>
-              Independencia, Guadalajara, Jalisco, Mexico<br>
-              C.P. 44290 <br>
+              <strong>GP Mutual M&eacute;xico A.C.</strong><br>
+              Av. Guadalupe Victoria No 121 Int 1, Colonia <br>
+              Centro, Tepic, Nayarit, M&eacute;xico<br>
+              C.P. 63000<br>
             </td>
             <td class="print-title">
               <h1>CONCENTRACION EMPRESARIAL DE PAGO PARA USO EXCLUSIVO DEL BANCO</h1>
@@ -513,7 +513,7 @@ if ($right_policy == 0) {
           <p>1.</p>
         </div>
         <div class="text">
-          <p>Los pagos deberan realizarce en cualquier sucursal de Santander y en las oficnas de MN Global Protec A.C. a travez de la referencia bancaria Proporcionada.</p>
+          <p>Los pagos deberan realizarce en cualquier sucursal de Santander y en las oficnas de GP Mutual M&eacute;xico A.C. a travez de la referencia bancaria Proporcionada.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -537,7 +537,7 @@ if ($right_policy == 0) {
           <p>4.</p>
         </div>
         <div class="text">
-          <p>Si el pago es realizadon con cheque, este sera recibido salvo buen cobro, el cual debera extenderce a nombre de MN Global Protec A.C.</p>
+          <p>Si el pago es realizadon con cheque, este sera recibido salvo buen cobro, el cual debera extenderce a nombre de GP Mutual M&eacute;xico A.C.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -569,7 +569,7 @@ if ($right_policy == 0) {
         <tbody>
           <tr>
             <td class="print-logo">
-              <strong>MN Global Protec A.C.</strong><br>
+              <strong>GP Mutual M&eacute;xico A.C.</strong><br>
               Calzada Independencia  Norte No. 1131, Colonia <br>
               Independencia, Guadalajara, Jalisco, Mexico<br>
               C.P. 44290 <br>
