@@ -189,7 +189,7 @@ table.print {
   border-collapse: separate;
 }
 table.print tr.odd {
-  background-color: #EAEBF3 !important;
+  background-color: #e0e4e4 !important;
 }
 table.print thead tr th {
   margin: 0;
