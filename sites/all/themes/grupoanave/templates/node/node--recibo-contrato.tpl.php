@@ -128,18 +128,17 @@ if ($typePage == "content") {
 }
 
 function getDateFormat($date) {
-  $day = date_create($date);
-  $day = date_format($day,"d");
-  
-  $month = date_create($date);
-  $month = date_format($month,"n");
-  
-  $year = date_create($date);
-  $year = date_format($year,"Y");
-  
+
+  $date = new DateTime($date);
+
+  $day = $date->format('d');
+  $month = $date->format('n');
+  $year = $date->format('Y');
+
   switch ($month) {
   case 1:
     $spanishMonth = "Enero";
+    break;
   case 2:
     $spanishMonth = "Febrero";
     break;
@@ -174,7 +173,7 @@ function getDateFormat($date) {
     $spanishMonth = "Diciembre";
     break;
   }
-  return $day."/".$spanishMonth."/".$year;
+  return "{$day}/{$spanishMonth}/{$year}";
 }
 //get serie
 $serie = $node->field_serie_rc[LANGUAGE_NONE][0]['value'];
@@ -233,10 +232,10 @@ if ($right_policy == 0) {
         <tbody>
           <tr>
             <td class="print-logo">
-              <strong>MN Global Protec A.C.</strong><br>
-              Calzada Independencia  Norte No. 1131, Colonia <br>
-              Independencia, Guadalajara, Jalisco, Mexico<br>
-              C.P. 44290 <br>
+              <strong>GP Mutual de M&eacute;xico A.C.</strong><br>
+              Av. Prisciliano S&agrave;nchez Sur No. 181 Altos, Colonia <br>
+              Centro, Tepic, Nayarit, M&eacute;xico<br>
+              C.P. 63000<br>
             </td>
             <td class="print-title">
               <h1>CONCENTRACION EMPRESARIAL DE PAGO PARA USO EXCLUSIVO DEL BANCO</h1>
@@ -282,8 +281,8 @@ if ($right_policy == 0) {
               <?php
                 if(isset($node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'])) {
                   $due_date = $node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'];
-                  $dateFormate = getDateFormat($due_date);
-                  print render($dateFormate);
+                  $due_date_format = getDateFormat($due_date);
+                  print render($due_date_format);
                 }
               ?>
               <?php /* endif; */?>
@@ -294,8 +293,8 @@ if ($right_policy == 0) {
               <strong>Periodo de cobertura del:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value']);
-                print render($dateFormate); 
+                $coverage_period_format = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value']);
+                print render($coverage_period_format); 
               ?>
               <?php /* endif; */?>
             </td>
@@ -306,8 +305,8 @@ if ($right_policy == 0) {
               <strong class="to">al:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value2']);
-                print render($dateFormate); 
+                $coverage_period_2_format = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value2']);
+                print render($coverage_period_2_format); 
               ?>
               <?php /* endif; */?>
             </td>
@@ -366,8 +365,8 @@ if ($right_policy == 0) {
               <strong>Fecha de expedicion:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_fecha_de_expedicion_rc[LANGUAGE_NONE][0]['value']);
-                print render($dateFormate); 
+                $expedition_date_format = getDateFormat($node->field_fecha_de_expedicion_rc[LANGUAGE_NONE][0]['value']);
+                print render($expedition_date_format); 
               ?>
               <?php /* endif; */?>
             </td>
@@ -508,13 +507,13 @@ if ($right_policy == 0) {
   
     </div>
     <div class="payment-copy">
-      <p>En caso de no realizarce el pago del recibo de contrato, este sera cancelado.</p>
+      <p>En caso de no realizarse el pago del recibo de contrato, este ser&aacute; cancelado.</p>
       <div class="row-payment">
         <div class="number">
           <p>1.</p>
         </div>
         <div class="text">
-          <p>Los pagos deberan realizarce en cualquier sucursal de Santander y en las oficnas de MN Global Protec A.C. a travez de la referencia bancaria Proporcionada.</p>
+          <p>Los pagos deber&aacute;n realizarse en cualquier sucursal de Santander y en las oficnas de GP Mutual M&eacute;xico A.C. a trav&eacute;s de la referencia bancaria proporcionada.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -522,7 +521,7 @@ if ($right_policy == 0) {
           <p>2.</p>
         </div>
         <div class="text">
-          <p>Este documento solo sera valido mediente comprovante de pago en el banco, con el sello de la compañia, o certificacion del mismo.</p>
+          <p>Este documento solo ser&eacute; valido mediante comprobante de pago en el banco, con el sello de la compa&ntilde;&iacute;a, o certificaci&oacute;n del mismo.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -530,7 +529,7 @@ if ($right_policy == 0) {
           <p>3.</p>
         </div>
         <div class="text">
-          <p>No se aceptara el pago si el recibo ha vencido su fecha de pago.</p>
+          <p>No se aceptar&aacute; el pago si el recibo ha vencido su fecha de pago.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -538,7 +537,7 @@ if ($right_policy == 0) {
           <p>4.</p>
         </div>
         <div class="text">
-          <p>Si el pago es realizadon con cheque, este sera recibido salvo buen cobro, el cual debera extenderce a nombre de MN Global Protec A.C.</p>
+          <p>Si el pago es realizado con cheque, este ser&aacute; recibido salvo buen cobro, el cual deber&aacute; extenderse a nombre de GP Mutual M&eacute;xico A.C.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -546,7 +545,7 @@ if ($right_policy == 0) {
           <p>5.</p>
         </div>
         <div class="text">
-          <p>Los recibos deberan pagarce segun su orden en la serie que corresponda y en el orden marcado.</p>
+          <p>Los recibos deber&aacute;n pagarse segun su orden en la serie que corresponda y en el orden marcado.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -554,7 +553,7 @@ if ($right_policy == 0) {
           <p>6.</p>
         </div>
         <div class="text last">
-          <p>Este documento no es un comprobante fiscal. Puede obtener el comprovante fiscal en las oficinas de la compania, o marcando el 01800 999 00 69 o a travez de su intermediario.</p>
+          <p>Este documento no es un comprobante fiscal. Puede obtener el comprobante fiscal en las oficinas de la compa&uacute;&iacute;a, o marcando el 01800 999 14 55 o a trav&eacute;s de su intermediario.</p>
         </div>
       </div>
     </div>
@@ -570,10 +569,10 @@ if ($right_policy == 0) {
         <tbody>
           <tr>
             <td class="print-logo">
-              <strong>MN Global Protec A.C.</strong><br>
-              Calzada Independencia  Norte No. 1131, Colonia <br>
-              Independencia, Guadalajara, Jalisco, Mexico<br>
-              C.P. 44290 <br>
+              <strong>GP Mutual de M&eacute;xico A.C.</strong><br>
+              Av. Prisciliano Z&agrave;nchez No. 181 Altos, Colonia <br>
+              Centro, Tepic, Nayarit, M&eacute;xico<br>
+              C.P. 63000<br>
             </td>
             <td class="print-title">
               <h1>CONCENTRACION EMPRESARIAL DE PAGO PARA USO EXCLUSIVO DEL BANCO</h1>
@@ -619,8 +618,8 @@ if ($right_policy == 0) {
               <?php
                 if(isset($node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'])) {
                   $due_date = $node->field_vencimiento_rc[LANGUAGE_NONE][0]['value'];
-                  $dateFormate = getDateFormat($due_date);
-                  print render($dateFormate);
+                  $due_date_format = getDateFormat($due_date);
+                  print render($due_date_format);
                 }
               ?>
               <?php /* endif; */?>
@@ -631,8 +630,8 @@ if ($right_policy == 0) {
               <strong>Periodo de cobertura del:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value']);
-                print render($dateFormate); 
+                $due_date_format = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value']);
+                print render($due_date_format); 
               ?>
               <?php /* endif; */?>
             </td>
@@ -643,8 +642,8 @@ if ($right_policy == 0) {
               <strong class="to">al:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value2']);
-                print render($dateFormate); 
+                $due_date_2_format = getDateFormat($node->field_periodo_cobertura_rc[LANGUAGE_NONE][0]['value2']);
+                print render($due_date_2_format); 
               ?>
               <?php /* endif; */?>
             </td>
@@ -703,8 +702,8 @@ if ($right_policy == 0) {
               <strong>Fecha de expedicion:</strong>
               <?php /* if(isset()): */?>
               <?php
-                $dateFormate = getDateFormat($node->field_fecha_de_expedicion_rc[LANGUAGE_NONE][0]['value']);
-                print render($dateFormate); 
+                $expedition_date_format = getDateFormat($node->field_fecha_de_expedicion_rc[LANGUAGE_NONE][0]['value']);
+                print render($expedition_date_format); 
               ?>
               <?php /* endif; */?>
             </td>
