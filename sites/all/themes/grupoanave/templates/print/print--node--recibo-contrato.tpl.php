@@ -99,8 +99,8 @@ $extra_css = url(drupal_get_path('theme', 'grupoanave') . '/css/print.css', arra
               <tr>
                 <td class="print-logo">
 <!--                   <?php print $print_logo; ?> -->
-                  <strong>GP Mutual M&eacute;xico A.C.</strong><br>
-                  Av. Guadalupe Victoria No 121 Int 1, Colonia <br>
+                  <strong>GP Mutual de M&eacute;xico A.C.</strong><br>
+                  Av. Prisciliano Z&aacute;nchez sur No. 181 Altos, Colonia <br>
                   Centro, Tepic, Nayarit, M&eacute;xico<br>
                   C.P. 63000<br>
                 </td>

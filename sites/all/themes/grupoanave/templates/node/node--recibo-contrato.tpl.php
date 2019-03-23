@@ -232,8 +232,8 @@ if ($right_policy == 0) {
         <tbody>
           <tr>
             <td class="print-logo">
-              <strong>GP Mutual M&eacute;xico A.C.</strong><br>
-              Av. Guadalupe Victoria No 121 Int 1, Colonia <br>
+              <strong>GP Mutual de M&eacute;xico A.C.</strong><br>
+              Av. Prisciliano S&agrave;nchez Sur No. 181 Altos, Colonia <br>
               Centro, Tepic, Nayarit, M&eacute;xico<br>
               C.P. 63000<br>
             </td>
@@ -507,13 +507,13 @@ if ($right_policy == 0) {
   
     </div>
     <div class="payment-copy">
-      <p>En caso de no realizarce el pago del recibo de contrato, este sera cancelado.</p>
+      <p>En caso de no realizarse el pago del recibo de contrato, este ser&aacute; cancelado.</p>
       <div class="row-payment">
         <div class="number">
           <p>1.</p>
         </div>
         <div class="text">
-          <p>Los pagos deberan realizarce en cualquier sucursal de Santander y en las oficnas de GP Mutual M&eacute;xico A.C. a travez de la referencia bancaria Proporcionada.</p>
+          <p>Los pagos deber&aacute;n realizarse en cualquier sucursal de Santander y en las oficnas de GP Mutual M&eacute;xico A.C. a trav&eacute;s de la referencia bancaria proporcionada.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -521,7 +521,7 @@ if ($right_policy == 0) {
           <p>2.</p>
         </div>
         <div class="text">
-          <p>Este documento solo sera valido mediente comprovante de pago en el banco, con el sello de la compañia, o certificacion del mismo.</p>
+          <p>Este documento solo ser&eacute; valido mediante comprobante de pago en el banco, con el sello de la compa&ntilde;&iacute;a, o certificaci&oacute;n del mismo.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -529,7 +529,7 @@ if ($right_policy == 0) {
           <p>3.</p>
         </div>
         <div class="text">
-          <p>No se aceptara el pago si el recibo ha vencido su fecha de pago.</p>
+          <p>No se aceptar&aacute; el pago si el recibo ha vencido su fecha de pago.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -537,7 +537,7 @@ if ($right_policy == 0) {
           <p>4.</p>
         </div>
         <div class="text">
-          <p>Si el pago es realizadon con cheque, este sera recibido salvo buen cobro, el cual debera extenderce a nombre de GP Mutual M&eacute;xico A.C.</p>
+          <p>Si el pago es realizado con cheque, este sera recibido salvo buen cobro, el cual debera extenderce a nombre de GP Mutual M&eacute;xico A.C.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -545,7 +545,7 @@ if ($right_policy == 0) {
           <p>5.</p>
         </div>
         <div class="text">
-          <p>Los recibos deberan pagarce segun su orden en la serie que corresponda y en el orden marcado.</p>
+          <p>Los recibos deber&aacute;n pagarse segun su orden en la serie que corresponda y en el orden marcado.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -553,7 +553,7 @@ if ($right_policy == 0) {
           <p>6.</p>
         </div>
         <div class="text last">
-          <p>Este documento no es un comprobante fiscal. Puede obtener el comprovante fiscal en las oficinas de la compania, o marcando el 01800 999 00 69 o a travez de su intermediario.</p>
+          <p>Este documento no es un comprobante fiscal. Puede obtener el comprobante fiscal en las oficinas de la compa&uacute;&iacute;a, o marcando el 01800 999 14 55 o a trav&eacute;s de su intermediario.</p>
         </div>
       </div>
     </div>
@@ -569,8 +569,8 @@ if ($right_policy == 0) {
         <tbody>
           <tr>
             <td class="print-logo">
-              <strong>GP Mutual M&eacute;xico A.C.</strong><br>
-              Av. Guadalupe Victoria No 121 Int 1, Colonia <br>
+              <strong>GP Mutual de M&eacute;xico A.C.</strong><br>
+              Av. Prisciliano Z&agrave;nchez No. 181 Altos, Colonia <br>
               Centro, Tepic, Nayarit, M&eacute;xico<br>
               C.P. 63000<br>
             </td>
