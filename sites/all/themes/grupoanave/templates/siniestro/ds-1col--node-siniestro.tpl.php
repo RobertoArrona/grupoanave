@@ -1,5 +1,7 @@
 <?php
 
+
+
 /**
  * @file
  * Display Suite 1 column template.
@@ -199,6 +201,66 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
   <?php if(isset($elements['field_lesionado'])):?>
   <?php print render($elements['field_lesionado']);?>
   <?php endif;?>
+  
+<table class="print">
+  <thead>
+    <tr>
+      <th colspan="2">término</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="nombre-edad">
+      <td>
+        <table class="print-child-2">
+          <tbody>
+            <tr>
+              <td>
+                <strong>informe</strong>: <br/><?php print render($elements['field_informe']);?>&nbsp;
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr class="lesiones">
+      <td>
+        <table class="print-child-2">
+          <tbody>
+            <tr class="nombre-edad">
+              <td width="33.333%">
+                <strong>Daños Materiales:</strong>: <br/><?php print render($elements['field_danos_materiales']);?>&nbsp;
+              </td>
+              <td width="33.333%">
+                <strong>Robo:</strong>: <br/><?php print render($elements['field_robo']);?>&nbsp;
+              </td>
+              <td width="33.333%" class="last">
+                <strong>Resp. Civil:</strong>: <br/><?php print render($elements['field_resp_civil']);?>&nbsp;
+              </td>
+            </tr>
+            <tr>
+              <td width="33.333%">
+                <strong>Gastos Medicos:</strong>: <br/><?php print render($elements['field_danos_materiales']);?>&nbsp;
+              </td>
+              <td width="33.333%">
+                <strong>RC Viajero:</strong>: <br/><?php print render($elements['field_robo']);?>&nbsp;
+              </td>
+              <td width="33.333%" class="last">
+                <strong>Reserva total:</strong>: <br/><?php print render($elements['field_resp_civil']);?>&nbsp;
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
   
   <?php if(isset($elements['links'])):?>
   <?php print render($elements['links']);?>
