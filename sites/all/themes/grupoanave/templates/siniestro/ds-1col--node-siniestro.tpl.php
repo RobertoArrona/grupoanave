@@ -228,24 +228,66 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
           <tbody>
             <tr class="nombre-edad">
               <td width="33.333%">
-                <strong>Daños Materiales:</strong>: <br/><?php print render($elements['field_danos_materiales']);?>&nbsp;
+                <?php 
+                  if (!isset($elements['field_danos_materiales'])) {
+                    print "<strong>Daños Materiales:</strong>: <br/>&nbsp;";
+                  }
+                  else {
+                    print render($elements['field_danos_materiales']) . '&nbsp;';
+                  }
+                ?>
               </td>
               <td width="33.333%">
-                <strong>Robo:</strong>: <br/><?php print render($elements['field_robo']);?>&nbsp;
+                <?php 
+                  if (!isset($elements['field_danos_materiales'])) {
+                    print "<strong>Robo:</strong>: <br/>&nbsp;";
+                  }
+                  else {
+                    print render($elements['field_robo']) . '&nbsp;';
+                  }
+                ?>
               </td>
               <td width="33.333%" class="last">
-                <strong>Resp. Civil:</strong>: <br/><?php print render($elements['field_resp_civil']);?>&nbsp;
+                <?php 
+                  if (!isset($elements['field_danos_materiales'])) {
+                    print "<strong>Resp. Civil:</strong>: <br/>&nbsp;";
+                  }
+                  else {
+                    print render($elements['field_resp_civil']) . '&nbsp;';
+                  }
+                ?>
               </td>
             </tr>
             <tr>
               <td width="33.333%">
-                <strong>Gastos Medicos:</strong>: <br/><?php print render($elements['field_danos_materiales']);?>&nbsp;
+                <?php 
+                  if (!isset($elements['field_danos_materiales'])) {
+                    print "<strong>Gastos Medicos:</strong>: <br/>&nbsp;";
+                  }
+                  else {
+                    print render($elements['field_gastos_medicos']) . '&nbsp;';
+                  }
+                ?>
               </td>
               <td width="33.333%">
-                <strong>RC Viajero:</strong>: <br/><?php print render($elements['field_robo']);?>&nbsp;
+                <?php 
+                  if (!isset($elements['field_danos_materiales'])) {
+                    print "<strong>RC Viajero:</strong>: <br/>&nbsp;";
+                  }
+                  else {
+                    print render($elements['field_rc_viajero']) . '&nbsp;';
+                  }
+                ?>
               </td>
               <td width="33.333%" class="last">
-                <strong>Reserva total:</strong>: <br/><?php print render($elements['field_resp_civil']);?>&nbsp;
+                <?php 
+                  if (!isset($elements['field_danos_materiales'])) {
+                    print "<strong>Reserva total:</strong>: <br/>&nbsp;";
+                  }
+                  else {
+                    print render($elements['field_reserva_total']) . '&nbsp;';
+                  }
+                ?>
               </td>
             </tr>
           </tbody>
