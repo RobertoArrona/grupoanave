@@ -202,7 +202,9 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
           <tbody>
             <tr>
               <td>
-                <strong>informe</strong>:<br/><?php print render($elements['field_informe']);?>&nbsp;
+                <strong>informe</strong>:
+                <br/>
+                <?php print render($elements['field_informe']);?>
               </td>
             </tr>
           </tbody>
@@ -215,24 +217,36 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
           <tbody>
             <tr class="nombre-edad">
               <td width="33.333%">
-                <strong>Daños Materiales</strong>: <br/><?php print render($elements['field_danos_materiales']);?>&nbsp;
+                <strong>Daños Materiales</strong>:
+                <br/>
+                <?php print render($elements['field_danos_materiales']);?>&nbsp;
               </td>
               <td width="33.333%">
-                <strong>Robo</strong>: <br/><?php print render($elements['field_robo']);?>&nbsp;
+                <strong>Robo</strong>:
+                <br/>
+                <?php print render($elements['field_robo']);?>&nbsp;
               </td>
               <td width="33.333%" class="last">
-                <strong>Resp. Civil</strong>: <br/><?php print render($elements['field_resp_civil']);?>&nbsp;
+                <strong>Resp. Civil</strong>:
+                <br/>
+                <?php print render($elements['field_resp_civil']);?>&nbsp;
               </td>
             </tr>
             <tr>
               <td width="33.333%">
-                <strong>Gastos Medicos</strong>: <br/><?php print render($elements['field_gastos_medicos']);?>&nbsp;
+                <strong>Gastos Medicos</strong>:
+                <br/>
+                <?php print render($elements['field_gastos_medicos']);?>&nbsp;
               </td>
               <td width="33.333%">
-                <strong>RC Viajero</strong>: <br/><?php print render($elements['field_rc_viajero']);?>&nbsp;
+                <strong>RC Viajero</strong>:
+                <br/>
+                <?php print render($elements['field_rc_viajero']);?>&nbsp;
               </td>
               <td width="33.333%" class="last">
-                <strong>Reserva Total</strong>: <br/><?php print render($elements['field_reserva_total']);?>&nbsp;
+                <strong>Reserva Total</strong>:
+                <br/>
+                <?php print render($elements['field_reserva_total']);?>&nbsp;
               </td>
             </tr>
           </tbody>
