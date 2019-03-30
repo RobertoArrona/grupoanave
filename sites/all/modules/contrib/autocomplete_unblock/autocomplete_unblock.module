@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Fix Drupal autocomplete on environments with restricted access to PHP files.
+ */
+
+/**
+ * Implements hook_url_outbound_alter().
+ */
+function autocomplete_unblock_url_outbound_alter(&$path, &$options, $original_path) {
+  if (isset($options['script']) && $options['script'] == 'index.php') {
+    $options['script'] = '';
+  }
+}

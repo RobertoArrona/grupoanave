@@ -1,0 +1,3 @@
+name = Autocomplete Unblock
+description = Fix autocomplete function on environments with restricted access to index.php.
+core = 7.x
