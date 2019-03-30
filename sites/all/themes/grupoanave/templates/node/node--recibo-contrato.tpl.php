@@ -513,7 +513,7 @@ if ($right_policy == 0) {
           <p>1.</p>
         </div>
         <div class="text">
-          <p>Los pagos deber&aacute;n realizarse en cualquier sucursal de Santander y en las oficnas de GP Mutual M&eacute;xico A.C. a trav&eacute;s de la referencia bancaria proporcionada.</p>
+          <p>Los pagos deber&aacute;n realizarse en cualquier sucursal de Santander y en las oficinas de GP Mutual M&eacute;xico A.C. a trav&eacute;s de la referencia bancaria proporcionada.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -521,7 +521,7 @@ if ($right_policy == 0) {
           <p>2.</p>
         </div>
         <div class="text">
-          <p>Este documento solo ser&eacute; valido mediante comprobante de pago en el banco, con el sello de la compa&ntilde;&iacute;a, o certificaci&oacute;n del mismo.</p>
+          <p>Este documento solo ser&aacute; valido mediante comprobante de pago en el banco, con el sello de la compa&ntilde;&iacute;a, o certificaci&oacute;n del mismo.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -537,7 +537,7 @@ if ($right_policy == 0) {
           <p>4.</p>
         </div>
         <div class="text">
-          <p>Si el pago es realizado con cheque, este sera recibido salvo buen cobro, el cual debera extenderce a nombre de GP Mutual M&eacute;xico A.C.</p>
+          <p>Si el pago es realizado con cheque, este ser&aacute; recibido salvo buen cobro, el cual deber&aacute; extenderse a nombre de GP Mutual M&eacute;xico A.C.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -553,7 +553,7 @@ if ($right_policy == 0) {
           <p>6.</p>
         </div>
         <div class="text last">
-          <p>Este documento no es un comprobante fiscal. Puede obtener el comprobante fiscal en las oficinas de la compa&uacute;&iacute;a, o marcando el 01800 999 14 55 o a trav&eacute;s de su intermediario.</p>
+          <p>Este documento no es un comprobante fiscal. Puede obtener el comprobante fiscal en las oficinas de la compa&ntilde;&iacute;a, o marcando el 01800 999 14 55 o a trav&eacute;s de su intermediario.</p>
         </div>
       </div>
     </div>

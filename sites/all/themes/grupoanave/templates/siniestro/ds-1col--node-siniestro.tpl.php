@@ -45,25 +45,21 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
               </div>
               <?php endif;?>
             </td></tr>
-            
             <tr><td>
               <strong>Fecha de Siniestro:</strong>
               <div>
               <?php print render($elements['post_date']);?>
               </div>
             </td></tr>
-            
             <tr class="last"><td>
               <strong>Asegurado:</strong>
               <div>
               <?php print render($elements['asegurado']);?>
               </div>
             </td></tr>
-            
           </tbody>
         </table>
       </td>
-      
       <td class="table-generales">
         <table class="print-child">
           <tbody>
@@ -75,7 +71,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
               </div>
               <?php endif;?>
             </td></tr>
-            
             <tr><td>
               <strong>Estado:</strong>
               <?php if(isset($elements['field_poblacion'])):?>
@@ -84,7 +79,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
               </div>
               <?php endif;?>
             </td></tr>
-            
             <tr><td>
               <strong>Referencias del Lugar:</strong>
               <?php if(isset($elements['field_lugar_referencias'])):?>
@@ -93,7 +87,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
               </div>
               <?php endif;?>
             </td></tr>
-            
             <tr><td>
               <strong>Comentarios del Siniestro:</strong>
               <?php if(isset($node->field_comentarios_del_siniestro[LANGUAGE_NONE][0]['value'])):?>
@@ -106,7 +99,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
           </tbody>
         </table>
       </td>
-      
       <td class="table-agentes">
         <table class="print-child">
           <tbody>
@@ -118,7 +110,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
                 </div>
               </td>
             </tr>
-            
             <tr>
               <td>
                 <strong>Ajustador:</strong>
@@ -129,7 +120,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
                 <?php endif;?>
               </td>
             </tr>
-            
             <tr>
               <td>
                 <strong>Abogado:</strong>
@@ -138,7 +128,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
                 <?php endif;?>
               </td>
             </tr>
-            
             <tr>
               <td>
                 <strong>Hospital:</strong>
@@ -156,8 +145,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
                 <?php endif;?>
               </td>
             </tr>
-            
-                        
           </tbody>
         </table>
       </td>
@@ -253,15 +240,6 @@ if (($cabina_uid = $elements['author']['#object']->uid)) {
       </td>
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-  
   <?php if(isset($elements['links'])):?>
   <?php print render($elements['links']);?>
   <?php endif;?>

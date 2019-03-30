@@ -9,7 +9,6 @@
   <thead><tr>
     <th colspan="2">Lesiones y Da&ntilde;os</th>
   </tr></thead>
-  
   <tbody>
     <tr class="nombre-edad">
       <td width="50%">
@@ -36,7 +35,6 @@
         </tr></tbody></table>
       </td>
     </tr>
-    
     <tr class="lesiones">
       <td>
         <table class="print-child-2"><tbody><tr>
@@ -48,7 +46,6 @@
           </td>
         </tr></tbody></table>
       </td>
-      
       <td>
         <table class="print-child-2"><tbody><tr>
           <td width="10%">
