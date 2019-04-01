@@ -521,7 +521,7 @@ if ($right_policy == 0) {
           <p>2.</p>
         </div>
         <div class="text">
-          <p>Este documento solo ser&aacute; valido mediante comprobante de pago en el banco, con el sello de la compa&ntilde;&iacute;a, o certificaci&oacute;n del mismo.</p>
+          <p>Este documento s&oacute;lo ser&aacute; valido mediante comprobante de pago en el banco, con el sello de la compa&ntilde;&iacute;a, o certificaci&oacute;n del mismo.</p>
         </div>
       </div>
       <div class="row-payment">
@@ -545,7 +545,7 @@ if ($right_policy == 0) {
           <p>5.</p>
         </div>
         <div class="text">
-          <p>Los recibos deber&aacute;n pagarse segun su orden en la serie que corresponda y en el orden marcado.</p>
+          <p>Los recibos deber&aacute;n pagarse seg&uacute;n su orden en la serie que corresponda y en el orden marcado.</p>
         </div>
       </div>
       <div class="row-payment">
