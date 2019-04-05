@@ -89,19 +89,29 @@ function anavem_node_grants_poliza($account, $op, &$grants) {
   // Get a list of all poliza nodes.
   $all_nids = anavem_poliza_get_all();
 
+  // Get a list of own poliza nodes.
+  $own_nids = anavem_poliza_get_own($account->uid);
+
   // Get a list of assigned poliza nodes.
   $assigned_nids = anavem_poliza_get_assigned($account->uid);
 
-  // Determine if the user can access this poliza node.
+  // Determine if the user can access this poliza node (permission 'all polizas').
   foreach ($all_nids as $nid) {
-    if (anavem_user_can_access_poliza($nid, $account)) {
+    if (anavem_user_can_access_poliza_all_polizas($nid, $account)) {
       $grants['anavem_poliza_node_access_view'][] = $nid;
     }
   }
 
-  // Determine if the user can access this poliza node.
+  // Determine if the user can access this poliza node (permission 'own polizas').
+  foreach ($own_nids as $nid) {
+    if (anavem_user_can_access_poliza_own_polizas($nid, $account)) {
+      $grants['anavem_poliza_node_access_view'][] = $nid;
+    }
+  }
+
+  // Determine if the user can access this poliza node (permission 'assigned polizas').
   foreach ($assigned_nids as $nid) {
-    if (anavem_user_can_access_assigned_poliza($nid, $account)) {
+    if (anavem_user_can_access_poliza_assigned_polizas($nid, $account)) {
       $grants['anavem_poliza_node_access_view'][] = $nid;
     }
   }
@@ -149,9 +159,9 @@ function anavem_user_can_access_siniestro($nid, $account) {
 }
 
 /**
- * Determines if a poliza node can be accesed by a given user.
+ * Determines if a poliza node can be accesed by a given user (permission 'all polizas').
  */
-function anavem_user_can_access_poliza($nid, $account) {
+function anavem_user_can_access_poliza_all_polizas($nid, $account) {
   // Static Cache.
   static $access;
   if (isset($access[$nid][$account->uid])) {
@@ -159,7 +169,7 @@ function anavem_user_can_access_poliza($nid, $account) {
   }
 
   // DB Cache.
-  $cid = 'anavem_user_can_access_poliza_' . $nid . '_' . $account->uid;
+  $cid = 'anavem_user_can_access_poliza_all_polizas_' . $nid . '_' . $account->uid;
   if (($cache = cache_get($cid))) {
     return $cache->data;
   }
@@ -200,9 +210,9 @@ function anavem_user_can_access_poliza($nid, $account) {
 }
 
 /**
- * Determines if a poliza node can be accesed by a given user.
+ * Determines if a poliza node can be accesed by a given user (permission 'own polizas').
  */
-function anavem_user_can_access_assigned_poliza($nid, $account) {
+function anavem_user_can_access_poliza_own_polizas($nid, $account) {
   // Static Cache.
   static $access;
   if (isset($access[$nid][$account->uid])) {
@@ -210,7 +220,58 @@ function anavem_user_can_access_assigned_poliza($nid, $account) {
   }
 
   // DB Cache.
-  $cid = 'anavem_user_can_access_assigned_poliza_' . $nid . '_' . $account->uid;
+  $cid = 'anavem_user_can_access_poliza_own_polizas_' . $nid . '_' . $account->uid;
+  if (($cache = cache_get($cid))) {
+    return $cache->data;
+  }
+
+  // Cache Expire Default.
+  $cache_expire = intval(time()) + (60 * 60);
+
+  // Scenarios where a Siniestro can be accessed.
+  // 1.- If the user has right to see all Polizas.
+  if (user_access('Administrar Polizas propias', $account)) {
+    $access[$nid][$account->uid] = TRUE;
+    cache_set($cid, TRUE, 'cache', $cache_expire);
+    return TRUE;
+  }
+
+  // Validate we can load the node.
+  if (!($node = node_load($nid))) {
+    $access[$nid][$account->uid] = FALSE;
+    cache_set($cid, FALSE, 'cache', $cache_expire);
+    return FALSE;
+  }
+
+  // Get Siniestros related to this Poliza.
+  $siniestros = anavem_poliza_get_siniestros($node);
+
+  // If user has right to access a siniestro give access to the poliza.
+  foreach ($siniestros as $siniestro) {
+    if (anavem_siniestro_user_access($siniestro, $account)) {
+      $access[$nid][$account->uid] = TRUE;
+      cache_set($cid, TRUE, 'cache', $cache_expire);
+      return TRUE;
+    }
+  }
+
+  cache_set($cid, FALSE, 'cache', $cache_expire);
+  $access[$nid][$account->uid] = FALSE;
+  return FALSE;
+}
+
+/**
+ * Determines if a poliza node can be accesed by a given user (permission 'assigned polizas').
+ */
+function anavem_user_can_access_poliza_assigned_polizas($nid, $account) {
+  // Static Cache.
+  static $access;
+  if (isset($access[$nid][$account->uid])) {
+    return $access[$nid][$account->uid];
+  }
+
+  // DB Cache.
+  $cid = 'anavem_user_can_access_poliza_assigned_polizas_' . $nid . '_' . $account->uid;
   if (($cache = cache_get($cid))) {
     return $cache->data;
   }

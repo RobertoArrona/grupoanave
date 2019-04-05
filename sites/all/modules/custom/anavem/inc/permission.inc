@@ -62,6 +62,10 @@ function anavem_permission() {
       'title' => 'Administrar Todas las Polizas',
       'description' => 'Administrar Todas las Polizas',
     ),
+    'Administrar Polizas propias' => array(
+      'title' => 'Administrar Polizas propias',
+      'description' => 'Administrar Polizas propias',
+    ),
     'Administrar Polizas asignadas' => array(
       'title' => 'Administrar Polizas asignadas',
       'description' => 'Administrar Polizas asignadas',
