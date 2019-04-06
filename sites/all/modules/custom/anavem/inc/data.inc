@@ -157,7 +157,7 @@ function anavem_poliza_get_assigned($uid) {
   }
 
   $type = 'poliza';
-  $results = db_query("SELECT N.nid FROM {node} AS N INNER JOIN {field_data_field_promotor} AS FDFP ON N.nid = FDFP.entity_id WHERE type = :type AND FDFP.field_promotor_target_id = :uid",
+  $results = db_query("SELECT N.nid FROM {node} AS N INNER JOIN {field_data_field_asignar_promotor} AS FDFP ON N.nid = FDFP.entity_id WHERE type = :type AND FDFP.field_asignar_promotor_target_id = :uid",
   array(
     ':type' => $type,
     ':uid' => $uid,
