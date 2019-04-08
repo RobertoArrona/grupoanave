@@ -60,6 +60,7 @@ function theme_views_data_export_complete_page($variables) {
   drupal_set_title(t('Data export successful'));
   drupal_add_html_head(array('#tag' => 'meta', '#attributes' => array('http-equiv' =>"Refresh", 'content' => '3;url='. $file)), 'views_data_export_download');
   $output = '';
+  $output .= '<p><a href="/admin/global/contratos">Regresar</a></p>';
   $output .= '<p>';
   $output .= t('Your export has been created. View/download the file <a href="@link">here</a> (will automatically download in 3 seconds.)', array('@link' => $file));
   $output .= '</p>';
