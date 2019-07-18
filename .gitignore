@@ -8,3 +8,8 @@ sites/*/files
 sites/*/pvt
 sites/*/tmp
 sites/*/private
+
+# Ignore webserver logs folder
+/logs
+/dumps
+
