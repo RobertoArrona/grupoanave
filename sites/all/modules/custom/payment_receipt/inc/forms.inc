@@ -102,6 +102,7 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
     $form['field_primer_pago_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value'];
     $form['field_serie_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = "1$serie";
     $form['field_importe_con_letra_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value']));
+    $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['#default_value']['value'] = $parent_data->field_poliza_vigencia[LANGUAGE_NONE][0]['value'];
     $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['#default_value']['value2'] = get_coverage($payments, $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['#default_value']['value']);
     $form['field_vencimiento_rc'][LANGUAGE_NONE][0]['#default_value']['value'] = get_grace_period($parent_data->field_periodo_de_gracia[LANGUAGE_NONE][0]['value']);
     $form['field_emision_recibo_ref_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = $parent_data->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value'];
@@ -115,6 +116,7 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
       $form['field_serie_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = $receiptSerie;
     }
     $form['field_importe_con_letra_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = strtoupper(num2letras($parent_data->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value']));
+    $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['#default_value']['value'] = $parent_data->field_poliza_vigencia[LANGUAGE_NONE][0]['value'];
     $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['#default_value']['value2'] = get_coverage($payments, $form['field_periodo_cobertura_rc'][LANGUAGE_NONE][0]['#default_value']['value']);
     $form['field_vencimiento_rc'][LANGUAGE_NONE][0]['#default_value']['value'] = get_grace_period($parent_data->field_periodo_de_gracia[LANGUAGE_NONE][0]['value']);
     $form['field_emision_recibo_ref_rc'][LANGUAGE_NONE][0]['value']['#default_value'] = 0;
