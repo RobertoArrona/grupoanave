@@ -338,7 +338,7 @@ table.print.coberturas {
 }
 #main-payment #main-inner,
 #main-payment-2 #main-inner {
-  padding: 20px;
+  padding: 1px 20px;
 }
 #main-payment .print-header,
 #main-payment-2 .print-header {
@@ -398,7 +398,7 @@ table.print.coberturas {
   background-size: 70%;
   background-repeat: no-repeat;
   width: auto;
-  height: 302px;
+  height: 285px;
   background-position: 46px 103px;
 }
 #main-payment .amount td,
@@ -429,6 +429,10 @@ table.print.coberturas {
 #main-payment-2 .payment-copy {
   display: block;
   width: 19.59cm;
+}
+#main-payment .payment-copy ul,
+#main-payment-2 .payment-copy ul {
+  margin-bottom: 0;
 }
 #main-payment .payment-copy p,
 #main-payment-2 .payment-copy p {
