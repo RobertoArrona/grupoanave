@@ -36,7 +36,7 @@ function payment_receipt_receipt_number_increase() {
 }
 
 /**
- * Return TRUE if the Payment Receipt folio exists.
+ * Returns TRUE if the Payment Receipt folio exists.
  */
 function payment_receipt_receipt_number_folio_exists($payment_receipt_folio) {
   $type = 'recibo_contrato';
@@ -63,4 +63,80 @@ function payment_receipt_receipt_new_folio() {
   foreach ($result as $row) {
     return $row->newfolio;
   }
+}
+
+/**
+ * Returns contract nid.
+ */
+function payment_receipt_get_contract_nid($contract_folio) {
+  $type = 'poliza';
+
+  $result = db_query("SELECT nid FROM node  WHERE type = :type AND title = :title",
+    array(
+      ':type' => $type,
+      ':title' => $contract_folio,
+    ));
+
+  foreach ($result as $row) {
+    return $row->nid;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Returns contract data.
+ */
+function payment_receipt_get_contract_data($field_name, $contract_folio) {
+  $type = 'poliza';
+
+  $result = db_query("{SELECT IFN.{$field_name}_value FROM {node} AS N INNER JOIN {field_data_{$field_name}} AS IFN ON N.nid = IFN.entity_id WHERE N.type = :type AND N.title = :title}",
+    array(
+      ':type' => $type,
+      ':title' => $contract_folio,
+    ));
+
+  foreach ($result as $row) {
+    return $row->{"{$field_name}_value"};
+  }
+
+  return FALSE;
+}
+
+/**
+ * Returns payment type on readable format.
+ */
+function get_payment_type_format($payment_type) {
+  $payment_type_format = '';
+
+  switch ($payment_type) {
+    case 'mensual':
+      $payment_type_format = 'Mensual';
+      break;
+
+    case '3meses':
+      $payment_type_format = '3 Meses';
+      break;
+
+    case 'trimestral':
+      $payment_type_format = 'Trimestral';
+      break;
+
+    case 'cuatrimestral':
+      $payment_type_format = 'Cuatrimestral';
+      break;
+
+    case 'semestral':
+      $payment_type_format = 'Semestral';
+      break;
+
+    case 'anual':
+      $payment_type_format = 'Anual';
+      break;
+
+    default:
+      $payment_type_format = '';
+  }
+
+  return $payment_type_format;
 }
