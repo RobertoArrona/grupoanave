@@ -307,7 +307,10 @@ if ($right_policy == 0) {
           <tr class="tr-payment">
             <td> 
               <strong>Forma de Pago:</strong>
-              <?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?>
+              <?php
+                $payment_type_format = get_payment_type_format($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);
+                print render($payment_type_format);
+              ?>
             </td>
           </tr>
 
@@ -579,7 +582,10 @@ if ($right_policy == 0) {
           <tr>
             <td> 
               <strong>Forma de Pago:</strong>
-              <?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?>
+              <?php
+                $payment_type_format = get_payment_type_format($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);
+                print render($payment_type_format);
+              ?>
             </td>
           </tr>
 
