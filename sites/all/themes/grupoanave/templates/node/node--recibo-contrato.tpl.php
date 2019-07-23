@@ -306,7 +306,7 @@ if ($right_policy == 0) {
 
           <tr class="tr-payment">
             <td> 
-              <strong>Forma de Pago:</strong>?>
+              <strong>Forma de Pago:</strong>
               <?php print render($parent_data->field_poliza_forma_pago[LANGUAGE_NONE][0]['value']);?>
             </td>
           </tr>
