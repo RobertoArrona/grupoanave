@@ -425,7 +425,7 @@ if ($right_policy == 0) {
             <td> 
               <strong>Prima Total:</strong>
               $<?php
-               $total_premium = $payment_first + $subsecuent_payment + $iva;
+                $total_premium = $payment_first + $subsecuent_payment + $iva;
                 $total_premium = round($total_premium, 2);
                 $newTotal_premium = number_format($total_premium, 2, '.', '');
                 print render($newTotal_premium);?>
