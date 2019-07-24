@@ -9,7 +9,7 @@
  * Implements hook_views_pre_render().
  */
 function payment_receipt_views_pre_render(&$view) {
-  if ($view->name == 'contract_receipts') {
+  if ($view->name == 'contract_receipts' && $view->current_display == 'page') {
     foreach ($view->result as $key => $result) {
       // Get contract folio.
       $contract_folio = $result->field_field_codigo_de_barras_rc[0]['rendered']['#markup'];
