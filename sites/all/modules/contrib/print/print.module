@@ -21,6 +21,7 @@ define('PRINT_KEEP_THEME_CSS_DEFAULT', 0);
 define('PRINT_URLS_DEFAULT', 1);
 define('PRINT_URLS_ANCHORS_DEFAULT', 0);
 define('PRINT_COMMENTS_DEFAULT', 0);
+define('PRINT_NODE_ROUTER_DEFAULT', 0);
 define('PRINT_NEWWINDOW_DEFAULT', 1);
 
 define('PRINT_TYPE_URLLIST_DEFAULT', 1);
@@ -85,7 +86,13 @@ function print_permission() {
 function print_theme() {
   return array(
     'print' => array(
-      'variables' => array('node' => NULL, 'query' => NULL, 'format' => '', 'expand_css' => FALSE, 'message' => ''),
+      'variables' => array(
+        'node' => NULL,
+        'query' => NULL,
+        'format' => '',
+        'expand_css' => FALSE,
+        'message' => '',
+      ),
       'template' => 'print',
       'file' => 'print.pages.inc',
     ),
@@ -207,7 +214,7 @@ function print_block_view($delta = '') {
     case 'print-top':
       $block['subject'] = t('Most printed');
       $result = db_query_range("SELECT path FROM {print_page_counter} LEFT JOIN {node} n ON path = CONCAT('node/', n.nid) WHERE status <> 0 OR status IS NULL ORDER BY totalcount DESC", 0, 3)
-                  ->fetchAll();
+        ->fetchAll();
       if (count($result)) {
         $items = array();
         foreach ($result as $obj) {
@@ -224,11 +231,55 @@ function print_block_view($delta = '') {
  * Implements hook_help().
  */
 function print_help($path, $arg) {
+  $ret = '';
   switch ($path) {
     case 'admin/help#print':
-      // Return a line-break version of the module README
-      return _filter_autop(file_get_contents(drupal_get_path('module', 'print') . '/README.txt'));
-  }
+      $ret = t("<p>This module allows you to generate printer-friendly versions of any node:</p>
+<ul>
+<li>Web page printer-friendly version at www.example.com/print/nid</li>
+<li>PDF version at www.example.com/printpdf/nid</li>
+<li>Send by-email at www.example.com/printmail/nid</li>
+</ul>
+<p>where nid is the node id of content to render.</p>
+<p>A link is inserted in each node (configurable in the content type settings), that opens a version of the page with no sidebars, search boxes, navigation pages, etc.</p>
+<h3>Configuration settings</h3>
+<p>There are several settings that can be configured in the following places:</p>
+<ul>
+<li>Administration &gt; Modules (admin/modules)<br>Enable or disable the module and submodules. (default: disabled)</li>
+<li>Administration &gt; People &gt; Permissions (admin/people/permissions)<br>
+Permissions to access print friendly content and administer print module.</li>
+<li>Administration &gt; Structure &gt; Content types (admin/structure/types)<br>
+For each content type enable or disable the PF link.<br>
+Also enable or disable the PF link for individual comments (default: disabled).</li>
+</ul>
+<h3>Module Specific Configuration settings</h3>
+<ul>
+<li>Administration &gt; Configuration &gt; User interface &gt; Printer, email and PDF versions (admin/config/user-interface/print)<br>
+For Web page options.</li>
+<li>Administration &gt; Configuration &gt; User interface &gt; Print &gt; Settings (admin/config/user-interface/print/common)<br>
+For Common settings.</li>
+</ul>
+<p>When the Printer-friendly pages UI (print_ui) module is enabled additional settings for printer friendly links will be available.</p>
+<ul>
+<li>Administration &gt; Configuration &gt; User interface &gt; Print &gt; Links (admin/config/user-interface/print/ui)<br>
+For Link options.<br>This includes options for link style and position.</li>
+</ul>
+<p>The link options also include an option to use the URL alias instead of node ID. It may be important to check this option to create printer friendly pages of panel layouts and other enhanced layouts instead of simply the node itself.</p>
+<h3>Custom template files</h3>
+<p>To modify the template of printer friendly pages, simply edit the print.tpl.php or the css/print.css files.</p>
+<p>It is possible to set per-content-type and/or theme-specific templates which are searched for in the following order:</p>
+<ol>
+<li>print--[format]--node--[type].tpl.php in the theme directory</li>
+<li>print--[format].tpl.php in the theme directory</li>
+<li>print--node--[type].tpl.php in the theme directory</li>
+<li>print.tpl.php in the theme directory</li>
+<li>print.tpl.php in the module directory (supplied by the module)</li>
+</ol>
+<p>format is either html, mail or pdf, and type is Drupal's node content type e.g. article, page etc.</p>
+<p>For more information, consult the !documentlink at www.drupal.org and see the README.txt and INSTALL.txt files.</p>",
+array('!documentlink' => l(t('Print module documentation'), 'http://drupal.org/node/190171')));
+    }
+  return $ret;
 }
 
 /**
@@ -251,7 +302,7 @@ function print_entity_info_alter(&$info) {
       'custom settings' => FALSE,
     ),
   );
-  // Add the 'Print' view mode for field_collections
+  // Add the 'Print' view mode for field_collections.
   if (module_exists('field_collection')) {
     $info['field_collection_item']['view modes'] += array(
       PRINT_VIEW_MODE => array(
@@ -263,10 +314,10 @@ function print_entity_info_alter(&$info) {
 }
 
 /**
- * Auxiliary function to discover a given page's title
+ * Auxiliary function to discover a given page's title.
  *
  * @param string $path
- *   path of the page being identified
+ *   Path of the page being identified.
  *
  * @return string
  *   string with the page's title
@@ -276,16 +327,16 @@ function _print_get_title($path) {
   $nid = preg_replace('!^node/!', '', $path);
   if (ctype_digit($nid)) {
     return db_query("SELECT title FROM {node} WHERE nid = :nid", array(':nid' => $nid))
-              ->fetchField();
+      ->fetchField();
   }
   else {
-    // Not a node, try to get title from the menu system
+    // Not a node, try to get title from the menu system.
     $menu_item = menu_get_item($path);
     if (!empty($menu_item['title'])) {
       return $menu_item['title'];
     }
     elseif (drupal_substr($menu_item['page_callback'], 0, 6) == 'views_') {
-      // It's a view, load the view to have access to the title
+      // It's a view, load the view to have access to the title.
       $view = views_get_view($menu_item['page_arguments']['0']);
       return $view->get_title();
     }
@@ -296,7 +347,7 @@ function _print_get_title($path) {
 }
 
 /**
- * Auxiliary function to display a formatted Printer-friendly link
+ * Auxiliary function to display a formatted Printer-friendly link.
  *
  * Function made available so that developers may call this function from
  * their defined pages/blocks.
@@ -307,7 +358,7 @@ function _print_get_title($path) {
  *   node object, to be used in checking node access. If the path argument is
  *   not provided, the path used will be node/nid.
  * @param string $location
- *   where in the page where the link is being inserted ('link', 'corner',
+ *   Where in the page where the link is being inserted ('link', 'corner',
  *   'block', 'help').
  *
  * @return string
@@ -317,7 +368,11 @@ function _print_get_title($path) {
  */
 function print_insert_link($path = NULL, $node = NULL, $location = '') {
   if (function_exists('print_ui_insert_link')) {
-    return print_ui_insert_link(print_print_link(), array('path' => $path, 'node' => $node, 'location' => $location));
+    return print_ui_insert_link(print_print_link(), array(
+      'path' => $path,
+      'node' => $node,
+      'location' => $location,
+    ));
   }
   else {
     return FALSE;
@@ -325,11 +380,11 @@ function print_insert_link($path = NULL, $node = NULL, $location = '') {
 }
 
 /**
- * Check if the link to the PF version is allowed depending on the settings
+ * Check if the link to the PF version is allowed depending on the settings.
  *
  * @param array $args
- *   array containing the possible parameters:
- *    view_mode, node, type, path
+ *   Array containing the possible parameters:
+ *    view_mode, node, type, path.
  *
  * @return bool
  *   FALSE if not allowed, TRUE otherwise
@@ -342,7 +397,7 @@ function print_link_allowed($args) {
  * Implements hook_contextual_links_view_alter().
  */
 function print_contextual_links_view_alter(&$element, $items) {
-  // Hide all contextual links
+  // Hide all contextual links.
   if (preg_match('!^print!', $_GET['q'])) {
     unset($element['#links']);
   }
