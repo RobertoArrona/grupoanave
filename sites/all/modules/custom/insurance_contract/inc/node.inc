@@ -6,18 +6,6 @@
  */
 
 /**
- * Implements hook_node_insert().
- */
-/*
-function insurance_contract_node_insert($node) {
-  switch ($node->type) {
-    case 'poliza':
-      insurance_contract_node_insert_poliza($node);
-      break;
-  }
-}*/
-
-/**
  * Implements hook_node_submit().
  */
 function insurance_contract_node_submit($node) {
@@ -25,7 +13,6 @@ function insurance_contract_node_submit($node) {
     switch ($node->type) {
       case 'poliza':
         insurance_contract_node_insert_poliza($node);
-        watchdog('insurance_contract', '<pre>' . print_r('insurance_contract_node_submit', TRUE) . '</pre>');
         break;
     }
   }
@@ -35,21 +22,8 @@ function insurance_contract_node_submit($node) {
  * Implements hook_node_insert().
  */
 function insurance_contract_node_insert($node) {
-  if ($node->type != 'poliza' && empty($node->nid)) {
-    return false;
-  }
-
-  // Create payment receipts for contract.
-  $contract = $node;
-  for ($i = 0; $i < 3; $i++) {
-    $entity_type = 'node';
-    $entity = entity_create($entity_type, array('type' => 'recibo_contrato'));
-    $payment_receipt = entity_metadata_wrapper($entity_type, $entity);
-    $payment_receipt->title = 'title' . ($i + 2);
-    //node_collection_api_add_relationship_instance($contract, $payment_receipt);
-    $payment_receipt->save();
-
-    watchdog('insurance_contract', '<pre>' . print_r($parent_instance, TRUE) . '</pre>');
+  if (!empty($node->nid)) {
+    insurance_contract_create_payment_receipts($node);
   }
 }
 
@@ -73,4 +47,82 @@ function insurance_contract_node_insert_poliza($node) {
 
   // Increase contract number.
   insurance_contract_contract_number_increase($i);
+}
+
+/**
+ * Creates payment receipts.
+ */
+function insurance_contract_create_payment_receipts($node) {
+  if (!isset($node->field_poliza_forma_pago)) {
+    return FALSE;
+  }
+
+  // Prepare entity values.
+  $values = array(
+    'type' => 'recibo_contrato',
+    'status' => 0,
+    'comment' => 0,
+    'promote' => 0,
+  );
+
+  // Get payment receipts number, based on payment type.
+  $payment_type = $node->field_poliza_forma_pago[LANGUAGE_NONE][0]['value'];
+  $payment_receipts_number = insurance_contract_get_payment_type_value($payment_type);
+
+  // Get next node id to be inserted.
+  $nid = $node->nid;
+
+  for ($i = 1; $i <= $payment_receipts_number; $i++) {
+    // Create payment receipt node.
+    $entity = entity_create('node', $values);
+    $payment_receipt = entity_metadata_wrapper('node', $entity);
+
+    // Prepare payment receipt values.
+    $payment_receipt_values = insurance_contract_prepare_payment_receipt_values($node, $nid, $i);
+
+    // Add payment receipt values and save payment receipt node.
+    insurance_contract_save_payment_receipt_node($payment_receipt, $payment_receipt_values);
+  }
+}
+
+/**
+ * Prepares payment receipt values and returns array with values.
+ */
+function insurance_contract_prepare_payment_receipt_values($node, $nid, $i) {
+  // Add nid value.
+  $payment_receipt_values['nid'] = $nid;
+  // Get payment receipt folio.
+  $payment_receipt_values['payment_receipt_folio'] = insurance_contract_payment_get_receipt_number();
+  // Get contract folio.
+  $payment_receipt_values['contrac_folio'] = $node->title;
+
+  return $payment_receipt_values;
+}
+
+/**
+ * Adds payment receipt values and saves payment receipt node.
+ */
+function insurance_contract_save_payment_receipt_node(&$payment_receipt, $payment_receipt_values) {
+  // Validate if node collection relationship is created.
+  if (!insurance_contract_create_node_collection_relationship($payment_receipt_values['nid'])) {
+    return FALSE;
+  }
+
+  /*if (isset($payment_receipt_values['payment_receipt_folio'])) {
+  if (!empty($payment_receipt_values['payment_receipt_folio']) {
+  $payment_receipt->field_codigo_de_barras_rc->set($contrac_folio);
+  }
+  }*/
+
+  // Create node collection relationship.
+  $node_collection_relationship = insurance_contract_create_node_collection_relationship($payment_receipt_values['nid']);
+
+  // Set payment receipt folio.
+  $payment_receipt->title->set($payment_receipt_values['payment_receipt_folio']);
+
+  // Set contract folio.
+  $payment_receipt->field_codigo_de_barras_rc->set($payment_receipt_values['contrac_folio']);
+
+  // Save payment receipt node.
+  $payment_receipt->save();
 }

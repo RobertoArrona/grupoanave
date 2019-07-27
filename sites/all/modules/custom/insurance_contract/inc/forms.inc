@@ -45,8 +45,8 @@ function insurance_contract_form_poliza_node_form_alter(&$form, &$form_state, $f
 
   // Field title(numero de contrato).
   $form['title']['#attributes']['style'] = 'display: none;';
-  
-  // Fields Premium Read only
+
+  // Fields Premium Read only.
   $form['field_poliza_prima_total'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
   $form['field_poliza_prima_1er_recibo'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';
   $form['field_poliza_primas_recibos_subs'][LANGUAGE_NONE][0]['value']['#attributes']['readonly'] = 'readonly';

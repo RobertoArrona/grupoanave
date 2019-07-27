@@ -145,7 +145,6 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
       }
     }
   }
-
 }
 
 /**
