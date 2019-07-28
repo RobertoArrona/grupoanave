@@ -60,20 +60,9 @@ function insurance_contract_form_poliza_node_form_alter(&$form, &$form_state, $f
 
   $form['#validate'][] = 'insurance_contract_form_poliza_node_validate';
 
-  // $form attached JS.
+  // Add need CSS and JS.
   drupal_add_js(drupal_get_path('module', 'insurance_contract') . '/js/contratos.pagos.js');
-
-  $node = menu_get_object();
-  if (!empty($node->nid)) {
-    $stringPaymentMethod = $form['field_poliza_forma_pago']['und']['#default_value'][0];
-    $paymentMethodNumber = get_payment_method_number($stringPaymentMethod);
-    $nids_childs = node_collection_api_get_child_node_instances($node->nid);
-    $childsNumber = count($nids_childs);
-
-    if ($paymentMethodNumber == $childsNumber) {
-      drupal_add_css(drupal_get_path('module', 'insurance_contract') . '/css/contratos_pagos.css');
-    }
-  }
+  drupal_add_css(drupal_get_path('module', 'insurance_contract') . '/css/contratos_pagos.css');
 }
 
 /**
@@ -85,29 +74,5 @@ function insurance_contract_form_poliza_node_validate(&$form, &$form_state) {
   if ($validity < $issuedate) {
     form_set_error('field_poliza_emision', '');
     form_set_error('field_poliza_vigencia', t('The validity start date cannot be earlier than the issue date.'));
-  }
-}
-
-/**
- * Get Payment Method Number.
- */
-function get_payment_method_number($payment_type) {
-  if ($payment_type == 'mensual') {
-    return 12;
-  }
-  if ($payment_type == '3meses') {
-    return $serie = 3;
-  }
-  if ($payment_type == 'trimestral') {
-    return $serie = 4;
-  }
-  if ($payment_type == 'cuatrimestral') {
-    return $serie = 3;
-  }
-  if ($payment_type == 'semestral') {
-    return $serie = 2;
-  }
-  if ($payment_type == 'anual') {
-    return $serie = 1;
   }
 }
