@@ -1,0 +1,15 @@
+body.page-admin-anave-siniestros .form-type-textfield.form-item-created-min{
+  position: relative;
+  padding-top: 33px;
+}
+
+body.page-admin-anave-siniestros .form-type-textfield.form-item-created-min > label{
+  position: absolute;
+  top: 9px;
+  left: 0;
+  z-index: 1;
+}
+
+body.page-admin-anave-siniestros .views-exposed-widget.views-widget-filter-created{
+  position: relative;
+}
