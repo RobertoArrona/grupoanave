@@ -1,3 +1,7 @@
-.action-links li:nth-child(2) {
+body.node-type-poliza #page #content .action-links li {
   display: none;
+}
+
+body.node-type-poliza #page #content .action-links li:first-child {
+  display: block;
 }
