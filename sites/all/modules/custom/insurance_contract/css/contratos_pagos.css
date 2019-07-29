@@ -5,3 +5,21 @@ body.node-type-poliza #page #content .action-links li {
 body.node-type-poliza #page #content .action-links li:first-child {
   display: block;
 }
+
+body.page-node-add-poliza #page #content form.node-poliza-form .field-type-number-decimal .form-item.form-type-textfield,
+body.node-type-poliza #page #content form.node-poliza-form .field-type-number-decimal .form-item.form-type-textfield {
+  position: relative;
+}
+
+body.page-node-add-poliza #page #content form.node-poliza-form .field-type-number-decimal .form-item.form-type-textfield input,
+body.node-type-poliza #page #content form.node-poliza-form .field-type-number-decimal .form-item.form-type-textfield input {
+  margin-left: 10px;
+}
+
+body.page-node-add-poliza #page #content form.node-poliza-form .field-type-number-decimal .form-item.form-type-textfield span.field-prefix,
+body.node-type-poliza #page #content form.node-poliza-form .field-type-number-decimal .form-item.form-type-textfield span.field-prefix {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  z-index: 1;
+}
