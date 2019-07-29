@@ -97,6 +97,8 @@ function insurance_contract_get_insert_id($table, $field) {
   foreach ($result as $row) {
     return $row->$field;
   }
+
+  return FALSE;
 }
 
 /**
@@ -125,37 +127,384 @@ function insurance_contract_create_node_collection_relationship($nid) {
 }
 
 /**
+ * Returns coverage_period_end_date from last payment receipt.
+ */
+function insurance_contract_get_coverage_period_start_date_from_last_payment_receipt($nid, $offset) {
+  $result = db_query("SELECT field_periodo_cobertura_rc_value2 AS coverage_period_start_date FROM field_data_field_periodo_cobertura_rc WHERE entity_id = (SELECT nc_child_nid FROM node_collection_data WHERE nc_parent_nid = $nid LIMIT $offset, 1)",
+    array(
+      ':nid' => $nid,
+      ':offset' => $offset,
+    ));
+
+  foreach ($result as $key => $row) {
+    return $row->coverage_period_start_date;
+  }
+
+  return FALSE;
+}
+
+/**
  * Returns payment type on readable format or returns payments number.
  */
-function insurance_contract_get_payment_type_value($payment_type, $request = 'payments_number') {
+function insurance_contract_get_payment_type_value($payment_type, $request = 'payments_number', $date = NULL) {
+  // Get date and time.
+  if ($request == 'coverage') {
+    $dt = new DateTime($date);
+  }
+
   switch ($payment_type) {
     case 'mensual':
-      $payment_type_value = $request == 'format' ? 'Mensual' : 12;
+      if ($request == 'format') {
+        // Set month on letters.
+        $payment_type_value = 'Mensual';
+      }
+      elseif ($request == 'coverage') {
+        // Set date coverage.
+        $dt->modify('+1 month');
+        $payment_type_value = $dt->format('Y-m-d');
+      }
+      else {
+        // Set payments number.
+        $payment_type_value = 12;
+      }
       break;
 
     case '3meses':
-      $payment_type_value = $request == 'format' ? '3 Meses' : 3;
+      if ($request == 'format') {
+        // Set month on letters.
+        $payment_type_value = '3 Meses';
+      }
+      elseif ($request == 'coverage') {
+        // Set date coverage.
+        $dt->modify('+1 month');
+        $payment_type_value = $dt->format('Y-m-d');
+      }
+      else {
+        // Set payments number.
+        $payment_type_value = 3;
+      }
       break;
 
     case 'trimestral':
-      $payment_type_value = $request == 'format' ? 'Trimestral' : 4;
+      if ($request == 'format') {
+        // Set month on letters.
+        $payment_type_value = 'Trimestral';
+      }
+      elseif ($request == 'coverage') {
+        // Set date coverage.
+        $dt->modify('+3 month');
+        $payment_type_value = $dt->format('Y-m-d');
+      }
+      else {
+        // Set payments number.
+        $payment_type_value = 4;
+      }
       break;
 
     case 'cuatrimestral':
-      $payment_type_value = $request == 'format' ? 'Cuatrimestral' : 3;
+      if ($request == 'format') {
+        // Set month on letters.
+        $payment_type_value = 'Cuatrimestral';
+      }
+      elseif ($request == 'coverage') {
+        // Set date coverage.
+        $dt->modify('+4 month');
+        $payment_type_value = $dt->format('Y-m-d');
+      }
+      else {
+        // Set payments number.
+        $payment_type_value = 3;
+      }
       break;
 
     case 'semestral':
-      $payment_type_value = $request == 'format' ? 'Semestral' : 2;
+      if ($request == 'format') {
+        // Set month on letters.
+        $payment_type_value = 'Semestral';
+      }
+      elseif ($request == 'coverage') {
+        // Set date coverage.
+        $dt->modify('+6 month');
+        $payment_type_value = $dt->format('Y-m-d');
+      }
+      else {
+        // Set payments number.
+        $payment_type_value = 2;
+      }
       break;
 
     case 'anual':
-      $payment_type_value = $request == 'format' ? 'Anual' : 1;
+      if ($request == 'format') {
+        // Set month on letters.
+        $payment_type_value = 'Anual';
+      }
+      elseif ($request == 'coverage') {
+        // Set date coverage.
+        $dt->modify('+1 year');
+        $payment_type_value = $dt->format('Y-m-d');
+      }
+      else {
+        // Set payments number.
+        $payment_type_value = 1;
+      }
       break;
 
     default:
-      $payment_type_value = $request == 'format' ? '' : 0;
+      $payment_type_value = NULL;
   }
 
   return $payment_type_value;
+}
+
+/**
+ * Converts decimal number to letters.
+ */
+function convert_number_to_letters($num, $fem = FALSE, $dec = TRUE) {
+  $matuni[2] = "dos";
+  $matuni[3] = "tres";
+  $matuni[4] = "cuatro";
+  $matuni[5] = "cinco";
+  $matuni[6] = "seis";
+  $matuni[7] = "siete";
+  $matuni[8] = "ocho";
+  $matuni[9] = "nueve";
+  $matuni[10] = "diez";
+  $matuni[11] = "once";
+  $matuni[12] = "doce";
+  $matuni[13] = "trece";
+  $matuni[14] = "catorce";
+  $matuni[15] = "quince";
+  $matuni[16] = "dieciseis";
+  $matuni[17] = "diecisiete";
+  $matuni[18] = "dieciocho";
+  $matuni[19] = "diecinueve";
+  $matuni[20] = "veinte";
+  $matunisub[2] = "dos";
+  $matunisub[3] = "tres";
+  $matunisub[4] = "cuatro";
+  $matunisub[5] = "quin";
+  $matunisub[6] = "seis";
+  $matunisub[7] = "sete";
+  $matunisub[8] = "ocho";
+  $matunisub[9] = "nove";
+  $matdec[2] = "veint";
+  $matdec[3] = "treinta";
+  $matdec[4] = "cuarenta";
+  $matdec[5] = "cincuenta";
+  $matdec[6] = "sesenta";
+  $matdec[7] = "setenta";
+  $matdec[8] = "ochenta";
+  $matdec[9] = "noventa";
+  $matsub[3] = 'mill';
+  $matsub[5] = 'bill';
+  $matsub[7] = 'mill';
+  $matsub[9] = 'trill';
+  $matsub[11] = 'mill';
+  $matsub[13] = 'bill';
+  $matsub[15] = 'mill';
+  $matmil[4] = 'millones';
+  $matmil[6] = 'billones';
+  $matmil[7] = 'de billones';
+  $matmil[8] = 'millones de billones';
+  $matmil[10] = 'trillones';
+  $matmil[11] = 'de trillones';
+  $matmil[12] = 'millones de trillones';
+  $matmil[13] = 'de trillones';
+  $matmil[14] = 'billones de trillones';
+  $matmil[15] = 'de billones de trillones';
+  $matmil[16] = 'millones de billones de trillones';
+
+  // Zi hack.
+  $float = explode('.', $num);
+  $num = $float[0];
+  $num = trim((string) @$num);
+
+  if ($num[0] == '-') {
+    $neg = 'menos ';
+    $num = substr($num, 1);
+  }
+  else {
+    $neg = '';
+  }
+
+  while ($num[0] == '0') {
+    $num = substr($num, 1);
+  }
+
+  if ($num[0] < '1' or $num[0] > 9) {
+    $num = '0' . $num;
+  }
+
+  $zeros = TRUE;
+  $punt = FALSE;
+  $ent = '';
+  $fra = '';
+
+  for ($c = 0; $c < strlen($num); $c++) {
+    $n = $num[$c];
+    if (!(strpos(".,'''", $n) === FALSE)) {
+      if ($punt) {
+        break;
+      }
+      else {
+        $punt = TRUE;
+        continue;
+      }
+    }
+    elseif (!(strpos('0123456789', $n) === FALSE)) {
+      if ($punt) {
+        if ($n != '0') {
+          $zeros = FALSE;
+        }
+
+        $fra .= $n;
+      }
+      else {
+        $ent .= $n;
+      }
+    }
+    else {
+      break;
+    }
+  }
+
+  $ent = '     ' . $ent;
+
+  if ($dec and $fra and !$zeros) {
+    $fin = ' coma';
+
+    for ($n = 0; $n < strlen($fra); $n++) {
+      if (($s = $fra[$n]) == '0') {
+        $fin .= ' cero';
+      }
+      elseif ($s == '1') {
+        $fin .= $fem ? ' una' : ' un';
+      }
+      else {
+        $fin .= ' ' . $matuni[$s];
+      }
+    }
+  }
+  else {
+    $fin = '';
+  }
+
+  if ((int) $ent === 0) {
+    return 'Cero ' . $fin;
+  }
+
+  $tex = '';
+  $sub = 0;
+  $mils = 0;
+  $neutro = FALSE;
+
+  while (($num = substr($ent, -3)) != '   ') {
+    $ent = substr($ent, 0, -3);
+
+    if (++$sub < 3 and $fem) {
+      $matuni[1] = 'una';
+      $subcent = 'as';
+    }
+    else {
+      $matuni[1] = $neutro ? 'un' : 'uno';
+      $subcent = 'os';
+    }
+
+    $t = '';
+    $n2 = substr($num, 1);
+
+    if ($n2 == '00') {
+    }
+    elseif ($n2 < 21) {
+      $t = ' ' . $matuni[(int) $n2];
+    }
+    elseif ($n2 < 30) {
+      $n3 = $num[2];
+
+      if ($n3 != 0) {
+        $t = 'i' . $matuni[$n3];
+      }
+
+      $n2 = $num[1];
+      $t = ' ' . $matdec[$n2] . $t;
+    }
+    else {
+      $n3 = $num[2];
+
+      if ($n3 != 0) {
+        $t = ' y ' . $matuni[$n3];
+      }
+
+      $n2 = $num[1];
+      $t = ' ' . $matdec[$n2] . $t;
+    }
+
+    $n = $num[0];
+
+    if ($n == 1) {
+      $t = ' ciento' . $t;
+    }
+    elseif ($n == 5) {
+      $t = ' ' . $matunisub[$n] . 'ient' . $subcent . $t;
+    }
+    elseif ($n != 0) {
+      $t = ' ' . $matunisub[$n] . 'cient' . $subcent . $t;
+    }
+
+    if ($sub == 1) {
+    }
+    elseif (!isset($matsub[$sub])) {
+      if ($num == 1) {
+        $t = ' mil';
+      }
+      elseif ($num > 1) {
+        $t .= ' mil';
+      }
+    }
+    elseif ($num == 1) {
+      $t .= ' ' . $matsub[$sub] . '?n';
+    }
+    elseif ($num > 1) {
+      $t .= ' ' . $matsub[$sub] . 'ones';
+    }
+
+    if ($num == '000') {
+      $mils++;
+    }
+    elseif ($mils != 0) {
+      if (isset($matmil[$sub])) {
+        $t .= ' ' . $matmil[$sub];
+      }
+
+      $mils = 0;
+    }
+
+    $neutro = TRUE;
+    $tex = $t . $tex;
+  }
+
+  if (!isset($float[1])) {
+    $float[1] = '00';
+  }
+
+  $tex = $neg . substr($tex, 1) . $fin;
+  $end_num = ucfirst($tex) . ' pesos ' . $float[1] . '/100 M.N.';
+
+  return $end_num;
+}
+
+/**
+ * Returns grace period date.
+ */
+function insurance_contract_get_grace_period_date($grace_period) {
+  // Create date from current date.
+  $date = date('Y-m-d');
+  // Create new date and time object based on current date.
+  $due_date = new DateTime($date);
+  // Increase day on date based on grace period.
+  $due_date->modify("+$grace_period day");
+  // Format date.
+  $due_date->format('Y-m-d H:i:s');
+
+  return $due_date->getTimestamp();
 }
