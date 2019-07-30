@@ -78,9 +78,6 @@ function sinister_ws_save($data) {
       }
     }
 
-    // Debug files.
-    watchdog('sinister_ws', '<pre>' . print_r($data, TRUE) . '</pre>');
-
     sinister_ws_save_fc_siniestro_archivo($node, $data);
   }
 
