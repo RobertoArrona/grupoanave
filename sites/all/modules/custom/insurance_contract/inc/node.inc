@@ -89,8 +89,6 @@ function insurance_contract_create_payment_receipts($node) {
     'payment_receipts_number' => $payment_receipts_number,
     'first_payment' => $node->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value'],
     'subsequent_payment' => $node->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value'],
-    'validity_contract_start_date' => $validity_contract_start_date,
-    'due_date' => insurance_contract_get_grace_period_date($grace_period),
     'issuance' => $node->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value'],
   ];
 
@@ -98,6 +96,14 @@ function insurance_contract_create_payment_receipts($node) {
     // Create payment receipt node.
     $entity = entity_create('node', $values);
     $payment_receipt = entity_metadata_wrapper('node', $entity);
+
+    // Validate first payment.
+    if ($i == 1) {
+      // Add validity_contract_start_date to parameters.
+      $parameters['validity_contract_start_date'] = $validity_contract_start_date;
+      // Add due_date to parameters.
+      $parameters['due_date'] = insurance_contract_get_grace_period_date($grace_period, $validity_contract_start_date);
+    }
 
     // Add payment receipt values and save payment receipt node.
     insurance_contract_save_payment_receipt_node($parameters, $i, $payment_receipt);
@@ -117,10 +123,13 @@ function insurance_contract_save_payment_receipt_node($parameters, $i, &$payment
   if ($i == 1) {
     // Set first payment.
     $payment_receipt->field_primer_pago_rc->set($parameters['first_payment']);
+
     // Set subsequent payment.
     $payment_receipt->field_pago_subsecuente_rc->set(0);
+
     // Set amount with letter.
     $payment_receipt->field_importe_con_letra_rc->set(strtoupper(convert_number_to_letters($parameters['first_payment'])));
+
     // Set coverage period start and end date,
     // based on validity contract start date.
     $payment_receipt->field_periodo_cobertura_rc->set(array(
@@ -129,22 +138,34 @@ function insurance_contract_save_payment_receipt_node($parameters, $i, &$payment
       'timezone' => 'America/Mazatlan',
       'timezone_db' => 'America/Mazatlan',
     ));
+
+    // Set receipt due date.
+    $payment_receipt->field_vencimiento_rc->set($parameters['due_date']);
   }
   else {
     // Set subsequent payment.
     $payment_receipt->field_pago_subsecuente_rc->set($parameters['subsequent_payment']);
+
     // Set first payment.
     $payment_receipt->field_primer_pago_rc->set(0);
+
     // Set amount with letter.
     $payment_receipt->field_importe_con_letra_rc->set(strtoupper(convert_number_to_letters($parameters['subsequent_payment'])));
-    // Set coverage period start and end date.
+
+    // Get coverage_period_start_date from database.
     if ($coverage_period_start_date = insurance_contract_get_coverage_period_start_date_from_last_payment_receipt($parameters['nid'], ($i - 2))) {
+
+      // Set coverage period start and end date.
       $payment_receipt->field_periodo_cobertura_rc->set(array(
         'value' => $coverage_period_start_date,
         'value2' => insurance_contract_get_payment_type_value($parameters['payment_type'], 'coverage', $coverage_period_start_date),
         'timezone' => 'America/Mazatlan',
         'timezone_db' => 'America/Mazatlan',
       ));
+
+      // Set receipt due date.
+      $due_date_date_time = new DateTime(date($coverage_period_start_date));
+      $payment_receipt->field_vencimiento_rc->set($due_date_date_time->getTimestamp());
     }
   }
 
@@ -164,15 +185,12 @@ function insurance_contract_save_payment_receipt_node($parameters, $i, &$payment
   // Set receipt serie.
   $payment_receipt->field_serie_rc->set($i . '/' . $parameters['payment_receipts_number']);
 
-  // Set receipt due date.
-  $payment_receipt->field_vencimiento_rc->set($parameters['due_date']);
-
   // Set receipt issuance.
   $payment_receipt->field_emision_recibo_ref_rc->set($parameters['issuance']);
 
   // Set expedition date based on current date.
-  $date_time = new DateTime(date('Y-m-d 00:00:00'));
-  $payment_receipt->field_fecha_de_expedicion_rc->set($date_time->getTimestamp());
+  $expedition_date_time = new DateTime(date('Y-m-d 00:00:00'));
+  $payment_receipt->field_fecha_de_expedicion_rc->set($expedition_date_time->getTimestamp());
 
   // Save payment receipt node.
   $payment_receipt->save();

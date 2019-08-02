@@ -496,11 +496,9 @@ function convert_number_to_letters($num, $fem = FALSE, $dec = TRUE) {
 /**
  * Returns grace period date.
  */
-function insurance_contract_get_grace_period_date($grace_period) {
-  // Create date from current date.
-  $date = date('Y-m-d');
-  // Create new date and time object based on current date.
-  $due_date = new DateTime($date);
+function insurance_contract_get_grace_period_date($grace_period, $validity_contract_start_date) {
+  // Create new date and time object based on validity contract start date.
+  $due_date = new DateTime($validity_contract_start_date);
   // Increase day on date based on grace period.
   $due_date->modify("+$grace_period day");
   // Format date.
