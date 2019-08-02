@@ -448,7 +448,7 @@ if ($right_policy == 0) {
           <p>Los pagos deber&aacute;n realizarse en cualquier sucursal de BANCOMER y en las oficinas de GP Mutual M&eacute;xico A.C. a trav&eacute;s de la referencia bancaria proporcionada.</p>
           <ul>
             <li>Cuenta: 0113025381</li>
-            <li>Clabe interbancaria: 012560001130253414</li>
+            <li>Clabe interbancaria: 012560001130253814</li>
           </ul>
         </div>
       </div>
