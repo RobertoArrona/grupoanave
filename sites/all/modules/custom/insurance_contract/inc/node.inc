@@ -76,10 +76,15 @@ function insurance_contract_create_payment_receipts($node) {
   // Get grace period.
   $grace_period = $node->field_periodo_de_gracia[LANGUAGE_NONE][0]['value'];
 
+  // Get logged user id.
+  global $user;
+  $uid = $user->uid;
+
   // Create parameters array.
   $parameters = [
     'nid' => $node->nid,
     'node_title' => $node->title,
+    'uid' => $uid,
     'payment_type' => $payment_type,
     'payment_receipts_number' => $payment_receipts_number,
     'first_payment' => $node->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value'],
@@ -146,6 +151,9 @@ function insurance_contract_save_payment_receipt_node($parameters, $i, &$payment
   // Get and set payment receipt folio.
   $payment_receipt_folio = insurance_contract_payment_get_receipt_number();
   $payment_receipt->title->set($payment_receipt_folio);
+
+  // Set payment receipt author.
+  $payment_receipt->author->set($parameters['uid']);
 
   // Set contract node id on contract field.
   $payment_receipt->field_poliza->set($parameters['nid']);
