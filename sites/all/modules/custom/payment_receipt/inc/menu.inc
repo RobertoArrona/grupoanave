@@ -32,7 +32,7 @@ function payment_receipt_menu() {
   $items['admin/config/payment/receipt/update/contract/number'] = array(
     'title' => 'Update Contract Number on each Payment Receipt.',
     'page callback' => 'payment_receipt_menu_update_contract_number',
-    'access arguments' => array('administer payment receipt number'),
+    'access arguments' => array('payment receipt update contract number'),
     'type' => MENU_CALLBACK,
   );
 
@@ -94,6 +94,10 @@ function payment_receipt_menu_update_contract_number() {
     $contract_numbers,
   ];
 
+  // Create BD Log message.
+  watchdog('payment_receipt', '<pre>' . print_r($msg, TRUE) . '</pre>');
+
+  // Print mesagge on the page.
   print_r($msg);
   exit;
 }

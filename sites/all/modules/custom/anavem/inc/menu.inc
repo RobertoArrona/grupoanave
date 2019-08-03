@@ -48,10 +48,42 @@ function anavem_menu() {
     'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
     'weight' => 0,
   );
+  $items['anavem/debug'] = array(
+    'title' => 'Debug',
+    'page callback' => 'anavem_menu_debug',
+    'access arguments' => array('administer payment receipt number'),
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
 }
 
-function anavem_script() { 
+/**
+ * Debugs anavem functions.
+ */
+function anavem_menu_debug() {
+  // Get payment receipt node IDs.
+  $nids = anavem_recibo_contrato_get_all();
+
+  if (!$nids) {
+    print '<h1 style="text-align: center;">Error on database query.</h1>';
+    exit;
+  }
+
+  // Create array message.
+  $msg = [
+    count($nids) . ' node ids were fetched:',
+    $nids,
+  ];
+
+  print_r($msg);
+  exit;
+}
+
+/**
+ * Checks login stuff.
+ */
+function anavem_script() {
   if (!isset($_GET['token'])) {
     return drupal_access_denied();
   }
@@ -66,9 +98,9 @@ function anavem_script() {
   $user = $luser;
   $user->login = time();
   db_update('users')
-  ->fields(array('login' => $user->login))
-  ->condition('uid', $user->uid)
-  ->execute();
+    ->fields(array('login' => $user->login))
+    ->condition('uid', $user->uid)
+    ->execute();
   drupal_session_regenerate();
   return 'Welcome';
 }
@@ -181,6 +213,16 @@ function anavem_menu_landing_page() {
       'title' => 'Siniestros',
       'description' => 'Muestra una tabla donde podrás administrar Siniestros.',
       'url' => url('admin/anave/siniestros'),
+    );
+  }
+
+  // Siniestros.
+  if (user_access('Administrar Recibos')) {
+    $sections['recibos'] = array(
+      'id' => 'recibos',
+      'title' => 'Recibos',
+      'description' => 'Muestra una tabla donde podrás administrar Recibos.',
+      'url' => url('admin/anave/recibos'),
     );
   }
 

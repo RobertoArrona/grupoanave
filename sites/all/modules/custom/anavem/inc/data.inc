@@ -123,7 +123,7 @@ function anavem_poliza_get_all() {
 
   return $rows;
 }
- 
+
 /**
  * Get own polizas ids.
  */
@@ -158,6 +158,49 @@ function anavem_poliza_get_assigned($uid) {
 
   $type = 'poliza';
   $results = db_query("SELECT N.nid FROM {node} AS N INNER JOIN {field_data_field_asignar_promotor} AS FDFP ON N.nid = FDFP.entity_id WHERE type = :type AND FDFP.field_asignar_promotor_target_id = :uid",
+  array(
+    ':type' => $type,
+    ':uid' => $uid,
+  ));
+  $rows = array();
+  while (($row = $results->fetchAssoc())) {
+    $rows[$row['nid']] = $row['nid'];
+  }
+
+  return $rows;
+}
+
+/**
+ * Get all payment receipts ids.
+ */
+function anavem_recibo_contrato_get_all() {
+  static $rows;
+  if (isset($rows)) {
+    return $rows;
+  }
+
+  $sql = "SELECT nid FROM {node} WHERE type = 'recibo_contrato'";
+  $results = db_query($sql);
+  $rows = array();
+
+  while (($row = $results->fetchAssoc())) {
+    $rows[$row['nid']] = $row['nid'];
+  }
+
+  return $rows;
+}
+
+/**
+ * Get own payment receipts ids.
+ */
+function anavem_recibo_contrato_get_own($uid) {
+  static $rows;
+  if (isset($rows)) {
+    return $rows;
+  }
+
+  $type = 'poliza';
+  $results = db_query("SELECT nid FROM node WHERE type = :type AND uid = :uid",
   array(
     ':type' => $type,
     ':uid' => $uid,

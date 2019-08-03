@@ -74,5 +74,13 @@ function anavem_permission() {
       'title' => 'Administrar Usuarios',
       'description' => 'Administrar Usuarios',
     ),
+    'Administrar Recibos' => array(
+      'title' => 'Administrar Recibos',
+      'description' => 'Administrar Recibos',
+    ),
+    'Administrar Todos los Recibos de Contrato' => array(
+      'title' => 'Administrar Todos los Recibos de Contrato',
+      'description' => 'Administrar Todos los Recibos de Contrato',
+    ),
   );
 }
