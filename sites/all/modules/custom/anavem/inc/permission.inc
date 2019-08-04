@@ -82,5 +82,9 @@ function anavem_permission() {
       'title' => 'Administrar Todos los Recibos de Contrato',
       'description' => 'Administrar Todos los Recibos de Contrato',
     ),
+    'Administrar Recibos de Contrato propios' => array(
+      'title' => 'Administrar Recibos de Contrato propios',
+      'description' => 'Administrar Recibos de Contrato propios',
+    ),
   );
 }
