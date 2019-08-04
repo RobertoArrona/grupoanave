@@ -141,33 +141,35 @@ function anavem_node_grants_recibo_contrato($account, $op, &$grants) {
   // Get a list of all recibo_contrato nodes.
   $all_nids = anavem_recibo_contrato_get_all();
 
-  /*// Get a list of own recibo_contrato nodes.
+  // Get a list of own recibo_contrato nodes.
   $own_nids = anavem_recibo_contrato_get_own($account->uid);
-  // Get a list of assigned recibo_contrato nodes.
-  $assigned_nids = anavem_recibo_contrato_get_assigned($account->uid);*/
 
-  // Determine if the user can access this recibo_contrato node (permission 'all recibos de contrato').
+  // Get a list of assigned recibo_contrato nodes.
+  $assigned_nids = anavem_recibo_contrato_get_assigned($account->uid);
+
+  // Determine if the user can access this recibo_contrato node,
+  // (permission 'all recibos de contrato').
   foreach ($all_nids as $nid) {
     if (anavem_user_can_access_recibo_contrato_all_recibos_contrato($nid, $account)) {
       $grants['anavem_recibo_contrato_node_access_view'][] = $nid;
     }
   }
 
-/*
-  // Determine if the user can access this recibo_contrato node (permission 'own recibos de contrato').
+  // Determine if the user can access this recibo_contrato node,
+  // (permission 'own recibos de contrato').
   foreach ($own_nids as $nid) {
     if (anavem_user_can_access_recibo_contrato_own_recibos_contrato($nid, $account)) {
       $grants['anavem_recibo_contrato_node_access_view'][] = $nid;
     }
   }
 
-  // Determine if the user can access this recibo_contrato node (permission 'assigned recibos de contrato').
+  // Determine if the user can access this recibo_contrato node,
+  // (permission 'assigned recibos de contrato').
   foreach ($assigned_nids as $nid) {
     if (anavem_user_can_access_recibo_contrato_assigned_recibos_contrato($nid, $account)) {
       $grants['anavem_recibo_contrato_node_access_view'][] = $nid;
     }
   }
-*/
 }
 
 /**
@@ -212,7 +214,9 @@ function anavem_user_can_access_siniestro($nid, $account) {
 }
 
 /**
- * Determines if a poliza node can be accesed by a given user (permission 'all polizas').
+ * Determines if a poliza node can be accesed by a given user.
+ *
+ * (permission 'all polizas').
  */
 function anavem_user_can_access_poliza_all_polizas($nid, $account) {
   // Static Cache.
@@ -263,7 +267,9 @@ function anavem_user_can_access_poliza_all_polizas($nid, $account) {
 }
 
 /**
- * Determines if a poliza node can be accesed by a given user (permission 'own polizas').
+ * Determines if a poliza node can be accesed by a given user.
+ *
+ * (permission 'own polizas')
  */
 function anavem_user_can_access_poliza_own_polizas($nid, $account) {
   // Static Cache.
@@ -314,7 +320,9 @@ function anavem_user_can_access_poliza_own_polizas($nid, $account) {
 }
 
 /**
- * Determines if a poliza node can be accesed by a given user (permission 'assigned polizas').
+ * Determines if a poliza node can be accesed by a given user.
+ *
+ * (permission 'assigned polizas')
  */
 function anavem_user_can_access_poliza_assigned_polizas($nid, $account) {
   // Static Cache.
@@ -365,7 +373,9 @@ function anavem_user_can_access_poliza_assigned_polizas($nid, $account) {
 }
 
 /**
- * Determines if a recibo_contrato node can be accesed by a given user (permission 'all recibos de contrato').
+ * Determines if a recibo_contrato node can be accesed by a given user.
+ *
+ * (permission 'all recibos de contrato')
  */
 function anavem_user_can_access_recibo_contrato_all_recibos_contrato($nid, $account) {
   // Static Cache.
@@ -404,7 +414,9 @@ function anavem_user_can_access_recibo_contrato_all_recibos_contrato($nid, $acco
 }
 
 /**
- * Determines if a recibo_contrato node can be accesed by a given user (permission 'own recibos de contrato').
+ * Determines if a recibo_contrato node can be accesed by a given user.
+ *
+ * (permission 'own recibos de contrato')
  */
 function anavem_user_can_access_recibo_contrato_own_recibos_contrato($nid, $account) {
   // Static Cache.
@@ -443,7 +455,9 @@ function anavem_user_can_access_recibo_contrato_own_recibos_contrato($nid, $acco
 }
 
 /**
- * Determines if a recibo_contrato node can be accesed by a given user (permission 'assigned recibos de contrato').
+ * Determines if a recibo_contrato node can be accesed by a given user.
+ *
+ * (permission 'assigned recibos de contrato')
  */
 function anavem_user_can_access_recibo_contrato_assigned_recibos_contrato($nid, $account) {
   // Static Cache.
