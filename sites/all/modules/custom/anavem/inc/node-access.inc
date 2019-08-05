@@ -436,7 +436,7 @@ function anavem_user_can_access_recibo_contrato_own_recibos_contrato($nid, $acco
 
   // Scenarios where a Payment Receipt can be accessed.
   // 1.- If the user has right to see all Payment Receipts.
-  if (user_access('Administrar Recibos de Contrato propias', $account)) {
+  if (user_access('Administrar Recibos de Contrato propios', $account)) {
     $access[$nid][$account->uid] = TRUE;
     cache_set($cid, TRUE, 'cache', $cache_expire);
     return TRUE;
@@ -477,7 +477,7 @@ function anavem_user_can_access_recibo_contrato_assigned_recibos_contrato($nid, 
 
   // Scenarios where a Recibo de Contrato can be accessed.
   // 1.- If the user has right to see all Recibos de Contratos.
-  if (user_access('Administrar Recibos de Contrato asignadas', $account)) {
+  if (user_access('Administrar Recibos de Contrato asignados', $account)) {
     $access[$nid][$account->uid] = TRUE;
     cache_set($cid, TRUE, 'cache', $cache_expire);
     return TRUE;
