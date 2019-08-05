@@ -223,7 +223,7 @@ function anavem_recibo_contrato_get_assigned($uid) {
   }
 
   $type = 'poliza';
-  $results = db_query("SELECT NCD.nc_child_nid FROM {node} AS N INNER JOIN {field_data_field_asignar_promotor} AS FDFP ON N.nid = FDFP.entity_id INNER JOIN {node_collection_data} AS NCD ON N.nid = NCD.nc_parent_nid WHERE type = :type AND FDFP.field_asignar_promotor_target_id = :uid",
+  $results = db_query("SELECT NCD.nc_child_nid AS nid FROM {node} AS N INNER JOIN {field_data_field_asignar_promotor} AS FDFP ON N.nid = FDFP.entity_id INNER JOIN {node_collection_data} AS NCD ON N.nid = NCD.nc_parent_nid WHERE type = :type AND FDFP.field_asignar_promotor_target_id = :uid",
   array(
     ':type' => $type,
     ':uid' => $uid,
