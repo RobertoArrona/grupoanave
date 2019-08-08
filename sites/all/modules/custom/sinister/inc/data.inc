@@ -21,9 +21,9 @@ function sinister_get_ajustador_sinisters($uid, $type) {
   }
 
   $sql = 'SELECT ajustador.entity_id nid FROM field_data_field_ajustador ajustador 
-    INNER JOIN field_data_field_sinister_status status ON ajustador.entity_id = status.entity_id 
+    INNER JOIN field_data_field_status_sinister status ON ajustador.entity_id = status.entity_id 
     WHERE ajustador.field_ajustador_target_id = %d AND 
-    status.field_sinister_status_value = %d';
+    status.field_status_sinister_value = %d';
   $sql = sprintf($sql, $uid, $type);
   $results = db_query($sql);
   $sinisters[$uid][$type] = array();

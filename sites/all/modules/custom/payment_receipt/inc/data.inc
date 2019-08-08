@@ -85,14 +85,13 @@ function payment_receipt_get_contract_nid($contract_folio) {
 }
 
 /**
- * Returns all recibo_contrato and poliza node having a node relationship.
+ * Returns all recibo_contrato node IDs.
  */
-function payment_receipt_get_all_payment_receipt_contract_nids() {
-  $result = db_query("SELECT NCD.nc_parent_nid AS nc_parent_nid, NCD.nc_child_nid AS nc_child_nid FROM node AS N INNER JOIN node_collection_data AS NCD ON N.nid = NCD.nc_child_nid WHERE N.type = 'recibo_contrato' ORDER BY NCD.nc_child_nid ASC");
+function payment_receipt_get_all_payment_receipt_nids() {
+  $result = db_query("SELECT N.nid AS nid FROM {node} AS N INNER JOIN {field_data_field_poliza} AS FDFP ON N.nid = FDFP.entity_id WHERE N.type = 'recibo_contrato' AND FDFP.bundle = 'recibo_contrato'");
 
   foreach ($result as $key => $row) {
-    $payment_receipt_nids[$key]['nc_parent_nid'] = $row->nc_parent_nid;
-    $payment_receipt_nids[$key]['nc_child_nid'] = $row->nc_child_nid;
+    $payment_receipt_nids[$key] = $row->nid;
   }
 
   if ($payment_receipt_nids) {
@@ -123,39 +122,64 @@ function payment_receipt_get_contract_data($field_name, $contract_folio) {
 }
 
 /**
- * Returns payment type on readable format.
+ * Returns spanish date format (dd/Month/yyyy).
  */
-function get_payment_type_format($payment_type) {
-  $payment_type_format = '';
+function payment_receipt_get_spanish_date_format($date) {
+  $date = new DateTime($date);
 
-  switch ($payment_type) {
-    case 'mensual':
-      $payment_type_format = 'Mensual';
+  $day = $date->format('d');
+  $month = $date->format('n');
+  $year = $date->format('Y');
+
+  switch ($month) {
+    case 1:
+      $spanishMonth = "Enero";
       break;
 
-    case '3meses':
-      $payment_type_format = '3 Meses';
+    case 2:
+      $spanishMonth = "Febrero";
       break;
 
-    case 'trimestral':
-      $payment_type_format = 'Trimestral';
+    case 3:
+      $spanishMonth = "Marzo";
       break;
 
-    case 'cuatrimestral':
-      $payment_type_format = 'Cuatrimestral';
+    case 4:
+      $spanishMonth = "Abril";
       break;
 
-    case 'semestral':
-      $payment_type_format = 'Semestral';
+    case 5:
+      $spanishMonth = "Mayo";
       break;
 
-    case 'anual':
-      $payment_type_format = 'Anual';
+    case 6:
+      $spanishMonth = "Junio";
       break;
 
-    default:
-      $payment_type_format = '';
+    case 7:
+      $spanishMonth = "Julio";
+      break;
+
+    case 8:
+      $spanishMonth = "Agosto";
+      break;
+
+    case 9:
+      $spanishMonth = "Septiembre";
+      break;
+
+    case 10:
+      $spanishMonth = "Octubre";
+      break;
+
+    case 11:
+      $spanishMonth = "Noviembre";
+      break;
+
+    case 12:
+      $spanishMonth = "Diciembre";
+      break;
   }
 
-  return $payment_type_format;
+  return "{$day}/{$spanishMonth}/{$year}";
 }

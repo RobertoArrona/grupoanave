@@ -9,7 +9,7 @@
  * Return list sinisters info.
  */
 function sinister_ws_list_sinisters_resource_retrieve($uid) {
-  $sinisters = sinister_get_ajustador_sinisters($uid, 1);
+  $sinisters = sinister_get_ajustador_sinisters($uid, 0);
   $objects = array();
   foreach ($sinisters as $nid => $sinister) {
     if (!($node = node_load($nid))) {

@@ -12,6 +12,7 @@ enred_clear_cache_start();
  * Starts process to clear cache on the site.
  */
 function enred_clear_cache_start() {
+<<<<<<< HEAD
   // Create new date and time object.
   $date = new DateTime();
   // Increase 1 hour because the server hour.
@@ -24,11 +25,29 @@ function enred_clear_cache_start() {
   $post_vars = [
     'token' => sha1('enred-clear-cache'),
     'date' => $date_format,
+=======
+  // Prepare date.
+  $date = date('Y-m-d h:ia');
+  /*$time_zone = 'America/Mazatlan';
+  $date_time = new DateTime($date, new DateTimeZone('GMT')); 
+  $date_time->setTimeZone(new DateTimeZone($time_zone));
+  $new = $date_time->format('Y-m-d h:ia');*/
+
+  // Post them.
+  $post_url = 'http://seguros.loc/rest/sinister-clear-cache';
+  $post_vars = [
+    'token' => sha1('enred-clear-cache'),
+    'date' => $date,
+>>>>>>> feature/clear-cache-webservice: Created webservice to clear cache on the site.
   ];
 
   // Post.
   try {
+<<<<<<< HEAD
     $response = enred_clear_cache_curl_post($post_url, $post_vars);
+=======
+    $response = curl_post($post_url, $post_vars);
+>>>>>>> feature/clear-cache-webservice: Created webservice to clear cache on the site.
     echo $response . '\n\n';
   }
   catch (Exception $e) {
@@ -64,4 +83,7 @@ function enred_clear_cache_curl_post($url, array $post = NULL, array $options = 
 
   return $result;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/clear-cache-webservice: Created webservice to clear cache on the site.

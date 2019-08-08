@@ -20,4 +20,3 @@ include_once 'inc/node-presave.inc';
 include_once 'inc/permission.inc';
 include_once 'inc/preprocess-page.inc';
 include_once 'inc/theme.inc';
-include_once 'inc/cron.inc';
