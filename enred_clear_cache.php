@@ -28,7 +28,7 @@ function enred_clear_cache_start() {
 
   // Post.
   try {
-    $response = curl_post($post_url, $post_vars);
+    $response = enred_clear_cache_curl_post($post_url, $post_vars);
     echo $response . '\n\n';
   }
   catch (Exception $e) {
