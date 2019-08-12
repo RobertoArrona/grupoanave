@@ -9,7 +9,7 @@
  * Return list historicals info.
  */
 function sinister_ws_list_historicals_resource_retrieve($uid) {
-  $sinisters = sinister_get_ajustador_sinisters($uid, 2);
+  $sinisters = sinister_get_ajustador_sinisters($uid, 1);
   $objects = array();
   foreach ($sinisters as $nid => $sinister) {
     if (!($node = node_load($nid))) {
