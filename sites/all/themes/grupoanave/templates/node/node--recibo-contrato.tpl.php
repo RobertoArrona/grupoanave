@@ -410,8 +410,8 @@ if ($right_policy == 0) {
           <tr>
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
-              $<?php
-                $newRaw_payment = number_format($raw_payment, 2, '.', '');
+              <?php
+                $newRaw_payment = "$" . number_format($raw_payment, 2);
                 print render($newRaw_payment);
               ?>
             </td>
@@ -420,18 +420,22 @@ if ($right_policy == 0) {
           <tr>
             <td>
               <strong class="emission">Emision:</strong>
-              $<?php print render($right_policy);?>
+              <?php
+                $number_format_format = "$" . number_format($right_policy, 2);
+                print $number_format_format;
+              ?>
             </td>
           </tr>
 
           <tr>
             <td> 
               <strong>Prima Total:</strong>
-              $<?php
+              <?php
                 $total_premium = $payment_first + $subsecuent_payment + $iva;
                 $total_premium = round($total_premium, 2);
-                $newTotal_premium = number_format($total_premium, 2, '.', '');
-                print render($newTotal_premium);?>
+                $newTotal_premium = "$" . number_format($total_premium, 2);
+                print $newTotal_premium;
+              ?>
             </td>
           </tr>
         </table>
@@ -685,8 +689,8 @@ if ($right_policy == 0) {
           <tr>
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
-              $<?php
-                $newRaw_payment = number_format($raw_payment, 2, '.', '');
+              <?php
+                $newRaw_payment = "$" . number_format($raw_payment, 2);
                 print render($newRaw_payment);
               ?>
             </td>
@@ -695,18 +699,21 @@ if ($right_policy == 0) {
           <tr>
             <td> 
               <strong class="emission">Emision:</strong>
-              $<?php print render($right_policy);?>
+              <?php 
+                $number_format_format = "$" . number_format($right_policy, 2);
+                print $number_format_format;
+              ?>
             </td>
           </tr>
 
           <tr>
             <td> 
               <strong>Prima Total:</strong>
-              $<?php
+              <?php
                 $total_premium = $payment_first + $subsecuent_payment + $iva;
                 $total_premium = round($total_premium, 2);
-                $newTotal_premium = number_format($total_premium, 2, '.', '');
-                print render($newTotal_premium);
+                $newTotal_premium = "$" . number_format($total_premium, 2);
+                print $newTotal_premium;
               ?>
             </td>
           </tr>
