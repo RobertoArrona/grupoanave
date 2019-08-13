@@ -203,7 +203,12 @@ if(empty($termid)) {
                 <?php if(isset($elements['#node']->field_derecho_de_poliza2)):?>
                 <table class="generic"><tr>
                   <td><strong><?php print $elements['field_poliza_emision']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render ($elements['#node']->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value']);?></td>
+                  <td align="right">
+                    <?php 
+                      $issuance = "$" . number_format($elements['#node']->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value'], 2);
+                      print ($issuance);
+                    ?>
+                  </td>
                 </tr></table>
                 <?php endif;?>
               </td>
