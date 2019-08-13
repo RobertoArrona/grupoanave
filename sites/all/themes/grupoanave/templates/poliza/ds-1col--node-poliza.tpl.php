@@ -206,7 +206,7 @@ if(empty($termid)) {
                   <td align="right">
                     <?php 
                       $issuance = "$" . number_format($elements['#node']->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value'], 2);
-                      print ($issuance);
+                      print $issuance;
                     ?>
                   </td>
                 </tr></table>
@@ -321,7 +321,8 @@ if(empty($termid)) {
                   <td align="right">
                     <?php
                       $subsequent_receipts = "$" . number_format($elements['field_poliza_primas_recibos_subs']['#items'][0]['value'], 2);
-                      print $subsequent_receipts;?>
+                      print $subsequent_receipts;
+                    ?>
                   </td>
                 </tr></table>
                 <?php endif;?>

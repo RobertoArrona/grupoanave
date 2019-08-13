@@ -164,7 +164,12 @@ $office  = "$termname-$agent_id";
                 <?php if(isset($elements['field_poliza_prima_neta'])):?>
                 <table class="generic"><tr>
                   <td><strong><!-- <?php print $elements['field_poliza_prima_neta']['#title'];?> -->Costo Neto:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_prima_neta']);?></td>
+                  <td align="right">
+                    <?php
+                      $net_cost = "$" . number_format($elements['field_poliza_prima_neta']['#items'][0]['value'], 2);
+                      print $net_cost;
+                    ?>
+                  </td>
                 </tr></table>
                 <?php endif;?>
               </td>
@@ -198,7 +203,12 @@ $office  = "$termname-$agent_id";
                 <?php if(isset($elements['#node']->field_derecho_de_poliza2)):?>
                 <table class="generic"><tr>
                   <td><strong><?php print $elements['field_poliza_emision']['#title'];?>:</strong></td>
-                  <td align="right"><?php print render ($elements['#node']->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value']);?></td>
+                  <td align="right">
+                    <?php 
+                      $issuance = "$" . number_format($elements['#node']->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value'], 2);
+                      print ($issuance);
+                    ?>
+                  </td>
                 </tr></table>
                 <?php endif;?>
               </td>
@@ -274,7 +284,12 @@ $office  = "$termname-$agent_id";
                 <?php if(isset($elements['field_poliza_prima_total'])):?>
                 <table class="generic"><tr>
                   <td><strong><!-- <?php print $elements['field_poliza_prima_total']['#title'];?> -->Total: </strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_prima_total']);?></td>
+                  <td align="right">
+                    <?php 
+                      $total = "$" . number_format($elements['field_poliza_prima_total']['#items'][0]['value'], 2);
+                      print $total;
+                    ?>
+                  </td>
                 </tr></table>
                 <?php endif;?>
               </td>
@@ -291,7 +306,12 @@ $office  = "$termname-$agent_id";
                 <?php if(isset($elements['field_poliza_prima_1er_recibo'])):?>
                 <table class="generic"><tr>
                   <td><strong><!-- <?php print $elements['field_poliza_prima_1er_recibo']['#title'];?> --> Primer Recibo: </strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_prima_1er_recibo']);?></td>
+                  <td align="right">
+                    <?php 
+                      $first_receipt = "$" . number_format($elements['field_poliza_prima_1er_recibo']['#items'][0]['value'], 2);
+                      print $first_receipt;
+                    ?>
+                  </td>
                 </tr></table>
                 <?php endif;?>
               </td>
@@ -308,7 +328,12 @@ $office  = "$termname-$agent_id";
                 <?php if(isset($elements['field_poliza_primas_recibos_subs']) && $plazo != 'anual'):?>
                 <table class="generic"><tr>
                   <td><strong><?php print $pagos_sub_label;?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_primas_recibos_subs']['#items'][0]['value']);?></td>
+                  <td align="right">
+                    <?php
+                      $subsequence_receipts = "$" . number_format($elements['field_poliza_primas_recibos_subs']['#items'][0]['value'], 2);
+                      print $subsequence_receipts;
+                    ?>
+                  </td>
                 </tr></table>
                 <?php endif;?>
               </td>
