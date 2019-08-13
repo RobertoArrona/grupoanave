@@ -318,7 +318,11 @@ if(empty($termid)) {
                 <?php if(isset($elements['field_poliza_primas_recibos_subs']) && $plazo != 'anual'):?>
                 <table class="generic"><tr>
                   <td><strong><?php print $pagos_sub_label;?>:</strong></td>
-                  <td align="right"><?php print render($elements['field_poliza_primas_recibos_subs']['#items'][0]['value']);?></td>
+                  <td align="right">
+                    <?php
+                      $subsequent_receipts = "$" . number_format($elements['field_poliza_primas_recibos_subs']['#items'][0]['value'], 2);
+                      print $subsequent_receipts;?>
+                  </td>
                 </tr></table>
                 <?php endif;?>
               </td>
