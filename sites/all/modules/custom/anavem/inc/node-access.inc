@@ -44,7 +44,7 @@ function anavem_node_access_records($node) {
 
     case 'recibo_contrato':
       $grants[] = array(
-        'realm' => 'anavem_recibo_conrato_node_access_view',
+        'realm' => 'anavem_recibo_contrato_node_access_view',
         'gid' => $node->nid,
         'grant_view' => 1,
         'grant_update' => 0,
