@@ -41,17 +41,6 @@ function anavem_node_access_records($node) {
         'priority' => 0,
       );
       break;
-
-    case 'recibo_contrato':
-      $grants[] = array(
-        'realm' => 'anavem_recibo_contrato_node_access_view',
-        'gid' => $node->nid,
-        'grant_view' => 1,
-        'grant_update' => 0,
-        'grant_delete' => 0,
-        'priority' => 0,
-      );
-      break;
   }
 
   return $grants;
@@ -73,9 +62,6 @@ function anavem_node_grants($account, $op) {
 
   // Grants for Node Poliza.
   anavem_node_grants_poliza($account, $op, $grants[$account->uid][$op]);
-
-  // Grants for Node Recibo Contrato.
-  anavem_node_grants_recibo_contrato($account, $op, $grants[$account->uid][$op]);
 
   return $grants[$account->uid][$op];
 }
@@ -130,44 +116,6 @@ function anavem_node_grants_poliza($account, $op, &$grants) {
   foreach ($assigned_nids as $nid) {
     if (anavem_user_can_access_poliza_assigned_polizas($nid, $account)) {
       $grants['anavem_poliza_node_access_view'][] = $nid;
-    }
-  }
-}
-
-/**
- * The hook_node_grants helper for node recibo_contrato.
- */
-function anavem_node_grants_recibo_contrato($account, $op, &$grants) {
-  // Get a list of all recibo_contrato nodes.
-  $all_nids = anavem_recibo_contrato_get_all();
-
-  // Get a list of own recibo_contrato nodes.
-  $own_nids = anavem_recibo_contrato_get_own($account->uid);
-
-  // Get a list of assigned recibo_contrato nodes.
-  $assigned_nids = anavem_recibo_contrato_get_assigned($account->uid);
-
-  // Determine if the user can access this recibo_contrato node,
-  // (permission 'all recibos de contrato').
-  foreach ($all_nids as $nid) {
-    if (anavem_user_can_access_recibo_contrato_all_recibos_contrato($nid, $account)) {
-      $grants['anavem_recibo_contrato_node_access_view'][] = $nid;
-    }
-  }
-
-  // Determine if the user can access this recibo_contrato node,
-  // (permission 'own recibos de contrato').
-  foreach ($own_nids as $nid) {
-    if (anavem_user_can_access_recibo_contrato_own_recibos_contrato($nid, $account)) {
-      $grants['anavem_recibo_contrato_node_access_view'][] = $nid;
-    }
-  }
-
-  // Determine if the user can access this recibo_contrato node,
-  // (permission 'assigned recibos de contrato').
-  foreach ($assigned_nids as $nid) {
-    if (anavem_user_can_access_recibo_contrato_assigned_recibos_contrato($nid, $account)) {
-      $grants['anavem_recibo_contrato_node_access_view'][] = $nid;
     }
   }
 }
@@ -365,129 +313,6 @@ function anavem_user_can_access_poliza_assigned_polizas($nid, $account) {
       cache_set($cid, TRUE, 'cache', $cache_expire);
       return TRUE;
     }
-  }
-
-  cache_set($cid, FALSE, 'cache', $cache_expire);
-  $access[$nid][$account->uid] = FALSE;
-  return FALSE;
-}
-
-/**
- * Determines if a recibo_contrato node can be accesed by a given user.
- *
- * (permission 'all recibos de contrato')
- */
-function anavem_user_can_access_recibo_contrato_all_recibos_contrato($nid, $account) {
-  // Static Cache.
-  static $access;
-  if (isset($access[$nid][$account->uid])) {
-    return $access[$nid][$account->uid];
-  }
-
-  // DB Cache.
-  $cid = 'anavem_user_can_access_recibo_contrato_all_recibos_contrato_' . $nid . '_' . $account->uid;
-  if (($cache = cache_get($cid))) {
-    return $cache->data;
-  }
-
-  // Cache Expire Default.
-  $cache_expire = intval(time()) + (60 * 60);
-
-  // Scenarios where a Payment Receipt can be accessed.
-  // 1.- If the user has right to see all Payment Receipt.
-  if (user_access('Administrar Todos los Recibos de Contrato', $account)) {
-    $access[$nid][$account->uid] = TRUE;
-    cache_set($cid, TRUE, 'cache', $cache_expire);
-    return TRUE;
-  }
-
-  // Validate we can load the node.
-  if (!($node = node_load($nid))) {
-    $access[$nid][$account->uid] = FALSE;
-    cache_set($cid, FALSE, 'cache', $cache_expire);
-    return FALSE;
-  }
-
-  cache_set($cid, FALSE, 'cache', $cache_expire);
-  $access[$nid][$account->uid] = FALSE;
-  return FALSE;
-}
-
-/**
- * Determines if a recibo_contrato node can be accesed by a given user.
- *
- * (permission 'own recibos de contrato')
- */
-function anavem_user_can_access_recibo_contrato_own_recibos_contrato($nid, $account) {
-  // Static Cache.
-  static $access;
-  if (isset($access[$nid][$account->uid])) {
-    return $access[$nid][$account->uid];
-  }
-
-  // DB Cache.
-  $cid = 'anavem_user_can_access_recibo_contrato_own_recibos_contrato_' . $nid . '_' . $account->uid;
-  if (($cache = cache_get($cid))) {
-    return $cache->data;
-  }
-
-  // Cache Expire Default.
-  $cache_expire = intval(time()) + (60 * 60);
-
-  // Scenarios where a Payment Receipt can be accessed.
-  // 1.- If the user has right to see all Payment Receipts.
-  if (user_access('Administrar Recibos de Contrato propios', $account)) {
-    $access[$nid][$account->uid] = TRUE;
-    cache_set($cid, TRUE, 'cache', $cache_expire);
-    return TRUE;
-  }
-
-  // Validate we can load the node.
-  if (!($node = node_load($nid))) {
-    $access[$nid][$account->uid] = FALSE;
-    cache_set($cid, FALSE, 'cache', $cache_expire);
-    return FALSE;
-  }
-
-  cache_set($cid, FALSE, 'cache', $cache_expire);
-  $access[$nid][$account->uid] = FALSE;
-  return FALSE;
-}
-
-/**
- * Determines if a recibo_contrato node can be accesed by a given user.
- *
- * (permission 'assigned recibos de contrato')
- */
-function anavem_user_can_access_recibo_contrato_assigned_recibos_contrato($nid, $account) {
-  // Static Cache.
-  static $access;
-  if (isset($access[$nid][$account->uid])) {
-    return $access[$nid][$account->uid];
-  }
-
-  // DB Cache.
-  $cid = 'anavem_user_can_access_recibo_contrato_assigned_recibos_contrato_' . $nid . '_' . $account->uid;
-  if (($cache = cache_get($cid))) {
-    return $cache->data;
-  }
-
-  // Cache Expire Default.
-  $cache_expire = intval(time()) + (60 * 60);
-
-  // Scenarios where a Recibo de Contrato can be accessed.
-  // 1.- If the user has right to see all Recibos de Contratos.
-  if (user_access('Administrar Recibos de Contrato asignados', $account)) {
-    $access[$nid][$account->uid] = TRUE;
-    cache_set($cid, TRUE, 'cache', $cache_expire);
-    return TRUE;
-  }
-
-  // Validate we can load the node.
-  if (!($node = node_load($nid))) {
-    $access[$nid][$account->uid] = FALSE;
-    cache_set($cid, FALSE, 'cache', $cache_expire);
-    return FALSE;
   }
 
   cache_set($cid, FALSE, 'cache', $cache_expire);
