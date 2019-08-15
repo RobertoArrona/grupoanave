@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Code for the Feature Payment Receipt feature.
+ */
+
+include_once 'feature_payment_receipt.features.inc';
