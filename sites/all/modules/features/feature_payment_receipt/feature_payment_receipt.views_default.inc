@@ -46,10 +46,6 @@ function feature_payment_receipt_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_poliza_target_id']['id'] = 'field_poliza_target_id';
-  $handler->display->display_options['relationships']['field_poliza_target_id']['table'] = 'field_data_field_poliza';
-  $handler->display->display_options['relationships']['field_poliza_target_id']['field'] = 'field_poliza_target_id';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -63,7 +59,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['fields']['title_1']['field'] = 'title';
   $handler->display->display_options['fields']['title_1']['relationship'] = 'field_poliza_target_id';
   $handler->display->display_options['fields']['title_1']['label'] = 'No. de Contrato';
-  /* Field: Content: Nombre del Asegurado */
+  /* Field: Content: Solicitante de contrato */
   $handler->display->display_options['fields']['field_asegurado_nombre']['id'] = 'field_asegurado_nombre';
   $handler->display->display_options['fields']['field_asegurado_nombre']['table'] = 'field_data_field_asegurado_nombre';
   $handler->display->display_options['fields']['field_asegurado_nombre']['field'] = 'field_asegurado_nombre';
@@ -255,7 +251,7 @@ function feature_payment_receipt_views_default_views() {
     10 => 0,
     3 => 0,
   );
-  /* Filter criterion: Content: Nombre del Asegurado (field_asegurado_nombre) */
+  /* Filter criterion: Content: Solicitante de contrato (field_asegurado_nombre) */
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['id'] = 'field_asegurado_nombre_value';
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['table'] = 'field_data_field_asegurado_nombre';
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['field'] = 'field_asegurado_nombre_value';
@@ -452,7 +448,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['fields']['title_1']['field'] = 'title';
   $handler->display->display_options['fields']['title_1']['relationship'] = 'field_poliza_target_id';
   $handler->display->display_options['fields']['title_1']['label'] = 'No. de Contrato';
-  /* Field: Content: Nombre del Asegurado */
+  /* Field: Content: Solicitante de contrato */
   $handler->display->display_options['fields']['field_asegurado_nombre']['id'] = 'field_asegurado_nombre';
   $handler->display->display_options['fields']['field_asegurado_nombre']['table'] = 'field_data_field_asegurado_nombre';
   $handler->display->display_options['fields']['field_asegurado_nombre']['field'] = 'field_asegurado_nombre';
@@ -601,7 +597,7 @@ function feature_payment_receipt_views_default_views() {
     10 => 0,
     3 => 0,
   );
-  /* Filter criterion: Content: Nombre del Asegurado (field_asegurado_nombre) */
+  /* Filter criterion: Content: Solicitante de contrato (field_asegurado_nombre) */
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['id'] = 'field_asegurado_nombre_value';
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['table'] = 'field_data_field_asegurado_nombre';
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['field'] = 'field_asegurado_nombre_value';
