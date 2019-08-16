@@ -82,10 +82,6 @@
 ?>
 
 <?php
-<<<<<<< HEAD
-=======
-/* $parent_data = node_collection_api_get_parent_node_instance($node->nid); */
->>>>>>> feature/payment-receipt: Updated code to work with new payment receipt fields.
 
 // Get type page.
 $url = ($_SERVER['REQUEST_URI']);
@@ -142,7 +138,6 @@ else {
         <table>
           <tr>
             <td>
-<<<<<<< HEAD
               <div class="barcode">
                 <?php
                   if (!empty($content['field_codigo_de_barras_rc'])) {
@@ -155,10 +150,6 @@ else {
                   print $node->field_codigo_de_barras_rc[LANGUAGE_NONE][0]['safe_value'];
                 }
               ?>
-=======
-              <div class="barcode"><?php print $content['field_codigo_de_barras_rc'][0]['#svg']; ?></div>
-              <?php print $node->field_codigo_de_barras_rc[LANGUAGE_NONE][0]['safe_value']; ?>
->>>>>>> feature/payment-receipt: Updated code to work with new payment receipt fields.
             </td>
           </tr>
           <tr>
@@ -292,42 +283,30 @@ else {
           <tr>
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
-<<<<<<< HEAD
               <?php
                 $net_premium = "$" . number_format($elements['field_poliza_prima_neta']['#items'][0]['value'], 2);
                 print $net_premium;
               ?>
-=======
-              <?php print $node->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']; ?>
->>>>>>> feature/payment-receipt: Updated code to work with new payment receipt fields.
             </td>
           </tr>
 
           <tr>
             <td>
               <strong class="emission">Emision:</strong>
-<<<<<<< HEAD
               <?php
                 $issuance = "$" . number_format($elements['field_issuance']['#items'][0]['value'], 2);
                 print $issuance;
               ?>
-=======
-              <?php print $node->field_issuance[LANGUAGE_NONE][0]['value']; ?>
->>>>>>> feature/payment-receipt: Updated code to work with new payment receipt fields.
             </td>
           </tr>
 
           <tr>
             <td> 
               <strong>Prima Total:</strong>
-<<<<<<< HEAD
               <?php
                 $total_premium = "$" . number_format($elements['field_total_premium']['#items'][0]['value'], 2);
                 print $total_premium;
               ?>
-=======
-              <?php print $node->field_total_premium[LANGUAGE_NONE][0]['value']; ?>
->>>>>>> feature/payment-receipt: Updated code to work with new payment receipt fields.
             </td>
           </tr>
         </table>
@@ -417,7 +396,6 @@ else {
         <table>
           <tr>
             <td>
-<<<<<<< HEAD
               <div class="barcode">
                 <?php
                   if (!empty($content['field_codigo_de_barras_rc'])) {
@@ -430,10 +408,6 @@ else {
                   print $node->field_codigo_de_barras_rc[LANGUAGE_NONE][0]['safe_value'];
                 }
               ?>
-=======
-              <div class="barcode"><?php print $content['field_codigo_de_barras_rc'][0]['#svg']; ?></div>
-              <?php print $node->field_codigo_de_barras_rc[LANGUAGE_NONE][0]['safe_value']; ?>
->>>>>>> feature/payment-receipt: Updated code to work with new payment receipt fields.
             </td>
           </tr>
           <tr>
@@ -567,42 +541,30 @@ else {
           <tr>
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
-<<<<<<< HEAD
               <?php
                 $net_premium = "$" . number_format($elements['field_poliza_prima_neta']['#items'][0]['value'], 2);
                 print $net_premium;
               ?>
-=======
-              <?php print $node->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']; ?>
->>>>>>> feature/payment-receipt: Updated code to work with new payment receipt fields.
             </td>
           </tr>
 
           <tr>
             <td> 
               <strong class="emission">Emision:</strong>
-<<<<<<< HEAD
               <?php
                 $issuance = "$" . number_format($elements['field_issuance']['#items'][0]['value'], 2);
                 print $issuance;
               ?>
-=======
-              <?php print $node->field_issuance[LANGUAGE_NONE][0]['value']; ?>
->>>>>>> feature/payment-receipt: Updated code to work with new payment receipt fields.
             </td>
           </tr>
 
           <tr>
             <td> 
               <strong>Prima Total:</strong>
-<<<<<<< HEAD
               <?php
                 $total_premium = "$" . number_format($elements['field_total_premium']['#items'][0]['value'], 2);
                 print $total_premium;
               ?>
-=======
-              <?php print $node->field_total_premium[LANGUAGE_NONE][0]['value']; ?>
->>>>>>> feature/payment-receipt: Updated code to work with new payment receipt fields.
             </td>
           </tr>
         </table>
