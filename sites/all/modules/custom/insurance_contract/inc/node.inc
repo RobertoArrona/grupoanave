@@ -76,6 +76,10 @@ function insurance_contract_create_payment_receipts($node) {
   // Get grace period.
   $grace_period = $node->field_periodo_de_gracia[LANGUAGE_NONE][0]['value'];
 
+  // Get contract type.
+  $field_collection_entity = field_collection_item_load($node->field_poliza_coberturas[LANGUAGE_NONE][0]['value'], $reset = FALSE);
+  $contract_type = $field_collection_entity->field_poliza_tipo[LANGUAGE_NONE][0]['value'];
+
   // Get logged user id.
   global $user;
   $uid = $user->uid;
@@ -89,6 +93,10 @@ function insurance_contract_create_payment_receipts($node) {
     'payment_receipts_number' => $payment_receipts_number,
     'first_payment' => $node->field_poliza_prima_1er_recibo[LANGUAGE_NONE][0]['value'],
     'subsequent_payment' => $node->field_poliza_primas_recibos_subs[LANGUAGE_NONE][0]['value'],
+    'contract_requester_name' => $node->field_asegurado_nombre[LANGUAGE_NONE][0]['value'],
+    'contract_requester_address' => $node->field_asegurado_domicilio[LANGUAGE_NONE][0],
+    'contract_type' => $contract_type,
+    'currency' => $node->field_poliza_moneda[LANGUAGE_NONE][0]['value'],
     'issuance' => $node->field_derecho_de_poliza2[LANGUAGE_NONE][0]['value'],
   ];
 
@@ -182,15 +190,46 @@ function insurance_contract_save_payment_receipt_node($parameters, $i, &$payment
   // Set contract folio on bars code field.
   $payment_receipt->field_codigo_de_barras_rc->set($parameters['node_title']);
 
-  // Set receipt serie.
-  $payment_receipt->field_serie_rc->set($i . '/' . $parameters['payment_receipts_number']);
-
-  // Set receipt issuance.
-  $payment_receipt->field_emision_recibo_ref_rc->set($parameters['issuance']);
-
   // Set expedition date based on current date.
   $expedition_date_time = new DateTime(date('Y-m-d 00:00:00'));
   $payment_receipt->field_fecha_de_expedicion_rc->set($expedition_date_time->getTimestamp());
+
+  // Set contract requester name.
+  $payment_receipt->field_asegurado_nombre->set($parameters['contract_requester_name']);
+
+  // Set contract requester address.
+  $payment_receipt->field_asegurado_domicilio->set(array(
+    'thoroughfare' => $parameters['contract_requester_address']['thoroughfare'],
+    'premise' => $parameters['contract_requester_address']['premise'],
+    'locality' => $parameters['contract_requester_address']['locality'],
+    'administrative_area' => $parameters['contract_requester_address']['administrative_area'],
+    'postal_code' => $parameters['contract_requester_address']['postal_code'],
+    'country' => $parameters['contract_requester_address']['country'],
+  ));
+
+  // Set receipt serie.
+  $payment_receipt->field_serie_rc->set($i . '/' . $parameters['payment_receipts_number']);
+
+  // Set payment type.
+  $payment_type_format = insurance_contract_get_payment_type_value($parameters['payment_type'], 'format');
+  $payment_receipt->field_poliza_forma_pago->set($payment_type_format);
+
+  // Set contract type.
+  $payment_receipt->field_contract_type->set($parameters['contract_type']);
+
+  // Set currency.
+  $payment_receipt->field_currency->set($parameters['currency']);
+
+  // Set net premium.
+  $payment_receipt->field_poliza_prima_neta->set(round($parameters['subsequent_payment'], 2));
+
+  // Set issuance.
+  $payment_receipt->field_issuance->set($parameters['issuance']);
+
+  // Set total premium.
+  $total_premium = $parameters['first_payment'] + $parameters['subsequent_payment'];
+  $total_premium = round($total_premium, 2);
+  $payment_receipt->field_total_premium->set($parameters['issuance']);
 
   // Save payment receipt node.
   $payment_receipt->save();
