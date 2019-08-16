@@ -82,7 +82,6 @@
 ?>
 
 <?php
-/* $parent_data = node_collection_api_get_parent_node_instance($node->nid); */
 
 // Get type page.
 $url = ($_SERVER['REQUEST_URI']);

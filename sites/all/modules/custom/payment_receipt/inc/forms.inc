@@ -66,11 +66,18 @@ function payment_receipt_form_recibo_contrato_node_form_alter(&$form, &$form_sta
 
   // Hide some fields.
   $form['field_poliza']['#attributes']['style'] = 'display: none;';
-  $form['field_emision_recibo_ref_rc']['#attributes']['style'] = 'display: none;';
-  $form['field_primer_pago_rc']['#attributes']['style'] = 'display: none;';
-  $form['field_periodo_cobertura_rc']['#attributes']['style'] = 'display: none;';
-  $form['field_importe_con_letra_rc']['#attributes']['style'] = 'display: none;';
   $form['field_fecha_de_expedicion_rc']['#attributes']['style'] = 'display: none;';
+  $form['field_asegurado_nombre']['#attributes']['style'] = 'display: none;';
+  $form['field_asegurado_domicilio']['#attributes']['style'] = 'display: none;';
+  $form['field_primer_pago_rc']['#attributes']['style'] = 'display: none;';
+  $form['field_importe_con_letra_rc']['#attributes']['style'] = 'display: none;';
+  $form['field_periodo_cobertura_rc']['#attributes']['style'] = 'display: none;';
+  $form['field_poliza_forma_pago']['#attributes']['style'] = 'display: none;';
+  $form['field_contract_type']['#attributes']['style'] = 'display: none;';
+  $form['field_currency']['#attributes']['style'] = 'display: none;';
+  $form['field_poliza_prima_neta']['#attributes']['style'] = 'display: none;';
+  $form['field_issuance']['#attributes']['style'] = 'display: none;';
+  $form['field_total_premium']['#attributes']['style'] = 'display: none;';
 
   // Get restricted role.
   $uid = $GLOBALS["user"]->uid;
