@@ -53,12 +53,20 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Folio del Recibo';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
-  $handler->display->display_options['fields']['title_1']['table'] = 'node';
-  $handler->display->display_options['fields']['title_1']['field'] = 'title';
-  $handler->display->display_options['fields']['title_1']['relationship'] = 'field_poliza_target_id';
-  $handler->display->display_options['fields']['title_1']['label'] = 'No. de Contrato';
+  /* Field: Content: Contrato */
+  $handler->display->display_options['fields']['field_poliza']['id'] = 'field_poliza';
+  $handler->display->display_options['fields']['field_poliza']['table'] = 'field_data_field_poliza';
+  $handler->display->display_options['fields']['field_poliza']['field'] = 'field_poliza';
+  $handler->display->display_options['fields']['field_poliza']['label'] = 'No. de Contrato';
+  $handler->display->display_options['fields']['field_poliza']['settings'] = array(
+    'bypass_access' => 0,
+    'link' => 1,
+    'conditions' => array(
+      0 => array(
+        'condition' => '',
+      ),
+    ),
+  );
   /* Field: Content: Solicitante de contrato */
   $handler->display->display_options['fields']['field_asegurado_nombre']['id'] = 'field_asegurado_nombre';
   $handler->display->display_options['fields']['field_asegurado_nombre']['table'] = 'field_data_field_asegurado_nombre';
@@ -119,11 +127,10 @@ function feature_payment_receipt_views_default_views() {
     ),
   );
   /* Field: Content: Prima Total */
-  $handler->display->display_options['fields']['field_poliza_prima_total']['id'] = 'field_poliza_prima_total';
-  $handler->display->display_options['fields']['field_poliza_prima_total']['table'] = 'field_data_field_poliza_prima_total';
-  $handler->display->display_options['fields']['field_poliza_prima_total']['field'] = 'field_poliza_prima_total';
-  $handler->display->display_options['fields']['field_poliza_prima_total']['relationship'] = 'field_poliza_target_id';
-  $handler->display->display_options['fields']['field_poliza_prima_total']['settings'] = array(
+  $handler->display->display_options['fields']['field_total_premium']['id'] = 'field_total_premium';
+  $handler->display->display_options['fields']['field_total_premium']['table'] = 'field_data_field_total_premium';
+  $handler->display->display_options['fields']['field_total_premium']['field'] = 'field_total_premium';
+  $handler->display->display_options['fields']['field_total_premium']['settings'] = array(
     'thousand_separator' => ',',
     'decimal_separator' => '.',
     'scale' => '2',
@@ -198,6 +205,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
   $handler->display->display_options['filters']['title']['operator'] = 'word';
+  $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Folio del Recibo';
@@ -222,18 +230,18 @@ function feature_payment_receipt_views_default_views() {
     3 => 0,
   );
   /* Filter criterion: No. de Contrato */
-  $handler->display->display_options['filters']['title_1']['id'] = 'title_1';
-  $handler->display->display_options['filters']['title_1']['table'] = 'node';
-  $handler->display->display_options['filters']['title_1']['field'] = 'title';
-  $handler->display->display_options['filters']['title_1']['relationship'] = 'field_poliza_target_id';
-  $handler->display->display_options['filters']['title_1']['ui_name'] = 'No. de Contrato';
-  $handler->display->display_options['filters']['title_1']['operator'] = 'word';
-  $handler->display->display_options['filters']['title_1']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['title_1']['expose']['operator_id'] = 'title_1_op';
-  $handler->display->display_options['filters']['title_1']['expose']['label'] = 'No. de Contrato';
-  $handler->display->display_options['filters']['title_1']['expose']['operator'] = 'title_1_op';
-  $handler->display->display_options['filters']['title_1']['expose']['identifier'] = 'title_1';
-  $handler->display->display_options['filters']['title_1']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['id'] = 'field_codigo_de_barras_rc_value';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['table'] = 'field_data_field_codigo_de_barras_rc';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['field'] = 'field_codigo_de_barras_rc_value';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['ui_name'] = 'No. de Contrato';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['operator'] = 'word';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['expose']['operator_id'] = 'field_codigo_de_barras_rc_value_op';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['expose']['label'] = 'No. de Contrato';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['expose']['operator'] = 'field_codigo_de_barras_rc_value_op';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['expose']['identifier'] = 'field_codigo_de_barras_rc_value';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     4 => 0,
@@ -257,6 +265,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['field'] = 'field_asegurado_nombre_value';
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['relationship'] = 'field_poliza_target_id';
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['operator'] = 'word';
+  $handler->display->display_options['filters']['field_asegurado_nombre_value']['group'] = 1;
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['expose']['operator_id'] = 'field_asegurado_nombre_value_op';
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['expose']['label'] = 'Solicitante de Contrato';
@@ -284,6 +293,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['id'] = 'field_vencimiento_rc_value';
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['table'] = 'field_data_field_vencimiento_rc';
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['field'] = 'field_vencimiento_rc_value';
+  $handler->display->display_options['filters']['field_vencimiento_rc_value']['group'] = 1;
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['expose']['operator_id'] = 'field_vencimiento_rc_value_op';
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['expose']['label'] = 'Vencimiento del Recibo';
@@ -313,6 +323,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['table'] = 'field_data_field_periodo_cobertura_rc';
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['field'] = 'field_periodo_cobertura_rc_value';
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['operator'] = 'between';
+  $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['group'] = 1;
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['expose']['operator_id'] = 'field_periodo_cobertura_rc_value_op';
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['expose']['label'] = 'Periodo de Cobertura';
@@ -343,6 +354,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['field'] = 'field_poliza_forma_pago_value';
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['relationship'] = 'field_poliza_target_id';
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['ui_name'] = 'Forma de Pago';
+  $handler->display->display_options['filters']['field_poliza_forma_pago_value']['group'] = 1;
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['expose']['operator_id'] = 'field_poliza_forma_pago_value_op';
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['expose']['label'] = 'Forma de Pago';
@@ -372,6 +384,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['field'] = 'field_poliza_prima_total_value';
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['relationship'] = 'field_poliza_target_id';
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['ui_name'] = 'Prima Total';
+  $handler->display->display_options['filters']['field_poliza_prima_total_value']['group'] = 1;
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['expose']['operator_id'] = 'field_poliza_prima_total_value_op';
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['expose']['label'] = 'Prima Total';
@@ -430,10 +443,6 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['style_options']['filename'] = 'datos-de-recibo-de-contrato.xls';
   $handler->display->display_options['style_options']['parent_sort'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_poliza_target_id']['id'] = 'field_poliza_target_id';
-  $handler->display->display_options['relationships']['field_poliza_target_id']['table'] = 'field_data_field_poliza';
-  $handler->display->display_options['relationships']['field_poliza_target_id']['field'] = 'field_poliza_target_id';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -442,17 +451,24 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Folio del Recibo';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
-  $handler->display->display_options['fields']['title_1']['table'] = 'node';
-  $handler->display->display_options['fields']['title_1']['field'] = 'title';
-  $handler->display->display_options['fields']['title_1']['relationship'] = 'field_poliza_target_id';
-  $handler->display->display_options['fields']['title_1']['label'] = 'No. de Contrato';
+  /* Field: Content: Contrato */
+  $handler->display->display_options['fields']['field_poliza']['id'] = 'field_poliza';
+  $handler->display->display_options['fields']['field_poliza']['table'] = 'field_data_field_poliza';
+  $handler->display->display_options['fields']['field_poliza']['field'] = 'field_poliza';
+  $handler->display->display_options['fields']['field_poliza']['label'] = 'No. de Contrato';
+  $handler->display->display_options['fields']['field_poliza']['settings'] = array(
+    'bypass_access' => 0,
+    'link' => 0,
+    'conditions' => array(
+      0 => array(
+        'condition' => '',
+      ),
+    ),
+  );
   /* Field: Content: Solicitante de contrato */
   $handler->display->display_options['fields']['field_asegurado_nombre']['id'] = 'field_asegurado_nombre';
   $handler->display->display_options['fields']['field_asegurado_nombre']['table'] = 'field_data_field_asegurado_nombre';
   $handler->display->display_options['fields']['field_asegurado_nombre']['field'] = 'field_asegurado_nombre';
-  $handler->display->display_options['fields']['field_asegurado_nombre']['relationship'] = 'field_poliza_target_id';
   $handler->display->display_options['fields']['field_asegurado_nombre']['label'] = 'Solicitante de Contrato';
   $handler->display->display_options['fields']['field_asegurado_nombre']['settings'] = array(
     'conditions' => array(
@@ -508,11 +524,10 @@ function feature_payment_receipt_views_default_views() {
     ),
   );
   /* Field: Content: Prima Total */
-  $handler->display->display_options['fields']['field_poliza_prima_total']['id'] = 'field_poliza_prima_total';
-  $handler->display->display_options['fields']['field_poliza_prima_total']['table'] = 'field_data_field_poliza_prima_total';
-  $handler->display->display_options['fields']['field_poliza_prima_total']['field'] = 'field_poliza_prima_total';
-  $handler->display->display_options['fields']['field_poliza_prima_total']['relationship'] = 'field_poliza_target_id';
-  $handler->display->display_options['fields']['field_poliza_prima_total']['settings'] = array(
+  $handler->display->display_options['fields']['field_total_premium']['id'] = 'field_total_premium';
+  $handler->display->display_options['fields']['field_total_premium']['table'] = 'field_data_field_total_premium';
+  $handler->display->display_options['fields']['field_total_premium']['field'] = 'field_total_premium';
+  $handler->display->display_options['fields']['field_total_premium']['settings'] = array(
     'thousand_separator' => ',',
     'decimal_separator' => '.',
     'scale' => '2',
@@ -544,6 +559,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
   $handler->display->display_options['filters']['title']['operator'] = 'word';
+  $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Folio del Recibo';
@@ -568,18 +584,18 @@ function feature_payment_receipt_views_default_views() {
     3 => 0,
   );
   /* Filter criterion: No. de Contrato */
-  $handler->display->display_options['filters']['title_1']['id'] = 'title_1';
-  $handler->display->display_options['filters']['title_1']['table'] = 'node';
-  $handler->display->display_options['filters']['title_1']['field'] = 'title';
-  $handler->display->display_options['filters']['title_1']['relationship'] = 'field_poliza_target_id';
-  $handler->display->display_options['filters']['title_1']['ui_name'] = 'No. de Contrato';
-  $handler->display->display_options['filters']['title_1']['operator'] = 'word';
-  $handler->display->display_options['filters']['title_1']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['title_1']['expose']['operator_id'] = 'title_1_op';
-  $handler->display->display_options['filters']['title_1']['expose']['label'] = 'No. de Contrato';
-  $handler->display->display_options['filters']['title_1']['expose']['operator'] = 'title_1_op';
-  $handler->display->display_options['filters']['title_1']['expose']['identifier'] = 'title_1';
-  $handler->display->display_options['filters']['title_1']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['id'] = 'field_codigo_de_barras_rc_value';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['table'] = 'field_data_field_codigo_de_barras_rc';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['field'] = 'field_codigo_de_barras_rc_value';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['ui_name'] = 'No. de Contrato';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['operator'] = 'word';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['expose']['operator_id'] = 'field_codigo_de_barras_rc_value_op';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['expose']['label'] = 'No. de Contrato';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['expose']['operator'] = 'field_codigo_de_barras_rc_value_op';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['expose']['identifier'] = 'field_codigo_de_barras_rc_value';
+  $handler->display->display_options['filters']['field_codigo_de_barras_rc_value']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     4 => 0,
@@ -603,6 +619,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['field'] = 'field_asegurado_nombre_value';
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['relationship'] = 'field_poliza_target_id';
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['operator'] = 'word';
+  $handler->display->display_options['filters']['field_asegurado_nombre_value']['group'] = 1;
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['expose']['operator_id'] = 'field_asegurado_nombre_value_op';
   $handler->display->display_options['filters']['field_asegurado_nombre_value']['expose']['label'] = 'Solicitante de Contrato';
@@ -630,6 +647,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['id'] = 'field_vencimiento_rc_value';
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['table'] = 'field_data_field_vencimiento_rc';
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['field'] = 'field_vencimiento_rc_value';
+  $handler->display->display_options['filters']['field_vencimiento_rc_value']['group'] = 1;
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['expose']['operator_id'] = 'field_vencimiento_rc_value_op';
   $handler->display->display_options['filters']['field_vencimiento_rc_value']['expose']['label'] = 'Vencimiento del Recibo';
@@ -659,6 +677,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['table'] = 'field_data_field_periodo_cobertura_rc';
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['field'] = 'field_periodo_cobertura_rc_value';
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['operator'] = 'between';
+  $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['group'] = 1;
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['expose']['operator_id'] = 'field_periodo_cobertura_rc_value_op';
   $handler->display->display_options['filters']['field_periodo_cobertura_rc_value']['expose']['label'] = 'Periodo de Cobertura';
@@ -689,6 +708,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['field'] = 'field_poliza_forma_pago_value';
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['relationship'] = 'field_poliza_target_id';
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['ui_name'] = 'Forma de Pago';
+  $handler->display->display_options['filters']['field_poliza_forma_pago_value']['group'] = 1;
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['expose']['operator_id'] = 'field_poliza_forma_pago_value_op';
   $handler->display->display_options['filters']['field_poliza_forma_pago_value']['expose']['label'] = 'Forma de Pago';
@@ -718,6 +738,7 @@ function feature_payment_receipt_views_default_views() {
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['field'] = 'field_poliza_prima_total_value';
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['relationship'] = 'field_poliza_target_id';
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['ui_name'] = 'Prima Total';
+  $handler->display->display_options['filters']['field_poliza_prima_total_value']['group'] = 1;
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['expose']['operator_id'] = 'field_poliza_prima_total_value_op';
   $handler->display->display_options['filters']['field_poliza_prima_total_value']['expose']['label'] = 'Prima Total';
