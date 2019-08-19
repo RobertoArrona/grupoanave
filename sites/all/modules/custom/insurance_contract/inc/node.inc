@@ -54,7 +54,7 @@ function insurance_contract_node_insert_poliza($node) {
  * Creates payment receipts.
  */
 function insurance_contract_create_payment_receipts($node) {
-  if (!isset($node->field_poliza_forma_pago)) {
+  if (!isset($node->field_poliza_forma_pago) || !isset($node->field_poliza_vigencia) || !isset($node->field_periodo_de_gracia) || !isset($node->field_poliza_coberturas)) {
     return FALSE;
   }
 
@@ -130,10 +130,12 @@ function insurance_contract_save_payment_receipt_node($parameters, $i, &$payment
   // Validate first payment receipt.
   if ($i == 1) {
     // Set first payment.
-    $payment_receipt->field_primer_pago_rc->set($parameters['first_payment']);
+    $first_payment = $parameters['first_payment'];
+    $payment_receipt->field_primer_pago_rc->set($first_payment);
 
     // Set subsequent payment.
-    $payment_receipt->field_pago_subsecuente_rc->set(0);
+    $subsequent_payment = 0;
+    $payment_receipt->field_pago_subsecuente_rc->set($subsequent_payment);
 
     // Set amount with letter.
     $payment_receipt->field_importe_con_letra_rc->set(strtoupper(convert_number_to_letters($parameters['first_payment'])));
@@ -151,11 +153,13 @@ function insurance_contract_save_payment_receipt_node($parameters, $i, &$payment
     $payment_receipt->field_vencimiento_rc->set($parameters['due_date']);
   }
   else {
-    // Set subsequent payment.
-    $payment_receipt->field_pago_subsecuente_rc->set($parameters['subsequent_payment']);
-
     // Set first payment.
-    $payment_receipt->field_primer_pago_rc->set(0);
+    $first_payment = 0;
+    $payment_receipt->field_primer_pago_rc->set($first_payment);
+
+    // Set subsequent payment.
+    $subsequent_payment = $parameters['subsequent_payment'];
+    $payment_receipt->field_pago_subsecuente_rc->set($subsequent_payment);
 
     // Set amount with letter.
     $payment_receipt->field_importe_con_letra_rc->set(strtoupper(convert_number_to_letters($parameters['subsequent_payment'])));
@@ -227,9 +231,9 @@ function insurance_contract_save_payment_receipt_node($parameters, $i, &$payment
   $payment_receipt->field_issuance->set($parameters['issuance']);
 
   // Set total premium.
-  $total_premium = $parameters['first_payment'] + $parameters['subsequent_payment'];
+  $total_premium = $first_payment + $subsequent_payment;
   $total_premium = round($total_premium, 2);
-  $payment_receipt->field_total_premium->set($parameters['issuance']);
+  $payment_receipt->field_total_premium->set($total_premium);
 
   // Save payment receipt node.
   $payment_receipt->save();
