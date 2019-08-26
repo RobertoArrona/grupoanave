@@ -124,6 +124,9 @@ function payment_receipt_menu_update_new_fields() {
           $net_premium = round($net_premium, 2);
           $node->field_poliza_prima_neta[LANGUAGE_NONE][0]['value'] = $net_premium;
         }
+        else {
+          $node->field_poliza_prima_neta[LANGUAGE_NONE][0]['value'] = 0;
+        }
 
         // Set issuance.
         if (!empty($contract_node->field_derecho_de_poliza2)) {
@@ -141,6 +144,9 @@ function payment_receipt_menu_update_new_fields() {
           $total_premium = $first_payment + $subsequent_payment;
           $total_premium = round($total_premium, 2);
           $node->field_total_premium[LANGUAGE_NONE][0]['value'] = $total_premium;
+        }
+        else {
+          $node->field_total_premium[LANGUAGE_NONE][0]['value'] = 0;
         }
 
         // Payment receipt node.
