@@ -61,7 +61,7 @@ function insurance_contract_create_payment_receipts($node) {
   // Prepare entity values.
   $values = array(
     'type' => 'recibo_contrato',
-    'status' => 0,
+    'status' => 1,
     'comment' => 0,
     'promote' => 0,
   );
