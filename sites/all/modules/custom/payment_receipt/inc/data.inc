@@ -85,14 +85,13 @@ function payment_receipt_get_contract_nid($contract_folio) {
 }
 
 /**
- * Returns all recibo_contrato and poliza node having a node relationship.
+ * Returns all recibo_contrato node IDs.
  */
-function payment_receipt_get_all_payment_receipt_contract_nids() {
-  $result = db_query("SELECT NCD.nc_parent_nid AS nc_parent_nid, NCD.nc_child_nid AS nc_child_nid FROM node AS N INNER JOIN node_collection_data AS NCD ON N.nid = NCD.nc_child_nid WHERE N.type = 'recibo_contrato' ORDER BY NCD.nc_child_nid ASC");
+function payment_receipt_get_all_payment_receipt_nids() {
+  $result = db_query("SELECT N.nid AS nid FROM {node} AS N INNER JOIN {field_data_field_poliza} AS FDFP ON N.nid = FDFP.entity_id WHERE N.type = 'recibo_contrato' AND FDFP.bundle = 'recibo_contrato'");
 
   foreach ($result as $key => $row) {
-    $payment_receipt_nids[$key]['nc_parent_nid'] = $row->nc_parent_nid;
-    $payment_receipt_nids[$key]['nc_child_nid'] = $row->nc_child_nid;
+    $payment_receipt_nids[$key] = $row->nid;
   }
 
   if ($payment_receipt_nids) {

@@ -138,8 +138,18 @@ else {
         <table>
           <tr>
             <td>
-              <div class="barcode"><?php print $content['field_codigo_de_barras_rc'][0]['#svg']; ?></div>
-              <?php print $node->field_codigo_de_barras_rc[LANGUAGE_NONE][0]['safe_value']; ?>
+              <div class="barcode">
+                <?php
+                  if (!empty($content['field_codigo_de_barras_rc'])) {
+                    print $content['field_codigo_de_barras_rc'][0]['#svg'];
+                  }
+                ?>
+              </div>
+              <?php
+                if (!empty($content['field_codigo_de_barras_rc'])) {
+                  print $node->field_codigo_de_barras_rc[LANGUAGE_NONE][0]['safe_value'];
+                }
+              ?>
             </td>
           </tr>
           <tr>
@@ -377,8 +387,18 @@ else {
         <table>
           <tr>
             <td>
-              <div class="barcode"><?php print $content['field_codigo_de_barras_rc'][0]['#svg']; ?></div>
-              <?php print $node->field_codigo_de_barras_rc[LANGUAGE_NONE][0]['safe_value']; ?>
+              <div class="barcode">
+                <?php
+                  if (!empty($content['field_codigo_de_barras_rc'])) {
+                    print $content['field_codigo_de_barras_rc'][0]['#svg'];
+                  }
+                ?>
+              </div>
+              <?php
+                if (!empty($content['field_codigo_de_barras_rc'])) {
+                  print $node->field_codigo_de_barras_rc[LANGUAGE_NONE][0]['safe_value'];
+                }
+              ?>
             </td>
           </tr>
           <tr>
