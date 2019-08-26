@@ -283,21 +283,30 @@ else {
           <tr>
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
-              <?php print $node->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']; ?>
+              <?php
+                $net_premium = "$" . number_format($elements['field_poliza_prima_neta']['#items'][0]['value'], 2);
+                print $net_premium;
+              ?>
             </td>
           </tr>
 
           <tr>
             <td>
               <strong class="emission">Emision:</strong>
-              <?php print $node->field_issuance[LANGUAGE_NONE][0]['value']; ?>
+              <?php
+                $issuance = "$" . number_format($elements['field_issuance']['#items'][0]['value'], 2);
+                print $issuance;
+              ?>
             </td>
           </tr>
 
           <tr>
             <td> 
               <strong>Prima Total:</strong>
-              <?php print $node->field_total_premium[LANGUAGE_NONE][0]['value']; ?>
+              <?php
+                $total_premium = "$" . number_format($elements['field_total_premium']['#items'][0]['value'], 2);
+                print $total_premium;
+              ?>
             </td>
           </tr>
         </table>
@@ -532,21 +541,30 @@ else {
           <tr>
             <td> 
               <strong class="netpremium">Prima Neta:</strong>
-              <?php print $node->field_poliza_prima_neta[LANGUAGE_NONE][0]['value']; ?>
+              <?php
+                $net_premium = "$" . number_format($elements['field_poliza_prima_neta']['#items'][0]['value'], 2);
+                print $net_premium;
+              ?>
             </td>
           </tr>
 
           <tr>
             <td> 
               <strong class="emission">Emision:</strong>
-              <?php print $node->field_issuance[LANGUAGE_NONE][0]['value']; ?>
+              <?php
+                $issuance = "$" . number_format($elements['field_issuance']['#items'][0]['value'], 2);
+                print $issuance;
+              ?>
             </td>
           </tr>
 
           <tr>
             <td> 
               <strong>Prima Total:</strong>
-              <?php print $node->field_total_premium[LANGUAGE_NONE][0]['value']; ?>
+              <?php
+                $total_premium = "$" . number_format($elements['field_total_premium']['#items'][0]['value'], 2);
+                print $total_premium;
+              ?>
             </td>
           </tr>
         </table>
