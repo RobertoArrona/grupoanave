@@ -278,29 +278,44 @@ function ffc_condition_execute_rules_event(&$build, $source, $configuration, $co
  */
 function _target_string_search(&$build, $configuration, $context = NULL) {
   // Only search if the field is not empty.
-  if (!empty($context['entity']->{$configuration['target']}) || !empty($build[$configuration['target']]['#items'])) {
-    // Check if we have $context and use it if set, otherwise use $build.
-    $target = isset($context) ? $context['entity']->{$configuration['target']} : $build[$configuration['target']]['#items'];
-    // Convert any Objects into Arrays in our target field.
-    $converted_target = json_decode(json_encode($target), TRUE);
-    $string = $configuration['string'];
+  if (empty($configuration['target'])) {
+    return FALSE;
+  }
+  $config_target = $configuration['target'];
 
-    $found = FALSE;
-    // Make a little object with things we'll pass into our little lambda below.
-    $data = (object) array(
-      'string' => $string,
-      'found' => &$found
-    );
+  if (empty($config_target['#items'])) {
+    return FALSE;
+  }
+  $config_items = $config_target['#items'];
 
-    // Process each item in this field.
-    foreach ($converted_target as $delta) {
-      // Whether this item is ready value, or another multidimensional array compare our string.
-      array_walk_recursive($delta, create_function('&$item, $key, $data', 'if ($item == $data->string) $data->found = TRUE;'), $data);
-    }
-    return $found;
+  if (empty($context['entity']->$config_target)) {
+    return FALSE;
   }
 
-  return FALSE;
+  if (empty($build[$config_items])) {
+    return FALSE;
+  }
+
+  // Check if we have $context and use it if set, otherwise use $build.
+  $target = isset($context) ? $context['entity']->$configuration['target'] : $build[$configuration['target']]['#items'];
+  // Convert any Objects into Arrays in our target field.
+  $converted_target = json_decode(json_encode($target), TRUE);
+  $string = $configuration['string'];
+
+  $found = FALSE;
+  // Make a little object with things we'll pass into our little lambda below.
+  $data = (object) array(
+    'string' => $string,
+    'found' => &$found
+  );
+
+  // Process each item in this field.
+  foreach ($converted_target as $delta) {
+    // Whether this item is ready value, or another multidimensional array compare our string.
+    array_walk_recursive($delta, function(&$item, $key, $data) { if ($item == $data->string) $data->found = TRUE; }, $data);
+  }
+
+  return $found;
 }
 
 /**
