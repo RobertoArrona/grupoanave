@@ -3,13 +3,13 @@
 /**
  * @file
  * Module file Sinister Info Web Service.
+ *
  * Contains the resource declarations for the service APIs
- * and other commons functions/hooks. if necessary
+ * and other commons functions/hooks. if necessary.
  */
 
 /**
  * Implements hook_services_resources().
- * Create service resource for APIs to return the necessary json data.
  */
 function sinister_info_services_resources() {
   $resources = array();

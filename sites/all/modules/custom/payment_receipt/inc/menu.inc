@@ -47,7 +47,7 @@ function payment_receipt_menu() {
 }
 
 /**
- * Implements payment_receipt_menu_debug().
+ * Implements hook_menu_debug().
  */
 function payment_receipt_menu_debug() {
   $payment_receipt_folio = payment_receipt_receipt_number_folio_get();
@@ -168,7 +168,8 @@ function payment_receipt_menu_update_new_fields() {
   ];
 
   // Create BD Log message.
-  watchdog('payment_receipt', '<pre>' . print_r($msg, TRUE) . '</pre>');
+  $msg = '<pre>' . print_r($msg, TRUE) . '</pre>';
+  watchdog('payment_receipt', $msg);
 
   // Print mesagge on the page.
   print_r($msg);
