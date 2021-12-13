@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -23,7 +22,7 @@
  * - $pager: The pager next/prev links to display, if any
  * - $exposed: Exposed widget form/info to display
  * - $feed_icon: Feed icon to display, if any
- * - $more: A link to view more, if any
+ * - $more: A link to view more, if any.
  *
  * @ingroup views_templates
  */
@@ -109,7 +108,7 @@ jQuery(document).ready(function( $ ) {
     if ($("#mymenu").length > 0) {
       var API = $("#mymenu").data( "mmenu" );
       $(".menu-icono-movil").click(function(){
-        API.close();  
+        API.close();
       });
     }
   }
@@ -130,7 +129,7 @@ jQuery(document).ready(function( $ ) {
       API.close();
 /*
         $(".menu-icono-movil").click(function(){
-          API.close();  
+          API.close();
         });
 */
         }
@@ -138,7 +137,7 @@ jQuery(document).ready(function( $ ) {
         $('.menu-icono-movil').css("display", "none");
         }
         if ($(".mmenu").length > 0) {
-        var API = $("#mymenu").data( "mmenu" ); 
+        var API = $("#mymenu").data( "mmenu" );
         API.close();
        }
       }

@@ -1,7 +1,12 @@
 <?php
 
 /**
- * Implements hook_preprocess_html.
+ * @file
+ * Contains theme for grupoanave.
+ */
+
+/**
+ * Implements hook_preprocess_html().
  */
 function grupoanave_preprocess_html(&$vars) {
   grupoanave_preprocess_html_node($vars);
@@ -11,17 +16,17 @@ function grupoanave_preprocess_html(&$vars) {
  * Helper function for Preprocess Page on Node pages.
  */
 function grupoanave_preprocess_html_node(&$vars) {
-  if ( !(arg(0) == 'node' && intval(arg(1)) > 0 && ($node = node_load(arg(1)))) ) {
-    return;
+  if (!(arg(0) == 'node' && intval(arg(1)) > 0 && ($node = node_load(arg(1))))) {
+    return FALSE;
   }
-  
+
   if (isset($_GET['print-vehiculo-tercero'])) {
     $vars['classes_array'][] = 'print-vehiculo-tercero';
   }
 }
 
 /**
- * Implements hook_preprocess_page.
+ * Implements hook_preprocess_page().
  */
 function grupoanave_preprocess_page(&$vars) {
   grupoanave_preprocess_page_node($vars);
@@ -31,10 +36,10 @@ function grupoanave_preprocess_page(&$vars) {
  * Helper function for Preprocess Page on Node pages.
  */
 function grupoanave_preprocess_page_node(&$vars) {
-  if ( !(arg(0) == 'node' && intval(arg(1)) > 0 && ($node = node_load(arg(1)))) ) {
-    return;
+  if (!(arg(0) == 'node' && intval(arg(1)) > 0 && ($node = node_load(arg(1))))) {
+    return FALSE;
   }
-  
+
   $vars['theme_hook_suggestions'][] = "page__node_type__{$node->type}";
 }
 
@@ -56,7 +61,6 @@ function grupoanave_menu_link__main_menu(array $variables) {
       unset($element['#below']['#theme_wrappers']);
       $sub_menu = '<ul class="dropdown-menu">' . drupal_render($element['#below']) . '</ul>';
       // Generate as standard dropdown.
-      //$element['#title'] .= ' <span class="caret"></span>';
       $element['#attributes']['class'][] = 'dropdown';
       $element['#localized_options']['html'] = TRUE;
 
@@ -72,12 +76,13 @@ function grupoanave_menu_link__main_menu(array $variables) {
   if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
     $element['#attributes']['class'][] = 'active';
   }
-  if ( $element['#original_link']['depth'] == 1 ) {
+  if ($element['#original_link']['depth'] == 1) {
     $element['#title'] = "<div><span>{$element['#title']}</span></div><div><span>{$element['#title']}</span></div>";
-  } else {
+  }
+  else {
     $element['#title'] = "{$element['#title']}";
   }
-  $element['#localized_options']['html'] = true;
+  $element['#localized_options']['html'] = TRUE;
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
@@ -86,15 +91,15 @@ function grupoanave_menu_link__main_menu(array $variables) {
  * Overrides theme_menu_link().
  */
 function grupoanave_menu_link__menu_social_channels(array $variables) {
-  $element = $variables ['element'];
+  $element = $variables['element'];
   $sub_menu = '';
 
-  if ($element ['#below']) {
-    $sub_menu = drupal_render($element ['#below']);
+  if ($element['#below']) {
+    $sub_menu = drupal_render($element['#below']);
   }
-  $element['#localized_options']['html'] = true;
-  $output = l('<span>' . $element ['#title'] . '</span>', $element ['#href'], $element ['#localized_options']);
-  return '<li' . drupal_attributes($element ['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+  $element['#localized_options']['html'] = TRUE;
+  $output = l('<span>' . $element['#title'] . '</span>', $element['#href'], $element['#localized_options']);
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
 
 /**
@@ -102,32 +107,33 @@ function grupoanave_menu_link__menu_social_channels(array $variables) {
  */
 function grupoanave_theme_address($element) {
   $address = $element['#items'][0];
-  $items = array();
-  // Calle
-  if ( isset($address['thoroughfare']) && !empty($address['thoroughfare']) ) {
+  $items = [];
+
+  // Calle.
+  if (isset($address['thoroughfare']) && !empty($address['thoroughfare'])) {
     $items[] = $address['thoroughfare'];
   }
-  
-  // Calle
-  if ( isset($address['premise']) && !empty($address['premise']) ) {
+
+  // Premise.
+  if (isset($address['premise']) && !empty($address['premise'])) {
     $items[] = $address['premise'];
   }
-  
-  // Calle
-  if ( isset($address['locality']) && !empty($address['locality']) ) {
+
+  // City.
+  if (isset($address['locality']) && !empty($address['locality'])) {
     $items[] = $address['locality'];
   }
-  
-  // Calle
-  if ( isset($address['administrative_area']) && !empty($address['administrative_area']) ) {
+
+  // State.
+  if (isset($address['administrative_area']) && !empty($address['administrative_area'])) {
     $items[] = grupoanave_get_state_name($address['country'], $address['administrative_area']);
   }
-  
-  // Calle
-  if ( isset($address['postal_code']) && !empty($address['postal_code']) ) {
+
+  // Zip Code.
+  if (isset($address['postal_code']) && !empty($address['postal_code'])) {
     $items[] = $address['postal_code'];
   }
-  
+
   return implode(', ', $items);
 }
 
@@ -140,7 +146,7 @@ function grupoanave_get_state_name($country, $state) {
     return $states[$state];
   }
 
-  return false;
+  return FALSE;
 }
 
 /**
@@ -152,6 +158,9 @@ function grupoanave_preprocess_print(&$variables) {
   }
 }
 
+/**
+ * Implements hook_preprocess_print_node().
+ */
 function grupoanave_preprocess_print_node(&$variables) {
   $node = $variables['node'];
   switch ($node->type) {
@@ -165,30 +174,20 @@ function grupoanave_preprocess_print_node(&$variables) {
   }
 }
 
+/**
+ * Adds title to node poliza.
+ */
 function grupoanave_preprocess_print_node_poliza(&$variables) {
   $node = $variables['node'];
   $service_type = $node->field_uso_vehiculo[LANGUAGE_NONE][0]['value'];
   $variables['poliza_title'] = "CONTRATO DE PROTECCION PARA {$service_type}";
 }
 
+/**
+ * Adds classess to siniestro node.
+ */
 function grupoanave_preprocess_print_node_siniestro(&$variables) {
   if (isset($_GET['print-vehiculo-tercero'])) {
     $variables['classes_array'][] = 'page-node node-type-siniestro print-vehiculo-tercero';
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
