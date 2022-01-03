@@ -6,6 +6,15 @@
 
 // Core hooks
 // --------------------------------------------------------------------------
+
+/**
+ * Implements hook_boot().
+ */
+function registry_autoload_boot() {
+  // Empty implementation so registry_rebuild can rebuild the registry in the
+  // bootstrap modules phase.
+}
+
 /**
  * Implements hook_module_implements_alter().
  */
@@ -29,6 +38,9 @@ function registry_autoload_registry_files_alter(&$files, $indexed_modules) {
 
   // Search for modules that specify registry_autoload in info.
   foreach ($indexed_modules as $module) {
+    if (empty($module->info['registry_autoload'])) {
+      $module->info['registry_autoload'] = variable_get('registry_autoload_global_formats', array());
+    }
     if (empty($module->info['registry_autoload']) && empty($module->info['registry_autoload_files'])) {
       continue;
     }

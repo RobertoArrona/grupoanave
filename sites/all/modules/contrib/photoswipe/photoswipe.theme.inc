@@ -18,14 +18,6 @@
  */
 function theme_photoswipe_image_formatter($variables) {
   $item = $variables['item'];
-
-  if (empty($item['width'])) {
-    $item['width'] = '320';
-  }
-  if (empty($item['height'])) {
-    $item['height'] = '200';
-  }
-
   $node = $variables['node'];
   $field = $variables['field'];
   $settings = $variables['display_settings'];
@@ -44,6 +36,10 @@ function theme_photoswipe_image_formatter($variables) {
     'title' => $title,
     'style_name' => $settings['photoswipe_node_style'],
   );
+
+  if ($variables['delta'] == 0 && !empty($settings['photoswipe_node_style_first'])) {
+    $image['style_name'] = $settings['photoswipe_node_style_first'];
+  }
 
   $dimensions = array();
   if (isset($item['width']) && isset($item['height'])) {
@@ -88,7 +84,6 @@ function theme_photoswipe_image_formatter($variables) {
   }
 
   return theme('photoswipe_imagefield', array('image' => $image, 'path' => $path, 'dimensions' => $dimensions['width'] . 'x' . $dimensions['height'], 'caption' => $caption));
-
 }
 
 /**
@@ -104,7 +99,12 @@ function theme_photoswipe_image_formatter($variables) {
 function theme_photoswipe_imagefield($variables) {
   $class = array('photoswipe');
   if (!empty($variables['image']['style_name'])) {
-    $image = theme('image_style', $variables['image']);
+    if ($variables['image']['style_name'] == 'hide') {
+      $image = '<!-- hidden image -->';
+    }
+    else {
+      $image = theme('image_style', $variables['image']);
+    }
   }
   else {
     $image = theme('image', $variables['image']);

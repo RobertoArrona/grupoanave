@@ -18,9 +18,9 @@ registry_autoload[sites/all/libraries/test-library/lib] = PSR-0
 
 registry_autoload_files[] = custom/some/name/space/RegistryAutoloadTestTest.php
 
-; Information added by Drupal.org packaging script on 2014-12-03
-version = "7.x-1.2"
+; Information added by Drupal.org packaging script on 2015-09-03
+version = "7.x-1.3"
 core = "7.x"
 project = "registry_autoload"
-datestamp = "1417618995"
+datestamp = "1441286344"
 

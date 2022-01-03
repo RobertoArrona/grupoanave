@@ -5,8 +5,8 @@ package = "Printer, email and PDF versions"
 dependencies[] = print:print_pdf
 configure = admin/config/user-interface/print/pdf/dompdf
 
-; Information added by Drupal.org packaging script on 2019-06-15
-version = "7.x-2.2+17-dev"
+; Information added by Drupal.org packaging script on 2021-07-16
+version = "7.x-2.2+23-dev"
 core = "7.x"
 project = "print"
-datestamp = "1560636802"
+datestamp = "1626463328"
