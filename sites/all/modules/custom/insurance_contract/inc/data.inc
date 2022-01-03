@@ -92,7 +92,8 @@ function insurance_contract_payment_get_receipt_number() {
  * Returns the next id to be inserted.
  */
 function insurance_contract_get_insert_id($table, $field) {
-  $result = db_query("{SELECT MAX($field) + 1 AS $field FROM {$table} ORDER BY $field ASC}");
+  $sql = sprintf('SELECT MAX(%s) + 1 AS %s FROM %s ORDER BY %s', $field, $field, $table, $field);
+  $result = db_query($sql);
 
   foreach ($result as $row) {
     return $row->$field;
@@ -327,7 +328,7 @@ function convert_number_to_letters($num, $fem = FALSE, $dec = TRUE) {
     $neg = '';
   }
 
-  while ($num[0] == '0') {
+  while (isset($num[0]) && $num[0] == '0') {
     $num = substr($num, 1);
   }
 
