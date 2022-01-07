@@ -21,7 +21,7 @@
     <a href="<?php print render($elements['field_siniestro_archivo_adjunto']);?>" target="_blank">Ver</a>
   </td>
 -->
-  <td class="galeria"><?php print render($elements['field_visualizador']);?></td>
+  <td class="galeria photoswipe-gallery"><?php print render($elements['field_visualizador']);?></td>
 </tr>
 <tr class="siniestro-archivo-comentario hidden" id="siniestro-archivo-comentario-<?php print $elements['#entity']->item_id;?>">
   <td colspan="4"><?php print render($elements['field_archivo_comentario']);?></td>

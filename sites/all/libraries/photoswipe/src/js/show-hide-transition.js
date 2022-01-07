@@ -55,21 +55,23 @@ var _showOrHideTimeout,
 		// if bounds aren't provided, just open gallery without animation
 		if(!duration || !thumbBounds || thumbBounds.x === undefined) {
 
-			var finishWithoutAnimation = function() {
-				_shout('initialZoom' + (out ? 'Out' : 'In') );
+			_shout('initialZoom' + (out ? 'Out' : 'In') );
 
-				_currZoomLevel = item.initialZoomLevel;
-				_equalizePoints(_panOffset,  item.initialPosition );
-				_applyCurrentZoomPan();
+			_currZoomLevel = item.initialZoomLevel;
+			_equalizePoints(_panOffset,  item.initialPosition );
+			_applyCurrentZoomPan();
 
-				// no transition
-				template.style.opacity = out ? 0 : 1;
-				_applyBgOpacity(1);
+			template.style.opacity = out ? 0 : 1;
+			_applyBgOpacity(1);
 
+			if(duration) {
+				setTimeout(function() {
+					onComplete();
+				}, duration);
+			} else {
 				onComplete();
-			};
-			finishWithoutAnimation();
-			
+			}
+
 			return;
 		}
 
@@ -140,22 +142,17 @@ var _showOrHideTimeout,
 							y: _panOffset.y
 						},
 						initialZoomLevel = _currZoomLevel,
-						scrollY = _initalWindowScrollY,
 						initalBgOpacity = _bgOpacity,
 						onUpdate = function(now) {
-							if(_scrollChanged) {
-								scrollY = framework.getScrollY();
-								_scrollChanged = false;
-							}
 							
 							if(now === 1) {
 								_currZoomLevel = destZoomLevel;
 								_panOffset.x = thumbBounds.x;
-								_panOffset.y = thumbBounds.y  - scrollY;
+								_panOffset.y = thumbBounds.y  - _currentWindowScrollY;
 							} else {
 								_currZoomLevel = (destZoomLevel - initialZoomLevel) * now + initialZoomLevel;
 								_panOffset.x = (thumbBounds.x - initialPanOffset.x) * now + initialPanOffset.x;
-								_panOffset.y = (thumbBounds.y - scrollY - initialPanOffset.y) * now + initialPanOffset.y;
+								_panOffset.y = (thumbBounds.y - _currentWindowScrollY - initialPanOffset.y) * now + initialPanOffset.y;
 							}
 							
 							_applyCurrentZoomPan();

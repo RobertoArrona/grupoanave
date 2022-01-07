@@ -125,10 +125,24 @@ h3 code.default {
   width: 160px;
   left: 0;
   top: 106px;
+  
+}
+
+.docs-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 25px 0;
+
   border-top: 1px solid #CCC;
-  padding-top: 25px;
   border-bottom: 1px solid #CCC;
-  padding-bottom: 25px;
+}
+
+.docs-menu__ad {
+  padding: 25px 10px;
+  border-bottom: 1px solid #CCC;
+  font-size: 13px;
+  line-height: 17px;
+  position: relative;
 }
 .docs-menu a {
   text-decoration: none;
@@ -139,11 +153,6 @@ a.docs-logo {
   font-size: 20px;
   margin-bottom: 0;
   text-decoration: none;
-}
-.docs-menu ul {
-  list-style: none;
-  margin: 0;
-  padding:0;
 }
 .docs-menu li {
   list-style: none;
@@ -289,7 +298,7 @@ img {
 
 
 .video {
-  width: 100%%;
+  width: 100%;
   margin: 0 0 24px 0;
 }
 .video__container {
@@ -372,7 +381,33 @@ h1 {
   position: relative;
   padding: 30px 0;
 }
+.navigation a {
+  text-decoration: none;
+  border-bottom: 1px solid #92ABCD;
+}
 
+a.twitter-nav-link {
+  border: 0;
+  margin: 0 0.2em;
+}
+.twitter-nav-link span {
+  border-bottom: 1px solid #92ABCD;
+}
+.navigation a:hover,
+.twitter-nav-link:hover span {
+  border-bottom-color: #C00;
+}
+.twitter-nav-link:before {
+  content: '';
+  background: url('../test/twitter.svg');
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  background-size: 0.7em 0.7em;
+  background-repeat: no-repeat;
+  background-position: 0 0.1em;
+  margin-right: 0.1em;
+}
 
 
 
@@ -486,7 +521,7 @@ img.img--with_border {
 
 /*.main-wrapper {
   background: none;
-	width: 100%;
+  width: 100%;
   padding-top: 0;
   
 }
@@ -510,10 +545,10 @@ img.img--with_border {
 }
 
 
-.section--head h1 span {
+.section--head h1 a {
   vertical-align: super;
-  opacity: 0.6;
   font-size: 14px;
+  text-decoration: none;
 }
 
 /*p.intro {
@@ -626,7 +661,7 @@ img.img--with_border {
   /*color: rgba(255, 255, 255, 0.8);*/
 }
 .row--modules span {
-  font-wight:600;
+  font-weight:600;
   border-left:5px solid #FFF;
   padding-left:5px;
   margin-left:-10px;
@@ -783,13 +818,15 @@ a.demo-gallery__img--main {
 
   .docs-menu {
     position: relative;
-    left: 0;
-    top: 0;
-    border-top: 1px solid #CCC;
-    padding-top: 25px;
-    border-bottom: 1px solid #CCC;
-    padding-bottom: 25px;
     margin: 15px 0;
+    left:0;
+    top:0;
+  }
+  .docs-menu  ul {
+    position: relative;
+  }
+  .docs-menu__ad {
+    display: none;
   }
 
   .row--nav {
@@ -798,6 +835,8 @@ a.demo-gallery__img--main {
   }
 
 }
+
+
 
 @media screen and (max-width: 650px) {
    h1 {
