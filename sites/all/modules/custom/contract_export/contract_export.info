@@ -1,0 +1,4 @@
+name = "Export contracts"
+description = "Exports contracts to file."
+core = "7.x"
+package = "D4ALL"
