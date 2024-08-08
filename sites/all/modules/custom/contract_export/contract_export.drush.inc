@@ -99,6 +99,7 @@ function contract_export_export_get_user($user) {
   $data['name'] = ($user->name ?? '');
   $data['mail'] = ($user->mail ?? '');
   $data['status'] = ($user->status ?? '');
+  $data['site'] = variable_get('site_name');
 
   // Text Fields.
   if ($user->field_agente_clave) {
@@ -158,6 +159,7 @@ function contract_export_export_get_contract($node) {
   $data['title'] = ($node->title ?? '');
   $author = user_load($node->uid, TRUE);
   $data['author'] = $author->mail;
+  $data['site'] = variable_get('site_name');
 
 
   // Text Fields.
@@ -474,6 +476,7 @@ function contract_export_export_get_contract_get_payments($id) {
     $node = node_load($result->entity_id, NULL, TRUE);
     $payment = [
       'title' => $node->title,
+      'site' => variable_get('site_name'),
     ];
 
     // Text Fields.
@@ -577,7 +580,12 @@ function contract_export_export_get_contract_get_sinisters($id) {
     $node = node_load($result->entity_id, NULL, TRUE);
     $sinister = [
       'title' => $node->title,
+      'date' => $node->created,
+      'site' => variable_get('site_name'),
     ];
+
+    $author = user_load($node->uid, TRUE);
+    $sinister['author'] = $author->mail;
 
     // Text Fields.
     if ($node->field_poblacion) {
@@ -1075,7 +1083,12 @@ function contract_export_export_get_field_value($value, $type, $field_name = '')
     case 'number':
     case 'date':
     case 'boolean':
-      $value = $value['value'];
+      if (!empty($value['value2'])) {
+        $value = $value['value'] . ' TO ' . $value['value2'];
+      }
+      else {
+        $value = $value['value'];
+      }
       break;
     case 'list':
       $value = $value['value'];
