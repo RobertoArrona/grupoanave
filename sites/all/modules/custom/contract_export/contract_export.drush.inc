@@ -99,7 +99,6 @@ function contract_export_export_get_user($user) {
   $data['name'] = ($user->name ?? '');
   $data['mail'] = ($user->mail ?? '');
   $data['status'] = ($user->status ?? '');
-  $data['site'] = variable_get('site_name');
 
   // Text Fields.
   if ($user->field_agente_clave) {
@@ -155,12 +154,14 @@ function contract_export_export_get_user($user) {
  */
 function contract_export_export_get_contract($node) {
   $data = [];
-  $data['type'] = 'contract';
-  $data['title'] = ($node->title ?? '');
   $author = user_load($node->uid, TRUE);
-  $data['author'] = $author->mail;
-  $data['site'] = variable_get('site_name');
-
+  $data = [
+    'type' => 'contract',
+    'title' => ($node->title ?? ''),
+    'author' => $author->mail,
+    'site' => variable_get('site_name'),
+    'id' => $node->nid,
+  ];
 
   // Text Fields.
   if ($node->field_asegurado_benef_pref) {
@@ -391,7 +392,7 @@ function contract_export_export_get_contract($node) {
   // User Reference Fields End.
 
   if ($node->field_asegurado_domicilio) {
-    $data['field_asegurado_domicilio'] = contract_export_export_get_field_value($entity->field_asegurado_domicilio, 'address');
+    $data['field_asegurado_domicilio'] = contract_export_export_get_field_value($node->field_asegurado_domicilio, 'address');
   }
 
 
@@ -477,6 +478,7 @@ function contract_export_export_get_contract_get_payments($id) {
     $payment = [
       'title' => $node->title,
       'site' => variable_get('site_name'),
+      'id' => $node->nid,
     ];
 
     // Text Fields.
@@ -531,7 +533,7 @@ function contract_export_export_get_contract_get_payments($id) {
     if ($node->field_poliza_forma_pago) {
       $payment['field_poliza_forma_pago'] = contract_export_export_get_field_value($node->field_poliza_forma_pago, 'list', 'field_poliza_forma_pago');
     }
-    // Number Fields End.
+    // List Fields End.
 
     // Date Fields.
     if ($node->field_vencimiento_rc) {
@@ -546,11 +548,9 @@ function contract_export_export_get_contract_get_payments($id) {
       $payment['field_fecha_de_expedicion_rc'] = contract_export_export_get_field_value($node->field_fecha_de_expedicion_rc, 'date');
     }
 
-    // Postal address
-
     // Address Field.
     if ($node->field_asegurado_domicilio) {
-      $payment['field_asegurado_domicilio'] = contract_export_export_get_field_value($entity->field_asegurado_domicilio, 'address');
+      $payment['field_asegurado_domicilio'] = contract_export_export_get_field_value($node->field_asegurado_domicilio, 'address');
     }
     // Address Field End.
 
@@ -582,6 +582,7 @@ function contract_export_export_get_contract_get_sinisters($id) {
       'title' => $node->title,
       'date' => $node->created,
       'site' => variable_get('site_name'),
+      'id' => $node->nid,
     ];
 
     $author = user_load($node->uid, TRUE);
@@ -641,7 +642,7 @@ function contract_export_export_get_contract_get_sinisters($id) {
 
     // List Fields.
     if ($node->field_status_sinister) {
-      $sinister['field_status_sinister'] = contract_export_export_get_field_value($node->field_status_sinister, 'list', 'field_poliza_forma_pago');
+      $sinister['field_status_sinister'] = contract_export_export_get_field_value($node->field_status_sinister, 'list', 'field_status_sinister');
     }
     // Number Fields End.
 
@@ -710,7 +711,7 @@ function contract_export_export_get_contract_get_sinisters($id) {
         }
 
         if ($entity->field_archivo_categoria) {
-          $archive_item['field_archivo_categoria'] = contract_export_export_get_field_value($entity->field_archivo_categoria, 'list', 'field_poliza_forma_pago');
+          $archive_item['field_archivo_categoria'] = contract_export_export_get_field_value($entity->field_archivo_categoria, 'list', 'field_archivo_categoria');
         }
 
         if ($entity->field_fecha) {
@@ -768,89 +769,25 @@ function contract_export_export_get_contract_get_sinisters($id) {
       if ($entity->field_telefono_quien_reporta) {
         $driver['field_telefono_quien_reporta'] = contract_export_export_get_field_value($entity->field_telefono_quien_reporta, 'text');
       }
-
-      if ($entity->field_3ro_vehiculo_placas) {
-        $driver['field_3ro_vehiculo_placas'] = contract_export_export_get_field_value($entity->field_3ro_vehiculo_placas, 'text');
-      }
-
-      if ($entity->field_3ro_vehiculo_serie) {
-        $driver['field_3ro_vehiculo_serie'] = contract_export_export_get_field_value($entity->field_3ro_vehiculo_serie, 'text');
-      }
-
-      if ($entity->field_3ro_numero_poliza) {
-        $driver['field_3ro_numero_poliza'] = contract_export_export_get_field_value($entity->field_3ro_numero_poliza, 'text');
-      }
-
-      if ($entity->field_3ro_cobertura) {
-        $driver['field_3ro_cobertura'] = contract_export_export_get_field_value($entity->field_3ro_cobertura, 'text');
-      }
-
-      if ($entity->field_3ro_deducible) {
-        $driver['field_3ro_deducible'] = contract_export_export_get_field_value($entity->field_3ro_deducible, 'text');
-      }
-
-      if ($entity->field_3ro_siniestro) {
-        $driver['field_3ro_siniestro'] = contract_export_export_get_field_value($entity->field_3ro_siniestro, 'text');
-      }
-
-      if ($entity->field_3ro_vehiculo_danos) {
-        $driver['field_3ro_vehiculo_danos'] = contract_export_export_get_field_value($entity->field_3ro_vehiculo_danos, 'text');
-      }
       // Text Fields End.
 
       // User Fields.
       if ($entity->field_licencia_tipo) {
-        $driver['field_licencia_tipo'] = contract_export_export_get_field_value($entity->field_licencia_tipo, 'user');
+        $driver['field_licencia_tipo'] = contract_export_export_get_field_value($entity->field_licencia_tipo, 'term');
       }
 
       if ($entity->field_licencia_alta_lugar) {
-        $driver['field_licencia_alta_lugar'] = contract_export_export_get_field_value($entity->field_licencia_alta_lugar, 'user');
-      }
-
-      if ($entity->field_vehiculo_marca) {
-        $driver['field_vehiculo_marca'] = contract_export_export_get_field_value($entity->field_vehiculo_marca, 'user');
-      }
-
-      if ($entity->field_vehiculo_tipo) {
-        $driver['field_vehiculo_tipo'] = contract_export_export_get_field_value($entity->field_vehiculo_tipo, 'user');
-      }
-
-      if ($entity->field_3ro_vehiculo_color) {
-        $driver['field_3ro_vehiculo_color'] = contract_export_export_get_field_value($entity->field_3ro_vehiculo_color, 'user');
-      }
-
-      if ($entity->field_3ro_aseguradora) {
-        $driver['field_3ro_aseguradora'] = contract_export_export_get_field_value($entity->field_3ro_aseguradora, 'user');
-      }
-
-      if ($entity->field_3ro_ajustador) {
-        $driver['field_3ro_ajustador'] = contract_export_export_get_field_value($entity->field_3ro_ajustador, 'user');
-      }
-
-      if ($entity->field_promotor) {
-        $driver['field_promotor'] = contract_export_export_get_field_value($entity->field_promotor, 'user');
+        $driver['field_licencia_alta_lugar'] = contract_export_export_get_field_value($entity->field_licencia_alta_lugar, 'term');
       }
       // User Fields End.
 
       // Fields.
-      if ($entity->field_3ro_vehiculo_modelo) {
-        $driver['field_3ro_vehiculo_modelo'] = contract_export_export_get_field_value($entity->field_3ro_vehiculo_modelo, 'number');
-      }
-
       if ($entity->field_licencia_alta_fecha) {
         $driver['field_licencia_alta_fecha'] = contract_export_export_get_field_value($entity->field_licencia_alta_fecha, 'date');
       }
 
-      if ($entity->field_3ro_vencimiento) {
-        $driver['field_3ro_vencimiento'] = contract_export_export_get_field_value($entity->field_3ro_vencimiento, 'date');
-      }
-
       if ($entity->field_conductor_reporta) {
         $driver['field_conductor_reporta'] = contract_export_export_get_field_value($entity->field_conductor_reporta, 'boolean');
-      }
-
-      if ($entity->field_taller) {
-        $driver['field_taller'] = contract_export_export_get_field_value($entity->field_taller, 'user');
       }
       // Fields End.
 
@@ -1094,7 +1031,16 @@ function contract_export_export_get_field_value($value, $type, $field_name = '')
       $value = $value['value'];
       if ($field_name) {
         $field = field_info_field($field_name);
-        $value = $field['settings']['allowed_values'][$value];
+        $allowed_values = $field['settings']['allowed_values'];
+        if (is_array($allowed_values)) {
+          if (array_key_exists($value, $allowed_values)) {
+            $value = $allowed_values[$value];
+          }
+        }
+        if ($value == null && $field == 'field_poliza_forma_pago1') {
+          dump($value);
+          exit;
+        }
       }
       break;
     case 'term':
