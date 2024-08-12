@@ -1037,10 +1037,6 @@ function contract_export_export_get_field_value($value, $type, $field_name = '')
             $value = $allowed_values[$value];
           }
         }
-        if ($value == null && $field == 'field_poliza_forma_pago1') {
-          dump($value);
-          exit;
-        }
       }
       break;
     case 'term':
@@ -1069,7 +1065,7 @@ function contract_export_export_get_field_value($value, $type, $field_name = '')
       break;
     case 'address':
       $value = [
-        'country' => !empty($value['country']) ? $value['country'] : '',
+        'country' => !empty($value['country']) ? $value['country'] : 'MX',
         'administrative_area' => !empty($value['administrative_area']) ? $value['administrative_area'] : '',
         'locality' => !empty($value['locality']) ? $value['locality'] : '',
         'postal_code' => !empty($value['postal_code']) ? $value['postal_code'] : '',
